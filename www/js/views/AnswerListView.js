@@ -113,6 +113,7 @@ var AnswerListView = Backbone.View.extend({
 		// need a new column called status in db
 		//  are we online or offline 
 		// we are offline
+		/*
 		//if (connectionStatus != 'online'){
 			// create unique key for web session 
 			//var sessionKey = "key-" + SESSIONID + "-" + timer;
@@ -133,6 +134,7 @@ var AnswerListView = Backbone.View.extend({
 			window.localStorage.setItem(""+ sessionKey +"", parsedJSON);
 			var currentStorage = window.localStorage.getItem("key-chain");
 			//alert("Test pull on : "+ currentStorage);	
+		*/
 		//} else {
 			// we are online 
 			//this.model.save({qcount: currentQuestion},{ used when useing set and mulitiple save
