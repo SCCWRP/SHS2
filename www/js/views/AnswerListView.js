@@ -5,9 +5,13 @@ var AnswerListView = Backbone.View.extend({
 		// must unbind event before each question or will end up with wrong model
 		$(this.el).unbind("click");
 		//this.model.on("change", this.change, this);
+		/*
 		this.model.on('change', function(model){
 			console.log('change', model.toJSON());
 		});
+		*/
+		//this.model.on('sync', this.nextQuestion, this) - below is better
+		this.listenTo(this.model, 'sync', this.nextQuestion);
 	},
 	events:{
 		//"change":"change",
@@ -23,13 +27,34 @@ var AnswerListView = Backbone.View.extend({
 		$(this.selectorString[formtype]).val(this.model.get("declinedefault"));
 		this.saveAnswer(event);
 	},
+	nextQuestion:function(t, response, options){
+		var that = this;
+		console.log("nextQuestion");
+		// get current question number
+		//console.log(response);
+		var nextQcount = response.qcount;
+     		var questionList = new QuestionList();
+		questionList.fetch({success: getQuestion,error: errorQuestion});
+		function getQuestion(){
+			console.log("getQuestion");
+			gotQuestion = questionList.get(nextQcount);
+			var fixMenu = gotQuestion.attributes.menu.split(",")
+			t.set({'title': gotQuestion.attributes.title,'menu': fixMenu,'type': gotQuestion.attributes.type,'decline': gotQuestion.attributes.decline});
+			questionListView = new QuestionListView({model: gotQuestion});
+			questionListView.render();
+			that.render();
+		}
+		function errorQuestion(){
+			alert("errorQuestion");
+		}
+    	},
 	selectorString: {
 				"radio":"#aid input[type = 'radio']:checked",
 				"text":"#aid",
 				"select":"#aid",
 				"multi":"#aid input[type = 'checkbox']:checked",
 				"sevenday":"#aid input[type = 'checkbox']:checked"
-			},
+	},
 	saveAnswer:function(event){
 		console.log("saveAnswer");
 		var timer = 0;
@@ -113,29 +138,10 @@ var AnswerListView = Backbone.View.extend({
 		// need a new column called status in db
 		//  are we online or offline 
 		// we are offline
-		/*
-		//if (connectionStatus != 'online'){
-			// create unique key for web session 
-			//var sessionKey = "key-" + SESSIONID + "-" + timer;
-			var sessionKey = "key-" + SESSIONID;
-			// are there any other keys on the key chain 
-			var keyStorage = window.localStorage.getItem("key-chain");
-			if (keyStorage != null && currentQuestion == 1){
-				//alert("The following sessions are saved " + keyStorage);
-				// yes other keys add new key to key chain 
-				keyStorage = ""+ keyStorage +","+ sessionKey +"";
-			} else {
-				// no first key on key chain 
-				var keyStorage = ""+ sessionKey +"";
-			}	
-			// save key chain to local database 
-			window.localStorage.setItem("key-chain", keyStorage);
-			// save new key to local database 
-			window.localStorage.setItem(""+ sessionKey +"", parsedJSON);
-			var currentStorage = window.localStorage.getItem("key-chain");
-			//alert("Test pull on : "+ currentStorage);	
-		*/
-		//} else {
+		if (networkStatus != 'online'){
+			//this.model.set(answerDetails);
+			this.model.save(answerDetails);
+		} else {
 			// we are online 
 			//this.model.save({qcount: currentQuestion},{ used when useing set and mulitiple save
 			//console.log(this.model.toJSON());
@@ -151,6 +157,7 @@ var AnswerListView = Backbone.View.extend({
 					//app.notify(currentEmail);
 					// ******************************************** // 
 					// last module - go to receipt
+					/*
 					if(timer == 4){
 						// return receipt from database
 						//app.receipt();
@@ -158,6 +165,7 @@ var AnswerListView = Backbone.View.extend({
 					} else {
 						that.getQuestion(that,nextQuestion);
 					}
+					*/
 				},
 				error: function(model,response){
 	       				console.log("failed");
@@ -166,7 +174,9 @@ var AnswerListView = Backbone.View.extend({
 	       				console.log(response.statusText);
        				}
 			});
+		}
 		}, /* end saveAnswer */
+	/*
 	getQuestion: function(t,nq){
 		// go to receipt if finished with last question
 		if(nq > MAXQUESTION) {
@@ -189,16 +199,9 @@ var AnswerListView = Backbone.View.extend({
 			});
 		};
 	},
-	render: function(question_opts){
-		//this is to substitute in menu options for the the first question when sent from the router
-		if(question_opts == "default") { 
-			question_opts = {"type": 'radio',
-				"menu": 'Yes,No',
-				"decline":"no"};
-		};
-		question_opts.menu = question_opts.menu.split(","); //menu options in JSON are in one string
+	*/
+	render: function(){
 		$(this.el).html("");
-		this.model.set(question_opts);
 		$(this.el).html(this.template(this.model.toJSON()));
 		$('#multi-radio').trigger('create');
 		$("input[type='checkbox']").checkboxradio();

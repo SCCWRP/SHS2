@@ -11,6 +11,8 @@ var LoginView = Backbone.View.extend({
 	loginUser: function(e){
 		e.preventDefault();
 		var loginID = $('#loginInput').val();
+	  //if (networkStatus != 'offline' && isDevice == true){
+	  if (networkStatus != 'offline'){
         	var url = 'http://data.sccwrp.org/shs2/index.php/user/' + loginID;
 		message = $.ajax({
 		type: 'GET',
@@ -37,10 +39,24 @@ var LoginView = Backbone.View.extend({
 			//alert("complete:"+data.key);
 	        }
 		});
+	  } else {
+		alert("Login Locally");
+  	  	var userKey = window.localStorage.getItem("user");
+  	  	// loop through userKey looking to match login with key
+  	  	alert("userKey: " +userKey);
+  	  	alert("loginID: " +loginID);
+	  	//USERID = Number(data.event.id);
+		appRouter.weekly();
+	  }
 	},
 	enrollUser: function(e){
 		e.preventDefault();
-		appRouter.signup();
+		//if (networkStatus != 'offline' && isDevice == true){
+		if (networkStatus != 'offline'){
+			appRouter.signup();
+		} else {
+			alert("enrollUser not available offline");
+		}
 	},
 	render: function(){
 		console.log("LoginView render");

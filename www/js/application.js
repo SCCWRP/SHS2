@@ -17,8 +17,8 @@ var appRouter = new (Backbone.Router.extend({
 	var userCreate = user.save({email: seedEmail, phone: seedPhone}, {
 	  	wait: true,
 	      	success: function(response){
-	  		console.log(response);
-			console.log(response.id);
+	  		//console.log(response);
+			//console.log(response.id);
 			USERID = response.id;
 		  },
 		error: function(model,response){
@@ -35,14 +35,8 @@ var appRouter = new (Backbone.Router.extend({
 	  wait: true,
 	  success: function(model,response){
 		console.log("start - success");
-		//console.log(response);
 		answer = answerList.get(response.id);
 		answerListView = new AnswerListView({model: answer});
-		/* initializes render from this location only for the first time.
-		 * Every question after the first is routed from the getQuestion method
-		 * of the AnswerListView.*/ 
-		answerListView.render("default");
-		//this.close;
 	  },
  		error: function(model,response){
 		console.log("failed");
@@ -51,6 +45,7 @@ var appRouter = new (Backbone.Router.extend({
 		console.log(response.statusText);
 	  }
 	});
+	/*
      	var questionList = new QuestionList();
      	questionList.fetch({
 	  success: function(response){
@@ -64,10 +59,10 @@ var appRouter = new (Backbone.Router.extend({
 		console.log("questionList Failed");
 	  }
 	});
+	*/
   },
   weekly: function(){
 	console.log("weekly");
-	alert(USERID);
 	answerList = new AnswerList();
 	this.answerList = answerList;
 	answerList.create({qcount: 33, uid: USERID, timestamp: SESSIONID}, {
@@ -75,7 +70,27 @@ var appRouter = new (Backbone.Router.extend({
 	  success: function(model,response){
 		answer = answerList.get(response.id);
 		answerListView = new AnswerListView({model: answer});
+		//console.log(answer);
+		//console.log(answer.get("id"));
+		//answer.set({'q1.question': 'mine','q1.next': test});
+		/*
+     		var questionList = new QuestionList();
+     		questionList.fetch({
+	  		success: function(response){
+				question = questionList.get(33);
+				//var type = question.attributes.type;
+				//answer.set({'q1.question': question.attributes.title,'q1.type': question.attributes.type});
+				questionListView = new QuestionListView({model: question});
+				questionListView.render();
+	  		},
+	  		error: function(response){
+				console.log("questionList Failed");
+	  		}
+		});
+		console.log(answer);
+		answerListView = new AnswerListView({model: answer});
 		answerListView.render("default");
+		*/
 	  },
  		error: function(model,response){
 		console.log("failed");
@@ -84,6 +99,7 @@ var appRouter = new (Backbone.Router.extend({
 		console.log(response.statusText);
 	  }
 	});
+	/*
      	var questionList = new QuestionList();
      	questionList.fetch({
 	  success: function(response){
@@ -96,6 +112,7 @@ var appRouter = new (Backbone.Router.extend({
 		console.log("questionList Failed");
 	  }
 	});
+	*/
   },
   start: function(){
 	console.log("start");
@@ -104,28 +121,6 @@ var appRouter = new (Backbone.Router.extend({
   }
 }));
 var app = {
-  loginLocal: function(){
-	// if user is set 
-	var userGrab = window.localStorage.getItem("user");
-	if (userGrab != null){
-		loginStatus = true;
-		// get login id
-	}
-  },
-  loginStatus: function(){
-	// check to see if user has network connectivity
-	networkStatus = navigator.onLine ? 'online' : 'offline';
-	// if the user is online attempt to login remotely
-	if(networkStatus === 'online' && isDevice == false){
-		appRouter.start();
-	// if the user is offline and using mobile device attempt to login locally 
-	} else if(networkStatus === "offline"){
-		loginLocal();
-	} else {
-	// if neither start backbone app and attempt signup
-		appRouter.start();
-	}
-  },
   xhr_get: function(url,indata){
 	return $.ajax({
 		type: 'GET',
@@ -182,8 +177,9 @@ var app = {
 	$.mobile.pushStateEnabled = false;
 	//app.bindEvents();
   	Backbone.history.start({pushState: true});
-	// check login
-  	app.loginStatus();
+	// check network status
+ 	networkStatus = navigator.onLine ? 'online' : 'offline';
+	appRouter.start();
   },
   initialize: function(){
 	if(document.URL.indexOf("http://") === -1 && document.URL.indexOf("https://") === -1){
