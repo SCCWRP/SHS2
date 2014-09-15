@@ -41,12 +41,28 @@ var LoginView = Backbone.View.extend({
 		});
 	  } else {
 		alert("Login Locally");
-  	  	var userKey = window.localStorage.getItem("user");
-  	  	// loop through userKey looking to match login with key
-  	  	alert("userKey: " +userKey);
-  	  	alert("loginID: " +loginID);
-	  	//USERID = Number(data.event.id);
-		appRouter.weekly();
+  	  	var getUserKey = window.localStorage.getItem("user");
+		if(getUserKey != null){
+  	  		// loop through userKey looking to match login with key
+			// may be able to just use initial user key
+			var splitKey = getUserKey.split(',');
+			var splitKeyCount = splitKey.length;
+			for(var i=0; i<splitKeyCount; i++){
+				var retrieveKey = window.localStorage.getItem("user-"+ splitKey[i]);
+				var retrieveObject = jQuery.parseJSON(retrieveKey);
+				if(loginID == retrieveObject.email || loginID == retrieveObject.phone){
+					loginStatus = true;
+	  				USERID = retrieveObject.id;
+				} 
+			}
+			if(loginStatus == true){
+				appRouter.weekly();
+			} else {
+				alert("User account not found - You must signup online before you can run a weekly survey.");
+			}
+		} else {
+			alert("You must signup online before you can run a weekly survey.");
+		}
 	  }
 	},
 	enrollUser: function(e){

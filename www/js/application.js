@@ -45,24 +45,41 @@ var appRouter = new (Backbone.Router.extend({
 		console.log(response.statusText);
 	  }
 	});
-	/*
-     	var questionList = new QuestionList();
-     	questionList.fetch({
-	  success: function(response){
-		console.log("questionList fetch");
-		question = questionList.get(1);
-		var type = question.attributes.type;
-		questionListView = new QuestionListView({model: question});
-		questionListView.render();
-	  },
-	  error: function(response){
-		console.log("questionList Failed");
-	  }
-	});
-	*/
   },
   weekly: function(){
 	console.log("weekly");
+	// user has logged in successfully lets check to see if they have an stored sessions
+  	//if (networkStatus != 'offline' && isDevice == true){
+  	if (networkStatus != 'offline'){
+		var dirtyKey = window.localStorage.getItem("http://data.sccwrp.org/shs2/index.php/surveys_dirty");
+		if (dirtyKey != null){
+			// split on comma to get individual keys
+			// sync data
+			var splitKey = dirtyKey.split(',');
+			var splitKeyCount = splitKey.length;
+			for(var i=0; i<splitKeyCount; i++){
+				var retrieveKey = window.localStorage.getItem("http://data.sccwrp.org/shs2/index.php/surveys"+ splitKey[i]);
+				var retrieveObject = jQuery.parseJSON(retrieveKey);
+				saveList = new AnswerList();
+				saveList.create({uid: USERID, timestamp: SESSIONID}, {
+			  	  wait: true,
+	  		  	  success: function(model,response){
+					model.save(retrieveObject);
+					console.log(model);
+					// create view to show user that offline data has been saved
+					// receipt
+					//answerListView = new AnswerListView({model: answer});
+	  		  	  },
+ 			  	  error: function(model,response){
+					console.log("failed");
+					console.log(response.responseText);
+					console.log(response.status);
+					console.log(response.statusText);
+	  		  	  }
+				});
+			}
+		}
+	}
 	answerList = new AnswerList();
 	this.answerList = answerList;
 	answerList.create({qcount: 33, uid: USERID, timestamp: SESSIONID}, {
@@ -73,24 +90,6 @@ var appRouter = new (Backbone.Router.extend({
 		//console.log(answer);
 		//console.log(answer.get("id"));
 		//answer.set({'q1.question': 'mine','q1.next': test});
-		/*
-     		var questionList = new QuestionList();
-     		questionList.fetch({
-	  		success: function(response){
-				question = questionList.get(33);
-				//var type = question.attributes.type;
-				//answer.set({'q1.question': question.attributes.title,'q1.type': question.attributes.type});
-				questionListView = new QuestionListView({model: question});
-				questionListView.render();
-	  		},
-	  		error: function(response){
-				console.log("questionList Failed");
-	  		}
-		});
-		console.log(answer);
-		answerListView = new AnswerListView({model: answer});
-		answerListView.render("default");
-		*/
 	  },
  		error: function(model,response){
 		console.log("failed");
@@ -99,20 +98,6 @@ var appRouter = new (Backbone.Router.extend({
 		console.log(response.statusText);
 	  }
 	});
-	/*
-     	var questionList = new QuestionList();
-     	questionList.fetch({
-	  success: function(response){
-		question = questionList.get(33);
-		var type = question.attributes.type;
-		questionListView = new QuestionListView({model: question});
-		questionListView.render();
-	  },
-	  error: function(response){
-		console.log("questionList Failed");
-	  }
-	});
-	*/
   },
   start: function(){
 	console.log("start");

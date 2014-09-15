@@ -76,8 +76,6 @@ var AnswerListView = Backbone.View.extend({
 		var currentQuestion = Number(this.model.get("qcount")); 
 		//console.log("currentQuestion: "+ currentQuestion);
 		appID = Number(this.model.get("id")); 
-		//console.log("appID: "+ appID);
-		//var currentQuestion = (Number($('#qid').val()));
 		// next question  
 		var nextQuestion = (currentQuestion + 1);
 		// storing userid email and phone
@@ -101,6 +99,19 @@ var AnswerListView = Backbone.View.extend({
 				wait: true,
 				success: function(response){
 					console.log(user.toJSON());
+					//if device save to user key
+					userPhoneEmail = '{"email":"'+user.get('email')+'","phone":"'+user.get('phone')+'","id":"'+USERID+'"}';
+					var userKey = window.localStorage.getItem("user");
+					// add to keychain
+					if(userKey != null){
+						userKey = ''+userKey+','+USERID+'';
+						window.localStorage.setItem("user", userKey);
+					} else {
+					// new keychain
+						window.localStorage.setItem("user", USERID);
+					}
+					window.localStorage.setItem("user-"+USERID, userPhoneEmail);
+					// set userid in database and forms
 				},
 				error: function(response){
 					console.log(response.status);
@@ -128,15 +139,11 @@ var AnswerListView = Backbone.View.extend({
 		this.model.set("q"+currentQuestion, currentAnswer);
 		answerDetails.qcount = nextQuestion;
 		// either set or save here
-		//this.model.save({q1: "test"}, { 
 		//this.model.set(answerDetails, {validate:true});
 		//if(timer != 0){ use this code if you want break up modules and then save
-		//window.localStorage.clear();
-		console.log(this.model.toJSON());
 		// dump saved answers to json string 
 		var parsedJSON = JSON.stringify(this.model.toJSON());
 		// need a new column called status in db
-		//  are we online or offline 
 		// we are offline
 		if (networkStatus != 'online'){
 			//this.model.set(answerDetails);
@@ -176,30 +183,6 @@ var AnswerListView = Backbone.View.extend({
 			});
 		}
 		}, /* end saveAnswer */
-	/*
-	getQuestion: function(t,nq){
-		// go to receipt if finished with last question
-		if(nq > MAXQUESTION) {
-			appRouter.receipt();
-		} else {
-	     		var questionList = new QuestionList();
-	     		questionList.fetch({
-				success: function(response){
-					question = questionList.get(nq);
-					questionListView = new QuestionListView({model: question});
-					var passtoanswer = _(question.attributes).pick("type", "menu", "decline", "declinedefault");
-					questionListView.render();
-					// this render is called starting from the second question.
-					// render is called the first time from the router
-					t.render(passtoanswer);
-				},
-				error: function(response){
-					console.log("questionList Failed");
-				}
-			});
-		};
-	},
-	*/
 	render: function(){
 		$(this.el).html("");
 		$(this.el).html(this.template(this.model.toJSON()));
