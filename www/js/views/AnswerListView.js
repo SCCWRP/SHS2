@@ -4,13 +4,6 @@ var AnswerListView = Backbone.View.extend({
 	initialize: function(){
 		// must unbind event before each question or will end up with wrong model
 		$(this.el).unbind("click");
-		//this.model.on("change", this.change, this);
-		/*
-		this.model.on('change', function(model){
-			console.log('change', model.toJSON());
-		});
-		*/
-		//this.model.on('sync', this.nextQuestion, this) - below is better
 		this.listenTo(this.model, 'sync', this.nextQuestion);
 	},
 	events:{
@@ -19,7 +12,6 @@ var AnswerListView = Backbone.View.extend({
     		"click .decline":"declineAnswer"
 	},
 	change:function(event){
-		//console.log("changing "+ target.id + ' from: ' + target.defaultValue +'"');
 		console.log("change");
 	},
     	declineAnswer:function(event){
@@ -60,7 +52,7 @@ var AnswerListView = Backbone.View.extend({
 		var timer = 0;
 		var appID;
 		var that = this;
-		var currentAnswer = $('#aid').val();
+		//var currentAnswer = $('#aid').val();
 		formtype = this.model.get("type");
 		var currentAnswer = $(this.selectorString[formtype]); 
 		if(formtype == "multi" || formtype == "sevenday") {
@@ -69,6 +61,9 @@ var AnswerListView = Backbone.View.extend({
 			currentAnswer = temparray.join();
 		} else {
 			currentAnswer = currentAnswer.val();
+		};
+		if(!currentAnswer || currentAnswer == []) {
+			currentAnswer = "";
 		};
 		console.log("currentAnswer: "+ currentAnswer);
 		// current question

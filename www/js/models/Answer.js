@@ -10,70 +10,55 @@ var createDefaults =  function() {
 var Answer = Backbone.Model.extend({
 	initialize: function(){
 		this.on("invalid",function(model,error){
-			alert(error.phone);
-			alert(error.length);
+			alert(error);
 		});
 	},
 	defaults: createDefaults(),
-    	validator: function(attr, qid, funcs){
-		funcs.map(function(f) {
-			return f(attr[qid]);
-		});
-	},
 	validate: function (attrs){
-		/* error checking/validation code placement - example for question6 */
-		var errors = this.errors = {};
-		if(attrs.q6 && attrs.q6 == ""){ errors.phone = 'phone is required'; }
-		if(attrs.q6 && attrs.q6.length < 2){ errors.length = 'phone has minimum'; }
-		if(!_.isEmpty(errors)) return errors;
+		for(i=1; i<= MAXQUESTION; i++) {
+			var q = "q" + i
+			var outcome = validators[q].map(function(f) {
+				return f(attrs[q]);
+			});
+			var outcome = outcome.filter(function(x){return x != undefined;});
+			if(outcome.length > 0){
+				var oneerror = outcome.pop();
+				return oneerror;
+			};
+		};
 	}
 });
-
 var validationFuncs = {
-	notNull: function(q) {if(q && q == "") return "A response is required before continuing";},
-	phoneLength: function(q) {if(q && q.length < 2) return "Invalid phone number";} 
+	"0": function(q) {if(q == "") return "A response is required before continuing";},
+	"1": function(q) {if(q && q.length < 2) return "Invalid phone number";} 
 };
-
-/*
-function makeValidator() {
-	// First, create validation look up object
-	var questions = {};
-	(function() {
-		$.ajax({
-			url:"questions.json",
-			dataType: 'json',
-			async: false,
-			success: function(qjson){
-				questions = qjson;
-			})
-	}());
+var createValidation = function (questions){
 	var valLU = {};
-	for(i=0; i < MAXQUESTION; i++) {
-		var vs = questions[i].checks.split(",");
-		// add validation checks to function array
-		valLU["q" + i]  = vs.map(function (v) {return validationFuncs[v];});
-		// add default validator, if one is needed
-		if(questions[i].errmessage != "") {
-			var defaultvalid= function () {
-				var msg = questions[i].errmessage;	
-				return function(q) {if(q && q == "no") return msg;};
-			}();
-			valLU["q" + i].push(defaultvalid); 
-		};	
-	};	
-	// Return function closure that references LU object
-	return function(attrs) {
-		var errors = [];
-		for(key in valLU) {
-			var err = valLU[key].map(function(f) {return f(attrs[key]);});
-			err.each(function(e) {
-				if(e) {
-					errors.push(e);
-			}});
+	for(i=0; i< MAXQUESTION; i++) {
+		if(!questions[i].hasOwnProperty("check")) {
+			questions[i]["check"] = "0";
 		};
-		if(errors.length > 0) return errors;
-	};	
+		var codes = questions[i].check.split(",");
+		valLU["q" + (i+1)] = codes.map(function(c) {
+			return validationFuncs[c];
+		});	
+		if(questions[i].errmessage != "") {
+			var v = (function() {
+				var message = questions[i].errmessage;
+				return function(q) {if(q && q == "No") {return message;}}
+			})(); 	
+			valLU["q" + (i+1)].push(v);
+		};
+	};
+	return valLU;
 };
 
-var validator = makeValidator();
-*/
+$.ajax({
+	url: "questions.json",
+	async: false,
+	success: function(q) {
+		validators = createValidation(q);
+	}
+})
+
+
