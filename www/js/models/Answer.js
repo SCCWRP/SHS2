@@ -15,6 +15,7 @@ var Answer = Backbone.Model.extend({
 		});
 	},
 	defaults: createDefaults(),
+    		urlRoot: 'http://data.sccwrp.org/shs2/index.php/surveys',
     	validator: function(attr, qid, funcs){
 		funcs.map(function(f) {
 			return f(attr[qid]);

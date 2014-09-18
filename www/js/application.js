@@ -4,9 +4,12 @@ var appRouter = new (Backbone.Router.extend({
     "": "signup"
   },
   receipt: function(appid){
-	 receiptUnique = this.answerList.get(appid);
-	 receiptView = new ReceiptView({model: receiptUnique});
-         receiptView.render();
+	 var receipt = new Receipt({id: appid});
+	 receiptView = new ReceiptView({model: receipt});
+	 receipt.fetch({error: errorMessage});
+	 function errorMessage(response){
+		 console.log(response);
+	 }
   },
   signup: function(){
 	console.log("signup");
@@ -52,55 +55,65 @@ var appRouter = new (Backbone.Router.extend({
   	//if (networkStatus != 'offline' && isDevice == true){
   	if (networkStatus != 'offline'){
 		var dirtyKey = window.localStorage.getItem("http://data.sccwrp.org/shs2/index.php/surveys_dirty");
-		if (dirtyKey != null){
-			// split on comma to get individual keys
-			// sync data
-			var splitKey = dirtyKey.split(',');
-			var splitKeyCount = splitKey.length;
-			for(var i=0; i<splitKeyCount; i++){
-				var retrieveKey = window.localStorage.getItem("http://data.sccwrp.org/shs2/index.php/surveys"+ splitKey[i]);
-				var retrieveObject = jQuery.parseJSON(retrieveKey);
-				saveList = new AnswerList();
-				saveList.create({uid: USERID, timestamp: SESSIONID}, {
-			  	  wait: true,
-	  		  	  success: function(model,response){
-					model.save(retrieveObject);
-					console.log(model);
-					// create view to show user that offline data has been saved
-					// receipt
-					//answerListView = new AnswerListView({model: answer});
-	  		  	  },
- 			  	  error: function(model,response){
-					console.log("failed");
-					console.log(response.responseText);
-					console.log(response.status);
-					console.log(response.statusText);
-	  		  	  }
-				});
-			}
+		if (dirtyKey){
+			//submitLocal(dirtyKey, startWeekly);
+			submitLocal(dirtyKey);
+			startWeekly();
+		} else {
+			startWeekly();
 		}
+	} else {
+		startWeekly();
 	}
-	answerList = new AnswerList();
-	this.answerList = answerList;
-	answerList.create({qcount: 33, uid: USERID, timestamp: SESSIONID}, {
-	  wait: true,
-	  success: function(model,response){
-		answer = answerList.get(response.id);
-		answerListView = new AnswerListView({model: answer});
-		//console.log(answer);
-		//console.log(answer.get("id"));
-		//answer.set({'q1.question': 'mine','q1.next': test});
-	  },
- 		error: function(model,response){
-		console.log("failed");
-		console.log(response.responseText);
-		console.log(response.status);
-		console.log(response.statusText);
-	  }
-	});
+	function submitLocal(dirtyKey){
+		// split on comma to get individual keys
+		// sync data
+		var splitKey = dirtyKey.split(',');
+		var splitKeyCount = splitKey.length;
+		for(var i=0; i<splitKeyCount; i++){
+			var surveyLocalKey = window.localStorage.getItem("http://data.sccwrp.org/shs2/index.php/surveys"+ splitKey[i]);
+			//storeLocal(localKey,localReceipt);
+			var surveyLocalObject = jQuery.parseJSON(surveyLocalKey);
+			var saveList = new AnswerList();
+			saveList.create(surveyLocalObject, {
+		  	  wait: true,
+  		  	  success: function(model,response){
+				console.log(saveList);
+				appID = Number(response.id);
+				console.log(appID);
+				// future - need to setup receipt for each local submission
+				//appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
+  		  	  },
+		  	  error: function(response){
+				console.log("failed");
+				console.log(response.responseText);
+				console.log(response.status);
+				console.log(response.statusText);
+  		  	  }
+			});
+		} // end for
+	} // close submitLocal
+	function startWeekly(){
+			answerList = new AnswerList();
+			this.answerList = answerList;
+			answerList.create({qcount: 33, uid: USERID, timestamp: SESSIONID}, {
+	  		  wait: true,
+	  		  success: function(model,response){
+				answer = answerList.get(response.id);
+				answerListView = new AnswerListView({model: answer});
+	  		  },
+ 			  error: function(model,response){
+				console.log("failed");
+				console.log(response.responseText);
+				console.log(response.status);
+				console.log(response.statusText);
+	  		  }
+			});
+	}
   },
   start: function(){
 	console.log("start");
+	//appRouter.navigate('shs2/receipt/855', {trigger: true});
 	introView = new IntroView();
 	introView.render();
   }

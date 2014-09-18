@@ -117,6 +117,7 @@ var AnswerListView = Backbone.View.extend({
 					console.log(response.status);
 				}
 			});
+			//appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
 		}
                 // logic for skipping certain questions
 		if(currentQuestion == 7 && currentAnswer == "phone") {
@@ -132,7 +133,11 @@ var AnswerListView = Backbone.View.extend({
 		if(currentQuestion == 33 && currentAnswer == "No"){
 			nextQuestion +=  9;
 		};
-
+		// this should really go somewhere after sync happens maybe next question
+		// also status needs to be toggled to complete in database
+		if(currentQuestion == 75){
+			timer = 4;
+		};
 		// create answerDetails object
 		answerDetails = {};
 		answerDetails["q"+currentQuestion] = currentAnswer;
@@ -164,11 +169,11 @@ var AnswerListView = Backbone.View.extend({
 					//app.notify(currentEmail);
 					// ******************************************** // 
 					// last module - go to receipt
-					/*
 					if(timer == 4){
 						// return receipt from database
-						//app.receipt();
 						appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
+					}
+					/*
 					} else {
 						that.getQuestion(that,nextQuestion);
 					}
@@ -181,6 +186,7 @@ var AnswerListView = Backbone.View.extend({
 	       				console.log(response.statusText);
        				}
 			});
+			console.log(this.model);
 		}
 		}, /* end saveAnswer */
 	render: function(){
