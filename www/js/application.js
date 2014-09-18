@@ -1,7 +1,8 @@
 var appRouter = new (Backbone.Router.extend({
   routes: {
     "shs2/receipt/:appid": "receipt",
-    "": "signup"
+    "": "signup",
+    "intro": "start"
   },
   receipt: function(appid){
 	 receiptUnique = this.answerList.get(appid);

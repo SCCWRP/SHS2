@@ -103,7 +103,8 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "7"
+      	"id": "7",
+	"check": "0,checkq7"
   },
   {
 	"title": "Please enter your email address",
@@ -133,7 +134,8 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "9"
+      	"id": "9",
+	"check": "0,checkq9"
   },
   {
 	"title": "The study will send you a weekly reminder to fill out a quick, 10-minute survey of your surf activity and health. Would you prefer that the study contact you primarily by phone through text messages (SMS) or by email?",

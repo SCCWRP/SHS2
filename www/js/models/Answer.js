@@ -18,7 +18,7 @@ var Answer = Backbone.Model.extend({
 		for(i=1; i<= MAXQUESTION; i++) {
 			var q = "q" + i
 			var outcome = validators[q].map(function(f) {
-				return f(attrs[q]);
+				return f(attrs[q], attrs);
 			});
 			var outcome = outcome.filter(function(x){return x != undefined;});
 			if(outcome.length > 0){
@@ -30,7 +30,9 @@ var Answer = Backbone.Model.extend({
 });
 var validationFuncs = {
 	"0": function(q) {if(q == "") return "A response is required before continuing";},
-	"1": function(q) {if(q && q.length < 2) return "Invalid phone number";} 
+	"1": function(q) {if(q && q.length < 2) return "Invalid phone number";}, 
+	"checkq7": function(q, at) {if(q && at.q7 != q) return "Phone number must match";},
+	"checkq9": function(q, at) {if(q && at.q8 != q) return "Email must match";}
 };
 var createValidation = function (questions){
 	var valLU = {};

@@ -139,7 +139,7 @@
 		    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain" data-mini="true">
 			<% for(i=0; i < menu.length; i++) { %>
 			 <label class="radioClassLabel" id= <%= "radioLabel-" + String.fromCharCode(97 + i)  %> >
-			 <input type="radio" class="radioClass" id="radio-ID" name="radioSelect" value= <%= menu[i] %> />
+			 <input type="radio" class="save" id="radio-ID" name="radioSelect" value= <%= menu[i] %> />
 			 <span class="ui-btn-inner"><span class="ui-btn-text" id= <%= "radio-text-" + String.fromCharCode(97 +i)  %> > <%= menu[i] %> </span></span></label>
 			<% }; %>
 		</fieldset>

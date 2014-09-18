@@ -151,7 +151,8 @@ var AnswerListView = Backbone.View.extend({
 				wait: true,
 				success: function(model,response){
 					console.log("success");
-					//console.log(model.get("id"));
+					console.log(model);
+					console.log(response);
 					//appID = Number(this.model.get("id")); 
 					// if module1 - then notify user 
 					// ****** notify user - working code ********** //
