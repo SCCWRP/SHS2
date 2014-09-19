@@ -2,20 +2,20 @@ var ReceiptView = Backbone.View.extend({
 	el: '#content',
 	template:_.template($('#tpl-receipt-details').html()),
 	initialize: function(){
+		//this.model.on('change',this.test,this);
+		this.listenTo(this.model, "change", this.render);
 	},
 	events:{
 		"click .finish":"finish"
 	},
 	finish: function(){
-       		appRouter.navigate('http://data.sccwrp.org/shs2/index.html', {trigger: true});
+       		//appRouter.navigate('start', {trigger: true});
+		appRouter.start();
 	},
-	render: function(t){
+	render: function(){
 			console.log("ReceiptView render");
-			console.log(this.model.toJSON());
-			//console.log(this.model.get('qcount'));
-			$(this.el).html("");
-			//console.log(this.model.get('id'));
+			//console.log(this.model.toJSON());
+			$(this.el).html("");	
 			$(this.el).html(this.template(this.model.toJSON()));	
-			return this;
 	}
 });
