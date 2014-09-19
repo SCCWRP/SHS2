@@ -35,7 +35,7 @@ var appRouter = new (Backbone.Router.extend({
 	//userView = new UserView({model: user});
 	answerList = new AnswerList();
 	this.answerList = answerList;
-	answerList.create({qcount: 1, timestamp: SESSIONID}, {
+	answerList.create({qcount: 14, timestamp: SESSIONID}, {
 	  wait: true,
 	  success: function(model,response){
 		console.log("start - success");

@@ -145,33 +145,18 @@
 	    </div> 
 	   </form>
 	 </div>
-	  <% } else if ((type) == "monthweek"){  %>
+	  <% } else if ((type) == "weekmonthtime"){  %>
          	<label>User ID:</label>
           	<input type="text" value="<%= uid %>" disabled />
           	<label>Record ID:</label>
           	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
 		<div class="ui-field-contain" data-inset="true">
+		  <input type="number" id="aid">
     		  <select name="aid" id="aidscale">
-	          <% var keys = []; %>
-		  <% for(key in menu) { %>
-		  <% keys.push(key); %>
-		 	 <option value= <%= key %> > <%= key %> </option>
-		  <% }; %>
-	  	</select>
-		<% for(key in menu) { %>
-		 <select id= <%= key %> class="numericInput">
-		 <% for(i=0; menu[key].length; i++) { %>
-			 <option value = <%= menu[key][i] %> > <%= menu[key][i] %> </option> 
+		  <% var dates = {"per week": [1, 2, 3, 4, 5, 6, 7], "per month": [1, 2, 3]}; %>
+		  <% for(key in dates) { %>
+		 	 <option value= "<%= key %>" > <%= key %> </option>
 		 <% }; %>
-		 <% }; %>
-		 </select>
-		 <% print("<sc" + "ript type='text/javascript'>"); %>
-		$("#aid").addEventListener('change', function() {
-		 var on = $("#aid").val();
-		 $(".numericInput").style.display = 'none';
-		 $('#' + on).style.display = 'block';
-	 	};	 
-		<% print("<sc" + "ript>"); %>
 		</div>
 	  <% } else if ((type) == "multi"){  %>
   	    <div class="form-left-col"><h3>Multi Question - <%= qcount %> - <%= type %></h3>

@@ -5,6 +5,7 @@ var AnswerListView = Backbone.View.extend({
 		// must unbind event before each question or will end up with wrong model
 		$(this.el).unbind("click");
 		this.listenTo(this.model, 'sync', this.nextQuestion);
+		this.listenTo(footerView, 'forward', this.saveAnswer); 
 	},
 	events:{
 		//"change":"change",
@@ -45,7 +46,8 @@ var AnswerListView = Backbone.View.extend({
 				"text":"#aid",
 				"select":"#aid",
 				"multi":"#aid input[type = 'checkbox']:checked",
-				"sevenday":"#aid input[type = 'checkbox']:checked"
+				"sevenday":"#aid input[type = 'checkbox']:checked",
+				"weekmonthtime":"aid"
 	},
 	saveAnswer:function(event){
 		console.log("saveAnswer");
@@ -59,8 +61,10 @@ var AnswerListView = Backbone.View.extend({
 			var temparray = [];
 			currentAnswer.map(function () { temparray.push(this.value); });
 			currentAnswer = temparray.join();
+		} else if(formtype == "weekmonthtime") {
+			currentAnswer = $("select").val() + " : " + currentAnswer.val();
 		} else {
-			currentAnswer = currentAnswer.val();
+			currentAnswer = currentAnswer.val();	
 		};
 		if(!currentAnswer || currentAnswer == []) {
 			currentAnswer = "";
@@ -84,10 +88,6 @@ var AnswerListView = Backbone.View.extend({
 					console.log(response.status);
 				}
 			});
-		}
-                // logic for skipping certain questions
-		if(currentQuestion == 7 && currentAnswer == "text") {
-			nextQuestion = nextQuestion + 2;
 		}
 		if(currentQuestion == 8){
 			user.save({ email: currentAnswer }, {
@@ -115,17 +115,10 @@ var AnswerListView = Backbone.View.extend({
 			//appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
 		}
                 // logic for skipping certain questions
-		if(currentQuestion == 7 && currentAnswer == "phone") {
-			alert("phone answer");
-			nextQuestion = nextQuestion + 2;
-		};
-		if(currentQuestion == 8 && currentAnswer == "Null@Null.com") {
-			nextQuestion +=  1;
-		};
-		if([21, 23, 25, 43, 45, 47, 49, 51, 53, 55, 57, 59].indexOf(currentQuestion) > -1  && currentAnswer == "No"){
+		if([22, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62].indexOf(currentQuestion) > -1  && currentAnswer == "No"){
 			nextQuestion += 1;
 		};
-		if(currentQuestion == 33 && currentAnswer == "No"){
+		if(currentQuestion == 25 && currentAnswer == "No"){
 			nextQuestion +=  9;
 		};
 		// this should really go somewhere after sync happens maybe next question
