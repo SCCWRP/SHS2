@@ -4,7 +4,21 @@ var appRouter = new (Backbone.Router.extend({
     "": "signup",
     "intro": "start"
   },
+  checksum: function(){
+	console.log("checksum");
+  	//if (networkStatus != 'offline' && isDevice == true){
+  	if (networkStatus != 'offline'){
+		var surveyKey = window.localStorage.getItem("http://data.sccwrp.org/shs2/index.php/surveys");
+		var splitKey = surveyKey.split(',');
+		var splitKeyCount = splitKey.length;
+		console.log(splitKeyCount);
+		for(var i=0; i<splitKeyCount; i++){
+			console.log(splitKey[i]);
+		}
+	}
+  },
   receipt: function(appid){
+	 console.log("receipt");
 	 var receipt = new Receipt({id: appid});
 	 receiptView = new ReceiptView({model: receipt});
 	 receipt.fetch({error: errorMessage});
@@ -57,9 +71,10 @@ var appRouter = new (Backbone.Router.extend({
   	if (networkStatus != 'offline'){
 		var dirtyKey = window.localStorage.getItem("http://data.sccwrp.org/shs2/index.php/surveys_dirty");
 		if (dirtyKey){
-			//submitLocal(dirtyKey, startWeekly);
-			submitLocal(dirtyKey);
-			startWeekly();
+			alert(dirtyKey);
+			submitLocal(dirtyKey, startWeekly);
+			//submitLocal(dirtyKey);
+			//startWeekly();
 		} else {
 			startWeekly();
 		}
@@ -79,9 +94,9 @@ var appRouter = new (Backbone.Router.extend({
 			saveList.create(surveyLocalObject, {
 		  	  wait: true,
   		  	  success: function(model,response){
-				console.log(saveList);
 				appID = Number(response.id);
 				console.log(appID);
+				console.log("Receipt: "+ saveList.toJSON());
 				// future - need to setup receipt for each local submission
 				//appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
   		  	  },
@@ -97,7 +112,7 @@ var appRouter = new (Backbone.Router.extend({
 	function startWeekly(){
 			answerList = new AnswerList();
 			this.answerList = answerList;
-			answerList.create({qcount: 33, uid: USERID, timestamp: SESSIONID}, {
+			answerList.create({qcount: 74, uid: USERID, timestamp: SESSIONID}, {
 	  		  wait: true,
 	  		  success: function(model,response){
 				answer = answerList.get(response.id);
@@ -115,8 +130,9 @@ var appRouter = new (Backbone.Router.extend({
   start: function(){
 	console.log("start");
 	//appRouter.navigate('shs2/receipt/855', {trigger: true});
-	introView = new IntroView();
-	introView.render();
+	//introView = new IntroView();
+	//introView.render();
+	appRouter.checksum();
   }
 }));
 var app = {

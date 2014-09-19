@@ -102,20 +102,9 @@
 	</script>
 	<script type="text/template" id="tpl-receipt-details">
     	<div class="form-left-col"><h3>Session Receipt:</h3>
-	  <ul>
-		<li>ID - <%= id %></li>
-		<li>q1 - <%= q1 %></li>
-		<li>q2 - <%= q2 %></li>
-		<li>q3 - <%= q3 %></li>
-		<li>q4 - <%= q4 %></li>
-		<li>q5 - <%= q5 %></li>
-		<li>q6 - <%= q6 %></li>
-		<li>q7 - <%= q7 %></li>
-		<li>q8 - <%= q8 %></li>
-		<li>q9 - <%= q9 %></li>
-		<li>q10 - <%= q10 %></li>
-		<li>q11 - <%= q11 %></li>
-	  </ul>
+		<% _.each(elements,function(element,index,list) { %>
+			<li class="edit" name="edit" id="<%= index %>"><%= index %> - <%= element %></li>
+		<% }); %>
           	<button id="finish" class="finish">Looks Good</button>
 	</div>
 	</script>

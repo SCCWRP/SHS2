@@ -19,4 +19,4 @@ $.ajax({
 	},
 	error: function () {console.log("error")}	
 });
-	
+var EventBus = _.extend({}, Backbone.Events);

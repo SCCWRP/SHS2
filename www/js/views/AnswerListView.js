@@ -5,6 +5,9 @@ var AnswerListView = Backbone.View.extend({
 		// must unbind event before each question or will end up with wrong model
 		$(this.el).unbind("click");
 		this.listenTo(this.model, 'sync', this.nextQuestion);
+		this.listenTo(this.model, 'change:status', this.nextQuestion);
+		//this.listenTo(this.model, 'change:status', this.change);
+		//EventBus.on("nextQuestion:view",this.nextQuestion);
 	},
 	events:{
 		//"change":"change",
@@ -12,7 +15,10 @@ var AnswerListView = Backbone.View.extend({
     		"click .decline":"declineAnswer"
 	},
 	change:function(event){
+		var that = this;
 		console.log("change");
+		console.log(event);
+		that.nextQuestion();
 	},
     	declineAnswer:function(event){
 		formtype = this.model.get("type");
@@ -23,8 +29,12 @@ var AnswerListView = Backbone.View.extend({
 		var that = this;
 		console.log("nextQuestion");
 		// get current question number
-		//console.log(response);
-		var nextQcount = response.qcount;
+		console.log(t);
+		console.log(t.get("qcount"));
+		var nextQcount = t.get("qcount");
+		// changed - to above for receipt
+		//var nextQcount = response.qcount;
+		//console.log(response.qcount);
      		var questionList = new QuestionList();
 		questionList.fetch({success: getQuestion,error: errorQuestion});
 		function getQuestion(){
