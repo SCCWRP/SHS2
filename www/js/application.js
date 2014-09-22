@@ -4,6 +4,7 @@ var appRouter = new (Backbone.Router.extend({
     "": "signup",
     "intro": "start"
   },
+  // new not yet incorporated into main program
   checksum: function(){
 	console.log("checksum");
   	//if (networkStatus != 'offline' && isDevice == true){
@@ -14,6 +15,8 @@ var appRouter = new (Backbone.Router.extend({
 		console.log(splitKeyCount);
 		for(var i=0; i<splitKeyCount; i++){
 			console.log(splitKey[i]);
+			// check each value against server - to confirm they are "complete" in status field
+			// if not - send to staging table for manual decision making
 		}
 	}
   },
@@ -112,7 +115,7 @@ var appRouter = new (Backbone.Router.extend({
 	function startWeekly(){
 			answerList = new AnswerList();
 			this.answerList = answerList;
-			answerList.create({qcount: 74, uid: USERID, timestamp: SESSIONID}, {
+			answerList.create({qcount: 25, uid: USERID, timestamp: SESSIONID}, {
 	  		  wait: true,
 	  		  success: function(model,response){
 				answer = answerList.get(response.id);
@@ -130,9 +133,9 @@ var appRouter = new (Backbone.Router.extend({
   start: function(){
 	console.log("start");
 	//appRouter.navigate('shs2/receipt/855', {trigger: true});
-	//introView = new IntroView();
-	//introView.render();
-	appRouter.checksum();
+	//appRouter.checksum();
+	introView = new IntroView();
+	introView.render();
   }
 }));
 var app = {
