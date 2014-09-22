@@ -54,7 +54,6 @@ var AnswerListView = Backbone.View.extend({
 		var timer = 0;
 		var appID;
 		var that = this;
-		//var currentAnswer = $('#aid').val();
 		formtype = this.model.get("type");
 		var currentAnswer = $(this.selectorString[formtype]); 
 		if(formtype == "multi" || formtype == "sevenday") {
@@ -68,6 +67,9 @@ var AnswerListView = Backbone.View.extend({
 		};
 		if(!currentAnswer || currentAnswer == []) {
 			currentAnswer = "";
+		};
+		if(currentAnswer == "Other") {
+			currentAnswer = "Other : " + prompt("", "").replace(",", "|");
 		};
 		console.log("currentAnswer: "+ currentAnswer);
 		// current question
