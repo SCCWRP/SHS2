@@ -225,7 +225,8 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "15"
+      	"id": "15",
+	"check": "0,numberWeek,gte1"
   },
   {
 	"title": "About how often do you surf during the dry season (April -  October)?",
@@ -240,7 +241,8 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "16"
+      	"id": "16",
+	"check": "0,numberWeek,gte1"
   },
   {
 	"title": "How long is the board you usually ride?",

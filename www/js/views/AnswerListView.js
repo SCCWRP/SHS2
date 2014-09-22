@@ -47,7 +47,7 @@ var AnswerListView = Backbone.View.extend({
 				"select":"#aid",
 				"multi":"#aid input[type = 'checkbox']:checked",
 				"sevenday":"#aid input[type = 'checkbox']:checked",
-				"weekmonthtime":"aid"
+				"weekmonthtime":"#aid"
 	},
 	saveAnswer:function(event){
 		console.log("saveAnswer");
