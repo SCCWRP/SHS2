@@ -22,7 +22,7 @@ var Answer = Backbone.Model.extend({
 			});
 			var outcome = outcome.filter(function(x){return x != undefined;});
 			if(outcome.length > 0){
-				var oneerror = outcome.pop();
+				var oneerror = outcome[0];
 				return oneerror;
 			};
 		};

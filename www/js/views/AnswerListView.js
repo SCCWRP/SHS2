@@ -47,7 +47,7 @@ var AnswerListView = Backbone.View.extend({
 				"select":"#aid",
 				"multi":"#aid input[type = 'checkbox']:checked",
 				"sevenday":"#aid input[type = 'checkbox']:checked",
-				"weekmonthtime":"#aid"
+				"numberSelect":"#aid"
 	},
 	saveAnswer:function(event){
 		console.log("saveAnswer");
@@ -60,7 +60,7 @@ var AnswerListView = Backbone.View.extend({
 			var temparray = [];
 			currentAnswer.map(function () { temparray.push(this.value); });
 			currentAnswer = temparray.join();
-		} else if(formtype == "weekmonthtime") {
+		} else if(formtype == "numberSelect") {
 			currentAnswer = $("select").val() + " : " + currentAnswer.val();
 		} else {
 			currentAnswer = currentAnswer.val();	
