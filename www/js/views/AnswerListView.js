@@ -47,7 +47,8 @@ var AnswerListView = Backbone.View.extend({
 				"select":"#aid",
 				"multi":"#aid input[type = 'checkbox']:checked",
 				"sevenday":"#aid input[type = 'checkbox']:checked",
-				"numberSelect":"#aid"
+				"numberSelect":"#aid",
+				"dateSelect":"[id=aid]"
 	},
 	saveAnswer:function(event){
 		console.log("saveAnswer");
@@ -62,6 +63,14 @@ var AnswerListView = Backbone.View.extend({
 			currentAnswer = temparray.join();
 		} else if(formtype == "numberSelect") {
 			currentAnswer = $("select").val() + " : " + currentAnswer.val();
+		} else if(formtype == "dateSelect") {
+			var locations = currentAnswer.map(function(x) {return $(this).val() });
+			var dates = $("[id=date]").map(function(x) {return this.textContent });
+			var dateSelectAnswer = {};
+			for(i=0; i < dates.length; i++) {
+				dateSelectAnswer[dates[i]] = locations[i];
+			};			
+			currentAnswer = JSON.stringify(dateSelectAnswer);
 		} else {
 			currentAnswer = currentAnswer.val();	
 		};
