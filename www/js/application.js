@@ -38,11 +38,13 @@ var appRouter = new (Backbone.Router.extend({
 	var userCreate = user.save({email: seedEmail, phone: seedPhone}, {
 	  	wait: true,
 	      	success: function(response){
+			alert(response);
 	  		//console.log(response);
 			//console.log(response.id);
 			USERID = response.id;
 		  },
 		error: function(model,response){
+			alert(response);
 	       		console.log("failed");
 			console.log(response.responseText);
 			console.log(response.status);
@@ -56,11 +58,13 @@ var appRouter = new (Backbone.Router.extend({
 	  wait: true,
 	  success: function(model,response){
 		console.log("start - success");
+		alert("start - success");
 		answer = answerList.get(response.id);
 		answerListView = new AnswerListView({model: answer});
 	  },
  		error: function(model,response){
 		console.log("failed");
+		alert("failed");
 		console.log(response.responseText);
 		console.log(response.status);
 		console.log(response.statusText);
@@ -132,7 +136,6 @@ var appRouter = new (Backbone.Router.extend({
   },
   start: function(){
 	console.log("start");
-	alert("start");
 	//appRouter.navigate('shs2/receipt/855', {trigger: true});
 	//appRouter.checksum();
 	introView = new IntroView();
