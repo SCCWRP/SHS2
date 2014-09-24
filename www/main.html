@@ -181,6 +181,43 @@
     		  </select>
         	<button id="save" class="save">Save</button>
     	    </div>
+	  <% } else if ((type) == "dateSelect"){  %>
+  	    <div class="form-left-col"><h3>Select Question - <%= qcount %> - <%= type %></h3>
+         	<label>User ID:</label>
+          	<input type="text" value="<%= uid %>" disabled />
+        	<label>Record ID:</label>
+        	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
+        	<label>Question ID:</label>
+        	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
+		<fieldset class="ui-field-contain">
+		  <% var dates = q25.split(","); %>
+		  <% for(j=0; j < dates.length; j++) { %>
+		  <h3 id="date"> <%= dates[j] %> </h3>
+		  <select name= "<%= j %>" id="aid">
+		  <% for(i=0; i < menu.length; i++) { %>
+		 	 <option value= "<%= menu[i] %>" > <%= menu[i] %> </option>
+		  <% }; %>
+    		  </select>
+		  <% }; %>
+	 	 </fieldset>
+		 <% var script = "$('[name=0]').on('change', function() {$('[id=aid]').each(function() {$(this).val($('[name=0]').val())})})" %>
+		 <%= "<script" + ">" + script + "</script" + ">"%> 
+	  <% } else if ((type) == "dateTimeInterval"){  %>
+  	    <div class="form-left-col"><h3>Select Question - <%= qcount %> - <%= type %></h3>
+         	<label>User ID:</label>
+          	<input type="text" value="<%= uid %>" disabled />
+        	<label>Record ID:</label>
+        	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
+        	<label>Question ID:</label>
+        	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
+		<fieldset class="ui-field-contain">
+		  <% var dates = q25.split(","); %>
+		  <% for(j=0; j < dates.length; j++) { %>
+		  <h3 id="date"> <%= dates[j] %> </h3>
+		  <input type="time" id="aid">
+		  <input type="time" id="aid">
+		  <% }; %>
+		</fieldset>
 	  <% } else if ((type) == "text"){  %>
   	    <div class="form-left-col"><h3>Text Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
