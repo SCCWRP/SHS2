@@ -42,6 +42,7 @@ var appRouter = new (Backbone.Router.extend({
 	  		//console.log(response);
 			//console.log(response.id);
 			USERID = response.id;
+			startSignup();
 		  },
 		error: function(model,response){
 			alert(response);
@@ -55,9 +56,10 @@ var appRouter = new (Backbone.Router.extend({
 		}
 	});
 	//userView = new UserView({model: user});
+	function startSignup(){
 	answerList = new AnswerList();
 	this.answerList = answerList;
-	answerList.create({qcount: 25, timestamp: SESSIONID}, {
+	answerList.create({qcount: 1, timestamp: SESSIONID}, {
 	  wait: true,
 	  success: function(model,response){
 		console.log("start - success");
@@ -73,6 +75,7 @@ var appRouter = new (Backbone.Router.extend({
 		console.log(response.statusText);
 	  }
 	});
+	}
   },
   weekly: function(){
 	console.log("weekly");
