@@ -57,19 +57,20 @@ var appRouter = new (Backbone.Router.extend({
 	});
 	//userView = new UserView({model: user});
 	function startSignup(){
+	  alert("startSignup");
 	answerList = new AnswerList();
 	this.answerList = answerList;
 	answerList.create({qcount: 1, timestamp: SESSIONID}, {
 	  wait: true,
 	  success: function(model,response){
-		console.log("start - success");
 		alert("start - success");
+		console.log("start - success");
 		answer = answerList.get(response.id);
 		answerListView = new AnswerListView({model: answer});
 	  },
  		error: function(model,response){
-		console.log("failed");
 		alert("failed");
+		console.log("failed");
 		console.log(response.responseText);
 		console.log(response.status);
 		console.log(response.statusText);
