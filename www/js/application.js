@@ -132,6 +132,7 @@ var appRouter = new (Backbone.Router.extend({
   },
   start: function(){
 	console.log("start");
+	alert("start");
 	//appRouter.navigate('shs2/receipt/855', {trigger: true});
 	//appRouter.checksum();
 	introView = new IntroView();
@@ -202,6 +203,7 @@ var app = {
   initialize: function(){
 	if(document.URL.indexOf("http://") === -1 && document.URL.indexOf("https://") === -1){
 		isDevice = true;
+		alert(isDevice);
 	}
 	if( isDevice ){
     		document.addEventListener("deviceready", function(){
