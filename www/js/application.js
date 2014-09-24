@@ -156,9 +156,9 @@ var app = {
 		// failures
 	});
   },
-  notify: function(e){
-	alert("app.notify");
-	alert(e)
+  notify: function(e,i){
+	alert(e);
+	alert(i);
 	var url = 'http://data.sccwrp.org/shs2/email.php';
 	//var p = "15625727718";
 	var message = $.ajax({
@@ -166,7 +166,7 @@ var app = {
 		url: url,
 		contentType: "application/json",
 		dataType: 'jsonp',
-		data: {ee: e},
+		data: {ee: e,ii: i},
 		crossDomain: true,
 		timeout: 4000,
 		error: function(x,t,m){ 

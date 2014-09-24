@@ -90,6 +90,7 @@ var AnswerListView = Backbone.View.extend({
 		// next question  
 		var nextQuestion = (currentQuestion + 1);
 		// storing userid email and phone
+		// set userid for answer also
 		if(currentQuestion == 6){
 			user.save({ phone: currentAnswer }, {
 				wait: true,
@@ -100,6 +101,8 @@ var AnswerListView = Backbone.View.extend({
 					console.log(response.status);
 				}
 			});
+			// maybe a better place to set userid-uid
+			answer.set({uid: USERID});
 		}
 		if(currentQuestion == 8){
 			user.save({ email: currentAnswer }, {
@@ -125,6 +128,9 @@ var AnswerListView = Backbone.View.extend({
 				}
 			});
 			//appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
+		}
+		if(currentQuestion == 12){
+			timer = 4;
 		}
                 // logic for skipping certain questions
 		if([22, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62].indexOf(currentQuestion) > -1  && currentAnswer == "No"){
