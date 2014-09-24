@@ -59,7 +59,7 @@ var appRouter = new (Backbone.Router.extend({
 	function startSignup(){
 	  alert("startSignup");
 	answerList = new AnswerList();
-	this.answerList = answerList;
+	//this.answerList = answerList;
 	answerList.create({qcount: 1, timestamp: SESSIONID}, {
 	  wait: true,
 	  success: function(model,response){
@@ -125,7 +125,7 @@ var appRouter = new (Backbone.Router.extend({
 	} // close submitLocal
 	function startWeekly(){
 			answerList = new AnswerList();
-			this.answerList = answerList;
+			//this.answerList = answerList;
 			answerList.create({qcount: 25, uid: USERID, timestamp: SESSIONID}, {
 	  		  wait: true,
 	  		  success: function(model,response){
