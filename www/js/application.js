@@ -38,7 +38,7 @@ var appRouter = new (Backbone.Router.extend({
 	var userCreate = user.save({email: seedEmail, phone: seedPhone}, {
 	  	wait: true,
 	      	success: function(response){
-			alert(response);
+			alert(response.id);
 	  		//console.log(response);
 			//console.log(response.id);
 			USERID = response.id;
@@ -47,8 +47,11 @@ var appRouter = new (Backbone.Router.extend({
 			alert(response);
 	       		console.log("failed");
 			console.log(response.responseText);
+			alert(response.responseText);
 			console.log(response.status);
+			alert(response.status);
 			console.log(response.statusText);
+			alert(response.statusText);
 		}
 	});
 	//userView = new UserView({model: user});
