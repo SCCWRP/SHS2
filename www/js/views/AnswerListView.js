@@ -86,7 +86,7 @@ var AnswerListView = Backbone.View.extend({
 			currentAnswer = currentAnswer.map(function(x) {return $(this).val() });
 			var start = currentAnswer.filter(function(x,i) {return x % 2 == 0});
 			var end  = currentAnswer.filter(function(x,i) {return x % 2 != 0});
-			var intervals = _.zip(start, end).map(function(x) {return x.join(";");});
+			var intervals = _.zip(start, end).map(function(x) {return x.join("-");});
 			var dates = $("[id=date]").map(function(x) {return this.textContent });
 			var dateSelectAnswer = {};
 			for(i=0; i < dates.length; i++) {
