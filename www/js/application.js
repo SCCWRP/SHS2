@@ -62,15 +62,17 @@ var appRouter = new (Backbone.Router.extend({
 	  alert(answerList);
 	  alert(SESSIONID);
 	//this.answerList = answerList;
+	  createAnswer = answerList.create();
+	  /*
 	  var createAnswer = answerList.create({qcount: 1, timestamp: SESSIONID}, {
-	    wait: false,
+	    wait: true,
 	    success: function(model,response){
 		alert("start - success");
 		console.log("start - success");
 		answer = answerList.get(response.id);
 		answerListView = new AnswerListView({model: answer});
 	    },
- 		error: function(model,response){
+ 		error: function(response){
 		alert("failed");
 		console.log("failed");
 		console.log(response.responseText);
@@ -78,6 +80,7 @@ var appRouter = new (Backbone.Router.extend({
 		console.log(response.statusText);
 	    }
 	  });
+	  */
 	}
   },
   weekly: function(){
