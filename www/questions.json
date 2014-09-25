@@ -988,11 +988,11 @@
       	"id": "65"
   },
   {
-	"title": "Since last sevenDaysAgoFunction, did you miss work, school, or other daily activities because of any of the sympt    oms above? If so, how many days in the past week? (Record 0 if no days missed)",
+	"title": "Since last sevenDaysAgoFunction, did you miss work, school, or other daily activities because of any of the symptoms above? If so, how many days in the past week? (Record 0 if no days missed)",
 	"action": "none",
       	"num": "q418",
-      	"type": "text",
-      	"menu": "Yes,No",
+      	"type": "select",
+      	"menu": "1,2,3,4,5,6,7",
         "other": "n",
 	"otype": "",
   	"answer": "",
