@@ -52,9 +52,8 @@ var appRouter = new (Backbone.Router.extend({
 	});
 	//userView = new UserView({model: user});
 	function startSignup(){
-	  this.answerList = new AnswerList();
-	  //answerList.create({qcount: 1, timestamp: SESSIONID}, {
-	  var answerCreate = this.answerList.create({qcount: 1, timestamp: SESSIONID}, {
+	  answerList = new AnswerList();
+	  var answerCreate = answerList.create({qcount: 1, timestamp: SESSIONID}, {
 	    success: function(response){
 		console.log("start - success");
 		var answer = answerList.get(response.id);
@@ -195,6 +194,8 @@ var app = {
 	$.mobile.linkBindingEnabled = false;
 	$.mobile.hashListeningEnabled = false;
 	$.mobile.pushStateEnabled = false;
+	// jquery cors support
+	$.support.cors = true;
 	//app.bindEvents();
   	Backbone.history.start({pushState: true});
 	// check network status
