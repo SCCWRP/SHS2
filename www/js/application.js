@@ -62,7 +62,7 @@ var appRouter = new (Backbone.Router.extend({
 	  alert(answerList);
 	  alert(SESSIONID);
 	//this.answerList = answerList;
-	  answerList.create({qcount: 1, timestamp: SESSIONID}, {
+	  var createAnswer = answerList.create({qcount: 1, timestamp: SESSIONID}, {
 	    wait: true,
 	    success: function(model,response){
 		alert("start - success");
@@ -78,7 +78,6 @@ var appRouter = new (Backbone.Router.extend({
 		console.log(response.statusText);
 	    }
 	  });
-	  alert("after answerList.create");
 	}
   },
   weekly: function(){
