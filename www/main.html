@@ -212,10 +212,23 @@
         	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
 		<fieldset class="ui-field-contain">
 		  <% var dates = q25.split(","); %>
+		  <% var AmArray = _.range(48).map(function(x) {if(x<4) x=x+48; return Math.floor(x/4) + ":" + ["00", 15, 30, 45][x % 4] + " AM";}); %>
+		  <% var PmArray = _.range(48).map(function(x) {if(x<4) x=x+48; return Math.floor(x/4) + ":" + ["00", 15, 30, 45][x % 4] + " PM";}); %> 
+		  <% var TimeArray = AmArray.concat(PmArray); %>
+		  <%= "<script" + "> TimeArray = [" + ("'" + TimeArray.join("','") + "'").split(",") + "];</script" + ">" %>
 		  <% for(j=0; j < dates.length; j++) { %>
 		  <h3 id="date"> <%= dates[j] %> </h3>
-		  <input type="time" id="aid">
-		  <input type="time" id="aid">
+		  <select name= <%=  "enter" + j  %> id="aid">
+			  <option id="0" value="Select One">Select One</option>
+		  <% for(i=0; i < TimeArray.length; i++) { %>
+		 	 <option id= <%= i %> value="<%= TimeArray[i] %>" > <%= TimeArray[i] %> </option>
+		  <% }; %> 
+		  </select>
+		  <select name = <%= "exit" + j  %> id="aid">
+			  <option id="0" value="Select One">Select One</option>
+		  </select>
+		  <% var script = "(function(){var start = $('[name=enter" + j + "]');start.on('change', function() {var index = start.children(':selected').attr('id');var end = $('[name=exit" + j + "]');end.find('option').remove();end.append($('<option></option>').attr('value', 'Select One').text('Select One'));for(i=Number(index)+1; i < 96; i++) {end.append($('<option></option>').attr('value', TimeArray[i]).text(TimeArray[i]));};});})();" %>
+		  <%= "<script" + ">" + script + "</script" + ">" %>
 		  <% }; %>
 		</fieldset>
 	  <% } else if ((type) == "text"){  %>

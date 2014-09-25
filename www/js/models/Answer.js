@@ -35,7 +35,8 @@ var validationFuncs = {
 	"checkq9": function(q, at) {if(q && at.q8 != q) return "Email must match";},
 	"gte1": function(q) {if(q && q.split(" : ")[1] < 1) return "Value must be greater than zero";},
 	"isNumber": function(q) {if(q && isNaN(q)) return "Value must be a number";},
-	"numberWeek": function(q) {if(q && (isNaN(q.split(" : ")[1]) || q.split(" : ")[1] == "")) return "Value must be a number";}
+	"numberWeek": function(q) {if(q && (isNaN(q.split(" : ")[1]) || q.split(" : ")[1] == "")) return "Value must be a number";},
+	"selectOne": function(q){if(q && _.values(JSON.parse(q)).filter(function(x) {return x == "Select One";}).length > 0) return "You must select an answer for all days";}
 };
 var createValidation = function (questions){
 	var valLU = {};
