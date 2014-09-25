@@ -385,7 +385,7 @@
 	"action": "none",
       	"num": "q32",
       	"type": "dateSelect",
-      	"menu": "Windansea,Birdrock,PB Point,Tourmaline,Pacific Beach,Mission Beach,Ocean Beach,Sunset Cliffs,Imperial Pier N&S,Other",
+      	"menu": "Select One,Windansea,Birdrock,PB Point,Tourmaline,Pacific Beach,Mission Beach,Ocean Beach,Sunset Cliffs,Imperial Pier N&S,Other",
         "other": "y",
 	"otype": "text",
   	"answer": "",
@@ -393,7 +393,8 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "26"
+      	"id": "26",
+	"check": "selectOne"
   },
   {
 	"title": "What was your main activity while in the ocean?",
@@ -408,14 +409,15 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "27"
+      	"id": "27",
+	"check": "selectOne"
   },
   {
 	"title": "Did you immerse your head in the water?",
 	"action": "none",
       	"num": "q34",
       	"type": "dateSelect",
-      	"menu": "Yes,No",
+      	"menu": "Select One,Yes,No",
         "other": "n",
 	"otype": "",
   	"answer": "",
@@ -423,14 +425,16 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "28"
+      	"id": "28",
+	"check": "selectOne"
+	
   },
   {
 	"title": "Did you swallow any water?",
 	"action": "none",
       	"num": "q35",
       	"type": "dateSelect",
-      	"menu": "Yes,No",
+      	"menu": "Select One,Yes,No",
         "other": "n",
 	"otype": "",
   	"answer": "",
@@ -438,14 +442,15 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "29"
+      	"id": "29",
+	"check": "selectOne"
   },
   {
 	"title": "Did you wear earplugs?",
 	"action": "none",
       	"num": "q36",
       	"type": "dateSelect",
-      	"menu": "Yes,No",
+      	"menu": "Select One,Yes,No",
         "other": "n",
 	"otype": "",
   	"answer": "",
@@ -453,7 +458,8 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "30"
+      	"id": "30",
+	"check": "selectOne"
   },
   {
 	"title": "Did you wear a wetsuit?",
@@ -468,7 +474,8 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "31"
+      	"id": "31",
+	"check": "selectOne"
   },
   {
 	"title": "Approximately when did you enter/exit the ocean?",
@@ -483,7 +490,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "32"
+      	"id": "32" 
   },
   {
 	"title": "Were there any days in the past week that you would have gone into the ocean but didnt because of wet weather or bad weather?",
