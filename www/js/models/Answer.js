@@ -9,6 +9,7 @@ var createDefaults =  function() {
 
 var Answer = Backbone.Model.extend({
 	initialize: function(){
+		alert("Answer Start");
 		this.on("invalid",function(model,error){
 			alert(error);
 		});
