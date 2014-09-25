@@ -38,36 +38,28 @@ var appRouter = new (Backbone.Router.extend({
 	var userCreate = user.save({email: seedEmail, phone: seedPhone}, {
 	  	wait: true,
 	      	success: function(response){
-			alert(response.id);
 	  		//console.log(response);
 			//console.log(response.id);
 			USERID = response.id;
 			startSignup();
 		  },
 		error: function(model,response){
-			alert(response);
 	       		console.log("failed");
 			console.log(response.responseText);
-			alert(response.responseText);
 			console.log(response.status);
-			alert(response.status);
 			console.log(response.statusText);
-			alert(response.statusText);
 		}
 	});
 	//userView = new UserView({model: user});
 	function startSignup(){
-	  alert("startSignup");
 	  var answerList = new AnswerList();
-	  alert(answerList);
-	  alert(SESSIONID);
 	//this.answerList = answerList;
 	  var createAnswer = answerList.create({qcount: 1, timestamp: SESSIONID}, {
 	    success: function(response){
-		alert("start - success");
-		console.log("start - success");
-		answer = answerList.get(response.id);
-		answerListView = new AnswerListView({model: answer});
+		alert("createAnswer");
+		//console.log("start - success");
+		//answer = answerList.get(response.id);
+		//answerListView = new AnswerListView({model: answer});
 	    },
  	    error: function(response){
 		alert("failed");
@@ -78,6 +70,7 @@ var appRouter = new (Backbone.Router.extend({
 		console.log(response.statusText);
 	    }
 	  });
+	  alert(createAnswer);
 	}
   },
   weekly: function(){
@@ -215,7 +208,6 @@ var app = {
   initialize: function(){
 	if(document.URL.indexOf("http://") === -1 && document.URL.indexOf("https://") === -1){
 		isDevice = true;
-		alert(isDevice);
 	}
 	if( isDevice ){
     		document.addEventListener("deviceready", function(){
