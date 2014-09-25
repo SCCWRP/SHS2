@@ -190,8 +190,10 @@ var app = {
   },
   onDeviceReady: function(){
  	// jquery cors support for phonegap
+	/*
 	$.support.cors = true;
 	$.mobile.allowCrossDomainPages = true;
+	*/
 	// disable jquery mobile routing
 	$.mobile.ajaxEnabled = false;
 	$.mobile.linkBindingEnabled = false;
