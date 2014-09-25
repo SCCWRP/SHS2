@@ -53,7 +53,9 @@ var appRouter = new (Backbone.Router.extend({
 	//userView = new UserView({model: user});
 	function startSignup(){
 	  var answerList = new AnswerList();
+	  var createAnswer = answerList.create();
 	//this.answerList = answerList;
+	/*
 	  var createAnswer = answerList.create({qcount: 1, timestamp: SESSIONID}, {
 	    success: function(response){
 		alert("createAnswer");
@@ -70,6 +72,7 @@ var appRouter = new (Backbone.Router.extend({
 		console.log(response.statusText);
 	    }
 	  });
+	  */
 	  alert(createAnswer);
 	}
   },
