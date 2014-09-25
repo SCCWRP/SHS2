@@ -63,7 +63,7 @@ var appRouter = new (Backbone.Router.extend({
 	  alert(SESSIONID);
 	//this.answerList = answerList;
 	  var createAnswer = answerList.create({qcount: 1, timestamp: SESSIONID}, {
-	    success: function(model,response){
+	    success: function(response){
 		alert("start - success");
 		console.log("start - success");
 		answer = answerList.get(response.id);
