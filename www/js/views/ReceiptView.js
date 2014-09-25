@@ -22,9 +22,15 @@ var ReceiptView = Backbone.View.extend({
 	},
 	finish: function(){
        		//appRouter.navigate('start', {trigger: true});
-		appRouter.checksum();
+		// get contact id
+		var femail = answer.attributes.contact;
+		var fid = answer.attributes.uid;
+		//appRouter.checksum();
+		console.log(femail);
+		console.log(fid);
+		app.notify(femail,fid);
 		alert("Come back next week!");
-		appRouter.start();
+		//appRouter.start();
 	},
 	render: function(){
 			console.log("ReceiptView render");

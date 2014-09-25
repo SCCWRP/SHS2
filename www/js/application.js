@@ -41,6 +41,7 @@ var appRouter = new (Backbone.Router.extend({
 	  		//console.log(response);
 			//console.log(response.id);
 			USERID = response.id;
+			startSignup();
 		  },
 		error: function(model,response){
 	       		console.log("failed");
@@ -50,22 +51,22 @@ var appRouter = new (Backbone.Router.extend({
 		}
 	});
 	//userView = new UserView({model: user});
-	answerList = new AnswerList();
-	this.answerList = answerList;
-	answerList.create({qcount: 25, timestamp: SESSIONID}, {
-	  wait: true,
-	  success: function(model,response){
+	function startSignup(){
+	  answerList = new AnswerList();
+	  var answerCreate = answerList.create({qcount: 1, timestamp: SESSIONID}, {
+	    success: function(response){
 		console.log("start - success");
-		answer = answerList.get(response.id);
+		var answer = answerList.get(response.id);
 		answerListView = new AnswerListView({model: answer});
-	  },
- 		error: function(model,response){
+	    },
+ 	    error: function(response){
 		console.log("failed");
 		console.log(response.responseText);
 		console.log(response.status);
 		console.log(response.statusText);
-	  }
-	});
+	    }
+	  });
+	}
   },
   weekly: function(){
 	console.log("weekly");
@@ -114,7 +115,7 @@ var appRouter = new (Backbone.Router.extend({
 	} // close submitLocal
 	function startWeekly(){
 			answerList = new AnswerList();
-			this.answerList = answerList;
+			//this.answerList = answerList;
 			answerList.create({qcount: 25, uid: USERID, timestamp: SESSIONID}, {
 	  		  wait: true,
 	  		  success: function(model,response){
@@ -156,9 +157,9 @@ var app = {
 		// failures
 	});
   },
-  notify: function(e){
-	alert("app.notify");
-	alert(e)
+  notify: function(e,i){
+	alert(e);
+	alert(i);
 	var url = 'http://data.sccwrp.org/shs2/email.php';
 	//var p = "15625727718";
 	var message = $.ajax({
@@ -166,7 +167,7 @@ var app = {
 		url: url,
 		contentType: "application/json",
 		dataType: 'jsonp',
-		data: {ee: e},
+		data: {ee: e,ii: i},
 		crossDomain: true,
 		timeout: 4000,
 		error: function(x,t,m){ 
@@ -188,6 +189,11 @@ var app = {
 	alert("app.receipt");
   },
   onDeviceReady: function(){
+ 	// jquery cors support for phonegap
+	/*
+	$.support.cors = true;
+	$.mobile.allowCrossDomainPages = true;
+	*/
 	// disable jquery mobile routing
 	$.mobile.ajaxEnabled = false;
 	$.mobile.linkBindingEnabled = false;
