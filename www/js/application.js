@@ -189,13 +189,14 @@ var app = {
 	alert("app.receipt");
   },
   onDeviceReady: function(){
+ 	// jquery cors support for phonegap
+	$.support.cors = true;
+	$.mobile.allowCrossDomainPages = true;
 	// disable jquery mobile routing
 	$.mobile.ajaxEnabled = false;
 	$.mobile.linkBindingEnabled = false;
 	$.mobile.hashListeningEnabled = false;
 	$.mobile.pushStateEnabled = false;
-	// jquery cors support
-	$.support.cors = true;
 	//app.bindEvents();
   	Backbone.history.start({pushState: true});
 	// check network status
