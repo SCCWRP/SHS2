@@ -108,6 +108,7 @@
 	<script type="text/template" id="tpl-receipt-details">
     	<div class="form-left-col"><h3>Session Receipt:</h3>
 		<% _.each(elements,function(element,index,list) { %>
+		<% if(!element) return;  %>
 			<li class="edit" name="edit" id="<%= index %>"><%= index %> - <%= element %></li>
 		<% }); %>
           	<button id="finish" class="finish">Looks Good</button>

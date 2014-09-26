@@ -9,16 +9,14 @@ var ReceiptView = Backbone.View.extend({
 		"click .edit":"edit"
 	},
         edit: function(event){
-		//alert($(event.target).text());
-		//alert(event.target.id);
 		/* find id of question user wants to edit and set qcount to previous */
 		clickedID = event.target.id;
 		var fixedID = Number(clickedID.replace('q',''));
-		//alert((--fixedID));
-		answer.set({ qcount: fixedID });
-		//console.log(answer);
-		answer.set({ status: "edit" });
-		//EventBus.trigger("nextQuestion:view");
+		appRouter.navigate('edit', {trigger: true});
+		answerListView.model.set({ qcount: fixedID, status: "edit" });
+		answerListView.render();
+		$(headerView.el).show();
+		$(footerView.el).show();
 	},
 	finish: function(){
        		//appRouter.navigate('start', {trigger: true});
@@ -34,8 +32,10 @@ var ReceiptView = Backbone.View.extend({
 	},
 	render: function(){
 			console.log("ReceiptView render");
-			console.log(this.model.toJSON());
 			$(this.el).html("");	
-			$(this.el).html(this.template({ 'elements': this.model.toJSON() }));	
+		        $(headerView.el).hide();
+			$(footerView.el).hide();	
+			var receiptData = _.omit(this.model.attributes, 'id', 'contact', 'uid', 'q9', 'q7')
+			$(this.el).html(this.template({ 'elements': receiptData }));	
 	}
 });
