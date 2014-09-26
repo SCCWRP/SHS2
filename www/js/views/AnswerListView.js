@@ -7,11 +7,8 @@ var AnswerListView = Backbone.View.extend({
 		this.listenTo(this.model, 'sync', this.nextQuestion);
 		this.listenTo(footerView, 'forward', this.saveAnswer); 
 		this.listenTo(this.model, 'change:status', this.nextQuestion);
-		//this.listenTo(this.model, 'change:status', this.change);
-		//EventBus.on("nextQuestion:view",this.nextQuestion);
 	},
 	events:{
-		//"change":"change",
 		"click .save":"saveAnswer",
     		"click .decline":"declineAnswer"
 	},
@@ -33,6 +30,7 @@ var AnswerListView = Backbone.View.extend({
 		console.log(t);
 		console.log(t.get("qcount"));
 		var nextQcount = t.get("qcount");
+		if(nextQcount > MAXQUESTION) return;
 		// changed - to above for receipt
 		//var nextQcount = response.qcount;
 		//console.log(response.qcount);
@@ -123,7 +121,7 @@ var AnswerListView = Backbone.View.extend({
 				}
 			});
 			// maybe a better place to set userid-uid
-			answer.set({uid: USERID});
+			this.model.set({uid: USERID});
 		}
 		if(currentQuestion == 8){
 			user.save({ email: currentAnswer }, {
@@ -150,19 +148,16 @@ var AnswerListView = Backbone.View.extend({
 			});
 			//appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
 		}
-		if(currentQuestion == 12){
-			timer = 4;
-		}
                 // logic for skipping certain questions
 		if([22, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62].indexOf(currentQuestion) > -1  && currentAnswer == "No"){
 			nextQuestion += 1;
 		};
-		if(currentQuestion == 25 && currentAnswer == "No"){
+		if(currentQuestion == 25 && currentAnswer == ""){
 			nextQuestion +=  9;
 		};
 		// this should really go somewhere after sync happens maybe next question
 		// also status needs to be toggled to complete in database
-		if(currentQuestion == 75){
+		if(currentQuestion == MAXQUESTION){
 			timer = 4;
 		};
 		// create answerDetails object

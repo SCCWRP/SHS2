@@ -17,7 +17,7 @@ var Answer = Backbone.Model.extend({
 	defaults: createDefaults(),
 	validate: function (attrs){
 		for(i=1; i<= MAXQUESTION; i++) {
-			var q = "q" + i
+			var q = "q" + i;
 			var outcome = validators[q].map(function(f) {
 				return f(attrs[q], attrs);
 			});
@@ -31,8 +31,9 @@ var Answer = Backbone.Model.extend({
 });
 var validationFuncs = {
 	"0": function(q) {if(q == "") return "A response is required before continuing";},
+	"select": function(q) {if(q && q == "Select One") return "A response is required before continuing";},
 	"1": function(q) {if(q && q.length < 2) return "Invalid phone number";}, 
-	"checkq7": function(q, at) {if(q && at.q7 != q) return "Phone number must match";},
+	"checkq7": function(q, at) {if(q && at.q6 != q) return "Phone number must match";},
 	"checkq9": function(q, at) {if(q && at.q8 != q) return "Email must match";},
 	"gte1": function(q) {if(q && q.split(" : ")[1] < 1) return "Value must be greater than zero";},
 	"isNumber": function(q) {if(q && isNaN(q)) return "Value must be a number";},

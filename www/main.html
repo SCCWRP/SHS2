@@ -181,7 +181,7 @@
 		<fieldset class="ui-field-contain">
     		  <select name="aid" id="aid">
 		  <% for(i=0; i < menu.length; i++) { %>
-		 	 <option value= <%= menu[i] %> > <%= menu[i] %> </option>
+		 	 <option value= "<%= menu[i] %>" > <%= menu[i] %> </option>
 		  <% }; %>
     		  </select>
         	<button id="save" class="save">Save</button>
