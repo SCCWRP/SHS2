@@ -118,7 +118,7 @@
 	  <% if((type) == "radio"){ %>
 	  <h3>Radio Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
-          	<input type="text" value="<%= uid %>" disabled />
+          	<input type="text" value="<%= user_id %>" disabled />
          	<label>Record ID:</label>
           	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
           	<label>Question ID:</label>
@@ -142,7 +142,7 @@
 	 </div>
 	  <% } else if ((type) == "numberSelect"){  %>
          	<label>User ID:</label>
-          	<input type="text" value="<%= uid %>" disabled />
+          	<input type="text" value="<%= user_id %>" disabled />
           	<label>Record ID:</label>
           	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
 		<div class="ui-field-contain" data-inset="true">
@@ -157,7 +157,7 @@
   	    <div class="form-left-col"><h3>Multi Question - <%= qcount %> - <%= type %></h3>
 	    <div data-role="fieldcontain">
          	<label>User ID:</label>
-          	<input type="text" value="<%= uid %>" disabled />
+          	<input type="text" value="<%= user_id %>" disabled />
           	<label>Record ID:</label>
           	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
 		<div class="ui-field-contain" data-inset="true">
@@ -174,7 +174,7 @@
 	  <% } else if ((type) == "select"){  %>
   	    <div class="form-left-col"><h3>Select Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
-          	<input type="text" value="<%= uid %>" disabled />
+          	<input type="text" value="<%= user_id %>" disabled />
         	<label>Record ID:</label>
         	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
         	<label>Question ID:</label>
@@ -190,7 +190,7 @@
 	  <% } else if ((type) == "dateSelect"){  %>
   	    <div class="form-left-col"><h3>Select Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
-          	<input type="text" value="<%= uid %>" disabled />
+          	<input type="text" value="<%= user_id %>" disabled />
         	<label>Record ID:</label>
         	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
         	<label>Question ID:</label>
@@ -211,7 +211,7 @@
 	  <% } else if ((type) == "dateTimeInterval"){  %>
   	    <div class="form-left-col"><h3>Select Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
-          	<input type="text" value="<%= uid %>" disabled />
+          	<input type="text" value="<%= user_id %>" disabled />
         	<label>Record ID:</label>
         	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
         	<label>Question ID:</label>
@@ -244,7 +244,7 @@
 	  <% } else if ((type) == "text"){  %>
   	    <div class="form-left-col"><h3>Text Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
-          	<input type="text" value="<%= uid %>" disabled />
+          	<input type="text" value="<%= user_id %>" disabled />
         	<label>Record ID:</label>
         	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
         	<label>Question ID:</label>
@@ -258,7 +258,7 @@
     	    </div>
 	  <% } else if (type == "sevenday"){  %>
          	<label>User ID:</label>
-          	<input type="text" value="<%= uid %>" disabled />
+          	<input type="text" value="<%= user_id %>" disabled />
           	<label>Record ID:</label>
           	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
           	<label>Question ID:</label>

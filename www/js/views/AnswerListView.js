@@ -122,7 +122,7 @@ var AnswerListView = Backbone.View.extend({
 				}
 			});
 			// maybe a better place to set userid-uid
-			this.model.set({"uid": USERID});
+			this.model.set({"user_id": USERID});
 		}
 		if(currentQuestion == 8){
 			// CRITICAL - need to add error checking for existing user account

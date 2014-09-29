@@ -3,7 +3,7 @@ var createDefaults =  function() {
 	for(i=1; i<= MAXQUESTION; i++) {
 		df["q" + i] = null;
 	};
-	df["uid"] = null;
+	df["user_id"] = null;
 	return df;
 }
 
