@@ -18,17 +18,38 @@ var ReceiptView = Backbone.View.extend({
 		answerListView.render();
 		$(headerView.el).show();
 		$(footerView.el).show();
+		//alert((--fixedID));
+		this.model.set({ qcount: fixedID });
+		console.log(answer);
+		console.log(this.model);
+		this.model.set({ status: "edit" });
+		//EventBus.trigger("nextQuestion:view");
 	},
+<<<<<<< HEAD
 	finish: function(){
 		// get contact id
 		var femail = this.model.get('contact');
 		var fid = this.model.get('uid');
+=======
+	finish: function(event){
+		//this.model.save({ status: "complete" });
+       		//appRouter.navigate('start', {trigger: true});
+		// get contact id
+		var femail = this.model.attributes.contact;
+		var fid = this.model.attributes.uid;
+>>>>>>> b2274f5ad397063a3921ef0d456cda1f007693be
 		//appRouter.checksum();
 		//console.log(femail);
 		//console.log(fid);
 		app.notify(femail,fid);
 		alert("Come back next week!");
+<<<<<<< HEAD
 		appRouter.navigate('intro', {trigger: true});
+=======
+		//appRouter.start();
+		// navigate may not be correct
+		appRouter.navigate('', {trigger: true});
+>>>>>>> b2274f5ad397063a3921ef0d456cda1f007693be
 	},
 	render: function(){
 			console.log("ReceiptView render");

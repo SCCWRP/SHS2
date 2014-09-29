@@ -2,7 +2,8 @@ var appRouter = new (Backbone.Router.extend({
   routes: {
     "shs2/receipt/:appid": "receipt",
     "": "signup",
-    "intro": "start"
+    "intro": "start",
+    "": "start"
   },
   // new not yet incorporated into main program
   checksum: function(){
@@ -39,7 +40,6 @@ var appRouter = new (Backbone.Router.extend({
 	  	wait: true,
 	      	success: function(response){
 	  		//console.log(response);
-			//console.log(response.id);
 			USERID = response.id;
 			startSignup();
 		  },
