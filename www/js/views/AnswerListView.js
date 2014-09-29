@@ -113,6 +113,7 @@ var AnswerListView = Backbone.View.extend({
 		// storing userid email and phone
 		// set userid for answer also
 		if(currentQuestion == 6){
+			// CRITICAL - need to add error checking for existing user account
 			user.save({ phone: currentAnswer }, {
 				wait: true,
 				success: function(response){
@@ -122,10 +123,12 @@ var AnswerListView = Backbone.View.extend({
 					console.log(response.status);
 				}
 			});
-			// maybe a better place to set userid-uid
-			answer.set({uid: USERID});
+			//console.log(USERID);
+			this.model.set({"uid": USERID});
+			//console.log(this.model);
 		}
 		if(currentQuestion == 8){
+			// CRITICAL - need to add error checking for existing user account
 			user.save({ email: currentAnswer }, {
 				wait: true,
 				success: function(response){
@@ -150,8 +153,12 @@ var AnswerListView = Backbone.View.extend({
 			});
 			//appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
 		}
-		if(currentQuestion == 12){
-			timer = 4;
+		if(currentQuestion == 11){
+			//console.log("on 11");
+			var setContact = this.model.get('contact');
+			//console.log(setContact);
+			user.save({ "contact": setContact, "status": "complete" });
+			//console.log(user.toJSON());
 		}
                 // logic for skipping certain questions
 		if([22, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62].indexOf(currentQuestion) > -1  && currentAnswer == "No"){
@@ -162,7 +169,12 @@ var AnswerListView = Backbone.View.extend({
 		};
 		// this should really go somewhere after sync happens maybe next question
 		// also status needs to be toggled to complete in database
+		if(currentQuestion == 12){
+			user.save({ list: "weekly" });
+			user.save({ status: "complete" });
+		};
 		if(currentQuestion == 75){
+			this.model.set({ status: "complete" });
 			timer = 4;
 		};
 		// create answerDetails object
