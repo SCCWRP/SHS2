@@ -17,18 +17,27 @@ var ReceiptView = Backbone.View.extend({
 		answerListView.render();
 		$(headerView.el).show();
 		$(footerView.el).show();
+		//alert((--fixedID));
+		this.model.set({ qcount: fixedID });
+		console.log(answer);
+		console.log(this.model);
+		this.model.set({ status: "edit" });
+		//EventBus.trigger("nextQuestion:view");
 	},
-	finish: function(){
+	finish: function(event){
+		//this.model.save({ status: "complete" });
        		//appRouter.navigate('start', {trigger: true});
 		// get contact id
-		var femail = answer.attributes.contact;
-		var fid = answer.attributes.uid;
+		var femail = this.model.attributes.contact;
+		var fid = this.model.attributes.uid;
 		//appRouter.checksum();
-		console.log(femail);
-		console.log(fid);
+		//console.log(femail);
+		//console.log(fid);
 		app.notify(femail,fid);
 		alert("Come back next week!");
 		//appRouter.start();
+		// navigate may not be correct
+		appRouter.navigate('', {trigger: true});
 	},
 	render: function(){
 			console.log("ReceiptView render");
