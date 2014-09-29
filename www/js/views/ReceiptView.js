@@ -10,25 +10,25 @@ var ReceiptView = Backbone.View.extend({
 	},
         edit: function(event){
 		/* find id of question user wants to edit and set qcount to previous */
-		clickedID = event.target.id;
+		console.log(event.currentTarget);
+		var clickedID = event.currentTarget.id;
 		var fixedID = Number(clickedID.replace('q',''));
 		appRouter.navigate('edit', {trigger: true});
-		answerListView.model.set({ qcount: fixedID, status: "edit" });
+		answerListView.model.set({ qcount: fixedID, status: "edit"});
 		answerListView.render();
 		$(headerView.el).show();
 		$(footerView.el).show();
 	},
 	finish: function(){
-       		//appRouter.navigate('start', {trigger: true});
 		// get contact id
-		var femail = answer.attributes.contact;
-		var fid = answer.attributes.uid;
+		var femail = this.model.get('contact');
+		var fid = this.model.get('uid');
 		//appRouter.checksum();
 		console.log(femail);
 		console.log(fid);
 		app.notify(femail,fid);
 		alert("Come back next week!");
-		//appRouter.start();
+		appRouter.navigate('intro', {trigger: true});
 	},
 	render: function(){
 			console.log("ReceiptView render");

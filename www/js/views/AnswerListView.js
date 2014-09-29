@@ -23,7 +23,7 @@ var AnswerListView = Backbone.View.extend({
 		$(this.selectorString[formtype]).val(this.model.get("declinedefault"));
 		this.saveAnswer(event);
 	},
-	nextQuestion:function(t, response, options){
+	nextQuestion:function(t, response, options){	
 		var that = this;
 		console.log("nextQuestion");
 		// get current question number
@@ -192,7 +192,7 @@ var AnswerListView = Backbone.View.extend({
 					//app.notify(currentEmail);
 					// ******************************************** // 
 					// last module - go to receipt
-					if(timer == 4){
+					if(timer == 4 || that.model.get("status") == "edit"){
 						// return receipt from database
 						appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
 					}
