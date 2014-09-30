@@ -167,7 +167,7 @@ var AnswerListView = Backbone.View.extend({
 			user.save({ list: "weekly" });
 			user.save({ status: "complete" });
 		};
-		if(currentQuestion == MAXQUESTION){
+		if(currentQuestion ==  MAXQUESTION){
 		//if(currentQuestion == 75){
 			this.model.set({ status: "complete" });
 			timer = 4;
@@ -196,7 +196,6 @@ var AnswerListView = Backbone.View.extend({
 				success: function(model,response){
 					console.log("success");
 					console.log(model);
-					console.log(response);
 					//appID = Number(this.model.get("id")); 
 					// if module1 - then notify user 
 					// ****** notify user - working code ********** //
