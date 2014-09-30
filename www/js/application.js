@@ -55,7 +55,7 @@ var appRouter = new (Backbone.Router.extend({
 	//userView = new UserView({model: user});
 	function startSignup(){
 	  answerList = new AnswerList();
-	  var answerCreate = answerList.create({qcount: 73, timestamp: SESSIONID, survey_type: "enrollment"}, {
+	  var answerCreate = answerList.create({qcount: 1, timestamp: SESSIONID, survey_type: "enrollment"}, {
 	    success: function(response){
 		console.log("start - success");
 		var answer = answerList.get(response.id);
@@ -119,7 +119,7 @@ var appRouter = new (Backbone.Router.extend({
 	function startWeekly(){
 			answerList = new AnswerList();
 			//this.answerList = answerList;
-			answerList.create({qcount: 74, contact: CONTACTID, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
+			answerList.create({qcount: 25, contact: CONTACTID, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
 	  		  wait: true,
 	  		  success: function(model,response){
 				answer = answerList.get(response.id);
