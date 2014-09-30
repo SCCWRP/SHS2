@@ -24,6 +24,7 @@ var appRouter = new (Backbone.Router.extend({
   receipt: function(appid){
 	 console.log("receipt");
 	 var receipt = new Receipt({id: appid});
+	 console.log(receipt);
 	 receiptView = new ReceiptView({model: receipt});
 	 receipt.fetch({error: errorMessage});
 	 function errorMessage(response){
@@ -54,7 +55,7 @@ var appRouter = new (Backbone.Router.extend({
 	//userView = new UserView({model: user});
 	function startSignup(){
 	  answerList = new AnswerList();
-	  var answerCreate = answerList.create({qcount: 1, timestamp: SESSIONID}, {
+	  var answerCreate = answerList.create({qcount: 73, timestamp: SESSIONID, survey_type: "enrollment"}, {
 	    success: function(response){
 		console.log("start - success");
 		var answer = answerList.get(response.id);
@@ -73,6 +74,7 @@ var appRouter = new (Backbone.Router.extend({
 	console.log("weekly");
 	// user has logged in successfully lets check to see if they have an stored sessions
   	//if (networkStatus != 'offline' && isDevice == true){
+	// this should probably get moved to LoginView
   	if (networkStatus != 'offline'){
 		var dirtyKey = window.localStorage.getItem("http://data.sccwrp.org/shs2/index.php/surveys_dirty");
 		if (dirtyKey){
@@ -117,7 +119,7 @@ var appRouter = new (Backbone.Router.extend({
 	function startWeekly(){
 			answerList = new AnswerList();
 			//this.answerList = answerList;
-			answerList.create({qcount: 25, user_id: USERID, timestamp: SESSIONID}, {
+			answerList.create({qcount: 74, contact: CONTACTID, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
 	  		  wait: true,
 	  		  success: function(model,response){
 				answer = answerList.get(response.id);

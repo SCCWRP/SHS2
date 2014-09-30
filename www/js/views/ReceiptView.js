@@ -21,21 +21,33 @@ var ReceiptView = Backbone.View.extend({
 	},
 	finish: function(){
 		// get contact id
-		var femail = this.model.get('contact');
-		var fid = this.model.get('uid');
+		console.log("finish");
+		console.log(this.model.toJSON());
+		var email = this.model.get('contact');
+		var id = this.model.get('user_id');
+		var survey_type = this.model.get('survey_type');
 		//appRouter.checksum();
-		//console.log(femail);
-		//console.log(fid);
-		app.notify(femail,fid);
-		alert("Come back next week!");
+		//console.log(email);
+		//console.log(id);
+		console.log(survey_type);
+		if(survey_type == "enrollment"){
+			// email user welcome message
+			app.notify(email,id);
+			alert("Thank you for enrolling!");
+		}
+		if(survey_type == "followup"){
+			alert("Come back next week!");
+		}
 		appRouter.navigate('intro', {trigger: true});
 	},
 	render: function(){
 			console.log("ReceiptView render");
+			console.log(this.model.toJSON());
 			$(this.el).html("");	
-		        $(headerView.el).hide();
-			$(footerView.el).hide();	
-			var receiptData = _.omit(this.model.attributes, 'id', 'contact', 'uid', 'q9', 'q7')
+		        //$(headerView.el).hide();
+			//$(footerView.el).hide();	
+			var receiptData = _.omit(this.model.attributes, 'id', 'contact', 'user_id', 'q9', 'q7')
 			$(this.el).html(this.template({ 'elements': receiptData }));	
+			//$(this.el).html(this.template({ 'elements': this.model.toJSON() }));
 	}
 });
