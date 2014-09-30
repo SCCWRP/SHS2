@@ -39,7 +39,8 @@ var appRouter = new (Backbone.Router.extend({
 	var userCreate = user.save({email: seedEmail, phone: seedPhone}, {
 	  	wait: true,
 	      	success: function(response){
-	  		//console.log(response);
+			console.log("user - success");
+	  		//console.log(response.toJSON());
 			USERID = response.id;
 			startSignup();
 		  },
@@ -53,7 +54,7 @@ var appRouter = new (Backbone.Router.extend({
 	//userView = new UserView({model: user});
 	function startSignup(){
 	  answerList = new AnswerList();
-	  var answerCreate = answerList.create({qcount: 73, timestamp: SESSIONID}, {
+	  var answerCreate = answerList.create({qcount: 1, timestamp: SESSIONID}, {
 	    success: function(response){
 		console.log("start - success");
 		var answer = answerList.get(response.id);
@@ -116,7 +117,7 @@ var appRouter = new (Backbone.Router.extend({
 	function startWeekly(){
 			answerList = new AnswerList();
 			//this.answerList = answerList;
-			answerList.create({qcount: 25, uid: USERID, timestamp: SESSIONID}, {
+			answerList.create({qcount: 25, user_id: USERID, timestamp: SESSIONID}, {
 	  		  wait: true,
 	  		  success: function(model,response){
 				answer = answerList.get(response.id);
