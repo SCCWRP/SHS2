@@ -21,6 +21,19 @@ var appRouter = new (Backbone.Router.extend({
 		}
 	}
   },
+  gift: function(giftid){
+	var gift = new Gift({id: giftid});
+	 /* gift will require its own view to create a temporary sticky popup on footer bar */
+	 gift.fetch({success: setMessage,error: errorMessage});
+	 function setMessage(response){
+		 var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys when you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift;
+		 alert(message);
+		 //console.log(response);
+	 }
+	 function errorMessage(response){
+		 console.log(response);
+	 }
+  },	
   receipt: function(appid){
 	 console.log("receipt");
 	 var receipt = new Receipt({id: appid});
