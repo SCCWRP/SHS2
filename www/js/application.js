@@ -2,7 +2,7 @@ var appRouter = new (Backbone.Router.extend({
   routes: {
     "shs2/receipt/:appid": "receipt",
     "": "signup",
-    "intro": "start",
+    "shs2/home/": "start",
     "": "start"
   },
   // new not yet incorporated into main program
@@ -37,7 +37,7 @@ var appRouter = new (Backbone.Router.extend({
 	user = new User();
 	var seedEmail = chance.email();
 	var seedPhone = chance.phone();
-	var userCreate = user.save({email: seedEmail, phone: seedPhone}, {
+	var userCreate = user.save({email: seedEmail, phone: seedPhone, visits: 0}, {
 	  	wait: true,
 	      	success: function(response){
 			console.log("user - success");
@@ -119,7 +119,7 @@ var appRouter = new (Backbone.Router.extend({
 	function startWeekly(){
 			answerList = new AnswerList();
 			//this.answerList = answerList;
-			answerList.create({qcount: 25, contact: CONTACTID, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
+			answerList.create({qcount: 70, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
 	  		  wait: true,
 	  		  success: function(model,response){
 				answer = answerList.get(response.id);

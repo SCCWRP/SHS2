@@ -26,6 +26,7 @@ var LoginView = Backbone.View.extend({
 		}, 
 		success: function(data) {
 			if(data.event == false){
+				console.log(data);
 				alert("Failed to login...Try again");
 				loginView.render();
 			//console.log(data.event.id);
@@ -34,7 +35,6 @@ var LoginView = Backbone.View.extend({
 				//console.log("login");
 				//console.log(data.event.contact);
 				USERID = Number(data.event.id);
-				CONTACTID = data.event.contact;
 				appRouter.weekly();
 			}
 		},
@@ -56,7 +56,7 @@ var LoginView = Backbone.View.extend({
 				if(loginID == retrieveObject.email || loginID == retrieveObject.phone){
 					loginStatus = true;
 	  				USERID = retrieveObject.id;
-	  				CONTACTID = retrieveObject.contact; } 
+				}
 			}
 			if(loginStatus == true){
 				appRouter.weekly();
