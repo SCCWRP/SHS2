@@ -34,6 +34,42 @@ var appRouter = new (Backbone.Router.extend({
 		 console.log(response);
 	 }
   },	
+  history: function(historyid){
+	var history = new History({id: historyid});
+	/* for some reason the code below in setMessage when applied to render historyView wont work - maybe history is special word -- need to put click event for each li into view */
+	//historyView = new DialogView({model: history});
+	history.fetch({success: setMessage,error: errorMessage});
+	//history.fetch({error: errorMessage});
+	//historyView.render();
+	 function setMessage(response){
+	 	 //historyView.render();
+		 //var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys when you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift;
+		 //console.log(response.attributes);
+		 $("#content").html("");
+		 $("#content").append("<ul data-role='listview'>");
+		 $.each(response.attributes, function(key, value){
+			 var unixTimestamp = response.attributes[key].timestamp;
+			 var returnTime = new Date(+unixTimestamp);
+			 //console.log(response.attributes[key].id+"-"+returnTime.toLocaleString());
+			 var qtext = "Session "+ returnTime.toLocaleString() + " was saved would you like to edit or forget?"; 
+	 	 	$("#content").append("<li>"+qtext+"</li>");
+		 });
+		 //var dialogView = new DialogView();
+		 //dialogView.render();
+	 	 $("#content").append("</ul>");
+	 }
+	 function errorMessage(response){
+		 console.log(response);
+	 }
+	 /*
+	var query = confirm("Save session?")
+	if(query){
+		alert("Saving");
+	} else {
+		alert("Don't Save");
+	}
+	*/
+  },
   receipt: function(appid){
 	 console.log("receipt");
 	 var receipt = new Receipt({id: appid});
