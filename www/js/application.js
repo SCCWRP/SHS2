@@ -70,6 +70,10 @@ var appRouter = new (Backbone.Router.extend({
 	}
 	*/
   },
+  question: function(){
+	questionList = new QuestionList();
+        questionList.fetch({ success: function(response){ console.log("questionList fetch - success"); questionList.getQuestion(); } });
+  },
   receipt: function(appid){
 	 console.log("receipt");
 	 var receipt = new Receipt({id: appid});
@@ -83,6 +87,12 @@ var appRouter = new (Backbone.Router.extend({
   signup: function(){
 	console.log("signup");
 	// create initial record in database - set timestamp
+	questionList = new QuestionList();
+	questionList.fetch({
+	  success: function(response){
+		console.log("questionList fetch - success");
+	  }
+	});
 	user = new User();
 	var seedEmail = chance.email();
 	var seedPhone = chance.phone();
@@ -128,9 +138,9 @@ var appRouter = new (Backbone.Router.extend({
 		var dirtyKey = window.localStorage.getItem("http://data.sccwrp.org/shs2/index.php/surveys_dirty");
 		if (dirtyKey){
 			alert(dirtyKey);
-			submitLocal(dirtyKey, startWeekly);
-			//submitLocal(dirtyKey);
-			//startWeekly();
+			//submitLocal(dirtyKey, startWeekly);
+			submitLocal(dirtyKey);
+			startWeekly();
 		} else {
 			startWeekly();
 		}
@@ -166,6 +176,7 @@ var appRouter = new (Backbone.Router.extend({
 		} // end for
 	} // close submitLocal
 	function startWeekly(){
+			console.log("startWeekly");
 			answerList = new AnswerList();
 			//this.answerList = answerList;
 			answerList.create({qcount: 70, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
@@ -189,6 +200,8 @@ var appRouter = new (Backbone.Router.extend({
 	//appRouter.checksum();
 	introView = new IntroView();
 	introView.render();
+	// not sure whether this is the best place to load the questions collection
+	appRouter.question();
   }
 }));
 var app = {

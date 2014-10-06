@@ -1,4 +1,5 @@
 var createDefaults =  function() {
+	//alert("createDefaults");
 	var df = {};
 	for(i=1; i<= MAXQUESTION; i++) {
 		df["q" + i] = null;
@@ -6,13 +7,12 @@ var createDefaults =  function() {
 	df["user_id"] = null;
 	return df;
 }
-
 var Answer = Backbone.Model.extend({
 	initialize: function(){
 		//alert("Answer Start");
-		this.on("invalid",function(model,error){
-			alert(error);
-		});
+                this.on("invalid",function(model,error){
+		        alert(error);
+	        });
 	},
 	defaults: createDefaults(),
 	validate: function (attrs){
@@ -29,6 +29,7 @@ var Answer = Backbone.Model.extend({
 		};
 	}
 });
+/*
 var validationFuncs = {
 	"0": function(q) {if(q == "") return "A response is required before continuing";},
 	"select": function(q) {if(q && q == "Select One") return "A response is required before continuing";},
@@ -60,13 +61,17 @@ var createValidation = function (questions){
 	};
 	return valLU;
 };
-
 $.ajax({
 	url: "questions.json",
 	async: false,
 	success: function(q) {
+		console.log("get questions");
+		console.log(q);
 		validators = createValidation(q);
-	}
-})
-
-
+	},
+	error: function(response){
+		alert("failed to retrieve questions.json");
+		alert(response);
+       } 
+});
+*/
