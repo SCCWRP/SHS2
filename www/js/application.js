@@ -102,7 +102,7 @@ var appRouter = new (Backbone.Router.extend({
 			console.log("user - success");
 	  		//console.log(response.toJSON());
 			USERID = response.id;
-			startSignup();
+			startSignup(seedEmail,seedPhone);
 		  },
 		error: function(model,response){
 	       		console.log("failed");
@@ -112,15 +112,15 @@ var appRouter = new (Backbone.Router.extend({
 		}
 	});
 	//userView = new UserView({model: user});
-	function startSignup(){
+	function startSignup(seedEmail,seedPhone){
 	  answerList = new AnswerList();
-	  var answerCreate = answerList.create({qcount: 1, timestamp: SESSIONID, survey_type: "enrollment"}, {
+	  var answerCreate = answerList.create({q6: seedPhone, q7: seedPhone, q8: seedEmail, q9: seedEmail, qcount: 1, timestamp: SESSIONID, survey_type: "enrollment"}, {
 	    success: function(response){
 		console.log("start - success");
 		var answer = answerList.get(response.id);
 		answerListView = new AnswerListView({model: answer});
 	    },
- 	    error: function(response){
+ 	    error: function(model, response){
 		console.log("failed");
 		console.log(response.responseText);
 		console.log(response.status);
@@ -186,11 +186,14 @@ var appRouter = new (Backbone.Router.extend({
 				answerListView = new AnswerListView({model: answer});
 	  		  },
  			  error: function(model,response){
-				console.log("failed");
-				console.log(response.responseText);
-				console.log(response.status);
-				console.log(response.statusText);
-	  		  }
+				if(response.status == 500){
+					console.log("failed");
+					alert("Failed to Start Weekly");
+					console.log(response.responseText);
+					console.log(response.status);
+					loginView = new LoginView;
+				}
+			  }
 			});
 	}
   },

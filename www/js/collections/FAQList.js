@@ -1,4 +1,4 @@
 var FAQList = Backbone.Collection.extend({
 	model: FAQ,
-	url: "/FAQ.json"
+	url: "faq.json"
 });
