@@ -2,7 +2,7 @@ var FAQView = Backbone.View.extend({
 	el: '#content',
 	template:_.template($('#tpl-faq-details').html()),
 	initialize: function(){
-		console.log("init");
+		//console.log("init");
 		var self = this;
 		this.FAQcol = new FAQList();
 		this.FAQcol.fetch({
@@ -11,8 +11,7 @@ var FAQView = Backbone.View.extend({
 	       	}); 
 	},
 	render: function(){
-		console.log("faq");
-		console.log(this.el);
+		//console.log("faq");
 		$(this.el).html("");
 		$(this.el).html(this.template({FAquestions: this.FAQcol.toJSON() }));	
 	}
