@@ -43,7 +43,11 @@ var AnswerListView = Backbone.View.extend({
 			t.set({'title': gotQuestion.attributes.title,'menu': fixMenu,'type': gotQuestion.attributes.type,'decline': gotQuestion.attributes.decline});
 			questionListView = new QuestionListView({model: gotQuestion});
 			questionListView.render();
+			updateProgressBar();
 			that.render();
+		}
+		function updateProgressBar(){
+			console.log("updateProgressBar");
 		}
 		function errorQuestion(){
 			alert("errorQuestion");
