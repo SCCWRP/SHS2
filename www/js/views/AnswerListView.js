@@ -10,7 +10,8 @@ var AnswerListView = Backbone.View.extend({
 	},
 	events:{
 		"click .save":"saveAnswer",
-    		"click .decline":"declineAnswer"
+    		"click .decline":"declineAnswer",
+    		"change input[type=radio]":"saveAnswer"
 	},
 	change:function(event){
 		var that = this;
