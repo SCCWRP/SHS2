@@ -133,6 +133,7 @@ var AnswerListView = Backbone.View.extend({
 			});
 			// maybe a better place to set userid-uid
 			this.model.set({"user_id": USERID});
+			this.model.set("q7", currentAnswer);
 		}
 		if(currentQuestion == 8){
 			// CRITICAL - need to add error checking for existing user account
@@ -164,6 +165,7 @@ var AnswerListView = Backbone.View.extend({
 				  }
 				}
 			});
+			this.model.set("q9", currentAnswer);
 			//appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
 		}
 		if(currentQuestion == 11){

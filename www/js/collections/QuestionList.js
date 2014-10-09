@@ -4,6 +4,7 @@ var QuestionList = Backbone.Collection.extend({
 	},
     	getQuestion: function(){
 		//console.log("getQuestion");
+		var that = this;
 		var valLU = {};
 		var validationFuncs = {
 			"0": function(q) {if(q == "") return "A response is required before continuing";},
@@ -18,16 +19,17 @@ var QuestionList = Backbone.Collection.extend({
 		};
 		var createValidation = function (questions){
 		  for(i=0; i< MAXQUESTION; i++) {
-			if(!questions.models[i].hasOwnProperty("check")) {
-				questions.models[i]["check"] = "0";
+			var thismod =  that.models[i].attributes; 
+			if(!thismod.hasOwnProperty("check")) {
+				thismod["check"] = "0";
 			};
-			var codes = questions.models[i].check.split(",");
+			var codes = thismod.check.split(",");
 			valLU["q" + (i+1)] = codes.map(function(c) {
 				return validationFuncs[c];
 			});	
-			if(questions.models[i].errmessage != "") {
+			if(thismod.errmessage != "") {
 				var v = (function() {
-					var message = questions.models[i].errmessage;
+					var message = thismod.errmessage;
 					return function(q) {if(q && q == "No") {return message;}}
 				})(); 	
 				valLU["q" + (i+1)].push(v);
