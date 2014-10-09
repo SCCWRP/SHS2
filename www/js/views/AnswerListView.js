@@ -43,7 +43,11 @@ var AnswerListView = Backbone.View.extend({
 			t.set({'title': gotQuestion.attributes.title,'menu': fixMenu,'type': gotQuestion.attributes.type,'decline': gotQuestion.attributes.decline});
 			questionListView = new QuestionListView({model: gotQuestion});
 			questionListView.render();
+			updateProgressBar();
 			that.render();
+		}
+		function updateProgressBar(){
+			console.log("updateProgressBar");
 		}
 		function errorQuestion(){
 			alert("errorQuestion");
@@ -117,8 +121,14 @@ var AnswerListView = Backbone.View.extend({
 				success: function(response){
 					console.log(user.toJSON());
 				},
-				error: function(response){
+				error: function(model, response){
+				  if(response.status == 500){
+					console.log("failed");
+					alert("Phone number already exists in database! Please login instead.");
+					console.log(response.responseText);
 					console.log(response.status);
+					loginView = new LoginView;
+				  }
 				}
 			});
 			// maybe a better place to set userid-uid
@@ -145,7 +155,13 @@ var AnswerListView = Backbone.View.extend({
 					// set userid in database and forms
 				},
 				error: function(response){
+				  if(response.status == 500){
+					console.log("failed");
+					alert("Email address already exists in database! Please login instead.");
+					console.log(response.responseText);
 					console.log(response.status);
+					loginView = new LoginView;
+				  }
 				}
 			});
 			//appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
@@ -216,10 +232,13 @@ var AnswerListView = Backbone.View.extend({
 					*/
 				},
 				error: function(model,response){
-	       				console.log("failed");
-	       				console.log(response.responseText);
-	       				console.log(response.status);
-	       				console.log(response.statusText);
+				  if(response.status == 500){
+					console.log("failed");
+					alert("Phone/Email address already exists in database! Please login instead.");
+					console.log(response.responseText);
+					console.log(response.status);
+					loginView = new LoginView;
+				  }
        				}
 			});
 			console.log(this.model);

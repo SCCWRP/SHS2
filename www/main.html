@@ -18,13 +18,19 @@
         <link rel="stylesheet" href="css/orig/natived/jquerymobile.nativedroid.dark.css"/>
                 // nativeDroid: Color Schemes 
         <link rel="stylesheet" href="css/orig/natived/jquerymobile.nativedroid.color.blue.css" />
+	<link rel="stylesheet" href="css/orig/jquery.mobile.structure-1.3.1.min.css" />
 		// new native stylesheet
+	<!-- 
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
         <link rel="stylesheet" href="css/jqm-icon-pack-fa.css" /> 
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/orig/natived/jquerymobile.nativedroid.css" />
+        <link rel="stylesheet" href="css/orig/natived/jquerymobile.nativedroid.dark.css"  id='jQMnDTheme' />
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.css" />
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.dark.css"  id='jQMnDTheme' />
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
+	// -->
   </head>
   <body>
     <div data-role="page" data-theme="b" id="one">
@@ -42,7 +48,8 @@
 	<script src="js/vendor/json2.js"></script>
 	<script src="js/vendor/chance.min.js"></script>
 	<script type="text/template" id="tpl-contact-details">
-    		<div class="form-left-col"><h3>Contact Content</h3></div>
+    		<div class="form-left-col"><p>If you have any questions, comments, or concerns about this application feel free to email us at <br><br><a href="mailto:shs@sccwrp.org">shs@sccwrp.org</a></p>
+		</div>
 	</script>
     	<script type="text/template" id="tpl-intro-details">
 	  <div id="landing" data-theme="b">
@@ -76,7 +83,17 @@
 	</div>
 	</script>
 	<script type="text/template" id="tpl-faq-details">
-    		<div class="form-left-col"><h3>FAQ Content</h3></div>
+	<div class="form-left-col">
+	<div data-role="content">
+		<div data-role="collapsible-set">
+			<% _.each(FAquestions, function(question) { %> 
+			<div data-role="collapsible" data-collapsed="true">
+				<h3> <%= question.title %> </h3>
+				<p> <%= question.content %> </p>
+			</div>
+			<% }); %>  
+		</div>
+	</div>
 	</script>
 	<script type="text/template" id="tpl-footer-details">
 	 <div id="progBars" class="boxed">
