@@ -295,6 +295,10 @@
 			<label for= <%= days[i] %> >  <%= days[i] %> </label> 
 	 		<% }; %>
 			</fieldset>
+			<% if(decline == "yes") { %>
+				<button id="decline" class="decline">None this week</button>
+			<% }; %>
+				
 		</div>
           	<button id="save" class="save">Save</button>
 	  <% } %>
