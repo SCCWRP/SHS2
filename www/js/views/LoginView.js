@@ -85,5 +85,6 @@ var LoginView = Backbone.View.extend({
 		$(this.el).html("");
 		$("#footer").show();
 		$(this.el).html(this.template());	
+		//$('#formLogin').trigger('create');
 	}
 });
