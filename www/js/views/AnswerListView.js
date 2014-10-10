@@ -7,6 +7,24 @@ var AnswerListView = Backbone.View.extend({
 		this.listenTo(this.model, 'sync', this.nextQuestion);
 		this.listenTo(footerView, 'forward', this.saveAnswer); 
 		this.listenTo(this.model, 'change:status', this.nextQuestion);
+		this.listenTo(this, 'dialog', function (event) {
+			var that = this;
+			console.log("dialog test");
+			$('<div>').simpledialog2({
+				    mode: 'button',
+				    headerText: '',
+				    headerClose: true,
+				    buttonPrompt: 'Type your response',
+				    buttonInput: true,
+				    buttons : {
+				          'OK': {
+					          click: function () { 
+							that.saveAnswer(null, false, $.mobile.sdLastInput);
+						}
+					},
+				    }
+			  })
+	 });
 	},
 	events:{
 		"click .save":"saveAnswer",
@@ -97,22 +115,25 @@ var AnswerListView = Backbone.View.extend({
 		if(!currentAnswer || currentAnswer == []) {
 			currentAnswer = "";
 		};
-		if(currentAnswer == "Other") {
-			currentAnswer = "Other : " + prompt("", "").replace(",", "|");
-		};
 		console.log("currentAnswer: "+ currentAnswer);
 	 	return currentAnswer;	
 		       },
-	saveAnswer:function(event, decline){
+	saveAnswer:function(event, decline, other){
 		console.log("saveAnswer");
 		var timer = 0;
 		var appID;
 		var that = this;
 		formtype = this.model.get("type");
-		if(!decline) {
+		if(other) {
+			var currentAnswer = other;
+		} else if(!decline) {
 			var currentAnswer = this.extractAnswer();
 		} else {
 			var currentAnswer = this.model.get("declinedefault");	
+		};
+		if(currentAnswer == "Other") {
+			this.trigger("dialog");
+			return;
 		};
 		// current question
 		// too slow
