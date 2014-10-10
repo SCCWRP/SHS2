@@ -380,7 +380,7 @@
         "other": "n",
 	"otype": "",
   	"answer": "",
-	"decline": "no",
+	"decline": "yes",
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",

@@ -21,7 +21,6 @@ var AnswerListView = Backbone.View.extend({
 	},
     	declineAnswer:function(event){
 		formtype = this.model.get("type");
-		$(this.selectorString[formtype]).val(this.model.get("declinedefault"));
 		this.saveAnswer(event);
 	},
 	nextQuestion:function(t, response, options){	
@@ -65,12 +64,7 @@ var AnswerListView = Backbone.View.extend({
 				"dateSelect":"[id=aid]",
 				"dateTimeInterval":"[id=aid]"
 	},
-	saveAnswer:function(event){
-		console.log("saveAnswer");
-		var timer = 0;
-		var appID;
-		var that = this;
-		formtype = this.model.get("type");
+	extractAnswer: function () {
 		var currentAnswer = $(this.selectorString[formtype]); 
 		if(formtype == "multi" || formtype == "sevenday") {
 			var temparray = [];
@@ -107,6 +101,19 @@ var AnswerListView = Backbone.View.extend({
 			currentAnswer = "Other : " + prompt("", "").replace(",", "|");
 		};
 		console.log("currentAnswer: "+ currentAnswer);
+	 	return currentAnswer;	
+		       },
+	saveAnswer:function(event, decline){
+		console.log("saveAnswer");
+		var timer = 0;
+		var appID;
+		var that = this;
+		formtype = this.model.get("type");
+		if(!decline) {
+			var currentAnswer = this.extractAnswer();
+		} else {
+			var currentAnswer = this.model.get("declinedefault");	
+		};
 		// current question
 		// too slow
 		var currentQuestion = Number(this.model.get("qcount")); 
@@ -179,7 +186,7 @@ var AnswerListView = Backbone.View.extend({
 			nextQuestion += 1;
 		};
 		if(currentQuestion == 25 && currentAnswer == ""){
-			nextQuestion +=  9;
+			nextQuestion +=  8;
 		};
 		// this should really go somewhere after sync happens maybe next question
 		// also status needs to be toggled to complete in database
