@@ -2,10 +2,9 @@ var appRouter = new (Backbone.Router.extend({
   routes: {
     "shs2/receipt/:appid": "receipt",
     "": "signup",
-    "shs2/home/": "start",
+    "shs2/www/index.html": "start",
     "": "start"
   },
-  // new not yet incorporated into main program
   checksum: function(){
 	console.log("checksum");
   	//if (networkStatus != 'offline' && isDevice == true){
@@ -20,6 +19,10 @@ var appRouter = new (Backbone.Router.extend({
 			// if not - send to staging table for manual decision making
 		}
 	}
+  },
+  css: function(){
+	     console.log("css");
+	     appRouter.resizePage();
   },
   gift: function(giftid){
 	var gift = new Gift({id: giftid});
@@ -74,6 +77,22 @@ var appRouter = new (Backbone.Router.extend({
 	questionList = new QuestionList();
         questionList.fetch({ success: function(response){ console.log("questionList fetch - success"); questionList.getQuestion(); } });
   },
+  positionFooter: function(){
+	$footer = $("#footer");
+	footerHeight = $footer.height();
+	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
+	if (deviceType != "iPhone") { 
+		$('#footer').css('visibility','visible');
+	}
+	var drop = (deviceType == "iPhone") ? /*-59*/3:3;
+	footerTop = ($(window).scrollTop()+$(window).height()-footerHeight)-drop+"px";       
+	$footer.css({
+		position: "fixed",
+		bottom: 0,
+		left:0,
+		right:0
+	});
+  },
   receipt: function(appid){
 	 console.log("receipt");
 	 var receipt = new Receipt({id: appid});
@@ -83,6 +102,26 @@ var appRouter = new (Backbone.Router.extend({
 	 function errorMessage(response){
 		 console.log(response);
 	 }
+  },
+  resizePage: function(){
+	/* in the beta version this functin was used with unique form element names
+	   in full study all (maybe) form elements derive from .ui-field-contain */
+	// total size of form element and amount of space from top
+	var formSize = Math.round($('.ui-field-contain').offset().top+$('.ui-field-contain').height());
+	// size of page minus footer
+	var stageSize = Math.round($('#one').height()-$('#footer').height());
+	// total size of form element with some padding
+	var minHeight = "" + (formSize + 400) + "px";
+	// current size of entire page
+	var oneHeight = (formSize > stageSize) ? minHeight:("" + $('#one').height() + "px");
+	/* in old app may not need
+	if(formName == 'text-btn'){
+		$('#one').css('height',1024);
+	} else {
+		$('#one').css('height',oneHeight);
+	}
+	*/
+	$('#one').css('height',oneHeight);
   },
   signup: function(){
 	console.log("signup");
@@ -199,12 +238,13 @@ var appRouter = new (Backbone.Router.extend({
   },
   start: function(){
 	console.log("start");
-	//appRouter.navigate('shs2/receipt/855', {trigger: true});
+	//appRouter.navigate('shs2/receipt/341', {trigger: true});
 	//appRouter.checksum();
 	introView = new IntroView();
 	introView.render();
 	// not sure whether this is the best place to load the questions collection
 	appRouter.question();
+        $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
   }
 }));
 var app = {

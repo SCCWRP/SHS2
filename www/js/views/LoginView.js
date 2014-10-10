@@ -81,7 +81,10 @@ var LoginView = Backbone.View.extend({
 	},
 	render: function(){
 		console.log("LoginView render");
+		$("#header").show();
 		$(this.el).html("");
+		$("#footer").show();
 		$(this.el).html(this.template());	
+		//$('#formLogin').trigger('create');
 	}
 });

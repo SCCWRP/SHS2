@@ -6,6 +6,8 @@ var ContactView = Backbone.View.extend({
 	},
 	render: function(){
 		console.log("contact");
+		$(headerView.el).show();
+		$('#question').html("Contact Us");
 		$(this.el).html("");
 		$(this.el).html(this.template());	
 	}

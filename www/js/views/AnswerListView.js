@@ -45,6 +45,7 @@ var AnswerListView = Backbone.View.extend({
 			questionListView.render();
 			updateProgressBar();
 			that.render();
+			appRouter.css();
 		}
 		function updateProgressBar(){
 			console.log("updateProgressBar");
@@ -232,6 +233,7 @@ var AnswerListView = Backbone.View.extend({
 					if(timer == 4 || that.model.get("status") == "edit"){
 						// clear stage and events
 						that.cleanup();
+						//appRouter.cleanup();
 						// return receipt from database
 						appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
 					}

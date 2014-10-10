@@ -23,7 +23,7 @@ var IntroView = Backbone.View.extend({
 		footerView = new FooterView;
 	},
 	showMap: function(){
-	  if (networkStatus != 'offline' && isDevice == true){
+	  if (networkStatus != 'offline'){
 		headerView = new HeaderView;
 		mapView = new MapView;
 	  } else { 
@@ -33,10 +33,11 @@ var IntroView = Backbone.View.extend({
 	render: function(){
 		console.log("introview render");
 		/* clear the interface */
-		$("#header").html("");
+		$("#header").hide();
 		$(this.el).html("");
-		$("#footer").html("");
+		$("#footer").hide();
 		$(this.el).html(this.template());	
+		$('#landList').trigger('create');
 		//$('#landList').listview( "refresh" );
 		//$('#content').trigger('create');
 	}
