@@ -23,7 +23,7 @@ var IntroView = Backbone.View.extend({
 		footerView = new FooterView;
 	},
 	showMap: function(){
-	  if (networkStatus != 'offline' && isDevice == true){
+	  if (networkStatus != 'offline'){
 		headerView = new HeaderView;
 		mapView = new MapView;
 	  } else { 

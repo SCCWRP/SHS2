@@ -81,8 +81,7 @@
 	</div>
 	</script>
 	<script type="text/template" id="tpl-faq-details">
-	<div class="form-left-col">
-	<div data-role="content">
+	<div id="formFAQ" class="form-left-col">
 		<div data-role="collapsible-set">
 			<% _.each(FAquestions, function(question) { %> 
 			<div data-role="collapsible" data-collapsed="true">
@@ -91,7 +90,6 @@
 			</div>
 			<% }); %>  
 		</div>
-	</div>
 	</script>
 	<script type="text/template" id="tpl-footer-details">
 	 <div id="progBars" class="boxed">
@@ -111,7 +109,7 @@
 	  </div>
 	</script>
 	<script type="text/template" id="tpl-header-details">
-		<h1 id="question">Surfer Health Survey</h1><form><a href="./index.html" id="mainPage2" data-role="button" data-icon="home" class="ui-btn-right">Home</a>
+		<h1 id="question">Surfer Health Survey</h1><a href="./index.html" id="mainPage2" data-role="button" data-icon="home" class="ui-btn-right">Home</a>
 	</script>
 	<script type="text/template" id="tpl-question-details">
     		<div class="form-left-col"><h3><%= title %></h3></div>
