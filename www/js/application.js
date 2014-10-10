@@ -2,13 +2,8 @@ var appRouter = new (Backbone.Router.extend({
   routes: {
     "shs2/receipt/:appid": "receipt",
     "": "signup",
-    "shs2/home/": "start",
+    "shs2/www/index.html": "start",
     "": "start"
-  },
-  // new not yet incorporated into main program
-  cleanup: function(){
-	console.log("cleanup");
-	this.undelegateEvents();
   },
   checksum: function(){
 	console.log("checksum");
@@ -223,7 +218,7 @@ var appRouter = new (Backbone.Router.extend({
 			console.log("startWeekly");
 			answerList = new AnswerList();
 			//this.answerList = answerList;
-			answerList.create({qcount: 25, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
+			answerList.create({qcount: 73, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
 	  		  wait: true,
 	  		  success: function(model,response){
 				answer = answerList.get(response.id);
@@ -243,7 +238,7 @@ var appRouter = new (Backbone.Router.extend({
   },
   start: function(){
 	console.log("start");
-	//appRouter.navigate('shs2/receipt/855', {trigger: true});
+	//appRouter.navigate('shs2/receipt/341', {trigger: true});
 	//appRouter.checksum();
 	introView = new IntroView();
 	introView.render();

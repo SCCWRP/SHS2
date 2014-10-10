@@ -37,6 +37,7 @@ var IntroView = Backbone.View.extend({
 		$(this.el).html("");
 		$("#footer").hide();
 		$(this.el).html(this.template());	
+		$('#landList').trigger('create');
 		//$('#landList').listview( "refresh" );
 		//$('#content').trigger('create');
 	}

@@ -60,7 +60,7 @@
 	  </div>
 	</script>
 	<script type="text/template" id="tpl-login-details">
-    	<div class="form-left-col"><h3>Login</h3>
+    	<div id="formLogin" class="form-left-col"><h3>Login</h3>
 	  <div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all" data-change-hash="false">
                           <div data-role="header" data-theme="b" class="ui-corner-top">
 				  <!-- <h1>If your already enrolled please sign in.</h1> // -->
@@ -98,7 +98,7 @@
 	   <form>
  	    <fieldset id="footButtons" class="ui-grid-b">
 		<div id="back" class = "ui-block-a"><a href="#" data-role="button" id="backButton"><div id='backButtonText'>Back</div></a></div>
-		<div id="restartButton" class = "ui-block-b"><a href="#popupDialog" data-rel="popup" data-role="button" id="saveRestartButton">Restart</a></div>
+		<div id="restartButton" class = "ui-block-b"><a href="./index.html" data-role="button" id="saveRestartButton">Restart</a></div> 
 		<div id="forward" class = "ui-block-c"><a href="#" data-role="button" class='buttonDisable' id="multi"><div id='multiButtonText' class="textDisable">Next</div></a></div>
 	    </fieldset>
 	   </form>
@@ -123,12 +123,15 @@
 			<li class="edit" name="edit" id="<%= id %>"><%= id %> - <%= timestamp %></li>
 	</script>
 	<script type="text/template" id="tpl-receipt-details">
-    	<div class="form-left-col"><h3>Session Receipt:</h3>
-		<% _.each(elements,function(element,index,list) { %>
+    	<div id="aid" class="form-center-col"><h3>Session Receipt - Click Answer to Edit</h3>
+		<ul data-role="listview" data-inset="true">
+		<% _.each(elements,function(element,index,list) {  var qindex = index.substr(1); %>
 		<% if(!element) return;  %>
-			<li class="edit" name="edit" id="<%= index %>"><%= index %> - <%= element %></li>
+			<li data-role="list-divider">Question <%= qindex %></li>
+			<li data-icon="edit"><a href="#" class="edit" name="edit" id="<%= index %>"><%= element %></a></li>
 		<% }); %>
-          	<button id="finish" class="finish">Looks Good</button>
+		</ul>
+		<a href="#" id="finish" data-role="button" class="finish">Looks Good</a>
 	</div>
 	</script>
 	<script type="text/template" id="tpl-answer-details">
@@ -144,7 +147,7 @@
 		<% if(decline == "yes") { %>
 			<button id="decline" class="decline">Decline and save</button>
 			<% }; %>
-	  <div id="multi-radio" data-role='fieldcontain'>
+	  <div id="multi-radio" class="ui-field-contain" data-role='fieldcontain'>
 	   <form id ="aid" >
 	    <div style="margin: 0 auto; display: table; width: 19em; position:relative;">
 		    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain" data-mini="true">
@@ -259,7 +262,7 @@
 		<%= "<script" + ">" + propagate1 +  "</script" + ">" %>
 		<%= "<script" + ">" + propagate2 +  "</script" + ">" %>
 	  <% } else if ((type) == "text"){  %>
-  	    <div class="form-left-col"><h3>Text Question - <%= qcount %> - <%= type %></h3>
+  	    <div class="ui-field-contain"><h3>Text Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
           	<input type="text" value="<%= user_id %>" disabled />
         	<label>Record ID:</label>

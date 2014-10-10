@@ -225,8 +225,8 @@ var AnswerListView = Backbone.View.extend({
 					// last module - go to receipt
 					if(timer == 4 || that.model.get("status") == "edit"){
 						// clear stage and events
-						//that.cleanup();
-						appRouter.cleanup();
+						that.cleanup();
+						//appRouter.cleanup();
 						// return receipt from database
 						appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
 					}
@@ -249,13 +249,11 @@ var AnswerListView = Backbone.View.extend({
 			console.log(this.model);
 		}
 		}, /* end saveAnswer */
-	/*
 	cleanup: function() {
 	     console.log("cleanup");
 	     this.undelegateEvents();
 	     //$(this.el).html("");
  	},
-	*/
 	render: function(){
 		$(this.el).html("");
 		$(headerView.el).show();
