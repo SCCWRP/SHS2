@@ -15,7 +15,14 @@ var QuestionList = Backbone.Collection.extend({
 			"gte1": function(q) {if(q && q.split(" : ")[1] < 1) return "Value must be greater than zero";},
 			"isNumber": function(q) {if(q && isNaN(q)) return "Value must be a number";},
 			"numberWeek": function(q) {if(q && (isNaN(q.split(" : ")[1]) || q.split(" : ")[1] == "")) return "Value must be a number";},
-			"selectOne": function(q){if(q && _.values(JSON.parse(q)).filter(function(x) {return x == "Select One";}).length > 0) return "You must select an answer for all days";}
+			"selectOne": function(q){if(q && _.values(JSON.parse(q)).filter(function(x) {return x == "Select One";}).length > 0) return "You must select an answer for all days";},
+    			"numberLimit": function(q) {if(q) {
+				var split = q.split(" : ");
+				var period = split[0].indexOf("week") >= 0;
+				var value = split[1];
+				if((period && value > 7) || value > 31) {
+			       		return "Submitted value is too large";
+			};};}
 		};
 		var createValidation = function (questions){
 		  for(i=0; i< MAXQUESTION; i++) {

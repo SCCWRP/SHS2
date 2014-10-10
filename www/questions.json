@@ -229,7 +229,7 @@
 	"errmessage": "",
       	"status": "incomplete",
       	"id": "15",
-	"check": "0,numberWeek,gte1"
+	"check": "0,numberWeek,gte1,numberLimit"
   },
   {
 	"title": "About how often do you surf during the dry season (April -  October)?",
@@ -245,7 +245,7 @@
 	"errmessage": "",
       	"status": "incomplete",
       	"id": "16",
-	"check": "0,numberWeek,gte1"
+	"check": "0,numberWeek,gte1,numberLimit"
   },
   {
 	"title": "How long is the board you usually ride?",
@@ -308,7 +308,7 @@
 	"errmessage": "",
       	"status": "incomplete",
       	"id": "20",
-	"check": "0,numberWeek,gte1"
+	"check": "0,numberWeek,gte1,numberLimit"
   },
   {
 	"title": "During the winter season (November - March), which beach do you consider your home beach (where you surf most often)?",
@@ -508,7 +508,7 @@
         "other": "n",
 	"otype": "",
   	"answer": "",
-	"decline": "no",
+	"decline": "yes",
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
