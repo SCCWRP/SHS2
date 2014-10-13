@@ -10,6 +10,7 @@ var LoginView = Backbone.View.extend({
 	},
 	loginUser: function(e){
 		e.preventDefault();
+		$("#popupInfo").popup("close");
 		var loginID = $('#loginInput').val();
 	  //if (networkStatus != 'offline' && isDevice == true){
 	  if (networkStatus != 'offline'){
@@ -72,6 +73,7 @@ var LoginView = Backbone.View.extend({
 	},
 	enrollUser: function(e){
 		e.preventDefault();
+		$("#popupInfo").popup("close");
 		//if (networkStatus != 'offline' && isDevice == true){
 		if (networkStatus != 'offline'){
 			appRouter.signup();
@@ -83,7 +85,8 @@ var LoginView = Backbone.View.extend({
 		console.log("LoginView render");
 		$("#header").show();
 		$("#content").html("");
-		$("#footer").show();
+		/* footer is showing in original - shouldnt be just enable home button instead */
+		//$("#footer").show();
 		$(this.el).html(this.template());	
 		$("#popupInfo").popup("open");
 		//$('#formLogin').trigger('create');
