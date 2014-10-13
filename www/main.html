@@ -33,11 +33,11 @@
   </head>
   <body>
     <div data-role="page" data-theme="b" id="one">
-	    <div data-role="header" data-theme="b" id="header"></div> 
+	    <div data-role="header" data-theme="b" id="header" class="ui-corner-top"></div> 
 	    <div id="content"></div>
 	    <div data-role="footer" data-theme="b" id="footer">
-	    <div id="dialog"></div>
     <div> 
+    <div id="popupInfo" data-role="popup" class="ui-content" data-position-to="window">Popup</div>
 	<script src="js/orig/jquery-1.9.1.min.js"></script>
 	<script src="js/orig/jquery.mobile-1.3.1.min.js"></script>
 	<script src="js/vendor/underscore-min.js"></script>
@@ -46,7 +46,7 @@
 	<script src="js/vendor/json2.js"></script>
 	<script src="js/vendor/chance.min.js"></script>
 	<script type="text/template" id="tpl-contact-details">
-    		<div class="form-left-col"><p>If you have any questions, comments, or concerns about this application feel free to email us at <br><br><a href="mailto:shs@sccwrp.org">shs@sccwrp.org</a></p>
+    		<div><p>If you have any questions, comments, or concerns about this application feel free to email us at <br><br><a href="mailto:shs@sccwrp.org">shs@sccwrp.org</a></p>
 		</div>
 	</script>
     	<script type="text/template" id="tpl-intro-details">
@@ -81,6 +81,7 @@
 	</div>
 	</script>
 	<script type="text/template" id="tpl-faq-details">
+	<br><br>
 	<div id="formFAQ" class="form-left-col">
 		<div data-role="collapsible-set">
 			<% _.each(FAquestions, function(question) { %> 
@@ -109,7 +110,8 @@
 	  </div>
 	</script>
 	<script type="text/template" id="tpl-header-details">
-		<h1 id="question">Surfer Health Survey</h1><a href="./index.html" id="mainPage2" data-role="button" data-icon="home" class="ui-btn-right">Home</a>
+		<h1 id="question" class="ui-title" role="heading" aria-level="1">Surfer Health Survey</h1>
+		<a href="./index.html" id="mainPage2" data-role="button" data-icon="home" class="ui-btn-right">Home</a>
 	</script>
 	<script type="text/template" id="tpl-question-details">
     		<div class="form-left-col"><h3><%= title %></h3></div>
@@ -119,6 +121,17 @@
 	</script>
 	<script type="text/template" id="tpl-dialog-details">
 			<li class="edit" name="edit" id="<%= id %>"><%= id %> - <%= timestamp %></li>
+	</script>
+	<script type="text/template" id="tpl-history-details">
+			//<li class="history" name="history" id="<%= id %>"><%= qtext %></li>
+		<ul data-role="listview" data-inset="true">
+		<% _.each(elements,function(element,index,list) {  %>
+		<% if(!element) return;  %>
+			//<li data-role="list-divider">ID: <%= qindex %></li>
+			<li data-icon="edit"><a href="#" class="edit" name="edit" id="<%= index %>"><%= element %></a></li>
+		<% }); %>
+		</ul>
+		<a href="#" id="finish" data-role="button" class="finish">Looks Good</a>
 	</script>
 	<script type="text/template" id="tpl-receipt-details">
     	<div id="aid" class="form-center-col"><h3>Session Receipt - Click Answer to Edit</h3>
@@ -316,6 +329,7 @@
 	<script src="js/views/FAQView.js"></script>
 	<script src="js/views/FooterView.js"></script>
 	<script src="js/views/HeaderView.js"></script>
+	<script src="js/views/HistoryView.js"></script>
 	<script src="js/views/IntroView.js"></script>
 	<script src="js/views/LoginView.js"></script>
 	<script src="js/views/MapView.js"></script>

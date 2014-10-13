@@ -41,9 +41,9 @@ var ReceiptView = Backbone.View.extend({
 	render: function(){
 			console.log("ReceiptView render");
 			console.log(this.model.toJSON());
-		        $(headerView.el).hide();
+		        //$(headerView.el).hide();
 			$(this.el).html("");	
-			$(footerView.el).hide();	
+			//$(footerView.el).hide();	
 			var receiptData = _.omit(this.model.attributes, 'id', 'user_id', 'q9', 'q7','survey_type')
 			$(this.el).html(this.template({ 'elements': receiptData }));	
 			$('#aid').trigger('create');

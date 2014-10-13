@@ -29,8 +29,16 @@ var appRouter = new (Backbone.Router.extend({
 	 /* gift will require its own view to create a temporary sticky popup on footer bar */
 	 gift.fetch({success: setMessage,error: errorMessage});
 	 function setMessage(response){
-		 var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys when you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift;
-		 alert(message);
+		 var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys when you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift + "<a href='#' id='popupClose' data-rel='back' data-role='button' data-icon='delete' data-iconpos='notext' class='ui-btn-right'>Close</a>";
+		 //alert(message);
+		 //$("#notify").fadeIn("slow").append(message);
+		 $("#popupInfo").popup("open");
+		 //$("#popupInfo").html(message).enhanceWithin().popup("refresh"); 
+		 $("#popupInfo").html(message);
+		 $("#popupClose").click(function(){
+			 $("#popupInfo").popup("close");
+		 });
+
 		 //console.log(response);
 	 }
 	 function errorMessage(response){
@@ -40,22 +48,21 @@ var appRouter = new (Backbone.Router.extend({
   history: function(historyid){
 	var history = new History({id: historyid});
 	/* for some reason the code below in setMessage when applied to render historyView wont work - maybe history is special word -- need to put click event for each li into view */
-	//historyView = new DialogView({model: history});
 	history.fetch({success: setMessage,error: errorMessage});
-	//history.fetch({error: errorMessage});
-	//historyView.render();
 	 function setMessage(response){
-	 	 //historyView.render();
-		 //var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys when you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift;
+		 /* backbonify later */
+		 historyView = new HistoryView({model: history});
+	 	 //historyView.render(response);
 		 //console.log(response.attributes);
 		 $("#content").html("");
-		 $("#content").append("<ul data-role='listview'>");
+		 $("#content").append("<ul id='aid' data-role='listview'>Under Construction/Read-Only<br><input type='button' value='Continue' class='history-skip'/ >");
 		 $.each(response.attributes, function(key, value){
 			 var unixTimestamp = response.attributes[key].timestamp;
 			 var returnTime = new Date(+unixTimestamp);
 			 //console.log(response.attributes[key].id+"-"+returnTime.toLocaleString());
-			 var qtext = "Session "+ returnTime.toLocaleString() + " was saved would you like to edit or forget?"; 
+			 var qtext = "Session "+ returnTime.toLocaleString() + " was saved would you like to <input type='button' id='"+response.attributes[key].id+"' value='Edit' class='history-edit'/ > or <input type='button' id='"+response.attributes[key].id+"'value='Forget' class='history-forget'/ >?"; 
 	 	 	$("#content").append("<li>"+qtext+"</li>");
+		 $("#content").append("</ul>");
 		 });
 		 //var dialogView = new DialogView();
 		 //dialogView.render();
@@ -218,7 +225,7 @@ var appRouter = new (Backbone.Router.extend({
 			console.log("startWeekly");
 			answerList = new AnswerList();
 			//this.answerList = answerList;
-			answerList.create({qcount: 25, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
+			answerList.create({qcount: 74, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
 	  		  wait: true,
 	  		  success: function(model,response){
 				answer = answerList.get(response.id);
@@ -241,7 +248,6 @@ var appRouter = new (Backbone.Router.extend({
 	//appRouter.navigate('shs2/receipt/341', {trigger: true});
 	//appRouter.checksum();
 	introView = new IntroView();
-	introView.render();
 	// not sure whether this is the best place to load the questions collection
 	appRouter.question();
         $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
@@ -292,9 +298,6 @@ var app = {
 	        }
     	});
 
-  },
-  receipt: function(){
-	alert("app.receipt");
   },
   onDeviceReady: function(){
  	// jquery cors support for phonegap
