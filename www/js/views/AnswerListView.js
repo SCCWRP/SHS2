@@ -6,9 +6,9 @@ var AnswerListView = Backbone.View.extend({
 		$(this.el).unbind("click");
 		this.listenTo(this.model, 'sync', this.nextQuestion);
 		this.listenTo(footerView, 'forward', this.saveAnswer); 
+		this.listenTo(footerView, 'back', this.goBack); 
 		this.listenTo(this.model, 'change:status', this.nextQuestion);
 		this.listenTo(this.model, 'change:type', function() {
-			console.log(this.model.get('type'));
 			if(["radio"].indexOf(this.model.get('type')) >=  0) {
 				$('#forward').hide();
 			} else {
@@ -49,12 +49,18 @@ var AnswerListView = Backbone.View.extend({
 		formtype = this.model.get("type");
 		this.saveAnswer(event);
 	},
+	goBack: function(event){
+		var index = this.model.get("qcount"); 
+		if(index > 1) {
+			this.model.set("qcount", index - 1); 
+			this.nextQuestion(this.model);
+		} else {
+			appRouter.navigate("");
+		};
+	},
 	nextQuestion:function(t, response, options){	
 		var that = this;
-		console.log("nextQuestion");
 		// get current question number
-		console.log(t);
-		console.log(t.get("qcount"));
 		var nextQcount = t.get("qcount");
 		if(nextQcount > MAXQUESTION) return;
 		// changed - to above for receipt
@@ -63,7 +69,6 @@ var AnswerListView = Backbone.View.extend({
      		var questionList = new QuestionList();
 		questionList.fetch({success: getQuestion,error: errorQuestion});
 		function getQuestion(){
-			console.log("getQuestion");
 			gotQuestion = questionList.get(nextQcount);
 			var fixMenu = gotQuestion.attributes.menu.split(",")
 			t.set({'title': gotQuestion.attributes.title,'menu': fixMenu,'type': gotQuestion.attributes.type,'decline': gotQuestion.attributes.decline});

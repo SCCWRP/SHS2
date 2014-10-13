@@ -5,10 +5,13 @@ var FooterView = Backbone.View.extend({
 		this.render();
 	},
     	events: {
+		"click #back": "back",
 		"click #forward": "forward"
 	},
+    	back: function (e) { 
+		this.trigger("back");
+	},
     	forward: function (e) { 
-		console.log("forward");
 		this.trigger("forward");
 	},
 	render: function(){
