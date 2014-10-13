@@ -85,8 +85,8 @@ var LoginView = Backbone.View.extend({
 		console.log("LoginView render");
 		$("#header").show();
 		$("#content").html("");
-		/* footer is showing in original - shouldnt be just enable home button instead */
-		//$("#footer").show();
+		/* footer is showing in original - shouldnt be just enable home button instead - wont do home button wrecks ios*/
+		$("#footer").show();
 		$(this.el).html(this.template());	
 		$("#popupInfo").popup("open");
 		//$('#formLogin').trigger('create');

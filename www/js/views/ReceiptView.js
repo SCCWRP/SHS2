@@ -36,7 +36,7 @@ var ReceiptView = Backbone.View.extend({
 		if(survey_type == "followup"){
 			alert("Come back next week!");
 		}
-		appRouter.navigate('shs2/www/index.html', {trigger: true});
+		appRouter.navigate('shs2/www/main.html', {trigger: true});
 	},
 	render: function(){
 			console.log("ReceiptView render");
