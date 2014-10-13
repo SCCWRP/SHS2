@@ -2,6 +2,7 @@ var IntroView = Backbone.View.extend({
 	el: '#content',
 	template:_.template($('#tpl-intro-details').html()),
 	initialize: function(){
+		this.render();
 	},
 	events:{
 		"click #landingSurvey":"showLogin",
@@ -37,7 +38,15 @@ var IntroView = Backbone.View.extend({
 		$(this.el).html("");
 		$("#footer").hide();
 		$(this.el).html(this.template());	
-		$('#landList').trigger('create');
+		//$('#content').trigger('create');
+		//console.log(jQuery("html").html());
+		//$('#landList').listview();
+		//$.mobile.changePage($(this.el));
+		//$('#landList').trigger('create');
+		//$('#one').trigger('pagecreate');
+		//$('#landList').listview();
+		//$("#landList").listview().listview('refresh');
+		//$('#landList').trigger('create');
 		//$('#landList').listview( "refresh" );
 		//$('#content').trigger('create');
 	}

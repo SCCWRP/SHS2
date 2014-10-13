@@ -11,7 +11,10 @@ body{
 height:100%;
 }
 #header{
-display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
 }
 #footer{
 left:0;
@@ -247,12 +250,6 @@ input[type=checkbox]{
   margin:-1px; 
   padding:0;
   border:0;
-}
-#FAQbar{
-position:fixed;
-top:0;
-left:0;
-width:100%;
 }
 #FAQdiv{
 display:none;

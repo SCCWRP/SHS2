@@ -1,5 +1,5 @@
 var LoginView = Backbone.View.extend({
-	el: '#content',
+	el: '#popupInfo',
 	template:_.template($('#tpl-login-details').html()),
 	initialize: function(){
 		this.render();
@@ -35,8 +35,8 @@ var LoginView = Backbone.View.extend({
 				//console.log("login");
 				//console.log(data.event.contact);
 				USERID = Number(data.event.id);
-				appRouter.history(USERID);
-				appRouter.gift(USERID);
+				//appRouter.history(USERID);
+				//appRouter.gift(USERID);
 				appRouter.weekly();
 			}
 		},
@@ -82,9 +82,10 @@ var LoginView = Backbone.View.extend({
 	render: function(){
 		console.log("LoginView render");
 		$("#header").show();
-		$(this.el).html("");
+		$("#content").html("");
 		$("#footer").show();
 		$(this.el).html(this.template());	
+		$("#popupInfo").popup("open");
 		//$('#formLogin').trigger('create');
 	}
 });
