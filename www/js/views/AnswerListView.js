@@ -7,6 +7,14 @@ var AnswerListView = Backbone.View.extend({
 		this.listenTo(this.model, 'sync', this.nextQuestion);
 		this.listenTo(footerView, 'forward', this.saveAnswer); 
 		this.listenTo(this.model, 'change:status', this.nextQuestion);
+		this.listenTo(this.model, 'change:type', function() {
+			console.log(this.model.get('type'));
+			if(["radio"].indexOf(this.model.get('type')) >=  0) {
+				$('#forward').hide();
+			} else {
+				$('#forward').show();
+			};
+		});
 		this.listenTo(this, 'dialog', function (event) {
 			var that = this;
 			console.log("dialog test");
