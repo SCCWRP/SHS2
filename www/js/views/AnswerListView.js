@@ -152,6 +152,9 @@ var AnswerListView = Backbone.View.extend({
 		var nextQuestion = (currentQuestion + 1);
 		// storing userid email and phone
 		// set userid for answer also
+		if(currentQuestion == 6 || currentQuestion == 7) {
+			currentAnswer = currentAnswer.replace(/\W/g, '');
+		};
 		if(currentQuestion == 6){
 			// CRITICAL - need to add error checking for existing user account
 			user.save({ phone: currentAnswer }, {
