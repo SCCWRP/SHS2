@@ -2,7 +2,7 @@ var appRouter = new (Backbone.Router.extend({
   routes: {
     "shs2/receipt/:appid": "receipt",
     "": "signup",
-    "shs2/www/index.html": "start",
+    "shs2/www/": "start",
     "": "start"
   },
   checksum: function(){
@@ -226,7 +226,7 @@ var appRouter = new (Backbone.Router.extend({
 			console.log("startWeekly");
 			answerList = new AnswerList();
 			//this.answerList = answerList;
-			answerList.create({qcount: 25, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
+			answerList.create({qcount: 73, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
 	  		  wait: true,
 	  		  success: function(model,response){
 				answer = answerList.get(response.id);
@@ -248,8 +248,11 @@ var appRouter = new (Backbone.Router.extend({
 	console.log("start");
 	//appRouter.navigate('shs2/receipt/341', {trigger: true});
 	//appRouter.checksum();
-	introView = new IntroView();
-	introView.render();
+	//introView = new IntroView();
+	$("#content").html( new IntroView().render().el );
+	//$("#landList").trigger("create");
+	//$("#landList").listview();
+	//$("#landList").listview('refresh');
 	// not sure whether this is the best place to load the questions collection
 	appRouter.question();
         $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)

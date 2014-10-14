@@ -23,6 +23,7 @@ var ReceiptView = Backbone.View.extend({
 	finish: function(event){
 		event.preventDefault();
 		console.log("finish");
+		var that = this;
 		//console.log(this.model.toJSON());
 		//appRouter.checksum();
 		var survey_type = this.model.get('survey_type');
@@ -36,8 +37,15 @@ var ReceiptView = Backbone.View.extend({
 		if(survey_type == "followup"){
 			alert("Come back next week!");
 		}
-		appRouter.navigate('shs2/www/main.html', {trigger: true});
+		that.cleanup();
+		appRouter.navigate('shs2/www/', {trigger: true});
+		//appRouter.start();
 	},
+	cleanup: function() {
+	     console.log("receipt cleanup");
+	     this.undelegateEvents();
+	     $(this.el).html("");
+ 	},
 	render: function(){
 			console.log("ReceiptView render");
 			console.log(this.model.toJSON());

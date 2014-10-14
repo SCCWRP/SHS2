@@ -1,5 +1,4 @@
 var IntroView = Backbone.View.extend({
-	el: '#content',
 	template:_.template($('#tpl-intro-details').html()),
 	initialize: function(){
 	},
@@ -34,19 +33,13 @@ var IntroView = Backbone.View.extend({
 		console.log("introview render");
 		/* clear the interface */
 		$("#header").hide();
-		//$(this.el).html("");
-		//$(this.el).html(this.template());	
+		$(this.el).html(this.template());	
 		$("#footer").hide();
+		$("#landList").trigger('create');
+		$('#landList').listview();
+		$('#landList').listview( "refresh" );
 		//console.log(jQuery("html").html());
-		//$('#landList').listview();
 		//$.mobile.changePage($(this.el));
-		//$('#landList').trigger('create');
-		//$('#one').trigger('pagecreate');
-		//$('#landList').listview();
-		//$("#landList").listview().listview('refresh');
-		//$('#landList').trigger('create');
-		//$('#landList').listview( "refresh" );
-		//$('#content').trigger('create');
 		return this;
 	}
 });
