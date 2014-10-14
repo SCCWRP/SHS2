@@ -115,8 +115,9 @@ var appRouter = new (Backbone.Router.extend({
 	   in full study all (maybe) form elements derive from .ui-field-contain */
 	// total size of form element and amount of space from top
 	var formSize = Math.round($('.ui-field-contain').offset().top+$('.ui-field-contain').height());
-	// size of page minus footer
-	var stageSize = Math.round($('#one').height()-$('#footer').height());
+	// size of page minus footer - changed from one to content for full study
+	var stageSize = Math.round($('#content').height()-$('#footer').height());
+	//console.log("stageSize: "+ stageSize);
 	// total size of form element with some padding
 	var minHeight = "" + (formSize + 400) + "px";
 	// current size of entire page
@@ -225,7 +226,7 @@ var appRouter = new (Backbone.Router.extend({
 			console.log("startWeekly");
 			answerList = new AnswerList();
 			//this.answerList = answerList;
-			answerList.create({qcount: 73, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
+			answerList.create({qcount: 25, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
 	  		  wait: true,
 	  		  success: function(model,response){
 				answer = answerList.get(response.id);

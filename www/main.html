@@ -36,14 +36,14 @@
     <div data-role="page" data-theme="b" id="one">
 	    <div data-role="header" data-theme="b" id="header" class="ui-corner-top"></div> 
 	    <div id="content">
-	  <div id="landing" data-theme="b">
-	    <ul id="landList" data-role="listview">
+	    <div id="landing" data-theme="b">
+	      <ul id="landList" data-role="listview">
 		<li class="boxed2">  <img style="width:5.3em; position:fixed; top:6%; left:.9em;" src="img/surveyIcon.png">  <a id='landingSurvey'><h1><center><span class="liDown"><br>Sign In/Enroll</span></center></h1></a></li>
 		<li class="boxed2">  <img style="width:5.3em; position:fixed; top:33%; left:.7em;" src="img/mapIcon.png">  <a id='landingSurf'><h1><center><span class="liDown"><br>Find a Surf Spot</span></center></h1></a></li>
 		<li class="boxed2">  <img style="width:5.3em; position:fixed; top:58%; left:.7em;" src="img/mailIcon.png">  <a id='landingContact'><h1><center><span class="liDown"><br>Contact Us</span></center></h1></a></li>
 		<li class="boxed2">  <img style="width:5.3em; position:fixed; top:84%; left:.7em;" src="img/faqIcon.png">  <a id='landingFAQ'><h1><center><span class="liDown"><br>FAQ</span></center></h1></a></li>
-	    </ul>
-	  </div>
+	      </ul>
+	    </div>
 	    </div>
 	    <div data-role="footer" data-theme="b" id="footer">
     <div> 
@@ -90,7 +90,6 @@
 	</div>
 	</script>
 	<script type="text/template" id="tpl-faq-details">
-	<br><br>
 	<div id="formFAQ" class="form-left-col">
 		<div data-role="collapsible-set">
 			<% _.each(FAquestions, function(question) { %> 
@@ -167,6 +166,30 @@
 		<% if(decline == "yes") { %>
 			<button id="decline" class="decline">Decline and save</button>
 			<% }; %>
+		    <% if((qcount) == 5){ %>
+			    <div id="consent" style="display: inline; visibility: visible;"> 
+				    <div id="formImages">
+					    <% if (isDevice){ %>
+						<img width=95% src="img/Consent_Large_Page_1.jpg">
+						<img width=95% src="img/Consent_Large_Page_2.jpg">
+						<img width=95% src="img/Consent_Large_Page_3.jpg">
+						<img width=95% src="img/Consent_Large_Page_4.jpg">
+						<img width=95% src="img/Consent_Large_Page_5.jpg">
+					    <% } else { %>
+					    	<img width=65% src="img/Consent_1.jpg">
+					    	<img width=65% src="img/Consent_2.jpg">
+					    	<img width=65% src="img/Consent_3.jpg">
+					    	<img width=65% src="img/Consent_4.jpg">
+
+					    <% }; %>
+				    </div>
+				    <br>
+				    <form>
+					    <a href="img/Consent.pdf" target="_blank" data-inline=true data-role="button" id="printConsent">Print/Download</a>
+				    </form>
+				    <h3>Do you agree to the terms above?</h3>
+			    </div>
+		    <% }; %>
 	  <div id="multi-radio" class="ui-field-contain" data-role='fieldcontain'>
 	   <form id ="aid" >
 	    <div style="margin: 0 auto; display: table; width: 19em; position:relative;">
