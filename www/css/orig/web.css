@@ -11,10 +11,7 @@ body{
 height:100%;
 }
 #header{
-position:fixed;
-top:0;
-left:0;
-width:100%;
+display:none;
 }
 #footer{
 left:0;
@@ -95,7 +92,7 @@ white-space:normal;
 }
 #popupLogin a {
 text-decoration:none;
-color:black;
+color:blue;
 }
 #select-view{
 position:absolute;
