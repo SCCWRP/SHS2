@@ -34,9 +34,17 @@
   </head>
   <body>
     <div data-role="page" data-theme="b" id="one">
-	    <div data-role="header" data-theme="b" id="header" class="ui-corner-top"></div> 
-	    <div id="content"></div>
-	    <div data-role="footer" data-theme="b" id="footer">
+	<div data-role="header" data-theme="b" id="header" class="ui-corner-top"></div> 
+	<div id="content"></div>
+	<div id="landing" data-theme="b">
+	      <ul id="landList" data-role="listview">
+		<li class="boxed2">  <img style="width:5.3em; position:fixed; top:6%; left:.9em;" src="img/surveyIcon.png">  <a id='landingSurvey'><h1><center><span class="liDown"><br>Sign In/Enroll</span></center></h1></a></li>
+	        <li class="boxed2">  <img style="width:5.3em; position:fixed; top:33%; left:.7em;" src="img/mapIcon.png">  <a id='landingSurf'><h1><center><span class="liDown"><br>Find a Surf Spot</span></center></h1></a></li>
+	        <li class="boxed2">  <img style="width:5.3em; position:fixed; top:58%; left:.7em;" src="img/mailIcon.png">  <a id='landingContact'><h1><center><span class="liDown"><br>Contact Us</span></center></h1></a></li>
+		<li class="boxed2">  <img style="width:5.3em; position:fixed; top:84%; left:.7em;" src="img/faqIcon.png">  <a id='landingFAQ'><h1><center><span class="liDown"><br>FAQ</span></center></h1></a></li>
+	     </ul>
+	 </div>
+	 <div data-role="footer" data-theme="b" id="footer">
     <div> 
     <div id="popupInfo" data-role="popup" class="ui-content" data-position-to="window">Popup</div>
 	<script src="js/orig/jquery-1.9.1.min.js"></script>

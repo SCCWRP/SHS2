@@ -12,6 +12,7 @@ var FAQView = Backbone.View.extend({
 	},
 	render: function(){
 		//console.log("faq");
+		$("#landing").hide();
 		$(headerView.el).show();
 		$('#question').html("FAQ");
 		$(this.el).html("");

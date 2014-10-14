@@ -248,8 +248,9 @@ var appRouter = new (Backbone.Router.extend({
 	console.log("start");
 	//appRouter.navigate('shs2/receipt/341', {trigger: true});
 	//appRouter.checksum();
-	//introView = new IntroView();
-	$("#content").html( new IntroView().render().el );
+	introView = new IntroView();
+	introView.render();
+	//$("#content").html( new IntroView().render().el );
 	//$("#landList").trigger("create");
 	//$("#landList").listview();
 	//$("#landList").listview('refresh');

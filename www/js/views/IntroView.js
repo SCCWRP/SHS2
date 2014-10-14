@@ -1,4 +1,5 @@
 var IntroView = Backbone.View.extend({
+	el: '#landing',
 	template:_.template($('#tpl-intro-details').html()),
 	initialize: function(){
 	},
@@ -17,6 +18,7 @@ var IntroView = Backbone.View.extend({
 		faqView = new FAQView;
 	},
 	showLogin: function(){
+		$("#landing").hide();
 		headerView = new HeaderView;
 		loginView = new LoginView;
 		footerView = new FooterView;
@@ -33,11 +35,12 @@ var IntroView = Backbone.View.extend({
 		console.log("introview render");
 		/* clear the interface */
 		$("#header").hide();
-		$(this.el).html(this.template());	
+		$("#landing").show();
+		//$(this.el).html(this.template());	
 		$("#footer").hide();
-		$("#landList").trigger('create');
-		$('#landList').listview();
-		$('#landList').listview( "refresh" );
+		//$("#landList").trigger('create');
+		//$('#landList').listview();
+		//$('#landList').listview( "refresh" );
 		//console.log(jQuery("html").html());
 		//$.mobile.changePage($(this.el));
 		return this;
