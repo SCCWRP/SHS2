@@ -47,6 +47,7 @@
 	 <div data-role="footer" data-theme="b" id="footer">
     <div> 
     <div id="popupInfo" data-role="popup" class="ui-content" data-position-to="window">Popup</div>
+    <div id="popupTip" data-role="popup" class="ui-content" data-position-to="#footer">Tip</div>
 	<script src="js/orig/jquery-1.9.1.min.js"></script>
 	<script src="js/orig/jquery.mobile-1.3.1.min.js"></script>
 	<script src="js/vendor/underscore-min.js"></script>
@@ -153,8 +154,12 @@
 	<script type="text/template" id="tpl-answer-details">
 	  <% if((type) == "radio"){ %>
 	  <h3>Radio Question - <%= qcount %> - <%= type %></h3>
-         	<label>User ID:</label>
-          	<input type="text" value="<%= user_id %>" disabled />
+		<li data-role="fieldcontain" class="ui-field-contain ui-li-static ui-body-inherit">
+         	<label for="t1">User ID:</label>
+		<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear">
+		<input type="text" id="t1" value="<%= user_id %>" disabled />
+		</div>
+		</li>
          	<label>Record ID:</label>
           	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
           	<label>Question ID:</label>
@@ -220,7 +225,7 @@
           	<input type="text" value="<%= user_id %>" disabled />
           	<label>Record ID:</label>
           	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
-		<div class="ui-field-contain" data-inset="true">
+		<div class="ui-field-contain ui-body ui-br" data-inset="true">
 			<fieldset data-role="controlgroup" id="aid">
 			<legend>Select all that apply: </legend>
 			<% for(i=0; i < menu.length; i++) { %>
@@ -240,7 +245,7 @@
         	<label>Question ID:</label>
         	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
 		<fieldset class="ui-field-contain">
-    		  <select name="aid" id="aid">
+    		  <select name="aid" id="aid" class="selectClass">
 		  <% for(i=0; i < menu.length; i++) { %>
 		 	 <option value= "<%= menu[i] %>" > <%= menu[i] %> </option>
 		  <% }; %>

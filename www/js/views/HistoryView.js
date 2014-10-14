@@ -14,7 +14,7 @@ var HistoryView = Backbone.View.extend({
     	skipHistory: function(event){
 		console.log("skipHistory");
 		event.preventDefault();
-		return 1;
+		appRouter.weekly();
 	},
         editHistory: function(event){
 		console.log("HistoryView edit");
@@ -40,7 +40,7 @@ var HistoryView = Backbone.View.extend({
 	},
 	render: function(response){
 			console.log("HistoryView render");
-			//console.log(this.model.toJSON());
+			console.log(this.model.toJSON());
 			$.each(response.attributes, function(key, value){
 				console.log(value);
 				$(this.el).append(this.template(value));	
