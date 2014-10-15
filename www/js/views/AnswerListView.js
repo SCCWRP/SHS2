@@ -63,7 +63,7 @@ var AnswerListView = Backbone.View.extend({
 		var that = this;
 		// get current question number
 		var nextQcount = t.get("qcount");
-		if(nextQcount > MAXQUESTION) return;
+		if(nextQcount > this.endquestion) return;
 		// changed - to above for receipt
 		//var nextQcount = response.qcount;
 		//console.log(response.qcount);
@@ -238,7 +238,7 @@ var AnswerListView = Backbone.View.extend({
 			user.save({ list: "weekly" });
 			user.save({ status: "complete" });
 		};
-		if(currentQuestion ==  MAXQUESTION){
+		if(currentQuestion ==  this.endquestion){
 		//if(currentQuestion == 75){
 			this.model.set({ status: "complete" });
 			timer = 4;

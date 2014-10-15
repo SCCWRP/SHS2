@@ -176,7 +176,8 @@ var appRouter = new (Backbone.Router.extend({
 	    success: function(response){
 		console.log("start - success");
 		var answer = answerList.get(response.id);
-		answerListView = new AnswerListView({model: answer});
+		answerListView = new AnswerListView({model: answer });
+		answerListView.endquestion = MAXQUESTION;
 	    },
  	    error: function(model, response){
 		console.log("failed");
@@ -242,6 +243,7 @@ var appRouter = new (Backbone.Router.extend({
 	  		  success: function(model,response){
 				answer = answerList.get(response.id);
 				answerListView = new AnswerListView({model: answer});
+				answerListView.endquestion = 70;
 	  		  },
  			  error: function(model,response){
 				if(response.status == 500){
