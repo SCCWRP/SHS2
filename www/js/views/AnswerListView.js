@@ -46,9 +46,29 @@ var AnswerListView = Backbone.View.extend({
 			updateProgressBar();
 			that.render();
 		}
+
 		function updateProgressBar(){
-			console.log("updateProgressBar");
+			$('#Full-bar').slider('enable');
+			var totPercentDone = 35;
+			//console.log("Variable declared");
+			console.log("updateProgressBar");			
+			//console.log("qcount");
+			//console.log(qcount);
+			//console.log(“MAXQUESTION”);
+			console.log(MAXQUESTION/totPercentDone);
+			
+			//$('#Modprogress-bar').val(modPercentDone*100 == 100 ? 0:modPercentDone*100);
+     		//$('#Modprogress-bar').slider('refresh');
+     		console.log("Doing Update to slider bar");
+			//$('#Fullprogress-bar').val((totPercentDone/MAXQUESTION)*100);
+			$('#Full-bar').val((totPercentDone/MAXQUESTION)*100);
+ 			// == 100 ? 0:totPercentDone*100);
+			console.log("Refreshing slider bar");
+     		//$('#Fullprogress-bar').slider('refresh');
+     		$('#Full-bar').slider('refresh');
+			//var SecQuestion = 10;	
 		}
+
 		function errorQuestion(){
 			alert("errorQuestion");
 		}
