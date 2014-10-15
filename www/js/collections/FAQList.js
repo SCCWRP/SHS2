@@ -1,6 +1,6 @@
 var FAQList = Backbone.Collection.extend({
 	model: FAQ,
-	url: "faq.json",
+	url: 'faq.json'
     	/*
     	parse: function(response){
 		console.log(response);
