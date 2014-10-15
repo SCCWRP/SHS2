@@ -755,7 +755,7 @@
       	"id": "49"
   },
   {
-	"title": "Negative Control 1",
+	"title": "Did you have heart burn or acid reflux in the last 7 days?",
 	"action": "none",
       	"num": "q49",
       	"type": "radio",
@@ -785,7 +785,7 @@
       	"id": "51"
   },
   {
-	"title": "Negative Control 2",
+	"title": "Did you have a minor injury unrelated to surfing (e.g. twisted ankle, twisted knee, scrape or cut) in the last 7 days?",
 	"action": "none",
       	"num": "q410",
       	"type": "radio",
