@@ -1,88 +1,94 @@
 [
   {
-	"title": "Why is the study being done?",
+	"title": "Why is the study <br>being done?",
 	"content": "State, local and federal regulatory agencies are interested in determining if there are any links between marine water exposure during the winter, infectious illness, and beach water quality. They are also interested in finding ways to more quickly and accurately determine if there is a health risk to beachgoers due to pathogens in the water. State and local governments have made great strides to improve water quality during the summer months (April - October) when the majority of beachgoers enter the ocean. However, there remains uncertainty about whether ocean exposure during the winter months, when water quality may be worse, poses a public health risk. This will be the first study to measure the health risks (if any) associated with surfing on the California coast. We hope that the information gained from the study will help inform watershed managers throughout San Diego and the rest of California to help guide investments in the management of storm water runoff.",
-	"id": "2"
+	"id": "1"
   },
   {
 	"title": "Who is doing the study?",
 	"content": "The Surfer Health Study is being conducted by the Southern California Coastal Water Research Project (SCCWRP) and by the University of California at Berkeley (UCB) in partnership with the Surfrider Foundation. The principal investigators are Steve Weisberg and Ken Schiff at SCCWRP and Jack Colford at the UC Berkeley School of Public Health.",
+	"id": "2"
+  },
+  {
+	"title": "Who is funding <br>the study?",
+	"content": "This study is funded by the City and County of San Diego.",
 	"id": "3"
   },
   {
-	"title": "Who is funding the study?",
-	"content": "This study is being funded by the City and County of San Diego.",
+	"title": "Where and when will <br>this study take place?",
+	"content": " The study will enroll surfers through in-person outreach at Ocean Beach and Tourmaline Surfing Park, and through web-based self-enrollment. The study will begin enrolling surfers in December 2014, and follow them with weekly surveys through March 2015. Surfers enrolled in the study may surf at beaches other than Ocean Beach and Tourmaline during the study period, but the study will focus its water quality testing at these two sentinel beaches.",
 	"id": "4"
   },
   {
-	"title": "Where and when will the study take place?",
-	"content": " The study will enroll surfers through in-person outreach at Ocean Beach and Tourmaline Surfing Park, and through web-based self-enrollment. The study will begin enrolling surfers in January 2014, and follow them with weekly surveys until May 2014. Surfers enrolled in the study may surf at beaches other than Ocean Beach and Tourmaline during the study period, but the study will focus its water quality testing at these two sentinel beaches.",
+	"title": "Why were these areas <br>selected for this study?",
+	"content": "San Diego County has some of the most heavily used beaches in the state of California during the winter months due in large part to its vibrant, year-round surfing community. The study decided to focus its in-person recruitment and water quality testing at Ocean Beach and Tourmaline Surfing Park because they are located in San Diego County, they both attract a large, year-round surfing population, and they both have storm water discharges to the surf zone.",
 	"id": "5"
   },
   {
-	"title": "Why were these areas selected for this study?",
-	"content": "San Diego County has some of the most heavily used beaches in the state of California during the winter months due in large part to its vibrant, year-round surfing community. The study decided to focus its in-person recruitment and water quality testing at Ocean Beach and Tourmaline Surfing Park because they are located in San Diego County, they both attract a large, year-round surfing population, and they both have storm water discharges to the surf zone.",
+	"title": "Is it safe to swim and <br>surf at these beaches? ",
+	"content": "The quality of all recreational waters is routinely monitored to ensure swimmer and surfer safety. If a problem with water quality does arise, the public will be notified by the County Health Department of the problem as soon as possible. Advisory warnings and beach closure announcements will be posted at locations where water does not meet current quality standards.",
 	"id": "6"
   },
   {
-	"title": "Is it safe to surf and swim at these beaches?",
-	"content": "The quality of all recreational waters is routinely monitored to ensure swimmer and surfer safety. If a problem with water quality does arise, the public will be notified by the County Health Department of the problem as soon as possible. Advisory warnings and beach closure announcements will be posted at locations where water does not meet current quality standards.",
+        "title": "How will the <br>study be done?",
+        "content": "The study will recruit and enroll surfers through the study’s website (<a href='http://www.sccwrp.org/shs'>http://www.sccwrp.org/shs</a>) advertised by the Surfrider Foundation and others. At enrollment, participants will complete a short series of questions about recent ocean exposure and illness. They will then complete similar surveys each week through a secure website or through secure smartphone apps (iPhone and Android) developed by the study. During the study period, water samples will be collected at different places along the sentinel beaches (Ocean Beach and Tourmaline). These samples will be analyzed for a number of traditional and new water quality indicators.",
 	"id": "7"
   },
   {
-        "title": "How will the study be done?",
-        "content": "The study will recruit and enroll surfers at Ocean Beach and Tourmaline Surfing Park beginning in January 2014, and will also enroll surfers through a web portal advertised by the Surfrider Foundation and others. At enrollment, participants will complete a short series of questions about recent ocean exposure and illness. They will then complete similar surveys each week through a secure website or through secure smartphone apps (iPhone and Android) developed by the study. During the study period, water samples will be collected at different places along the sentinel beaches (Ocean Beach and Tourmaline). These samples will be analyzed for a number of traditional and new water quality indicators.",
-	"id": "8"
-  },
-  {
-	"title": "Will this research study affect anyone's access to the study beaches?",
+	"title": "Will this research study <br>affect anyone's access <br>to the study beaches?",
 	"content": "This research will have no effect on public access to any beach in this study.",
-	"id": "9"
+	"id": "8"
   },
 
   {
-	"title": "How can the public find out more about the study?",
-	"content": "To find out more about the study, you can contact our staff through our secure website at: http://www.sccwrp.org/shs.",
+	"title": "How can the public <br>find out more about the study?",
+	"content": "To find out more about the study, you can contact our staff through our secure website at: <a href='http://www.sccwrp.org/shs'>http://www.sccwrp.org/shs</a>.",
+	"id": "9"
+  },
+  {
+	"title": "How can the public find <br>out about the results?",
+	"content": "The study will be completed in June 2014. The formal results will be published in a scientific journal after the completion of the study. The Surfrider Foundation will communicate the results of the study to the public when the results are published.", 
 	"id": "10"
   },
   {
-	"title": "How can the public find out about the results?",
-	"content": "The study will be completed in June 2014. The formal results will be published in a scientific journal after the completion of the study. The Surfrider Foundation will communicate the results of the study to the public when the results are published.", 
+	"title": "Where can community <br>residents find out more <br>about the quality of their <br>recreational waters?",
+	"content": "For more information on the quality of recreational waters in San Diego County, go to the Heal the Bay website at http://www.healthebay.org/brc/ or the San Diego County beach and bay monitoring program: http://www.sdcounty.ca.gov/deh/water/beach_bay.html",
+	"content": "For more information on the quality of recreational waters in San Diego County, go to the Heal the Bay website at <a href='http://www.healthebay.org/brc/'>http://www.healthebay.org/brc/</a> or the San Diego County beach and bay monitoring program: <a href='http://www.sdcounty.ca.gov/deh/water/beach_bay.html'>http://www.sdcounty.ca.gov/deh/water/beach_bay.html</a>",
 	"id": "11"
   },
   {
-	"title": "Where can community residents find out more about the quality of their recreational waters?",
-	"content": "For more information on the quality of recreational waters in San Diego County, go to the Heal the Bay website at http://www.healthebay.org/brc/ or the San Diego County beach and bay monitoring program: http://www.sdcounty.ca.gov/deh/water/beach_bay.html",
+	"title": "What will study <br>participants need to do?",
+	"content": "<p> If you enroll through the study’s website (<a href='http://www.sccwrp.org/shs'>http://www.sccwrp.org/shs</a>): </p> <p> <ul> <li>You will complete a couple of eligibility questions, and review a consent form to see if you are eligible and willing to participate.  <li>If you are eligible, you will complete a short survey that should take 10-15 minutes.  <li>Each week during the study we will send you either a text (SMS) or email reminder to complete a weekly survey that will ask about recent ocean exposure and illness symptoms. You will complete the follow-up surveys either on our secure website or through a secure smartphone app (iPhone or Android) developed by the study. Each weekly survey will take 5-10 minutes.  </ul> </p>",
 	"id": "12"
   },
   {
-	"title": "What will study participants need to do?",
-	"content": " If you are recruited at the beach, then we will ask you a couple of questions to see if you are eligible and willing to participate. If you are eligible, we will collect some contact information. When you leave the beach, we would like you to check in with one of our team members to answer a few short questions about your recent surf activity and illness. This should take about 10 minutes to complete. Finally, each week during the study we will send you either a text (SMS) or email reminder to complete a weekly survey that will ask about recent ocean exposure and illness symptoms. You will complete the follow-up surveys either on our secure website or through a secure smartphon app (iPhone or Android) developed by the study. Each weekly survey will take about 10 minutes. If, however, you are enrolling online, then you will need to complete a couple of eligibility questions, and review a consent form to see if you are eligible and willing to participate. If you are eligible, you will complete a short survey that should take 10-15 minutes. Finally, each week during the study we will send you either a text (SMS) or email reminder to complete a weekly survey that will ask about recent ocean exposure an illness symptoms. You will complete the follow-up surveys either on our secure website or through a secure smartphone app (iPhone or Android) developed by the study. Each weekly survey will take about 10 minutes.",
+	"title": "Will surfers be <br>compensated for <br>participating?",
+	"content": "<p><ul><li>For every 4 weekly surveys that participants complete during the study period, they will receive a $20 gift card redeemable at Swell.com.</li></ul></p>",
 	"id": "13"
   },
   {
-	"title": "Will surfers be compensated for participating?",
-	"content": "All surfers recruited on the beach will receive a bar of surf wax at the beach. All participants who complete 12 consecutive weekly follow-up surveys will be entered into a drawing in June 2014 to receive either a discount on a one-year Surfline Premium © subscription (if they aren't already subscribers) or a $50 giftcard redeemable at Swell.com. 200 participants will be randomly selected from those eligible to receive the prize in the drawing.",
+	"title": "Do I need to <br>complete a weekly survey <br>even if I haven’t <br>surfed or gone in the ocean? ",
+	"content": "<p><ul><li>Yes, please! Information about times when you are not surfing is just as valuable to the study as information during times when you are in the ocean.</li><li>Please complete surveys in every week that you are participating in the study, regardless of whether you enter the ocean.</li></ul></p>",
 	"id": "14"
   },
   {
-	"title": "Will confidentiality be protected?",
+	"title": "Will confidentiality <br>be protected?",
 	"content": "All information collected from participants will be kept confidential to the greatest extent allowable by law. Information given to us by participants will be identified by ID number only and your name will be deleted from our files when the study is complete. If information from this study is published or presented at scientific meetings, your name and other personal information will not be used.",
 	"id": "15"
   },
   {
-	"title": "What if I decide I no longer want to participate?",
+	"title": "What if I decide <br>I no longer want <br>to participate?",
 	"content": "Your participation is voluntary and you may stop the interviews or follow-up at any time. You may refuse to answer any question you don't feel comfortable answering.",
 	"id": "16"
   },
   {
-	"title": "What are the risks and benefits of this study?",
+	"title": "What are the risks and <br>benefits of this study?",
 	"content": "There are no direct benefits and no foreseeable risks from participating in this research. However, we hope that this study and others like it will help both the public, and state and local governments understand what health risks, if any, are associated with surfing in California.",
 	"id": "17"
   },
   {
-	"title": "Who should I call if I have any questions or concerns about this study?",
-	"content": "If you or your family has any questions about the research, before or during the study, you may contact us through the study's website (http://www.sccwrp.org/shs) or toll-free number 855-351-8198. If you have any questions about your rights as a research subject, you may talk to the University of California, Berkeley, Committee for the Protection of Human Subjects at (510) 642-7461, or by email at subjects@berkeley.edu.",
+	"title": "Who should I call if <br>I have any questions or <br>concerns about this study?",
+	"content": "If you or your family has any questions about the research, before or during the study, you may contact us through the study's website (<a href='http://www.sccwrp.org/shs'>http://www.sccwrp.org/shs</a>) or toll-free number 855-351-8198. If you have any questions about your rights as a research subject, you may talk to the University of California, Berkeley, Committee for the Protection of Human Subjects at (510) 642-7461, or by email at <a href='mailto:subjects@berkeley.edu'>subjects@berkeley.edu</a>.",
 	"id": "18"
   }
 ]
