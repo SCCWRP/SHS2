@@ -20,8 +20,8 @@ var IntroView = Backbone.View.extend({
 	showLogin: function(){
 		$("#landing").hide();
 		headerView = new HeaderView;
-		loginView = new LoginView;
 		footerView = new FooterView;
+		loginView = new LoginView;
 	},
 	showMap: function(){
 	  if (networkStatus != 'offline'){
