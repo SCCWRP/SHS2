@@ -49,10 +49,11 @@ var AnswerListView = Backbone.View.extend({
 		formtype = this.model.get("type");
 		this.saveAnswer(event);
 	},
+	qHistory: [],
 	goBack: function(event){
-		var index = this.model.get("qcount"); 
-		if(index > 1) {
-			this.model.set("qcount", index - 1); 
+		index = this.qHistory.pop();
+		if(index) {
+			this.model.set("qcount", index); 
 			this.nextQuestion(this.model);
 		} else {
 			appRouter.navigate("");
@@ -71,7 +72,10 @@ var AnswerListView = Backbone.View.extend({
 		function getQuestion(){
 			gotQuestion = questionList.get(nextQcount);
 			var fixMenu = gotQuestion.attributes.menu.split(",")
-			t.set({'title': gotQuestion.attributes.title,'menu': fixMenu,'type': gotQuestion.attributes.type,'decline': gotQuestion.attributes.decline});
+			t.set({	'title': gotQuestion.attributes.title,
+				'menu': fixMenu,
+				'type': gotQuestion.attributes.type,
+				'decline': gotQuestion.attributes.decline});
 			questionListView = new QuestionListView({model: gotQuestion});
 			questionListView.render();
 			updateProgressBar();
@@ -150,10 +154,10 @@ var AnswerListView = Backbone.View.extend({
 			return;
 		};
 		// current question
-		// too slow
 		var currentQuestion = Number(this.model.get("qcount")); 
-		//console.log("currentQuestion: "+ currentQuestion);
 		appID = Number(this.model.get("id")); 
+	
+
 		// next question  
 		var nextQuestion = (currentQuestion + 1);
 		// storing userid email and phone
@@ -244,6 +248,7 @@ var AnswerListView = Backbone.View.extend({
 		answerDetails["q"+currentQuestion] = currentAnswer;
 		this.model.set("q"+currentQuestion, currentAnswer);
 		answerDetails.qcount = nextQuestion;
+		if(this.qHistory.indexOf(currentQuestion) == -1)this.qHistory.push(currentQuestion);
 		// either set or save here
 		//this.model.set(answerDetails, {validate:true});
 		//if(timer != 0){ use this code if you want break up modules and then save
