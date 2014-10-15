@@ -10,6 +10,7 @@ var ReceiptView = Backbone.View.extend({
 		"click .edit":"edit"
 	},
         edit: function(event){
+		event.preventDefault();
 		/* find id of question user wants to edit and set qcount to previous */
 		console.log(event.currentTarget);
 		var clickedID = event.currentTarget.id;
@@ -19,8 +20,10 @@ var ReceiptView = Backbone.View.extend({
 		answerListView = new AnswerListView({model: this.model});
 		answerListView.model.set({ qcount: fixedID, status: "edit"});
 	},
-	finish: function(){
+	finish: function(event){
+		event.preventDefault();
 		console.log("finish");
+		var that = this;
 		//console.log(this.model.toJSON());
 		//appRouter.checksum();
 		var survey_type = this.model.get('survey_type');
@@ -34,16 +37,23 @@ var ReceiptView = Backbone.View.extend({
 		if(survey_type == "followup"){
 			alert("Come back next week!");
 		}
-		appRouter.navigate('shs2/home/', {trigger: true});
-		//appRouter.navigate('intro', {trigger: true});
+		that.cleanup();
+		appRouter.navigate('shs2/www/', {trigger: true});
+		//appRouter.start();
 	},
+	cleanup: function() {
+	     console.log("receipt cleanup");
+	     this.undelegateEvents();
+	     $(this.el).html("");
+ 	},
 	render: function(){
 			console.log("ReceiptView render");
 			console.log(this.model.toJSON());
-			$(this.el).html("");	
 		        $(headerView.el).hide();
+			$(this.el).html("");	
 			$(footerView.el).hide();	
 			var receiptData = _.omit(this.model.attributes, 'id', 'user_id', 'q9', 'q7','survey_type')
 			$(this.el).html(this.template({ 'elements': receiptData }));	
+			$('#aid').trigger('create');
 	}
 });

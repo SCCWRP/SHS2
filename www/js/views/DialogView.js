@@ -6,6 +6,7 @@ var DialogView = Backbone.View.extend({
 		//this.listenTo(this.model, "change", this.render);
 	},
 	render: function(){
+		alert("dialog");
 		console.log("dialog");
 		//console.log(this.model.attributes);
 		$(this.el).html("");

@@ -2,10 +2,9 @@ var appRouter = new (Backbone.Router.extend({
   routes: {
     "shs2/receipt/:appid": "receipt",
     "": "signup",
-    "shs2/home/": "start",
+    "shs2/www/": "start",
     "": "start"
   },
-  // new not yet incorporated into main program
   checksum: function(){
 	console.log("checksum");
   	//if (networkStatus != 'offline' && isDevice == true){
@@ -21,13 +20,31 @@ var appRouter = new (Backbone.Router.extend({
 		}
 	}
   },
+  css: function(){
+	     console.log("css");
+	     appRouter.resizePage();
+  },
   gift: function(giftid){
 	var gift = new Gift({id: giftid});
 	 /* gift will require its own view to create a temporary sticky popup on footer bar */
 	 gift.fetch({success: setMessage,error: errorMessage});
 	 function setMessage(response){
-		 var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys when you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift;
-		 alert(message);
+		 //console.log("gift");
+		 //console.log(response.attributes.user_visits);
+		 if(response.attributes.user_visits){
+		 	var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys when you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift +"";
+		 	$("#popupTip").trigger("create");
+		 	$("#popupTip").popup("open");
+		 	$("#popupTip").html(message);
+		 	//$("#popupTip").html(message).enhanceWithin().popup("refresh");  
+		 	//$("#popupTip").append('<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Close</a>');
+		 	setTimeout(function(){ $("#popupTip").popup("close"); },7000);
+		 }
+		 /*
+		 $("#popupClose").click(function(){
+			 $("#popupInfo").popup("close");
+		 });
+		 */
 		 //console.log(response);
 	 }
 	 function errorMessage(response){
@@ -37,22 +54,21 @@ var appRouter = new (Backbone.Router.extend({
   history: function(historyid){
 	var history = new History({id: historyid});
 	/* for some reason the code below in setMessage when applied to render historyView wont work - maybe history is special word -- need to put click event for each li into view */
-	//historyView = new DialogView({model: history});
 	history.fetch({success: setMessage,error: errorMessage});
-	//history.fetch({error: errorMessage});
-	//historyView.render();
 	 function setMessage(response){
-	 	 //historyView.render();
-		 //var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys when you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift;
-		 //console.log(response.attributes);
+		 /* backbonify later */
+		 historyView = new HistoryView({model: history});
+	 	 //historyView.render(response);
+		 console.log(response.attributes);
 		 $("#content").html("");
-		 $("#content").append("<ul data-role='listview'>");
+		 $("#content").append("<ul id='aid' data-role='listview'>Under Construction/Read-Only<br><input type='button' value='Continue' class='history-skip'/ >");
 		 $.each(response.attributes, function(key, value){
 			 var unixTimestamp = response.attributes[key].timestamp;
 			 var returnTime = new Date(+unixTimestamp);
 			 //console.log(response.attributes[key].id+"-"+returnTime.toLocaleString());
-			 var qtext = "Session "+ returnTime.toLocaleString() + " was saved would you like to edit or forget?"; 
+			 var qtext = "Session "+ returnTime.toLocaleString() + " was saved would you like to <input type='button' id='"+response.attributes[key].id+"' value='Edit' class='history-edit'/ > or <input type='button' id='"+response.attributes[key].id+"'value='Forget' class='history-forget'/ >?"; 
 	 	 	$("#content").append("<li>"+qtext+"</li>");
+		 	$("#content").append("</ul>");
 		 });
 		 //var dialogView = new DialogView();
 		 //dialogView.render();
@@ -74,6 +90,22 @@ var appRouter = new (Backbone.Router.extend({
 	questionList = new QuestionList();
         questionList.fetch({ success: function(response){ console.log("questionList fetch - success"); questionList.getQuestion(); } });
   },
+  positionFooter: function(){
+	$footer = $("#footer");
+	footerHeight = $footer.height();
+	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
+	if (deviceType != "iPhone") { 
+		$('#footer').css('visibility','visible');
+	}
+	var drop = (deviceType == "iPhone") ? /*-59*/3:3;
+	footerTop = ($(window).scrollTop()+$(window).height()-footerHeight)-drop+"px";       
+	$footer.css({
+		position: "fixed",
+		bottom: 0,
+		left:0,
+		right:0
+	});
+  },
   receipt: function(appid){
 	 console.log("receipt");
 	 var receipt = new Receipt({id: appid});
@@ -83,6 +115,32 @@ var appRouter = new (Backbone.Router.extend({
 	 function errorMessage(response){
 		 console.log(response);
 	 }
+  },
+  resizePage: function(){
+	/* in the beta version this functin was used with unique form element names
+	   in full study all (maybe) form elements derive from .ui-field-contain */
+	// total size of form element and amount of space from top
+	var formSize = Math.round($('#formImages').height()+$('.ui-field-contain').offset().top+$('.ui-field-contain').height());
+	console.log("formSize: "+ formSize);
+	// size of page minus footer - changed from one to content for full study
+	var stageSize = Math.round($('#content').height()-$('#footer').height());
+	console.log("stageSize: "+ stageSize);
+	// total size of form element with some padding
+	var minHeight = "" + (formSize + 400) + "px";
+	// get consent if set
+	var consentSize = Math.round($('#formImages').height());
+	console.log("consentSize: "+consentSize);
+	// current size of entire page
+	var oneHeight = (formSize > stageSize) ? minHeight:("" + $('#one').height() + "px");
+	console.log("oneHeight: "+oneHeight);
+	/* in old app may not need
+	if(formName == 'text-btn'){
+		$('#one').css('height',1024);
+	} else {
+		$('#one').css('height',oneHeight);
+	}
+	*/
+	$('#one').css('height',oneHeight);
   },
   signup: function(){
 	console.log("signup");
@@ -199,12 +257,17 @@ var appRouter = new (Backbone.Router.extend({
   },
   start: function(){
 	console.log("start");
-	//appRouter.navigate('shs2/receipt/855', {trigger: true});
+	//appRouter.navigate('shs2/receipt/341', {trigger: true});
 	//appRouter.checksum();
 	introView = new IntroView();
 	introView.render();
+	//$("#content").html( new IntroView().render().el );
+	//$("#landList").trigger("create");
+	//$("#landList").listview();
+	//$("#landList").listview('refresh');
 	// not sure whether this is the best place to load the questions collection
 	appRouter.question();
+        $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
   }
 }));
 var app = {
@@ -252,9 +315,6 @@ var app = {
 	        }
     	});
 
-  },
-  receipt: function(){
-	alert("app.receipt");
   },
   onDeviceReady: function(){
  	// jquery cors support for phonegap

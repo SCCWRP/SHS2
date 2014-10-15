@@ -1,5 +1,5 @@
 var IntroView = Backbone.View.extend({
-	el: '#content',
+	el: '#landing',
 	template:_.template($('#tpl-intro-details').html()),
 	initialize: function(){
 	},
@@ -18,12 +18,13 @@ var IntroView = Backbone.View.extend({
 		faqView = new FAQView;
 	},
 	showLogin: function(){
+		$("#landing").hide();
 		headerView = new HeaderView;
 		loginView = new LoginView;
 		footerView = new FooterView;
 	},
 	showMap: function(){
-	  if (networkStatus != 'offline' && isDevice == true){
+	  if (networkStatus != 'offline'){
 		headerView = new HeaderView;
 		mapView = new MapView;
 	  } else { 
@@ -33,11 +34,15 @@ var IntroView = Backbone.View.extend({
 	render: function(){
 		console.log("introview render");
 		/* clear the interface */
-		$("#header").html("");
-		$(this.el).html("");
-		$("#footer").html("");
-		$(this.el).html(this.template());	
+		$("#header").hide();
+		$("#landing").show();
+		//$(this.el).html(this.template());	
+		$("#footer").hide();
+		//$("#landList").trigger('create');
+		//$('#landList').listview();
 		//$('#landList').listview( "refresh" );
-		//$('#content').trigger('create');
+		//console.log(jQuery("html").html());
+		//$.mobile.changePage($(this.el));
+		return this;
 	}
 });

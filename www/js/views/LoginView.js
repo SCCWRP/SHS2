@@ -1,5 +1,5 @@
 var LoginView = Backbone.View.extend({
-	el: '#content',
+	el: '#popupInfo',
 	template:_.template($('#tpl-login-details').html()),
 	initialize: function(){
 		this.render();
@@ -10,6 +10,7 @@ var LoginView = Backbone.View.extend({
 	},
 	loginUser: function(e){
 		e.preventDefault();
+		$("#popupInfo").popup("close");
 		var loginID = $('#loginInput').val();
 	  //if (networkStatus != 'offline' && isDevice == true){
 	  if (networkStatus != 'offline'){
@@ -37,7 +38,7 @@ var LoginView = Backbone.View.extend({
 				USERID = Number(data.event.id);
 				appRouter.history(USERID);
 				appRouter.gift(USERID);
-				appRouter.weekly();
+				//appRouter.weekly();
 			}
 		},
 		complete: function(data) {
@@ -72,6 +73,7 @@ var LoginView = Backbone.View.extend({
 	},
 	enrollUser: function(e){
 		e.preventDefault();
+		$("#popupInfo").popup("close");
 		//if (networkStatus != 'offline' && isDevice == true){
 		if (networkStatus != 'offline'){
 			appRouter.signup();
@@ -81,7 +83,14 @@ var LoginView = Backbone.View.extend({
 	},
 	render: function(){
 		console.log("LoginView render");
-		$(this.el).html("");
+		$("#header").show();
+		$("#home").hide();
+		$("#content").html("");
+		/* footer is showing in original - shouldnt be just enable home button instead - wont do home button wrecks ios*/
+		$("#footer").show();
 		$(this.el).html(this.template());	
+		$("#popupInfo").trigger("create");
+		$("#popupInfo").popup("open");
+		//$("#popupInfo").popup().popup("open");
 	}
 });

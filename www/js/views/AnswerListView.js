@@ -6,11 +6,38 @@ var AnswerListView = Backbone.View.extend({
 		$(this.el).unbind("click");
 		this.listenTo(this.model, 'sync', this.nextQuestion);
 		this.listenTo(footerView, 'forward', this.saveAnswer); 
+		this.listenTo(footerView, 'back', this.goBack); 
 		this.listenTo(this.model, 'change:status', this.nextQuestion);
+		this.listenTo(this.model, 'change:type', function() {
+			if(["radio"].indexOf(this.model.get('type')) >=  0) {
+				$('#forward').hide();
+			} else {
+				$('#forward').show();
+			};
+		});
+		this.listenTo(this, 'dialog', function (event) {
+			var that = this;
+			console.log("dialog test");
+			$('<div>').simpledialog2({
+				    mode: 'button',
+				    headerText: '',
+				    headerClose: true,
+				    buttonPrompt: 'Type your response',
+				    buttonInput: true,
+				    buttons : {
+				          'OK': {
+					          click: function () { 
+							that.saveAnswer(null, false, $.mobile.sdLastInput);
+						}
+					},
+				    }
+			  })
+	 });
 	},
 	events:{
 		"click .save":"saveAnswer",
-    		"click .decline":"declineAnswer"
+    		"click .decline":"declineAnswer",
+    		"change input[type=radio]":"saveAnswer"
 	},
 	change:function(event){
 		var that = this;
@@ -20,15 +47,20 @@ var AnswerListView = Backbone.View.extend({
 	},
     	declineAnswer:function(event){
 		formtype = this.model.get("type");
-		$(this.selectorString[formtype]).val(this.model.get("declinedefault"));
 		this.saveAnswer(event);
+	},
+	goBack: function(event){
+		var index = this.model.get("qcount"); 
+		if(index > 1) {
+			this.model.set("qcount", index - 1); 
+			this.nextQuestion(this.model);
+		} else {
+			appRouter.navigate("");
+		};
 	},
 	nextQuestion:function(t, response, options){	
 		var that = this;
-		console.log("nextQuestion");
 		// get current question number
-		console.log(t);
-		console.log(t.get("qcount"));
 		var nextQcount = t.get("qcount");
 		if(nextQcount > MAXQUESTION) return;
 		// changed - to above for receipt
@@ -37,7 +69,6 @@ var AnswerListView = Backbone.View.extend({
      		var questionList = new QuestionList();
 		questionList.fetch({success: getQuestion,error: errorQuestion});
 		function getQuestion(){
-			console.log("getQuestion");
 			gotQuestion = questionList.get(nextQcount);
 			var fixMenu = gotQuestion.attributes.menu.split(",")
 			t.set({'title': gotQuestion.attributes.title,'menu': fixMenu,'type': gotQuestion.attributes.type,'decline': gotQuestion.attributes.decline});
@@ -45,6 +76,8 @@ var AnswerListView = Backbone.View.extend({
 			questionListView.render();
 			updateProgressBar();
 			that.render();
+			appRouter.css();
+			$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
 		}
 
 		function updateProgressBar(){
@@ -83,12 +116,7 @@ var AnswerListView = Backbone.View.extend({
 				"dateSelect":"[id=aid]",
 				"dateTimeInterval":"[id=aid]"
 	},
-	saveAnswer:function(event){
-		console.log("saveAnswer");
-		var timer = 0;
-		var appID;
-		var that = this;
-		formtype = this.model.get("type");
+	extractAnswer: function () {
 		var currentAnswer = $(this.selectorString[formtype]); 
 		if(formtype == "multi" || formtype == "sevenday") {
 			var temparray = [];
@@ -121,10 +149,26 @@ var AnswerListView = Backbone.View.extend({
 		if(!currentAnswer || currentAnswer == []) {
 			currentAnswer = "";
 		};
-		if(currentAnswer == "Other") {
-			currentAnswer = "Other : " + prompt("", "").replace(",", "|");
-		};
 		console.log("currentAnswer: "+ currentAnswer);
+	 	return currentAnswer;	
+		       },
+	saveAnswer:function(event, decline, other){
+		console.log("saveAnswer");
+		var timer = 0;
+		var appID;
+		var that = this;
+		formtype = this.model.get("type");
+		if(other) {
+			var currentAnswer = other;
+		} else if(!decline) {
+			var currentAnswer = this.extractAnswer();
+		} else {
+			var currentAnswer = this.model.get("declinedefault");	
+		};
+		if(currentAnswer == "Other") {
+			this.trigger("dialog");
+			return;
+		};
 		// current question
 		// too slow
 		var currentQuestion = Number(this.model.get("qcount")); 
@@ -134,6 +178,9 @@ var AnswerListView = Backbone.View.extend({
 		var nextQuestion = (currentQuestion + 1);
 		// storing userid email and phone
 		// set userid for answer also
+		if(currentQuestion == 6 || currentQuestion == 7) {
+			currentAnswer = currentAnswer.replace(/\W/g, '');
+		};
 		if(currentQuestion == 6){
 			// CRITICAL - need to add error checking for existing user account
 			user.save({ phone: currentAnswer }, {
@@ -153,6 +200,7 @@ var AnswerListView = Backbone.View.extend({
 			});
 			// maybe a better place to set userid-uid
 			this.model.set({"user_id": USERID});
+			this.model.set("q7", currentAnswer);
 		}
 		if(currentQuestion == 8){
 			// CRITICAL - need to add error checking for existing user account
@@ -184,6 +232,7 @@ var AnswerListView = Backbone.View.extend({
 				  }
 				}
 			});
+			this.model.set("q9", currentAnswer);
 			//appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
 		}
 		if(currentQuestion == 11){
@@ -194,8 +243,10 @@ var AnswerListView = Backbone.View.extend({
 		if([22, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62].indexOf(currentQuestion) > -1  && currentAnswer == "No"){
 			nextQuestion += 1;
 		};
+		// module3 did not surf
 		if(currentQuestion == 25 && currentAnswer == ""){
-			nextQuestion +=  9;
+			currentAnswer = "Did not Enter";
+			nextQuestion +=  7;
 		};
 		// this should really go somewhere after sync happens maybe next question
 		// also status needs to be toggled to complete in database
@@ -203,7 +254,7 @@ var AnswerListView = Backbone.View.extend({
 			user.save({ list: "weekly" });
 			user.save({ status: "complete" });
 		};
-		if(currentQuestion == MAXQUESTION){
+		if(currentQuestion ==  MAXQUESTION){
 		//if(currentQuestion == 75){
 			this.model.set({ status: "complete" });
 			timer = 4;
@@ -232,7 +283,6 @@ var AnswerListView = Backbone.View.extend({
 				success: function(model,response){
 					console.log("success");
 					console.log(model);
-					console.log(response);
 					//appID = Number(this.model.get("id")); 
 					// if module1 - then notify user 
 					// ****** notify user - working code ********** //
@@ -243,6 +293,7 @@ var AnswerListView = Backbone.View.extend({
 					if(timer == 4 || that.model.get("status") == "edit"){
 						// clear stage and events
 						that.cleanup();
+						//appRouter.cleanup();
 						// return receipt from database
 						appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
 					}

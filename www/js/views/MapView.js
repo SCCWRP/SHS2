@@ -6,6 +6,9 @@ var MapView = Backbone.View.extend({
 	},
 	render: function(){
 		console.log("map");
+		$("#landing").hide();
+		$(headerView.el).show();
+		$('#question').html("Map");
 		$(this.el).html("");
 		$(this.el).html(this.template());	
 	}
