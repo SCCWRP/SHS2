@@ -10,7 +10,7 @@ var LoginView = Backbone.View.extend({
 	},
 	loginUser: function(e){
 		e.preventDefault();
-		$("#popupInfo").popup("close");
+		//$("#popupInfo").popup("close");
 		var loginID = $('#loginInput').val();
 	  //if (networkStatus != 'offline' && isDevice == true){
 	  if (networkStatus != 'offline'){
@@ -22,17 +22,24 @@ var LoginView = Backbone.View.extend({
 		dataType: 'json',
 		crossDomain: true,
 		timeout: 4000,
-		error: function(x,t,m){ 
-			 if(t==="timeout"){ alert("Server Inaccessible contact Paul Smith"); }
+		error: function(data){ 
+			if(data.status == "404"){
+				alert("User not found...Try again or enroll");
+				return;
+			}
+			 //if(t==="timeout"){ alert("Server Inaccessible contact Paul Smith"); }
 		}, 
 		success: function(data) {
 			if(data.event == false){
 				console.log(data);
 				alert("Failed to login...Try again");
-				loginView.render();
+				return;
 			//console.log(data.event.id);
 			//console.log(typeof(data.event.id));
 			} else {
+				$("#popupInfo").popup("close");
+				$("#back").show();
+				$("#forward").show();
 				//console.log("login");
 				//console.log(data.event.contact);
 				USERID = Number(data.event.id);
@@ -74,6 +81,8 @@ var LoginView = Backbone.View.extend({
 	enrollUser: function(e){
 		e.preventDefault();
 		$("#popupInfo").popup("close");
+		$("#back").show();
+		$("#forward").show();
 		//if (networkStatus != 'offline' && isDevice == true){
 		if (networkStatus != 'offline'){
 			appRouter.signup();
@@ -87,10 +96,12 @@ var LoginView = Backbone.View.extend({
 		$("#home").hide();
 		$("#content").html("");
 		/* footer is showing in original - shouldnt be just enable home button instead - wont do home button wrecks ios*/
+		//$('#forward').hide();
 		$("#footer").show();
+		$("#back").hide();
+		$("#forward").hide();
 		$(this.el).html(this.template());	
 		$("#popupInfo").trigger("create");
 		$("#popupInfo").popup("open");
-		//$("#popupInfo").popup().popup("open");
 	}
 });
