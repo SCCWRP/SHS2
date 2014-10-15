@@ -329,7 +329,8 @@
           	<label>Question ID:</label>
           	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
           	<label>Answer</label>
-		<div class="ui-field-contain" data-inset="true">
+		<div id="multi-view">
+		  <div class="ui-field-contain" data-inset="true">
 			<fieldset data-role="controlgroup" id="aid">
 			<legend>Select all that apply: </legend>
 			<% today = new Date; %>
@@ -340,13 +341,12 @@
 			<input type="checkbox" class="custom" value= <%= today.getMonth() + "/" + (today.getDate() - i) + "/" + (today.getYear() + 1900)  %>  name = <%= days[i] %>  id= <%= days[i] %> />
 			<label for= <%= days[i] %> >  <%= days[i] %> </label> 
 	 		<% }; %>
-			</fieldset>
-			<% if(decline == "yes") { %>
-				<button id="decline" class="decline">None this week</button>
+			<% if(qcount == "25" && decline == "yes") { %>
+				<input type="checkbox" name="decline" id="decline" /><label for="decline"><span class="decline">Did not Enter</span></label>
 			<% }; %>
-				
+			</fieldset>
+		  </div>
 		</div>
-          	<button id="save" class="save">Save</button>
 	  <% } %>
 	</script>
 	<script src="js/globals.js"></script>

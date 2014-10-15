@@ -79,7 +79,7 @@ width: 60%;
   width: 400px;
   margin-top: 5%;
   margin-bottom: 0;
-  margin-left:auto;
+  margin-left:500px;
 }
 #multi{
   position:relative;
@@ -219,10 +219,9 @@ height:32px;
 .selectClass{
 font-size:1.5em;
 }
-.cbClass{
+#multi-view .ui-btn-text{
 font-size:1.8em;
 }
-
 .radioClass{
 
 }

@@ -223,8 +223,10 @@ var AnswerListView = Backbone.View.extend({
 		if([22, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62].indexOf(currentQuestion) > -1  && currentAnswer == "No"){
 			nextQuestion += 1;
 		};
+		// module3 did not surf
 		if(currentQuestion == 25 && currentAnswer == ""){
-			nextQuestion +=  8;
+			currentAnswer = "Did not Enter";
+			nextQuestion +=  7;
 		};
 		// this should really go somewhere after sync happens maybe next question
 		// also status needs to be toggled to complete in database
