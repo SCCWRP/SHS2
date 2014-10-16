@@ -52,10 +52,15 @@ var appRouter = new (Backbone.Router.extend({
 	 }
   },	
   history: function(historyid){
+	var that = this;
 	var history = new History({id: historyid});
 	/* for some reason the code below in setMessage when applied to render historyView wont work - maybe history is special word -- need to put click event for each li into view */
 	history.fetch({success: setMessage,error: errorMessage});
 	 function setMessage(response){
+		 if(!history.attributes.hasOwnProperty('0')) {
+			that.weekly()
+			return;	
+		 };
 		 /* backbonify later */
 		 historyView = new HistoryView({model: history});
 	 	 //historyView.render(response);
