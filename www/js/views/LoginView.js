@@ -1,8 +1,8 @@
 var LoginView = Backbone.View.extend({
-	el: '#popupInfo',
+	//el: '#popupInfo',
 	template:_.template($('#tpl-login-details').html()),
 	initialize: function(){
-		this.render();
+		//this.render();
 	},
 	events:{
 		"click #loginBtn":"loginUser",
@@ -10,7 +10,7 @@ var LoginView = Backbone.View.extend({
 	},
 	loginUser: function(e){
 		e.preventDefault();
-		//$("#popupInfo").popup("close");
+		$("#popupInfo").popup("close");
 		var loginID = $('#loginInput').val();
 	  //if (networkStatus != 'offline' && isDevice == true){
 	  if (networkStatus != 'offline'){
@@ -77,10 +77,12 @@ var LoginView = Backbone.View.extend({
 			alert("You must signup online before you can run a weekly survey.");
 		}
 	  }
+	  this.cleanup();
 	},
 	enrollUser: function(e){
 		e.preventDefault();
 		$("#popupInfo").popup("close");
+		this.cleanup();
 		$("#back").show();
 		$("#forward").show();
 		//if (networkStatus != 'offline' && isDevice == true){
@@ -90,18 +92,27 @@ var LoginView = Backbone.View.extend({
 			alert("enrollUser not available offline");
 		}
 	},
+	cleanup: function() {
+		console.log("LoginView cleanup");
+	        this.undelegateEvents();
+	        this.$el.removeData().unbind();
+	        Backbone.View.prototype.remove.call(this);
+	},
 	render: function(){
 		console.log("LoginView render");
 		$("#header").show();
 		$("#home").hide();
-		$("#content").html("");
+		//$("#content").html("");
 		/* footer is showing in original - shouldnt be just enable home button instead - wont do home button wrecks ios*/
 		//$('#forward').hide();
 		$("#footer").show();
 		$("#back").hide();
 		$("#forward").hide();
 		$(this.el).html(this.template());	
-		$("#popupInfo").trigger("create");
-		$("#popupInfo").popup("open");
+		//$(this.el).trigger("create");
+		//$(this.el).popup("open");
+		//$("#popupInfo").trigger("create");
+		//$("#popupInfo").popup("open");
+		return this;
 	}
 });
