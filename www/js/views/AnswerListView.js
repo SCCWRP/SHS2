@@ -79,15 +79,62 @@ var AnswerListView = Backbone.View.extend({
 				'decline': gotQuestion.attributes.decline});
 			questionListView = new QuestionListView({model: gotQuestion});
 			questionListView.render();
-			updateProgressBar();
+			//updateProgressBar();
 			//that.render();
 			$("#content").append(that.render().el);
 			appRouter.resizePage();
+			updateProgressBar(t);
+			//that.render();
+			appRouter.css();
 			$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
 		}
-		function updateProgressBar(){
-			console.log("updateProgressBar");
+
+		function updateProgressBar(t){
+			var modOne = 12;
+			var modTwo =16;
+			var modThree = 11;
+			var modFour = 15;
+			var modFive = 5;
+			var modSix = 7;
+			var nextQcount = t.get("qcount");
+			//var totPercentDone = 35;
+			//console.log("Variable declared");
+			console.log("updateProgressBar");			
+			console.log("qcount");
+			console.log(nextQcount);
+			if (nextQcount < 12) {
+				$('#Modprogress-bar').val((nextQcount/modOne)*100);
+     			$('#Modprogress-bar').slider('refresh');
+			}
+			if (nextQcount > 12 && nextQcount <28){				
+				$('#Modprogress-bar').val(((nextQcount-12)/modTwo)*100);
+     			$('#Modprogress-bar').slider('refresh');
+			}
+			if (nextQcount > 28 && nextQcount < 39){
+					$('#Modprogress-bar').val(((nextQcount-28)/modThree)*100);
+     				$('#Modprogress-bar').slider('refresh');
+			}
+			if (nextQcount > 39 && nextQcount < 54){
+					$('#Modprogress-bar').val(((nextQcount-39)/modFour)*100);
+     				$('#Modprogress-bar').slider('refresh');
+			}	
+			if (nextQcount > 54 && nextQcount < 59){
+					$('#Modprogress-bar').val(((nextQcount-54)/modFive)*100);
+     				$('#Modprogress-bar').slider('refresh');
+			}	
+			if(nextQcount > 59){
+					$('#Modprogress-bar').val(((nextQcount-59)/modSix)*100);
+     				$('#Modprogress-bar').slider('refresh');
+			}
+			
+
+     		//console.log("Doing Update to slider bar");			
+			$('#Fullprogress-bar').val((nextQcount/MAXQUESTION)*100); 			
+			//console.log("Refreshing slider bar");
+     		$('#Fullprogress-bar').slider('refresh');
+
 		}
+
 		function errorQuestion(){
 			alert("errorQuestion");
 		}
