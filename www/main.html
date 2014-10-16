@@ -92,8 +92,8 @@
 		<div data-role="collapsible-set">
 			<% _.each(FAquestions, function(question) { %> 
 			<div data-role="collapsible" data-collapsed="true">
-				<h3> <%= question.title %> </h3>
-				<p> <%= question.content %> </p>
+				<h4><%= question.title %></h4>
+				<p><%= question.content %></p>
 			</div>
 			<% }); %>  
 		</div>
@@ -154,12 +154,7 @@
 	<script type="text/template" id="tpl-answer-details">
 	  <% if((type) == "radio"){ %>
 	  <h3>Radio Question - <%= qcount %> - <%= type %></h3>
-		<li data-role="fieldcontain" class="ui-field-contain ui-li-static ui-body-inherit">
-         	<label for="t1">User ID:</label>
-		<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear">
-		<input type="text" id="t1" value="<%= user_id %>" disabled />
-		</div>
-		</li>
+		<input type="text" id="uid" value="<%= user_id %>" disabled />
          	<label>Record ID:</label>
           	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
           	<label>Question ID:</label>
