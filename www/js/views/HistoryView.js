@@ -72,5 +72,6 @@ var HistoryView = Backbone.View.extend({
 			//$(this.el).html("");	
 			//$(footerView.el).hide();	
 			//$(this.el).html(this.template({ 'elements': this.model.attributes }));	
+			return this;
 	}
 });

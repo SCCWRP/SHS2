@@ -1,5 +1,5 @@
 var AnswerListView = Backbone.View.extend({
-	el: '#content',
+	//el: '#content',
 	template:_.template($('#tpl-answer-details').html()),
 	initialize: function(){
 		// must unbind event before each question or will end up with wrong model
@@ -32,7 +32,7 @@ var AnswerListView = Backbone.View.extend({
 					},
 				    }
 			  })
-	 });
+	 	});
 	},
 	events:{
 		"click .save":"saveAnswer",
@@ -60,6 +60,7 @@ var AnswerListView = Backbone.View.extend({
 		};
 	},
 	nextQuestion:function(t, response, options){	
+		console.log(this.qHistory);
 		var that = this;
 		// get current question number
 		var nextQcount = t.get("qcount");
@@ -78,14 +79,62 @@ var AnswerListView = Backbone.View.extend({
 				'decline': gotQuestion.attributes.decline});
 			questionListView = new QuestionListView({model: gotQuestion});
 			questionListView.render();
-			updateProgressBar();
-			that.render();
+			//updateProgressBar();
+			//that.render();
+			$("#content").append(that.render().el);
+			appRouter.resizePage();
+			updateProgressBar(t);
+			//that.render();
 			appRouter.css();
 			$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
 		}
-		function updateProgressBar(){
-			console.log("updateProgressBar");
+
+		function updateProgressBar(t){
+			var modOne = 12;
+			var modTwo =16;
+			var modThree = 11;
+			var modFour = 15;
+			var modFive = 5;
+			var modSix = 7;
+			var nextQcount = t.get("qcount");
+			//var totPercentDone = 35;
+			//console.log("Variable declared");
+			console.log("updateProgressBar");			
+			console.log("qcount");
+			console.log(nextQcount);
+			if (nextQcount < 12) {
+				$('#Modprogress-bar').val((nextQcount/modOne)*100);
+     			$('#Modprogress-bar').slider('refresh');
+			}
+			if (nextQcount > 12 && nextQcount <28){				
+				$('#Modprogress-bar').val(((nextQcount-12)/modTwo)*100);
+     			$('#Modprogress-bar').slider('refresh');
+			}
+			if (nextQcount > 28 && nextQcount < 39){
+					$('#Modprogress-bar').val(((nextQcount-28)/modThree)*100);
+     				$('#Modprogress-bar').slider('refresh');
+			}
+			if (nextQcount > 39 && nextQcount < 54){
+					$('#Modprogress-bar').val(((nextQcount-39)/modFour)*100);
+     				$('#Modprogress-bar').slider('refresh');
+			}	
+			if (nextQcount > 54 && nextQcount < 59){
+					$('#Modprogress-bar').val(((nextQcount-54)/modFive)*100);
+     				$('#Modprogress-bar').slider('refresh');
+			}	
+			if(nextQcount > 59){
+					$('#Modprogress-bar').val(((nextQcount-59)/modSix)*100);
+     				$('#Modprogress-bar').slider('refresh');
+			}
+			
+
+     		//console.log("Doing Update to slider bar");			
+			$('#Fullprogress-bar').val((nextQcount/MAXQUESTION)*100); 			
+			//console.log("Refreshing slider bar");
+     		$('#Fullprogress-bar').slider('refresh');
+
 		}
+
 		function errorQuestion(){
 			alert("errorQuestion");
 		}
@@ -162,6 +211,10 @@ var AnswerListView = Backbone.View.extend({
 		var nextQuestion = (currentQuestion + 1);
 		// storing userid email and phone
 		// set userid for answer also
+		//if(currentQuestion == 1){
+		//	 this.cleanup();
+		//	$("#content").html( new IntroView().render().el );
+		//}
 		if(currentQuestion == 6 || currentQuestion == 7) {
 			currentAnswer = currentAnswer.replace(/\W/g, '');
 		};
@@ -292,9 +345,16 @@ var AnswerListView = Backbone.View.extend({
 				  if(response.status == 500){
 					console.log("failed");
 					alert("Phone/Email address already exists in database! Please login instead.");
+					alert("update record in database");
 					console.log(response.responseText);
 					console.log(response.status);
-					loginView = new LoginView;
+					that.cleanup();
+					console.log(model);
+					model.destroy({remote: false});
+					console.log(model);
+					//appRouter.navigate("shs2/www", {trigger: true});
+					$("#content").html( new IntroView().render().el );
+					$("#content").trigger("create");
 				  }
        				}
 			});
@@ -302,17 +362,22 @@ var AnswerListView = Backbone.View.extend({
 		}
 		}, /* end saveAnswer */
 	cleanup: function() {
-	     console.log("cleanup");
-	     this.undelegateEvents();
-	     //$(this.el).html("");
- 	},
+		console.log("AnswerListView cleanup");
+	        this.undelegateEvents();
+		this.unbind();
+		this.remove();
+	        //this.$el.removeData().unbind();
+	        //Backbone.View.prototype.remove.call(this);
+	},
 	render: function(){
+		console.log("AnserlistView rdner");
 		$(this.el).html("");
 		$(headerView.el).show();
 		$(footerView.el).show();
 		$(this.el).html(this.template(this.model.toJSON()));
-		$('#multi-radio').trigger('create');
-		$("input[type='checkbox']").checkboxradio();
+		//$('#multi-radio').trigger('create');
+		//$("input[type='checkbox']").checkboxradio();
+		$(this.el).trigger('create');
 		return this;
 	}
 });

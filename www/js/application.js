@@ -125,13 +125,14 @@ var appRouter = new (Backbone.Router.extend({
 	/* in the beta version this functin was used with unique form element names
 	   in full study all (maybe) form elements derive from .ui-field-contain */
 	// total size of form element and amount of space from top
-	var formSize = Math.round($('#formImages').height()+$('.ui-field-contain').offset().top+$('.ui-field-contain').height());
+	//var formSize = Math.round($('#formImages').height()+$('.ui-field-contain').offset().top+$('.ui-field-contain').height());
+	var formSize = Math.round($('.ui-field-contain').offset().top+$('.ui-field-contain').height());
 	console.log("formSize: "+ formSize);
 	// size of page minus footer - changed from one to content for full study
 	var stageSize = Math.round($('#content').height()-$('#footer').height());
 	console.log("stageSize: "+ stageSize);
 	// total size of form element with some padding
-	var minHeight = "" + (formSize + 400) + "px";
+	var minHeight = "" + (formSize + 700) + "px";
 	// get consent if set
 	var consentSize = Math.round($('#formImages').height());
 	console.log("consentSize: "+consentSize);
@@ -266,9 +267,9 @@ var appRouter = new (Backbone.Router.extend({
 	console.log("start");
 	//appRouter.navigate('shs2/receipt/341', {trigger: true});
 	//appRouter.checksum();
-	introView = new IntroView();
-	introView.render();
-	//$("#content").html( new IntroView().render().el );
+	//introView = new IntroView();
+	//introView.render();
+	$("#content").html( new IntroView().render().el );
 	//$("#landList").trigger("create");
 	//$("#landList").listview();
 	//$("#landList").listview('refresh');
