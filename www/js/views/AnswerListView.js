@@ -371,6 +371,7 @@ var AnswerListView = Backbone.View.extend({
 	},
 	render: function(){
 		console.log("AnserlistView rdner");
+		$('#content').empty();
 		$(this.el).html("");
 		$(headerView.el).show();
 		$(footerView.el).show();
