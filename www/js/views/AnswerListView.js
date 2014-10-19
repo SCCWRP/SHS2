@@ -82,11 +82,10 @@ var AnswerListView = Backbone.View.extend({
 			//updateProgressBar();
 			//that.render();
 			$("#content").append(that.render().el);
-			appRouter.resizePage();
 			updateProgressBar(t);
 			//that.render();
 			appRouter.css();
-			$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
+			//$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
 		}
 
 		function updateProgressBar(t){
@@ -370,14 +369,15 @@ var AnswerListView = Backbone.View.extend({
 	        //Backbone.View.prototype.remove.call(this);
 	},
 	render: function(){
-		console.log("AnserlistView rdner");
+		console.log("AnswerListView render");
 		$(this.el).html("");
 		$(headerView.el).show();
 		$(footerView.el).show();
 		$(this.el).html(this.template(this.model.toJSON()));
 		//$('#multi-radio').trigger('create');
 		//$("input[type='checkbox']").checkboxradio();
-		$(this.el).trigger('create');
+		//$(this.el).trigger('create');
+		//console.log(Math.round($('#content').height()));
 		return this;
 	}
 });

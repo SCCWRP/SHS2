@@ -22,7 +22,10 @@ var appRouter = new (Backbone.Router.extend({
   },
   css: function(){
 	     console.log("css");
+	     $('#content').trigger('create');
+	     $('html,body').animate({ scrollTop: '0px'}, 0);
 	     appRouter.resizePage();
+	     $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
   },
   gift: function(giftid){
 	var gift = new Gift({id: giftid});
@@ -124,18 +127,20 @@ var appRouter = new (Backbone.Router.extend({
   resizePage: function(){
 	/* in the beta version this functin was used with unique form element names
 	   in full study all (maybe) form elements derive from .ui-field-contain */
+/* this isnt perfect but seems to work - going to need more work to get exact */ 
 	// total size of form element and amount of space from top
-	//var formSize = Math.round($('#formImages').height()+$('.ui-field-contain').offset().top+$('.ui-field-contain').height());
-	var formSize = Math.round($('.ui-field-contain').offset().top+$('.ui-field-contain').height());
+	var formSize = Math.round($('#content').offset().top+$('#content').height());
+	//var formSize = Math.round($('.ui-field-contain').offset().top+$('.ui-field-contain').height());
 	console.log("formSize: "+ formSize);
 	// size of page minus footer - changed from one to content for full study
-	var stageSize = Math.round($('#content').height()-$('#footer').height());
+	var stageSize = Math.round($('#one').height()-$('#footer').height());
 	console.log("stageSize: "+ stageSize);
 	// total size of form element with some padding
-	var minHeight = "" + (formSize + 700) + "px";
+	var minHeight = "" + (formSize + 1000) + "px";
+	console.log("minHeight: "+ minHeight);
 	// get consent if set
-	var consentSize = Math.round($('#formImages').height());
-	console.log("consentSize: "+consentSize);
+	//var consentSize = Math.round($('#consent').height());
+	//console.log("consentSize: "+consentSize);
 	// current size of entire page
 	var oneHeight = (formSize > stageSize) ? minHeight:("" + $('#one').height() + "px");
 	console.log("oneHeight: "+oneHeight);
