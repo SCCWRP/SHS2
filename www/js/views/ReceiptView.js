@@ -1,5 +1,5 @@
 var ReceiptView = Backbone.View.extend({
-	el: '#content',
+	//el: '#content',
 	template:_.template($('#tpl-receipt-details').html()),
 	initialize: function(){ //this.model.on('change',this.test,this);
 		//$(this.el).unbind("click");
@@ -11,14 +11,17 @@ var ReceiptView = Backbone.View.extend({
 	},
         edit: function(event){
 		event.preventDefault();
+		var that = this;
 		/* find id of question user wants to edit and set qcount to previous */
 		console.log(event.currentTarget);
 		var clickedID = event.currentTarget.id;
 		console.log(clickedID);
 		var fixedID = Number(clickedID.replace('q',''));
+		that.cleanup();
 		appRouter.navigate('shs2/edit/' + fixedID, {trigger: true});
 		answerListView = new AnswerListView({model: this.model});
 		answerListView.model.set({ qcount: fixedID, status: "edit"});
+		answerListView.nextQuestion(this.model);
 	},
 	finish: function(event){
 		event.preventDefault();
@@ -38,22 +41,24 @@ var ReceiptView = Backbone.View.extend({
 			alert("Come back next week!");
 		}
 		that.cleanup();
-		appRouter.navigate('shs2/www/', {trigger: true});
-		//appRouter.start();
+		appRouter.navigate('shs2/www/', {trigger: false});
+		appRouter.start();
 	},
 	cleanup: function() {
 	     console.log("receipt cleanup");
 	     this.undelegateEvents();
-	     $(this.el).html("");
+	     this.$el.removeData().unbind();
+	     Backbone.View.prototype.remove.call(this);
  	},
 	render: function(){
 			console.log("ReceiptView render");
 			console.log(this.model.toJSON());
 		        $(headerView.el).hide();
-			$(this.el).html("");	
+			//$(this.el).html("");	
 			$(footerView.el).hide();	
 			var receiptData = _.omit(this.model.attributes, 'id', 'user_id', 'q9', 'q7','survey_type')
-			$(this.el).html(this.template({ 'elements': receiptData }));	
-			$('#aid').trigger('create');
+			$(this.el).append(this.template({ 'elements': receiptData }));	
+			//$('#aid').trigger('create');
+			return this;
 	}
 });

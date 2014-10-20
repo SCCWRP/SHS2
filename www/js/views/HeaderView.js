@@ -5,6 +5,7 @@ var HeaderView = Backbone.View.extend({
 		this.render();
 	},
 	render: function(){
+		console.log("header");
 		$(this.el).html("");
 		$(this.el).html(this.template());	
 		$('#header').trigger('create');

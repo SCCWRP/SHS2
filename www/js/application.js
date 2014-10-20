@@ -22,17 +22,23 @@ var appRouter = new (Backbone.Router.extend({
   },
   css: function(){
 	     console.log("css");
+	     $('#content').trigger('create');
+	     $('html,body').animate({ scrollTop: '0px'}, 0);
 	     appRouter.resizePage();
+	     appRouter.positionFooter();
+	     //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
   },
   gift: function(giftid){
+	//console.log("gift");
 	var gift = new Gift({id: giftid});
 	 /* gift will require its own view to create a temporary sticky popup on footer bar */
 	 gift.fetch({success: setMessage,error: errorMessage});
 	 function setMessage(response){
-		 //console.log("gift");
-		 //console.log(response.attributes.user_visits);
+		 console.log("gift");
+		 console.log(response.attributes.user_visits);
 		 if(response.attributes.user_visits){
 		 	var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys when you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift +"";
+			console.log(message);
 		 	$("#popupTip").trigger("create");
 		 	$("#popupTip").popup("open");
 		 	$("#popupTip").html(message);
@@ -57,16 +63,20 @@ var appRouter = new (Backbone.Router.extend({
 	/* for some reason the code below in setMessage when applied to render historyView wont work - maybe history is special word -- need to put click event for each li into view */
 	history.fetch({success: setMessage,error: errorMessage});
 	 function setMessage(response){
-		 if(!history.attributes.hasOwnProperty('0')) {
+		 //exit;
+		 if(!history.attributes.event.hasOwnProperty('0')) {
 			that.weekly()
 			return;	
 		 };
 		 /* backbonify later */
-		 historyView = new HistoryView({model: history});
+		 //historyView = new HistoryView({model: history});
+		 $("#content").html( new HistoryView({model: history}).render(response).el );
+		 $('#content').trigger('create');
 	 	 //historyView.render(response);
+		 /*
 		 console.log(response.attributes);
 		 $("#content").html("");
-		 $("#content").append("<ul id='aid' data-role='listview'>Under Construction/Read-Only<br><input type='button' value='Continue' class='history-skip'/ >");
+		 $("#content").append("<ul id='aid' data-role='listview'>Under Construction/Read-Only<br><input type='button' value='Continue' class='history-skip'/ ></ul>");
 		 $.each(response.attributes, function(key, value){
 			 var unixTimestamp = response.attributes[key].timestamp;
 			 var returnTime = new Date(+unixTimestamp);
@@ -78,6 +88,7 @@ var appRouter = new (Backbone.Router.extend({
 		 //var dialogView = new DialogView();
 		 //dialogView.render();
 	 	 $("#content").append("</ul>");
+		 */
 	 }
 	 function errorMessage(response){
 		 console.log(response);
@@ -96,6 +107,7 @@ var appRouter = new (Backbone.Router.extend({
         questionList.fetch({ success: function(response){ console.log("questionList fetch - success"); questionList.getQuestion(); } });
   },
   positionFooter: function(){
+	console.log("positionFooter");
 	$footer = $("#footer");
 	footerHeight = $footer.height();
 	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
@@ -103,6 +115,8 @@ var appRouter = new (Backbone.Router.extend({
 		$('#footer').css('visibility','visible');
 	}
 	var drop = (deviceType == "iPhone") ? /*-59*/3:3;
+	//console.log("window scrolltop: "+ $(window).scrollTop());
+	//console.log("window height: "+ $(window).height());
 	footerTop = ($(window).scrollTop()+$(window).height()-footerHeight)-drop+"px";       
 	$footer.css({
 		position: "fixed",
@@ -114,9 +128,16 @@ var appRouter = new (Backbone.Router.extend({
   receipt: function(appid){
 	 console.log("receipt");
 	 var receipt = new Receipt({id: appid});
-	 console.log(receipt);
-	 receiptView = new ReceiptView({model: receipt});
-	 receipt.fetch({error: errorMessage});
+	 //console.log(receipt);
+	 //receiptView = new ReceiptView({model: receipt});
+	// $("#content").html( new ReceiptView({model: response}).render().el );
+	 receipt.fetch({success: successMessage,error: errorMessage});
+	 function successMessage(response){
+		 //console.log(response);
+		 $("#content").html( new ReceiptView({model: receipt}).render().el );
+		 $('#content').trigger('create');
+		 //$("#content").html( new ReceiptView({model: response}).render().el );
+	 }
 	 function errorMessage(response){
 		 console.log(response);
 	 }
@@ -124,29 +145,31 @@ var appRouter = new (Backbone.Router.extend({
   resizePage: function(){
 	/* in the beta version this functin was used with unique form element names
 	   in full study all (maybe) form elements derive from .ui-field-contain */
+/* this isnt perfect but seems to work - going to need more work to get exact */ 
 	// total size of form element and amount of space from top
-	//var formSize = Math.round($('#formImages').height()+$('.ui-field-contain').offset().top+$('.ui-field-contain').height());
-	var formSize = Math.round($('.ui-field-contain').offset().top+$('.ui-field-contain').height());
+	var formSize = Math.round($('#content').offset().top+$('#content').height());
+	//var formSize = Math.round($('.ui-field-contain').offset().top+$('.ui-field-contain').height());
 	console.log("formSize: "+ formSize);
 	// size of page minus footer - changed from one to content for full study
-	var stageSize = Math.round($('#content').height()-$('#footer').height());
+	var stageSize = Math.round($('#one').height()-$('#footer').height());
 	console.log("stageSize: "+ stageSize);
 	// total size of form element with some padding
-	var minHeight = "" + (formSize + 700) + "px";
+	var minHeight = "" + (formSize + 400) + "px";
+	console.log("minHeight: "+ minHeight);
 	// get consent if set
-	var consentSize = Math.round($('#formImages').height());
-	console.log("consentSize: "+consentSize);
+	//var consentSize = Math.round($('#consent').height());
+	//console.log("consentSize: "+consentSize);
 	// current size of entire page
-	var oneHeight = (formSize > stageSize) ? minHeight:("" + $('#one').height() + "px");
+	var oneHeight = (formSize > stageSize) ? minHeight:("" + Math.round($('#one').height()) + "px");
 	console.log("oneHeight: "+oneHeight);
-	/* in old app may not need
-	if(formName == 'text-btn'){
-		$('#one').css('height',1024);
+	if($('#consent').height() == 0){
+		console.log("consent");
+		console.log("consent: "+$('#consent').height());
+		$('#one').css('height',6000);
+		console.log("one: "+$('#one').height());
 	} else {
 		$('#one').css('height',oneHeight);
 	}
-	*/
-	$('#one').css('height',oneHeight);
   },
   signup: function(){
 	console.log("signup");
@@ -202,7 +225,7 @@ var appRouter = new (Backbone.Router.extend({
   	if (networkStatus != 'offline'){
 		var dirtyKey = window.localStorage.getItem("http://data.sccwrp.org/shs2/index.php/surveys_dirty");
 		if (dirtyKey){
-			alert(dirtyKey);
+			console.log("dirtyKey: "+dirtyKey);
 			//submitLocal(dirtyKey, startWeekly);
 			submitLocal(dirtyKey);
 			startWeekly();
@@ -265,14 +288,11 @@ var appRouter = new (Backbone.Router.extend({
   },
   start: function(){
 	console.log("start");
-	//appRouter.navigate('shs2/receipt/341', {trigger: true});
+	//appRouter.navigate('shs2/receipt/1031', {trigger: true});
 	//appRouter.checksum();
 	//introView = new IntroView();
 	//introView.render();
 	$("#content").html( new IntroView().render().el );
-	//$("#landList").trigger("create");
-	//$("#landList").listview();
-	//$("#landList").listview('refresh');
 	// not sure whether this is the best place to load the questions collection
 	appRouter.question();
         $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)

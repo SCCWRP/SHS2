@@ -155,6 +155,7 @@
 	</script>
 	<script type="text/template" id="tpl-answer-details">
 	  <% if((type) == "radio"){ %>
+	  <!-- 
 	  <h3>Radio Question - <%= qcount %> - <%= type %></h3>
 		<input type="text" id="uid" value="<%= user_id %>" disabled />
          	<label>Record ID:</label>
@@ -162,6 +163,7 @@
           	<label>Question ID:</label>
          	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
 		<button id="save" class="save">Save</button>
+	  // -->
 		<% if(decline == "yes") { %>
 			<button id="decline" class="decline">Decline and save</button>
 			<% }; %>
@@ -173,12 +175,10 @@
 						<img width=95% src="img/Consent_Large_Page_2.jpg">
 						<img width=95% src="img/Consent_Large_Page_3.jpg">
 						<img width=95% src="img/Consent_Large_Page_4.jpg">
-						<img width=95% src="img/Consent_Large_Page_5.jpg">
 					    <%  } else { %>
 					    	<img width=65% src="img/Consent_1.jpg">
 					    	<img width=65% src="img/Consent_2.jpg">
 					    	<img width=65% src="img/Consent_3.jpg">
-					    	<img width=65% src="img/Consent_4.jpg">
 
 					    <% }; $('#consent').css('display','inline'); $('#consent').css('visibility','visible'); %>
 				    </div>
@@ -203,10 +203,12 @@
 	   </form>
 	 </div>
 	  <% } else if ((type) == "numberSelect"){  %>
+	  	<!-- 
          	<label>User ID:</label>
           	<input type="text" value="<%= user_id %>" disabled />
           	<label>Record ID:</label>
           	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
+		// -->
 		<div class="ui-field-contain" data-inset="true">
 		  <input type="number" id="aid">
     		  <select name="aid" id="aidscale">
@@ -216,12 +218,14 @@
 		 <% }; %>
 		</div>
 	  <% } else if ((type) == "multi"){  %>
-  	    <div class="form-left-col"><h3>Multi Question - <%= qcount %> - <%= type %></h3>
+	  <div class="form-left-col">
 	    <div data-role="fieldcontain">
+		<!-- <h3>Multi Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
           	<input type="text" value="<%= user_id %>" disabled />
           	<label>Record ID:</label>
           	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
+		// -->
 		<div class="ui-field-contain ui-body ui-br" data-inset="true">
 			<fieldset data-role="controlgroup" id="aid">
 			<legend>Select all that apply: </legend>
@@ -234,13 +238,15 @@
         	<button id="save" class="save">Save</button>
 	    </div>
 	  <% } else if ((type) == "select"){  %>
-  	    <div class="form-left-col"><h3>Select Question - <%= qcount %> - <%= type %></h3>
+	  <div class="form-left-col">
+		<!-- <h3>Select Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
           	<input type="text" value="<%= user_id %>" disabled />
         	<label>Record ID:</label>
         	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
         	<label>Question ID:</label>
         	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
+		// -->
 		<fieldset class="ui-field-contain">
     		  <select name="aid" id="aid" class="selectClass">
 		  <% for(i=0; i < menu.length; i++) { %>
@@ -250,13 +256,15 @@
         	<button id="save" class="save">Save</button>
     	    </div>
 	  <% } else if ((type) == "dateSelect"){  %>
-  	    <div class="form-left-col"><h3>Select Question - <%= qcount %> - <%= type %></h3>
+	  <div class="form-left-col">
+		<!-- <h3>Select Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
           	<input type="text" value="<%= user_id %>" disabled />
         	<label>Record ID:</label>
         	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
         	<label>Question ID:</label>
         	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
+		// -->
 		<fieldset class="ui-field-contain">
 		  <% var dates = q25.split(","); %>
 		  <% for(j=0; j < dates.length; j++) { %>
@@ -271,13 +279,15 @@
 		 <% var script = "$('[name=0]').on('change', function() {$('[id=aid]').each(function() {$(this).val($('[name=0]').val())})})" %>
 		 <%= "<script" + ">" + script + "</script" + ">"%> 
 	  <% } else if ((type) == "dateTimeInterval"){  %>
-  	    <div class="form-left-col"><h3>Select Question - <%= qcount %> - <%= type %></h3>
+	  <div class="form-left-col">
+		<!-- <h3>Select Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
           	<input type="text" value="<%= user_id %>" disabled />
         	<label>Record ID:</label>
         	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
         	<label>Question ID:</label>
         	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
+		// -->
 		<fieldset class="ui-field-contain">
 		  <% var dates = q25.split(","); %>
 		  <% var AmArray = _.range(48).map(function(x) {if(x<4) x=x+48; return Math.floor(x/4) + ":" + ["00", 15, 30, 45][x % 4] + " AM";}); %>
@@ -304,7 +314,9 @@
 		<%= "<script" + ">" + propagate1 +  "</script" + ">" %>
 		<%= "<script" + ">" + propagate2 +  "</script" + ">" %>
 	  <% } else if ((type) == "text"){  %>
-  	    <div class="ui-field-contain"><h3>Text Question - <%= qcount %> - <%= type %></h3>
+	  <div class="ui-field-contain">
+		<!--
+		<h3>Text Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
           	<input type="text" value="<%= user_id %>" disabled />
         	<label>Record ID:</label>
@@ -312,13 +324,15 @@
         	<label>Question ID:</label>
         	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
         	<label>Answer</label>
+		// -->
         	<input type="text" id="aid" name="aid" value="" required/>
-        	<button id="save" class="save">Save</button>
+		<!-- <button id="save" class="save">Save</button> // -->
 		<% if(decline == "yes") { %>
 			<button id="decline" class="decline">Decline and save</button>
 			<% }; %>
     	    </div>
 	  <% } else if (type == "sevenday"){  %>
+	  	<!-- 
          	<label>User ID:</label>
           	<input type="text" value="<%= user_id %>" disabled />
           	<label>Record ID:</label>
@@ -326,6 +340,7 @@
           	<label>Question ID:</label>
           	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
           	<label>Answer</label>
+		// -->
 		<div id="multi-view">
 		  <div class="ui-field-contain" data-inset="true">
 			<fieldset data-role="controlgroup" id="aid">
@@ -339,7 +354,9 @@
 			<label for= <%= days[i] %> >  <%= days[i] %> </label> 
 	 		<% }; %>
 			<% if(qcount == "25" && decline == "yes") { %>
-				<input type="button"  name="decline" id="decline" class="decline">Did not Enter</input>
+			<!-- <input type="button"  name="decline" id="decline" class="decline">Did not Enter</input> // -->
+				<input type="checkbox" class="decline" value="decline" name="decline" id="decline" />
+				<label for="decline" class="decline">Did not Enter</label> 
 			<% }; %>
 			</fieldset>
 		  </div>
