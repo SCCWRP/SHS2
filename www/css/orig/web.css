@@ -39,9 +39,12 @@ visibility:hidden;
 }
 .ui-select{
 min-width:17em;
-max-width:17em;
-margin-left:-16%;
-margin-left:-16%;
+}
+.ui-select .enter{
+margin-left:5%;
+}
+.ui-select .exit{
+margin-left:60%;
 }
 #myinput{
   position: absolute;
@@ -298,4 +301,7 @@ top:24%;
 #landingContact{
 position:relative;
 top:26%;
+}
+#popupInfo{
+background-color:black;
 }

@@ -1,5 +1,5 @@
 var HistoryView = Backbone.View.extend({
-	el: '#content',
+	//el: '#content',
 	template:_.template($('#tpl-history-details').html()),
 	initialize: function(){ //this.model.on('change',this.test,this);
 		//$(this.el).unbind("click");
@@ -63,15 +63,24 @@ var HistoryView = Backbone.View.extend({
 	},
 	render: function(response){
 			console.log("HistoryView render");
-			console.log(this.model.toJSON());
-			$.each(response.attributes, function(key, value){
+			//console.log(response);
+			//console.log(this.model.toJSON());
+		 	$(this.el).append("<ul id='aid' data-role='listview'>Under Construction/Read-Only<br><input type='button' value='Continue' class='history-skip'/ ><li>test</li>");
+			$.each(this.model.attributes, function(key, value){
 				console.log(value);
-				$(this.el).append(this.template(value));	
+				//$(this.el).append(this.template(value));	
+				//console.log(this.model.attributes[key].timestamp);
+			 	var unixTimestamp = response.attributes[key].timestamp;
+			 	var returnTime = new Date(+unixTimestamp);
+			 	var qtext = "Session "+ returnTime.toLocaleString() + " was saved would you like to <input type='button' id='"+response.attributes[key].id+"' value='Edit' class='history-edit'/ > or <input type='button' id='"+response.attributes[key].id+"'value='Forget' class='history-forget'/ >?"; 
+	 	 		$(this.el).append("<li>"+qtext+"</li>");
 			});
+			/*
 		        //$(headerView.el).hide();
 			//$(this.el).html("");	
 			//$(footerView.el).hide();	
-			//$(this.el).html(this.template({ 'elements': this.model.attributes }));	
+			//$(this.el).html(this.template({ 'elements': this.model }));	
+			*/
 			return this;
 	}
 });

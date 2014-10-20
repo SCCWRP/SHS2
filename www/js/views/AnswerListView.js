@@ -2,8 +2,11 @@ var AnswerListView = Backbone.View.extend({
 	//el: '#content',
 	template:_.template($('#tpl-answer-details').html()),
 	initialize: function(){
+		console.log("AnswerListView");
 		// must unbind event before each question or will end up with wrong model
 		$(this.el).unbind("click");
+		//headerView = new HeaderView;
+		//footerView = new FooterView;
 		this.listenTo(this.model, 'sync', this.nextQuestion);
 		this.listenTo(footerView, 'forward', this.saveAnswer); 
 		this.listenTo(footerView, 'back', this.goBack); 
@@ -60,6 +63,7 @@ var AnswerListView = Backbone.View.extend({
 		};
 	},
 	nextQuestion:function(t, response, options){	
+		console.log("nextQuestion");
 		console.log(this.qHistory);
 		var that = this;
 		// get current question number
@@ -328,6 +332,7 @@ var AnswerListView = Backbone.View.extend({
 					// ******************************************** // 
 					// last module - go to receipt
 					if(timer == 4 || that.model.get("status") == "edit"){
+						console.log("timer == 4");
 						// clear stage and events
 						that.cleanup();
 						//appRouter.cleanup();
@@ -374,7 +379,7 @@ var AnswerListView = Backbone.View.extend({
 		$(headerView.el).show();
 		$(footerView.el).show();
 		$(this.el).html(this.template(this.model.toJSON()));
-		//$('#multi-radio').trigger('create');
+		//$('#multi-view').trigger('create');
 		//$("input[type='checkbox']").checkboxradio();
 		//$(this.el).trigger('create');
 		//console.log(Math.round($('#content').height()));
