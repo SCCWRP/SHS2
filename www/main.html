@@ -230,7 +230,7 @@
 			<fieldset data-role="controlgroup" id="aid">
 			<legend>Select all that apply: </legend>
 			<% for(i=0; i < menu.length; i++) { %>
-			<input type="checkbox" class="custom" value= <%= menu[i] %>  name = <%= "multi-checkbox-" + i.toString() %> id= <%= "multi-checkbox-" + i.toString() %> />
+			<input type="checkbox" class="custom" value= "<%= menu[i] %>"  name = <%= "multi-checkbox-" + i.toString() %> id= <%= "multi-checkbox-" + i.toString() %> />
 				<label for=<%= "multi-checkbox-" + i.toString()  %> >  <%= menu[i] %> </label> 
 	 		<% }; %>
 			</fieldset>

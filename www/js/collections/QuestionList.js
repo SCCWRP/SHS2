@@ -7,6 +7,7 @@ var QuestionList = Backbone.Collection.extend({
 		var that = this;
 		var valLU = {};
 		var validationFuncs = {
+			"noVal": function () {},
 			"0": function(q) {if(q == "") return "A response is required before continuing";},
 			"select": function(q) {if(q && q == "Select One") return "A response is required before continuing";},
 			"1": function(q) {if(q && q.length < 2) return "Invalid phone number";}, 
