@@ -15,6 +15,7 @@ var QuestionList = Backbone.Collection.extend({
 			"gte1": function(q) {if(q && q.split(" : ")[1] < 1) return "Value must be greater than zero";},
 			"isNumber": function(q) {if(q && isNaN(q)) return "Value must be a number";},
 			"numberWeek": function(q) {if(q && (isNaN(q.split(" : ")[1]) || q.split(" : ")[1] == "")) return "Value must be a number";},
+    			"oceanEnter": function(q, at) {if(q && _.all(q.split(",").map(function(x) {return at.q25.split(",").indexOf(x) > -1;})))return "Please only select days in which you did not enter the ocean";},
 			"selectOne": function(q){if(q && _.values(JSON.parse(q)).filter(function(x) {return x == "Select One";}).length > 0) return "You must select an answer for all days";},
     			"numberLimit": function(q) {if(q) {
 				var split = q.split(" : ");
