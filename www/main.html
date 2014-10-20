@@ -293,6 +293,7 @@
 		  <% var AmArray = _.range(48).map(function(x) {if(x<4) x=x+48; return Math.floor(x/4) + ":" + ["00", 15, 30, 45][x % 4] + " AM";}); %>
 		  <% var PmArray = _.range(48).map(function(x) {if(x<4) x=x+48; return Math.floor(x/4) + ":" + ["00", 15, 30, 45][x % 4] + " PM";}); %> 
 		  <% var TimeArray = AmArray.concat(PmArray); %>
+		  <% TimeArray = TimeArray.slice(20, TimeArray.length); %>
 		  <%= "<script" + "> TimeArray = [" + ("'" + TimeArray.join("','") + "'").split(",") + "];</script" + ">" %>
 		  <% for(j=0; j < dates.length; j++) { %>
 		  <h3 id="date"> <%= dates[j] %> </h3>
