@@ -28,7 +28,8 @@ var LoginView = Backbone.View.extend({
 			if(data.status == "404"){
 				alert("User not found...Try again or enroll");
 				that.cleanup();
-				appRouter.navigate('/', {trigger: true});
+				//appRouter.navigate('/', {trigger: true});
+				location.reload();
 			}
 			 //if(t==="timeout"){ alert("Server Inaccessible contact Paul Smith"); }
 		}, 

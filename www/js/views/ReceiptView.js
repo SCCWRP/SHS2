@@ -41,8 +41,9 @@ var ReceiptView = Backbone.View.extend({
 			alert("Come back next week!");
 		}
 		that.cleanup();
-		appRouter.navigate('shs/', {trigger: false});
-		appRouter.start();
+		//appRouter.navigate('shs/', {trigger: false});
+		//appRouter.start();
+		location.reload();
 	},
 	cleanup: function() {
 	     console.log("receipt cleanup");
