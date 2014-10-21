@@ -3,5 +3,5 @@ var User = Backbone.Model.extend({
             //alert("Welcome to User Login");
         },
         // critical - urlRoot must be used to make get,post,put requests not url
-        urlRoot:"http://data.sccwrp.org/shs2/index.php/user"
+        urlRoot:"http://data.sccwrp.org/shs/index.php/user"
 });

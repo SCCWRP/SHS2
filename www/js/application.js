@@ -1,15 +1,14 @@
 var appRouter = new (Backbone.Router.extend({
   routes: {
-    "shs/receipt/:appid": "receipt",
-    "": "signup",
-    "shs/www/": "start",
+    "receipt/:appid": "receipt",
+    "/": "start",
     "": "start"
   },
   checksum: function(){
 	console.log("checksum");
   	//if (networkStatus != 'offline' && isDevice == true){
   	if (networkStatus != 'offline'){
-		var surveyKey = window.localStorage.getItem("http://data.sccwrp.org/shs2/index.php/surveys");
+		var surveyKey = window.localStorage.getItem("http://data.sccwrp.org/shs/index.php/surveys");
 		var splitKey = surveyKey.split(',');
 		var splitKeyCount = splitKey.length;
 		console.log(splitKeyCount);
@@ -228,7 +227,7 @@ var appRouter = new (Backbone.Router.extend({
   	//if (networkStatus != 'offline' && isDevice == true){
 	// this should probably get moved to LoginView
   	if (networkStatus != 'offline'){
-		var dirtyKey = window.localStorage.getItem("http://data.sccwrp.org/shs2/index.php/surveys_dirty");
+		var dirtyKey = window.localStorage.getItem("http://data.sccwrp.org/shs/index.php/surveys_dirty");
 		if (dirtyKey){
 			console.log("dirtyKey: "+dirtyKey);
 			//submitLocal(dirtyKey, startWeekly);
@@ -246,7 +245,7 @@ var appRouter = new (Backbone.Router.extend({
 		var splitKey = dirtyKey.split(',');
 		var splitKeyCount = splitKey.length;
 		for(var i=0; i<splitKeyCount; i++){
-			var surveyLocalKey = window.localStorage.getItem("http://data.sccwrp.org/shs2/index.php/surveys"+ splitKey[i]);
+			var surveyLocalKey = window.localStorage.getItem("http://data.sccwrp.org/shs/index.php/surveys"+ splitKey[i]);
 			//storeLocal(localKey,localReceipt);
 			var surveyLocalObject = jQuery.parseJSON(surveyLocalKey);
 			var saveList = new AnswerList();

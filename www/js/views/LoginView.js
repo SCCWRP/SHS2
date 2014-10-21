@@ -16,7 +16,7 @@ var LoginView = Backbone.View.extend({
 		var loginID = $('#loginInput').val();
 	  //if (networkStatus != 'offline' && isDevice == true){
 	  if (networkStatus != 'offline'){
-        	var url = 'http://data.sccwrp.org/shs2/index.php/user/' + loginID;
+        	var url = 'http://data.sccwrp.org/shs/index.php/user/' + loginID;
 		message = $.ajax({
 		type: 'GET',
 		url: url,
@@ -28,7 +28,7 @@ var LoginView = Backbone.View.extend({
 			if(data.status == "404"){
 				alert("User not found...Try again or enroll");
 				that.cleanup();
-				appRouter.navigate('shs/www/', {trigger: true});
+				appRouter.navigate('/', {trigger: true});
 			}
 			 //if(t==="timeout"){ alert("Server Inaccessible contact Paul Smith"); }
 		}, 
