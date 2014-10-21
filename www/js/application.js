@@ -161,7 +161,7 @@ var appRouter = new (Backbone.Router.extend({
 	//console.log("consentSize: "+consentSize);
 	// current size of entire page
 	var oneHeight = (formSize > stageSize) ? minHeight:("" + Math.round($('#one').height()) + "px");
-	console.log("oneHeight: "+oneHeight);
+	console.log("multi-select: "+ $('#multi-select').height());
 	if($('#consent').height() == 0){
 		console.log("consent");
 		console.log("consent: "+$('#consent').height());
@@ -170,6 +170,11 @@ var appRouter = new (Backbone.Router.extend({
 	} else {
 		$('#one').css('height',oneHeight);
 	}
+	if($('#multi-select').height()){
+		var multiHeight = ($('#multi-select').height()+500+"px");
+		$('#one').css('height',multiHeight);
+	}
+	console.log("oneHeight: "+oneHeight);
   },
   signup: function(){
 	console.log("signup");
