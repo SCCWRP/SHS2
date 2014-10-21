@@ -341,7 +341,7 @@ var AnswerListView = Backbone.View.extend({
 						that.cleanup();
 						//appRouter.cleanup();
 						// return receipt from database
-						appRouter.navigate('receipt/' + appID, {trigger: true});
+						appRouter.navigate('shs/receipt/' + appID, {trigger: true});
 					}
 					/*
 					} else {

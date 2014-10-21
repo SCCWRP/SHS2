@@ -1,7 +1,7 @@
 var appRouter = new (Backbone.Router.extend({
   routes: {
-    "receipt/:appid": "receipt",
-    "/": "start",
+    "shs/receipt/:appid": "receipt",
+    "shs/": "start",
     "": "start"
   },
   checksum: function(){
