@@ -48,8 +48,8 @@ var IntroView = Backbone.View.extend({
 		//$("#landing").show();
 		$(this.el).html(this.template());	
 		$("#footer").hide();
-		$(this.el).trigger('create');
-		$('#landList').listview();
+		//$(this.el).trigger('create');
+		//$('#landList').listview();
 		//$('#landList').listview( "refresh" );
 		//console.log(jQuery("html").html());
 		//$.mobile.changePage($(this.el));

@@ -318,8 +318,8 @@ var app = {
 	});
   },
   notify: function(e,i){
-	alert(e);
-	alert(i);
+	console.log(e);
+	console.log(i);
 	var url = 'http://data.sccwrp.org/shs2/email.php';
 	//var p = "15625727718";
 	var message = $.ajax({
@@ -334,7 +334,7 @@ var app = {
 			 if(t==="timeout"){ alert("Data not Submitted"); }
 		}, 
 		success: function(data) {
-			alert(data);
+			console.log(data);
 			//alert("status:"+data.status[0]);
 			//alert("number:"+data.number[0]);
 			//lookup_number = data.number[0];

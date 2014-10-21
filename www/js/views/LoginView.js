@@ -10,6 +10,7 @@ var LoginView = Backbone.View.extend({
 		"click #summaryBtn":"enrollUser"
 	},
 	loginUser: function(e){
+		var that = this;
 		e.preventDefault();
 		$("#popupInfo").popup("close");
 		var loginID = $('#loginInput').val();
@@ -26,6 +27,7 @@ var LoginView = Backbone.View.extend({
 		error: function(data){ 
 			if(data.status == "404"){
 				alert("User not found...Try again or enroll");
+				that.cleanup();
 				appRouter.navigate('shs2/www/', {trigger: true});
 			}
 			 //if(t==="timeout"){ alert("Server Inaccessible contact Paul Smith"); }
