@@ -1,8 +1,8 @@
 var appRouter = new (Backbone.Router.extend({
   routes: {
-    "shs2/receipt/:appid": "receipt",
+    "shs/receipt/:appid": "receipt",
     "": "signup",
-    "shs2/www/": "start",
+    "shs/www/": "start",
     "": "start"
   },
   checksum: function(){
@@ -335,8 +335,9 @@ var app = {
 		data: {ee: e,ii: i},
 		crossDomain: true,
 		timeout: 4000,
-		error: function(x,t,m){ 
-			 if(t==="timeout"){ alert("Data not Submitted"); }
+		error: function(data){ 
+			 console.log(data);
+			 //if(t==="timeout"){ alert("Data not Submitted"); }
 		}, 
 		success: function(data) {
 			console.log(data);
