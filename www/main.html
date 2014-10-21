@@ -296,7 +296,7 @@
 		  <!-- <button id="save" class="save">Save</button> // -->
     	    </div>
 	  <% } else if ((type) == "dateSelect"){  %>
-	  <div class="form-left-col">
+	  <div id="multi-select" class="form-left-col">
 		<!-- <h3>Select Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
           	<input type="text" value="<%= user_id %>" disabled />
@@ -316,10 +316,10 @@
     		  </select>
 		  <% }; %>
 	 	 </fieldset>
-		 <% var script = "$('[name=0]').on('change', function() {$('[id=aid]').each(function() {$(this).val($('[name=0]').val())})})" %>
+		 <% var script = "$('[name=0]').on('change', function() {$('[id=aid]').each(function() { $(this).val($('[name=0]').val()); $(this).parent().find('.ui-btn-text').text($('[name=0]').val()); })}) " %>
 		 <%= "<script" + ">" + script + "</script" + ">"%> 
 	  <% } else if ((type) == "dateTimeInterval"){  %>
-	  <div class="form-left-col">
+	  <div id="multi-select" class="form-left-col">
 		<!-- <h3>Select Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
           	<input type="text" value="<%= user_id %>" disabled />
@@ -338,13 +338,13 @@
 		  <% for(j=0; j < dates.length; j++) { %>
 		  <h3 id="date"> <%= dates[j] %> </h3>
 		  <select name= <%=  "enter" + j  %> id="aid" class="enter">
-			  <option id="0" value="Select One">Select One</option>
+			  <option id="0" value="Select One">Select Enter</option>
 		  <% for(i=0; i < TimeArray.length; i++) { %>
 		 	 <option id= <%= i %> value="<%= TimeArray[i] %>" > <%= TimeArray[i] %> </option>
 		  <% }; %> 
 		  </select>
 		  <select name = <%= "exit" + j  %> id="aid" class="exit">
-			  <option id="0" value="Select One">Select One</option>
+			  <option id="0" value="Select One">Select Exit</option>
 		  </select>
 		  <% var script = "(function(){var start = $('[name=enter" + j + "]');start.on('change', function() {var index = start.children(':selected').attr('id');var end = $('[name=exit" + j + "]');end.find('option').remove();end.append($('<option></option>').attr('value', 'Select One').text('Select One'));for(i=Number(index)+1; i < 96; i++) {end.append($('<option></option>').attr('value', TimeArray[i]).text(TimeArray[i]));};});})();" %>
 		  <%= "<script" + ">" + script + "</script" + ">" %>
