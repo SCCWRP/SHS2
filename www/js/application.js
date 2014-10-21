@@ -107,7 +107,7 @@ var appRouter = new (Backbone.Router.extend({
         questionList.fetch({ success: function(response){ console.log("questionList fetch - success"); questionList.getQuestion(); } });
   },
   positionFooter: function(){
-	console.log("positionFooter");
+	//console.log("positionFooter");
 	$footer = $("#footer");
 	footerHeight = $footer.height();
 	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
@@ -293,6 +293,7 @@ var appRouter = new (Backbone.Router.extend({
 	//introView = new IntroView();
 	//introView.render();
 	$("#content").html( new IntroView().render().el );
+	//$("#landing").trigger("create");
 	// not sure whether this is the best place to load the questions collection
 	appRouter.question();
         $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
