@@ -280,10 +280,10 @@ var appRouter = new (Backbone.Router.extend({
 	  		  },
  			  error: function(model,response){
 				if(response.status == 500){
-					console.log("failed");
-					alert("Failed to Start Weekly");
 					console.log(response.responseText);
 					console.log(response.status);
+					console.log("failed");
+					alert("Failed to Start Weekly");
 					location.reload();
 					//loginView = new LoginView;
 				}
