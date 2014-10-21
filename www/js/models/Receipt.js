@@ -6,8 +6,8 @@ var Receipt = Backbone.Model.extend({
 	*/
     	parse: function(response){
 		//console.log(response);
-		//return response.event - old way
-		return response;
+		return response.event;
+		//return response;
 	}
 
 });
