@@ -284,7 +284,8 @@ var appRouter = new (Backbone.Router.extend({
 					alert("Failed to Start Weekly");
 					console.log(response.responseText);
 					console.log(response.status);
-					loginView = new LoginView;
+					location.reload();
+					//loginView = new LoginView;
 				}
 			  }
 			});
