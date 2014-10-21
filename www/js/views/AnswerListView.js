@@ -283,6 +283,10 @@ var AnswerListView = Backbone.View.extend({
 		if([22, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62].indexOf(currentQuestion) > -1  && currentAnswer == "No"){
 			nextQuestion += 1;
 		};
+		if(currentQuestion == 62 && currentAnswer == "No" && _.all(_.map(this.model.pick('q34', 'q36', 'q38', 'q40', 'q42', 'q44', 'q46', 'q50', 'q52',
+						'q54', 'q56', 'q58', 'q60' ), function(x) {return x == 'No';}))) {
+			nextQuestion += 6;	
+		};
 		// module3 did not surf
 		if(currentQuestion == 25 && currentAnswer == ""){
 			currentAnswer = "Did not Enter";
