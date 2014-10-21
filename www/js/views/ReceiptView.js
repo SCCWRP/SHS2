@@ -18,7 +18,8 @@ var ReceiptView = Backbone.View.extend({
 		console.log(clickedID);
 		var fixedID = Number(clickedID.replace('q',''));
 		that.cleanup();
-		appRouter.navigate('shs/edit/' + fixedID, {trigger: true});
+		// is this necessary to navigate?
+		//appRouter.navigate('shs/edit/' + fixedID, {trigger: true});
 		answerListView = new AnswerListView({model: this.model});
 		answerListView.model.set({ qcount: fixedID, status: "edit"});
 		answerListView.nextQuestion(this.model);
@@ -41,7 +42,7 @@ var ReceiptView = Backbone.View.extend({
 			alert("Come back next week!");
 		}
 		that.cleanup();
-		//appRouter.navigate('shs/', {trigger: false});
+		appRouter.navigate('shs/', {trigger: false});
 		//appRouter.start();
 		location.reload();
 	},
