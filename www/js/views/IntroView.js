@@ -47,12 +47,15 @@ var IntroView = Backbone.View.extend({
 		$("#header").hide();
 		//$("#landing").show();
 		$(this.el).html(this.template());	
-		$(this.el).trigger('create');
-		$('#landList').listview();
+		//$(this.el).trigger('create');
 		$("#footer").hide();
-		//$('#landList').listview( "refresh" );
 		//console.log(jQuery("html").html());
-		//$.mobile.changePage($(this.el));
+		// code below is for devices taking too long to render
+		// its ugly but it works
+		setTimeout(function() {
+			$('#landList').listview();
+			$('#landList').listview('refresh');
+		}, 0);
 		return this;
 	}
 });
