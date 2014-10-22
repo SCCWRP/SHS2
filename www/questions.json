@@ -386,7 +386,7 @@
 	"errmessage": "",
       	"status": "incomplete",
       	"id": "25",
-	"check": "select"
+	"check": "0,select"
   },
   {
 	"title": "What beach did you go to?",
@@ -514,7 +514,7 @@
 	"errmessage": "",
       	"status": "incomplete",
       	"id": "33",
-	"check":"oceanEnter"
+	"check":"noVal,oceanEnter"
   },
   {
 	"title": "Did you have a fever in the last 7 days?",
