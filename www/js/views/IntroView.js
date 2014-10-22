@@ -52,10 +52,16 @@ var IntroView = Backbone.View.extend({
 		//console.log(jQuery("html").html());
 		// code below is for devices taking too long to render
 		// its ugly but it works
+		if(isDevice){
+			alert("yes device");
 		setTimeout(function() {
 			$('#landList').listview();
 			$('#landList').listview('refresh');
-		}, 0);
+		}, 2);
+		} else {
+			$('#landList').listview();
+			$('#landList').listview('refresh');
+		}
 		return this;
 	}
 });
