@@ -50,7 +50,7 @@ var AnswerListView = Backbone.View.extend({
 	},
     	declineAnswer:function(event){
 		formtype = this.model.get("type");
-		this.saveAnswer(event);
+		this.saveAnswer(event, true);
 	},
 	qHistory: [],
 	goBack: function(event){
@@ -199,7 +199,7 @@ var AnswerListView = Backbone.View.extend({
 		} else if(!decline) {
 			var currentAnswer = this.extractAnswer();
 		} else {
-			var currentAnswer = this.model.get("declinedefault");	
+			var currentAnswer = "Did not Enter";	
 		};
 		if(currentAnswer == "Other") {
 			this.trigger("dialog");
@@ -288,10 +288,9 @@ var AnswerListView = Backbone.View.extend({
 			nextQuestion += 6;	
 		};
 		// module3 did not surf
-		//if(currentQuestion == 25 && currentAnswer == ""){
-		//	currentAnswer = "Did not Enter";
-		//	nextQuestion +=  7;
-		//};
+		if(currentQuestion == 25 && currentAnswer == "Did not Enter"){
+			nextQuestion +=  7;
+		};
 		// this should really go somewhere after sync happens maybe next question
 		// also status needs to be toggled to complete in database
 		if(currentQuestion == 12){
@@ -316,6 +315,10 @@ var AnswerListView = Backbone.View.extend({
 		var parsedJSON = JSON.stringify(this.model.toJSON());
 		// need a new column called status in db
 		// we are offline
+
+
+		//status change for module 4 so that follow-up questions can be edited
+
 		if (networkStatus != 'online'){
 			//this.model.set(answerDetails);
 			this.model.save(answerDetails);

@@ -382,7 +382,7 @@
 	"otype": "",
   	"answer": "",
 	"decline": "yes",
-	"declinedefault": "",
+	"declinedefault": "Did not Enter",
 	"errmessage": "",
       	"status": "incomplete",
       	"id": "25",

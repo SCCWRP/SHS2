@@ -20,7 +20,8 @@ var ReceiptView = Backbone.View.extend({
 		that.cleanup();
 		appRouter.navigate('shs/edit/' + fixedID, {trigger: true});
 		answerListView = new AnswerListView({model: this.model});
-		answerListView.model.set({ qcount: fixedID, status: "edit"});
+		answerListView.endquestion =  event.currentTarget.name; 
+		answerListView.model.set({ qcount: fixedID});
 		answerListView.nextQuestion(this.model);
 	},
 	finish: function(event){
