@@ -164,8 +164,13 @@
 		<% var modthree = _.pick(elements, 'q25', 'q26', 'q27', 'q28', 'q29', 'q30', 'q31', 'q32', 'q33'); %>
 		<% _.each(modthree, function(element,index,list) {  var qindex = index.substr(1); %>
 		<% if(!element) return;  %>
+			<% element = JSON.stringify(element).replace(/\\"/g, "").replace("\\", "").replace(/\"/g, "").replace("{","").replace("}", "");  %> 
 			<li data-role="list-divider">Question <%= qindex %></li>
-			<li> <%= JSON.stringify(element).replace('"', "", "gi").replace("{","").replace("}", "").replace(",", "\n", "g") %> </li>
+			<li>
+			<% _.each(element.split(","), function(e,i,l) { %>
+				<p> <%= e %> </p>
+			<% }); %>
+			</li>
 		<% }); %>
 		</ul>
 
