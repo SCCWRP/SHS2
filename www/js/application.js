@@ -295,9 +295,9 @@ var appRouter = new (Backbone.Router.extend({
 	console.log("start");
 	//appRouter.navigate('shs2/receipt/1031', {trigger: true});
 	//appRouter.checksum();
-	//introView = new IntroView();
 	//introView.render();
 	$("#content").html( new IntroView().render().el );
+	//$("#content").trigger("create");
 	//$("#landing").trigger("create");
 	// not sure whether this is the best place to load the questions collection
 	appRouter.question();
@@ -366,7 +366,9 @@ var app = {
   	Backbone.history.start({pushState: true});
 	// check network status
  	networkStatus = navigator.onLine ? 'online' : 'offline';
-	appRouter.start();
+	appRouter.start(function(){
+		alert("done");
+	});
   },
   initialize: function(){
 	if(document.URL.indexOf("http://") === -1 && document.URL.indexOf("https://") === -1){
