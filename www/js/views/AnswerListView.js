@@ -280,10 +280,7 @@ var AnswerListView = Backbone.View.extend({
 			user.save({ "contact": setContact, "status": "complete" });
 		}
                 // logic for skipping certain questions
-		if([22, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62].indexOf(currentQuestion) > -1  && currentAnswer == "No"){
-			nextQuestion += 1;
-		};
-		if(currentQuestion == 19 && currentAnswer == "Yes always wait") {
+		if([19, 22, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62].indexOf(currentQuestion) > -1  && currentAnswer == "No"){
 			nextQuestion += 1;
 		};
 		if(currentQuestion == 62 && currentAnswer == "No" && _.all(_.map(this.model.pick('q34', 'q36', 'q38', 'q40', 'q42', 'q44', 'q46', 'q50', 'q52',
@@ -291,10 +288,10 @@ var AnswerListView = Backbone.View.extend({
 			nextQuestion += 6;	
 		};
 		// module3 did not surf
-		if(currentQuestion == 25 && currentAnswer == ""){
-			currentAnswer = "Did not Enter";
-			nextQuestion +=  7;
-		};
+		//if(currentQuestion == 25 && currentAnswer == ""){
+		//	currentAnswer = "Did not Enter";
+		//	nextQuestion +=  7;
+		//};
 		// this should really go somewhere after sync happens maybe next question
 		// also status needs to be toggled to complete in database
 		if(currentQuestion == 12){
