@@ -21,6 +21,7 @@ var IntroView = Backbone.View.extend({
 		//$("#landing").hide();
 		this.cleanup();
 		headerView = new HeaderView;
+		$("#home").show();
 		footerView = new FooterView;
 		//loginView = new LoginView;
 		$("#popupInfo").html( new LoginView().render().el );
@@ -53,11 +54,10 @@ var IntroView = Backbone.View.extend({
 		// code below is for devices taking too long to render
 		// its ugly but it works
 		if(isDevice){
-			alert("yes device");
 		setTimeout(function() {
 			$('#landList').listview();
 			$('#landList').listview('refresh');
-		}, 2);
+		}, 0);
 		} else {
 			$('#landList').listview();
 			$('#landList').listview('refresh');
