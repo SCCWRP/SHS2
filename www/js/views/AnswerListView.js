@@ -338,7 +338,7 @@ var AnswerListView = Backbone.View.extend({
 					//app.notify(currentEmail);
 					// ******************************************** // 
 					// last module - go to receipt
-					if(timer == 4 || that.model.get("status") == "edit"){
+					if(timer == 4){
 						console.log("timer == 4");
 						// clear stage and events
 						that.cleanup();
