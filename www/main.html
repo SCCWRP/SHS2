@@ -153,13 +153,13 @@
 		<% _.each(modtwo, function(element,index,list) {  var qindex = index.substr(1); %>
 		<% if(!element) return;  %>
 			<li data-role="list-divider">Question <%= qindex %></li>
-			<li data-icon="edit"><a href="#" class="edit" name="edit" id="<%= index %>"><%= element %></a></li>
+			<li data-icon="edit"><a href="#" class="edit" name="<%= index %>"" id="<%= index %>"><%= element %></a></li>
 		<% }); %>
 		</ul>
 		<% }; %>
 
 		<h4>Ocean Exposure Survey</h4>
-		<button data-icon="edit" class="edit" id=25>Click here to edit this survey</button>
+		<button data-icon="edit" class="edit" id=25 name=31>Click here to redo this survey</button>
 		<ul data-role="listview" data-inset="true">
 		<% var modthree = _.pick(elements, 'q25', 'q26', 'q27', 'q28', 'q29', 'q30', 'q31', 'q32', 'q33'); %>
 		<% _.each(modthree, function(element,index,list) {  var qindex = index.substr(1); %>
@@ -175,13 +175,13 @@
 		</ul>
 
 		<h4>Symptoms Survey</h4>
-		<button data-icon="edit" class="edit" id=25 />
+		<button data-icon="edit" class="edit" id=34 name=70 >Click here to redo this survey</button>
 		<ul data-role="listview" data-inset="true">
 			<% var modfour = _.pick(elements, 'q34', 'q35', 'q36', 'q37', 'q38', 'q39', 'q40','q41', 'q42', 'q43', 'q44','q45', 'q46', 'q47', 'q48', 'q49', 'q50', 'q51', 'q52', 'q53', 'q54', 'q55', 'q56', 'q57', 'q58', 'q59', 'q60', 'q61', 'q62', 'q63', 'q64', 'q65', 'q66', 'q67', 'q68', 'q70'); %>
 		<% _.each(modfour, function(element,index,list) {  var qindex = index.substr(1); %>
 		<% if(!element) return;  %>
 			<li data-role="list-divider">Question <%= qindex %></li>
-			<li data-icon="edit"><a href="#" class="edit" name="edit" id="<%= index %>"><%= element %></a></li>
+			<p> <%= element %> </p>
 		<% }); %>
 		</ul>
 
@@ -192,7 +192,7 @@
 		<% _.each(modfive, function(element,index,list) {  var qindex = index.substr(1); %>
 		<% if(!element) return;  %>
 			<li data-role="list-divider">Question <%= qindex %></li>
-			<li data-icon="edit"><a href="#" class="edit" name="edit" id="<%= index %>"><%= element %></a></li>
+			<li data-icon="edit"><a href="#" class="edit" name="<%= index %>" id="<%= index %>"><%= element %></a></li>
 		<% }); %>
 		</ul>
 		<% }; %>
