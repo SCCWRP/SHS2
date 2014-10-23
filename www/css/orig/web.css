@@ -14,8 +14,11 @@ height:100%;
 display:none;
 }
 #footer{
+position: fixed;
+display: inline;
 left:0;
 width:100%;
+visibility:visible;
 z-index:999;
 overflow:hidden;
 }
@@ -115,6 +118,10 @@ width:260px;
 }
 #modLabel{
 width:260px;
+}
+#modLabel p{
+margin-bottom: 7px;
+margin-top: 7px;
 }
 #Mod-bar{
 width:75%;
