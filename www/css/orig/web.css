@@ -70,7 +70,7 @@ width: 60%;
 }
 #multi-select{
   position: absolute;
-  margin-left: 25%;
+  margin-left: 20%;
 }
 #multi-select h3{
   font-size: 25px;
@@ -78,13 +78,14 @@ width: 60%;
 }
 #multi-select select{
   font-size:1.5em;
+  position: absolute;
+  margin-left: 10%;
 }
 #multi-view{
   position: absolute;
   width: 500px;
-  margin-top: 5%;
   margin-bottom: 0;
-  margin-left: 25%;
+  margin-left: 20%;
 }
 #multi{
   position:relative;
@@ -227,6 +228,9 @@ font-size:1.5em;
 #multi-view .ui-btn-text{
 font-size:1.8em;
 }
+.finish{
+font-size:1.8em;
+}
 .radioClass{
 
 }
@@ -315,5 +319,8 @@ top:26%;
 background-color:black;
 }
 #popupTip{
+background-color:black;
+}
+#popupRestart{
 background-color:black;
 }

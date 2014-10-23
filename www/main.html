@@ -4,17 +4,16 @@
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	<link rel="stylesheet" href="css/orig/web.css" type="text/css" />
 	<link rel="stylesheet" href="css/orig/natived/font-awesome.min.css" />
-                // jQueryMobileCSS - original without styling 
+	<!--  jQueryMobileCSS - original without styling // -->
         <link rel="stylesheet" href="css/orig/natived/jquerymobile.css" />
-                // nativeDroid core CSS 
+	<!-- nativeDroid core CSS // -->
         <link rel="stylesheet" href="css/orig/natived/jquerymobile.nativedroid.css" />
-                // nativeDroid: Light/Dark 
+	<!-- nativeDroid: Light/Dark // -->
         <link rel="stylesheet" href="css/orig/natived/jquerymobile.nativedroid.dark.css"/>
-                // nativeDroid: Color Schemes 
+	<!-- nativeDroid: Color Schemes // -->
         <link rel="stylesheet" href="css/orig/natived/jquerymobile.nativedroid.color.blue.css" />
 	<link rel="stylesheet" type="text/css" href="http://dev.jtsage.com/cdn/simpledialog/latest/jquery.mobile.simpledialog.min.css" /> 
-	// new native stylesheet
-	<!-- 
+	<!-- new native stylesheet
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
         <link rel="stylesheet" href="css/jqm-icon-pack-fa.css" /> 
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -49,6 +48,7 @@
 	 <div data-role="footer" data-theme="b" id="footer">
     <div> 
     <div id="popupInfo" data-role="popup" class="ui-content" data-position-to="window">Popup</div>
+    <div id="popupRestart" data-role="popup" data-theme="a" data-position-to="origin">Restart</div>
     <div id="popupTip" data-role="popup" class="ui-content" data-position-to="#footer">Tip</div>
 	<script src="js/orig/jquery-1.9.1.min.js"></script>
 	<script src="js/orig/jquery.mobile-1.3.1.min.js"></script>
@@ -73,8 +73,17 @@
 	    </ul>
 	  </div>
 	</script>
+	<script type="text/template" id="tpl-restart-details">
+	    <div data-role="header" data-theme="b" class="ui-corner-top"><h1>Restart App?</h1></div>
+	    <div data-role="content" data-theme="b" class="ui-corner-bottom ui-content">
+	    	<h3 class="ui-title">Are you sure you want to restart the App? <br> Your submission from this session will be saved.</h3> 		  <fieldset><form>
+				<a href="#" data-role="button" data-inline=true id="restartCancel">Cancel</a>
+				<a href="#" data-role="button" data-inline=true id="restartRestart">Restart</a>
+		</form></fieldset>
+	    </div>
+	</script>
 	<script type="text/template" id="tpl-login-details">
-		<div id="formLogin" class="form-left-col" data-theme="a" class="ui-corner-all" data-change-hash="false">
+		<div id="formLogin" data-theme="a" class="ui-corner-all" data-change-hash="false">
                          <div data-role="header" data-theme="b" class="ui-corner-top"></div>
                          <div data-role="content" data-theme="b" class="ui-corner-bottom ui-content">
 			<fieldset>
@@ -106,7 +115,7 @@
 	   <form>
  	    <fieldset id="footButtons" class="ui-grid-b">
 		<div id="back" class = "ui-block-a"><a href="#" data-role="button" id="backButton"><div id='backButtonText'>Back</div></a></div>
-		<div id="restartButton" class = "ui-block-b"><a href="./index.html" data-role="button" id="saveRestartButton">Restart</a></div> 
+		<div id="restart" class = "ui-block-b"><a href="#" data-role="button" id="saveRestartButton">Save</a></div> 
 		<div id="forward" class = "ui-block-c"><a href="#" data-role="button" id="multi"><div id='multiButtonText' >Next</div></a></div>
 	    </fieldset>
 	   </form>
@@ -197,8 +206,7 @@
 		<% }); %>
 		</ul>
 		<% }; %>
-
-		<a href="#" id="finish" data-role="button" class="finish">Looks Good/Finish</a>
+		<a href="#" id="finish" data-role="button" data-icon="check" class="finish">Looks Good/Finish</a>
 	</div>
 	</script>
 	<script type="text/template" id="tpl-answer-details">
@@ -430,6 +438,7 @@
 	<script src="js/views/MapView.js"></script>
 	<script src="js/views/QuestionListView.js"></script>
 	<script src="js/views/ReceiptView.js"></script>
+	<script src="js/views/RestartView.js"></script>
 	<script src="js/views/UserView.js"></script>
 	<script src="js/collections/AnswerList.js"></script>
 	<script src="js/collections/QuestionList.js"></script>
