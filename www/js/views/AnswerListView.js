@@ -113,7 +113,7 @@ var AnswerListView = Backbone.View.extend({
 				$('#Modprogress-bar').val(((nextQcount-12)/modTwo)*100);
      			$('#Modprogress-bar').slider('refresh');
 			}
-			if (nextQcount > 25 && nextQcount < 34{
+			if (nextQcount > 25 && nextQcount < 34) {
 					$('#Modprogress-bar').val(((nextQcount-25)/modThree)*100);
      				$('#Modprogress-bar').slider('refresh');
 			}
@@ -122,7 +122,7 @@ var AnswerListView = Backbone.View.extend({
      				$('#Modprogress-bar').slider('refresh');
 			}	
 			if (nextQcount > 71 && nextQcount < MAXQUESTION){
-					$('#Modprogress-bar').val(((nextQcount-71/modFive)*100);
+					$('#Modprogress-bar').val(((nextQcount-71/modFive)*100));
      				$('#Modprogress-bar').slider('refresh');
 			}	
 			//if(nextQcount > 59){
@@ -377,8 +377,6 @@ var AnswerListView = Backbone.View.extend({
 	        this.undelegateEvents();
 		this.unbind();
 		this.remove();
-	        //this.$el.removeData().unbind();
-	        //Backbone.View.prototype.remove.call(this);
 	},
 	render: function(){
 		console.log("AnswerListView render");

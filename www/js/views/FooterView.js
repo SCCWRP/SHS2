@@ -14,10 +14,18 @@ var FooterView = Backbone.View.extend({
     	forward: function (e) { 
 		this.trigger("forward");
 	},
+    	cleanup: function() {
+	     console.log("footer cleanup");
+	     this.undelegateEvents();
+	     //this.$el.removeData().unbind();
+	     this.unbind();
+	     Backbone.View.prototype.remove.call(this);
+ 	},
 	render: function(){
 		console.log("footer");
 		$(this.el).html("");
 		$(this.el).html(this.template());	
 		$('#footer').trigger('create');
+		return this;
 	}
 });
