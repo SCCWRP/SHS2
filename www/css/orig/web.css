@@ -70,14 +70,21 @@ width: 60%;
 }
 #multi-select{
   position: absolute;
-  margin-left:500px;
+  margin-left: 25%;
+}
+#multi-select h3{
+  font-size: 25px;
+  color: rgba(255, 255, 255, 0.8);
+}
+#multi-select select{
+  font-size:1.5em;
 }
 #multi-view{
   position: absolute;
-  width: 400px;
+  width: 500px;
   margin-top: 5%;
   margin-bottom: 0;
-  margin-left:500px;
+  margin-left: 25%;
 }
 #multi{
   position:relative;

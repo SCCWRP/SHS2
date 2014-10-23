@@ -275,7 +275,6 @@
 		// -->
 		<div class="ui-field-contain ui-body ui-br" data-inset="true">
 			<fieldset data-role="controlgroup" id="aid">
-			<legend>Select all that apply: </legend>
 			<% for(i=0; i < menu.length; i++) { %>
 			<input type="checkbox" class="custom" value= "<%= menu[i] %>"  name = <%= "multi-checkbox-" + i.toString() %> id= <%= "multi-checkbox-" + i.toString() %> />
 				<label for=<%= "multi-checkbox-" + i.toString()  %> >  <%= menu[i] %> </label> 
@@ -285,7 +284,7 @@
 		<!-- <button id="save" class="save">Save</button> // -->
 	    </div>
 	  <% } else if ((type) == "select"){  %>
-	  <div class="form-left-col">
+	  <div id="multi-select">
 		<!-- <h3>Select Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
           	<input type="text" value="<%= user_id %>" disabled />
@@ -303,7 +302,7 @@
 		  <!-- <button id="save" class="save">Save</button> // -->
     	    </div>
 	  <% } else if ((type) == "dateSelect"){  %>
-	  <div id="multi-select" class="form-left-col">
+	  <div id="multi-select">
 		<!-- <h3>Select Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
           	<input type="text" value="<%= user_id %>" disabled />
@@ -316,7 +315,7 @@
 		  <% var dates = q25.split(","); %>
 		  <% for(j=0; j < dates.length; j++) { %>
 		  <h3 id="date"> <%= dates[j] %> </h3>
-		  <select name= "<%= j %>" id="aid">
+		  <select name= "<%= j %>" id="aid" class="multi-select">
 		  <% for(i=0; i < menu.length; i++) { %>
 		 	 <option value= "<%= menu[i] %>" > <%= menu[i] %> </option>
 		  <% }; %>
@@ -326,7 +325,7 @@
 		 <% var script = "$('[name=0]').on('change', function() {$('[id=aid]').each(function() { $(this).val($('[name=0]').val()); $(this).parent().find('.ui-btn-text').text($('[name=0]').val()); })}) " %>
 		 <%= "<script" + ">" + script + "</script" + ">"%> 
 	  <% } else if ((type) == "dateTimeInterval"){  %>
-	  <div id="multi-select" class="form-left-col">
+	  <div id="multi-select">
 		<!-- <h3>Select Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
           	<input type="text" value="<%= user_id %>" disabled />
@@ -392,7 +391,6 @@
 		<div id="multi-view">
 		  <div class="ui-field-contain" data-inset="true">
 			<fieldset data-role="controlgroup" id="aid">
-			<legend>Select all that apply: </legend>
 			<% today = new Date; %>
 			<% days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; %>
 			<% days = days.slice(0, today.getDay() + 1 ).reverse().concat(days.slice(today.getDay() + 1, 7).reverse()); %>
