@@ -6,7 +6,7 @@
         id        = "org.sccwrp.shs"
         version   = "3.0.0">
 
-    <name>Surfer Health Study 2.0</name>
+    <name>SHS</name>
 
     <description>
 	    SCCWRP - Surfer Health Survey
