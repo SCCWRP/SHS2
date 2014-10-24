@@ -241,8 +241,7 @@ var appRouter = new (Backbone.Router.extend({
 		var dirtyKey = window.localStorage.getItem("http://data.sccwrp.org/shs/index.php/surveys_dirty");
 		if (dirtyKey){
 			console.log("dirtyKey: "+dirtyKey);
-			//submitLocal(dirtyKey, startWeekly);
-			submitLocal(dirtyKey);
+			//submitLocal(dirtyKey); -- need to fix submission through history
 			startWeekly();
 		} else {
 			startWeekly();
@@ -377,6 +376,7 @@ var app = {
   	Backbone.history.start({pushState: true});
 	// check network status
  	networkStatus = navigator.onLine ? 'online' : 'offline';
+	FastClick.attach(document.body);
 	appRouter.start(function(){
 		alert("done");
 	});

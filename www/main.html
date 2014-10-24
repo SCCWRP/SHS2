@@ -48,6 +48,7 @@
 	<script src="js/vendor/json2.js"></script>
 	<script src="js/vendor/chance.min.js"></script>
 	<script type="text/javascript" src="http://dev.jtsage.com/cdn/simpledialog/latest/jquery.mobile.simpledialog2.min.js"></script>
+	<script type="text/javascript" src="js/vendor/fastclick.js"></script>
 	<script type="text/template" id="tpl-contact-details">
     		<div><p>If you have any questions, comments, or concerns about this application feel free to email us at <br><br><a href="mailto:shs@sccwrp.org">shs@sccwrp.org</a></p>
 		Version 2.0.1
@@ -445,11 +446,11 @@
             $('#modLabel').css('width','110px');
             $('#fullLabel').css('width','110px');
 	    if(deviceType == "iPhone"){
-		$('.ui-title').css('font-size','18px');
-		$('multi-view').css('font-size','18px');
-		$('multi-view').css('margin-left','5%');
-		$('multi-select').css('font-size','18px');
-		$('multi-select').css('margin-left','5%');
+			$('.ui-title').css('font-size','18px');
+			$('multi-view').css('font-size','1.0em');
+			$('multi-view').css('margin-left','2%');
+			$('multi-select').css('font-size','1.0em');
+			$('multi-select').css('margin-left','2%');
 	    }
         } else if (deviceType == "Android"){
             $('#Mod-bar').css('width','60%');
