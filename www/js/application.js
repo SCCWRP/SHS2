@@ -376,6 +376,7 @@ var app = {
   	Backbone.history.start({pushState: true});
 	// check network status
  	networkStatus = navigator.onLine ? 'online' : 'offline';
+	FastClick.attach(document.body);
 	appRouter.start(function(){
 		alert("done");
 	});
