@@ -110,7 +110,6 @@ var LoginView = Backbone.View.extend({
 	        this.undelegateEvents();
 	        this.$el.removeData().unbind();
 	        Backbone.View.prototype.remove.call(this);
-		$("#restart").show();
 	},
 	render: function(){
 		console.log("LoginView render");
@@ -122,7 +121,6 @@ var LoginView = Backbone.View.extend({
 		$("#footer").show();
 		$("#back").hide();
 		$("#forward").hide();
-		$("#restart").hide();
 		$(this.el).html(this.template());	
 		//$(this.el).trigger("create");
 		//$(this.el).popup("open");
