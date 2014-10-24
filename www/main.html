@@ -118,7 +118,7 @@
 	  </div>
 	</script>
 	<script type="text/template" id="tpl-header-details">
-		<h1 id="question" class="ui-title" role="heading" aria-level="1">Surfer Health Survey - Full Study Beta</h1>
+		<h1 id="question" class="ui-title" role="heading" aria-level="1">Surfer Health Survey - Beta</h1>
 		<form>
 		<a href="./index.html" id="home" data-role="button" data-icon="home" class="ui-btn-right">Home</a>
 		</form>
@@ -444,6 +444,9 @@
             $('#Full-bar').css('width','60%');
             $('#modLabel').css('width','110px');
             $('#fullLabel').css('width','110px');
+	    if(deviceType == "iPhone"){
+		$('.ui-title').css('font-size','18px');
+	    }
         } else if (deviceType == "Android"){
             $('#Mod-bar').css('width','60%');
             $('#Full-bar').css('width','60%');
