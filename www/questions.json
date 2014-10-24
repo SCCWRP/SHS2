@@ -655,7 +655,7 @@
 	"title": "Which days?",
 	"action": "none",
       	"num": "q45ag",
-      	"type": "radio",
+      	"type": "sevenday",
       	"menu": "Yes,No",
         "other": "n",
 	"otype": "",
