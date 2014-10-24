@@ -28,7 +28,6 @@ var LoginView = Backbone.View.extend({
 			if(data.status == "404"){
 				alert("User not found...Try again or enroll");
 				that.cleanup();
-				//appRouter.navigate('/', {trigger: true});
 				location.reload();
 			}
 			 //if(t==="timeout"){ alert("Server Inaccessible contact Paul Smith"); }
@@ -37,11 +36,12 @@ var LoginView = Backbone.View.extend({
 			if(data.event == false){
 				console.log(data);
 				alert("Failed to login...Try again");
-				return;
+				that.cleanup();
+				location.reload();
 			//console.log(data.event.id);
 			//console.log(typeof(data.event.id));
 			} else {
-				$("#popupInfo").popup("close");
+				//$("#popupInfo").popup("close");
 				$("#back").show();
 				$("#forward").show();
 				//console.log("login");
@@ -104,6 +104,10 @@ var LoginView = Backbone.View.extend({
 		$(this.el).html("<div id='intro'>Welcome to the Surfer Health Study enrollment website. The Surfer Health Study is a research project in San Diego County led by investigators at the Southern California Coastal Water Research Project (www.sccwrp.org), the School of Public Health at the University of California at Berkeley (www.sph.berkeley.edu), and the Surfrider Foundation (www.surfrider.org). The objective of the study is to determine whether surfers are at risk of illness from ocean exposure on the California coast. The study will collect information about surf activity and illness over the next 3 months by having surfers report information each week through a website or smartphone app. If you are interested in participating, then please answer the following eligibility questions. If you are eligible, then you can read more details about the study, the benefits of participating, and then you can decide whether you are willing to participate. If you decide to participate, you will need to complete an enrollment survey that will require 15-20 minutes.<br><input type='button' data-role='button' id='summaryBtn' value='Tap to Start' /></div>");	
 		$('#content').html($(this.el));
 		$(this.el).trigger('create');
+		var introForm = $('#intro').height();
+		var oneForm = $('#one').height();
+		var newHeight = (introForm + oneForm + "px");
+		$('#one').css('height',newHeight);
 	},
 	cleanup: function() {
 		console.log("LoginView cleanup");
