@@ -108,6 +108,7 @@ var LoginView = Backbone.View.extend({
 		var oneForm = $('#one').height();
 		var newHeight = (introForm + oneForm + "px");
 		$('#one').css('height',newHeight);
+		$("#intro").css('position', 'absolute');
 	},
 	cleanup: function() {
 		console.log("LoginView cleanup");

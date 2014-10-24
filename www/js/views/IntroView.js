@@ -27,6 +27,7 @@ var IntroView = Backbone.View.extend({
 		$("#popupInfo").html( new LoginView().render().el );
 		$("#popupInfo").trigger("create");
 		$("#popupInfo").popup("open");
+		appRouter.css();
 	},
 	showMap: function(){
 	  if (networkStatus != 'offline'){
