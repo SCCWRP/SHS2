@@ -12,9 +12,11 @@ var FooterView = Backbone.View.extend({
 		"click #restartRestart": "reload"
 	},
     	back: function (e) { 
+	  	e.preventDefault();
 		this.trigger("back");
 	},
     	forward: function (e) { 
+	  	e.preventDefault();
 		this.trigger("forward");
 	},
     	restart: function (e) { 
