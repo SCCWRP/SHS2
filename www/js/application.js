@@ -23,6 +23,13 @@ var appRouter = new (Backbone.Router.extend({
 	     console.log("css");
 	     $('#content').trigger('create');
 	     $('html,body').animate({ scrollTop: '0px'}, 0);
+	    if(deviceType == "iPhone"){
+			$('.ui-title').css('font-size','18px');
+			$('multi-view').css('font-size','18px');
+			$('multi-view').css('margin-left','2%');
+			$('multi-select').css('font-size','18px');
+			$('multi-select').css('margin-left','2%');
+	    }
 	     appRouter.resizePage();
 	     appRouter.positionFooter();
 	     //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
