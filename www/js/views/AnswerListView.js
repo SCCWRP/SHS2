@@ -18,25 +18,7 @@ var AnswerListView = Backbone.View.extend({
 				$('#forward').show();
 			};
 		});
-		this.listenTo(this, 'dialog', function (event) {
-			var that = this;
-			console.log("dialog test");
-			$('<div>').simpledialog2({
-				    mode: 'button',
-				    headerText: '',
-				    headerClose: true,
-				    buttonPrompt: 'Type your response',
-				    buttonInput: true,
-				    buttons : {
-				          'OK': {
-					          click: function () { 
-							that.saveAnswer(null, false, $.mobile.sdLastInput);
-						}
-					},
-				    }
-			  })
-	 	});
-	},
+		},
 	events:{
 		"click .save":"saveAnswer",
     		"click .decline":"declineAnswer",
@@ -203,7 +185,6 @@ var AnswerListView = Backbone.View.extend({
 			var currentAnswer = "Did not Enter";	
 		};
 		if(currentAnswer == "Other") {
-			this.trigger("dialog");
 			return;
 		};
 		// current question
@@ -385,6 +366,28 @@ var AnswerListView = Backbone.View.extend({
 		$(headerView.el).show();
 		$(footerView.el).show();
 		$(this.el).html(this.template(this.model.toJSON()));
+		$('select').on('change', function(s) {
+				var selectTarget = $(s.currentTarget);
+				if(selectTarget.val() == "Other") {
+					$('<div>').simpledialog2({
+					    mode: 'button',
+				   	    headerText: '',
+				   	    headerClose: true,
+				    	    buttonPrompt: 'Type your response',
+				    	    buttonInput: true,
+				    	    buttons : {
+				          	'OK': {
+					          click: function () { 
+							var newoption = $.mobile.sdLastInput;
+							$("select").append($("<option></option>").attr("value", newoption).text(newoption));
+						       	selectTarget.val(newoption);
+							selectTarget.trigger('change');
+							}
+						},
+				    	   }
+			 	 	})	
+				};
+			});
 		//$('#multi-view').trigger('create');
 		//$("input[type='checkbox']").checkboxradio();
 		//$(this.el).trigger('create');
