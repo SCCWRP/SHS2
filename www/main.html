@@ -357,7 +357,7 @@
 		  <% }; %>
 		</fieldset>
 		<% var propagate1 = "$('[name=enter0]').on('change', function() {$('.enter').not('[name=enter0]').each(function () {$(this).val($('[name=enter0]').val());$(this).trigger('change');})});" %>
-		<% var propagate2 = "$('[name=exit0]').on('change', function() {$('.exit').each(function () {$(this).val($('[name=exit0]').val())})});" %>
+		<% var propagate2 = "$('[name=exit0]').on('change', function() {$('.exit').not('[name=exit0]').each(function () {$(this).val($('[name=exit0]').val());$(this).trigger('change');})});" %>
 		<%= "<script" + ">" + propagate1 +  "</script" + ">" %>
 		<%= "<script" + ">" + propagate2 +  "</script" + ">" %>
 	  <% } else if ((type) == "text"){  %>
