@@ -26,10 +26,20 @@ var appRouter = new (Backbone.Router.extend({
 	    if(deviceType == "iPhone"){
 			$('.ui-title').css('font-size','18px');
 			$('#multi-view .ui-btn-text').css('font-size','18px');
-			$('#multi-view').css('margin-left','5%');
+			$('#multi-view').css('margin-left','10%');
 			$('#multi-select h3').css('font-size','18px');
 			$('#multi-select select').css('font-size','18px');
-			$('#multi-select').css('margin-left','5%');
+			$('#multi-select').css('margin-left','10%');
+	    }
+	    if(deviceType == "Android"){
+		    var viewport = {
+		        width  : $(window).width(),
+			height : $(window).height()
+		    };
+
+		    //can access dimensions like this:
+		    alert("viewport.width: "+viewport.width);
+		    alert("viewport.height: "+viewport.height);
 	    }
 	     appRouter.resizePage();
 	     appRouter.positionFooter();
@@ -120,7 +130,7 @@ var appRouter = new (Backbone.Router.extend({
 	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
 	if (deviceType != "iPhone") { 
 		$('#footer').css('visibility','visible');
-		$('#footer ui-btn-text').css('font-size','18px');
+		$('#footer .ui-title').css('font-size','18px');
 	}
 	var drop = (deviceType == "iPhone") ? /*-59*/3:3;
 	//console.log("window scrolltop: "+ $(window).scrollTop());
