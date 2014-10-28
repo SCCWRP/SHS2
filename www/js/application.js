@@ -26,10 +26,10 @@ var appRouter = new (Backbone.Router.extend({
 	    if(deviceType == "iPhone"){
 			$('.ui-title').css('font-size','18px');
 			$('#multi-view .ui-btn-text').css('font-size','18px');
-			$('#multi-view').css('margin-left','2%');
+			$('#multi-view').css('margin-left','5%');
 			$('#multi-select h3').css('font-size','18px');
 			$('#multi-select select').css('font-size','18px');
-			$('#multi-select').css('margin-left','2%');
+			$('#multi-select').css('margin-left','5%');
 	    }
 	     appRouter.resizePage();
 	     appRouter.positionFooter();
@@ -150,6 +150,7 @@ var appRouter = new (Backbone.Router.extend({
 	 }
   },
   resizePage2: function(formName){
+	       console.log("resizePage2");
 	       var multiBottom = $('#'+formName).offset().top+$('#'+formName).height();
 	       var viewBottom = $('#one').height()-$('#footer').height();
 	       	var minHeight = "" + (multiBottom + 400) + "px";
@@ -190,6 +191,10 @@ var appRouter = new (Backbone.Router.extend({
 	}
 	if($('#multi-select').height()){
 		var multiHeight = ($('#multi-select').height()+500+"px");
+		$('#one').css('height',multiHeight);
+	}
+	if($('#multi-view').height()){
+		var multiHeight = ($('#multi-view').height()+500+"px");
 		$('#one').css('height',multiHeight);
 	}
 	console.log("oneHeight: "+oneHeight);

@@ -59,7 +59,7 @@ var LoginView = Backbone.View.extend({
 	  } else {
 		alert("Login Locally");
   	  	var getUserKey = window.localStorage.getItem("user");
-		alert(getUserKey);
+		//alert(getUserKey);
 		if(getUserKey != null){
   	  		// loop through userKey looking to match login with key
 			// may be able to just use initial user key
