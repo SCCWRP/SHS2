@@ -1,3 +1,7 @@
+var emailpattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+var zippattern = new RegExp(/(^\d{5}$)|(^\d{5}-\d{4}$)/);
+var phonepattern = new RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
+    
 var QuestionList = Backbone.Collection.extend({
 	initialize: function(){
 		//this.on('sync',this.getQuestion,this);
@@ -8,6 +12,9 @@ var QuestionList = Backbone.Collection.extend({
 		var valLU = {};
 		var validationFuncs = {
 			"noVal": function () {},
+			"zipval":  function (q) {if(q && !zippattern.test(q)){ return "Invalid ZIP code";}},
+  			"phoneval": function (q) {if(q && !phonepattern.test(q)){ return "Invalid phone number";}},
+    			"emailval": function (q) {if(q && !emailpattern.test(q)) return "Invalid email";}, 
 			"0": function(q) {if(q == "") return "A response is required before continuing";},
 			"select": function(q) {if(q && q == "Select One") return "A response is required before continuing";},
 			"1": function(q) {if(q && q.length < 2) return "Invalid phone number";}, 

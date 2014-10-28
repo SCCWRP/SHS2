@@ -88,7 +88,8 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "6"
+      	"id": "6",
+	"check": "phoneval"
   },
   {
 	"title": "Please re-enter your phone number (to confirm)",
@@ -119,7 +120,8 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "8"
+      	"id": "8",
+	"check": "emailval"
   },
   {
 	"title": "Please re-enter your email address (to confirm)",
@@ -182,7 +184,8 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "12"
+      	"id": "12",
+	"check": "zipval"
   },
   {
 	"title": "How many years have you surfed?",
