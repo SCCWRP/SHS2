@@ -44,7 +44,7 @@ var appRouter = new (Backbone.Router.extend({
 		 console.log("gift");
 		 console.log(response.attributes.user_visits);
 		 if(response.attributes.user_visits){
-		 	var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys when you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift +"";
+		 	var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys.<br>When you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift +"";
 			console.log(message);
 		 	$("#popupTip").trigger("create");
 		 	$("#popupTip").popup("open");
@@ -120,6 +120,7 @@ var appRouter = new (Backbone.Router.extend({
 	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
 	if (deviceType != "iPhone") { 
 		$('#footer').css('visibility','visible');
+		$('#footer ui-btn-text').css('font-size','18px');
 	}
 	var drop = (deviceType == "iPhone") ? /*-59*/3:3;
 	//console.log("window scrolltop: "+ $(window).scrollTop());
