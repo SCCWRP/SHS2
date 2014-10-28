@@ -88,7 +88,9 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "6"
+      	"id": "6",
+	"placeholder": "999-999-9999",
+	"check": "phoneval"
   },
   {
 	"title": "Please re-enter your phone number (to confirm)",
@@ -104,6 +106,7 @@
 	"errmessage": "",
       	"status": "incomplete",
       	"id": "7",
+	"placeholder": "999-999-9999",
 	"check": "0,checkq7"
   },
   {
@@ -119,7 +122,9 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "8"
+      	"id": "8",
+	"placeholder": "surfer@example.com",
+	"check": "emailval"
   },
   {
 	"title": "Please re-enter your email address (to confirm)",
@@ -135,6 +140,7 @@
 	"errmessage": "",
       	"status": "incomplete",
       	"id": "9",
+	"placeholder": "surfer@example.com",
 	"check": "0,checkq9"
   },
   {
@@ -182,7 +188,9 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "12"
+      	"id": "12",
+	"placeholder": "Enter your Zip",
+	"check": "zipval"
   },
   {
 	"title": "How many years have you surfed?",

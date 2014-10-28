@@ -21,6 +21,7 @@ var AnswerListView = Backbone.View.extend({
 		},
 	events:{
 		"click .save":"saveAnswer",
+		"change select[name=aid]":"saveAnswer",
     		"click .decline":"declineAnswer",
     		"click #decline":"declineAnswer",
     		"change input[type=radio]":"saveAnswer"
@@ -63,6 +64,7 @@ var AnswerListView = Backbone.View.extend({
 			t.set({	'title': gotQuestion.attributes.title,
 				'menu': fixMenu,
 				'type': gotQuestion.attributes.type,
+				'placeholder': gotQuestion.attributes.placeholder,
 				'decline': gotQuestion.attributes.decline});
 			questionListView = new QuestionListView({model: gotQuestion});
 			questionListView.render();
