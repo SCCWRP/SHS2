@@ -23,6 +23,8 @@ var appRouter = new (Backbone.Router.extend({
 	     console.log("css");
 	     $('#content').trigger('create');
 	     $('html,body').animate({ scrollTop: '0px'}, 0);
+	     appRouter.resizePage();
+	     appRouter.positionFooter();
 	    if(deviceType == "iPhone"){
 			$('.ui-title').css('font-size','18px');
 			$('#multi-view .ui-btn-text').css('font-size','18px');
@@ -41,8 +43,6 @@ var appRouter = new (Backbone.Router.extend({
 		    alert("viewport.width: "+viewport.width);
 		    alert("viewport.height: "+viewport.height);
 	    }
-	     appRouter.resizePage();
-	     appRouter.positionFooter();
 	     //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
   },
   gift: function(giftid){
