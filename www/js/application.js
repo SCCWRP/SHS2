@@ -26,10 +26,10 @@ var appRouter = new (Backbone.Router.extend({
 	    if(deviceType == "iPhone"){
 			$('.ui-title').css('font-size','18px');
 			$('#multi-view .ui-btn-text').css('font-size','18px');
-			$('#multi-view').css('margin-left','0%');
+			$('#multi-view').css('margin-left','5%');
 			$('#multi-select h3').css('font-size','18px');
 			$('#multi-select select').css('font-size','18px');
-			$('#multi-select').css('margin-left','0%');
+			$('#multi-select').css('margin-left','5%');
 	    }
 	     appRouter.resizePage();
 	     appRouter.positionFooter();
@@ -44,7 +44,7 @@ var appRouter = new (Backbone.Router.extend({
 		 console.log("gift");
 		 console.log(response.attributes.user_visits);
 		 if(response.attributes.user_visits){
-		 	var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys when you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift +"";
+		 	var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys.<br>When you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift +"";
 			console.log(message);
 		 	$("#popupTip").trigger("create");
 		 	$("#popupTip").popup("open");
@@ -120,6 +120,7 @@ var appRouter = new (Backbone.Router.extend({
 	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
 	if (deviceType != "iPhone") { 
 		$('#footer').css('visibility','visible');
+		$('#footer ui-btn-text').css('font-size','18px');
 	}
 	var drop = (deviceType == "iPhone") ? /*-59*/3:3;
 	//console.log("window scrolltop: "+ $(window).scrollTop());
@@ -150,6 +151,7 @@ var appRouter = new (Backbone.Router.extend({
 	 }
   },
   resizePage2: function(formName){
+	       console.log("resizePage2");
 	       var multiBottom = $('#'+formName).offset().top+$('#'+formName).height();
 	       var viewBottom = $('#one').height()-$('#footer').height();
 	       	var minHeight = "" + (multiBottom + 400) + "px";
@@ -190,6 +192,10 @@ var appRouter = new (Backbone.Router.extend({
 	}
 	if($('#multi-select').height()){
 		var multiHeight = ($('#multi-select').height()+500+"px");
+		$('#one').css('height',multiHeight);
+	}
+	if($('#multi-view').height()){
+		var multiHeight = ($('#multi-view').height()+500+"px");
 		$('#one').css('height',multiHeight);
 	}
 	console.log("oneHeight: "+oneHeight);

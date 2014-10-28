@@ -70,7 +70,7 @@ var AnswerListView = Backbone.View.extend({
 			//that.render();
 			$("#content").append(that.render().el);
 			updateProgressBar(t);
-			//that.render();
+			//appRouter.resizePage2("content");
 			appRouter.css();
 			//$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
 		}

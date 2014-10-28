@@ -44,6 +44,7 @@ var LoginView = Backbone.View.extend({
 				//$("#popupInfo").popup("close");
 				$("#back").show();
 				$("#forward").show();
+				$("#footer").show();
 				//console.log("login");
 				//console.log(data.event.contact);
 				USERID = Number(data.event.id);
@@ -59,6 +60,7 @@ var LoginView = Backbone.View.extend({
 	  } else {
 		alert("Login Locally");
   	  	var getUserKey = window.localStorage.getItem("user");
+		alert(getUserKey);
 		if(getUserKey != null){
   	  		// loop through userKey looking to match login with key
 			// may be able to just use initial user key
@@ -66,7 +68,9 @@ var LoginView = Backbone.View.extend({
 			var splitKeyCount = splitKey.length;
 			for(var i=0; i<splitKeyCount; i++){
 				var retrieveKey = window.localStorage.getItem("user-"+ splitKey[i]);
+				alert("retrieveKey: "+ retrieveKey);
 				var retrieveObject = jQuery.parseJSON(retrieveKey);
+				alert("retrieveObject: "+ retrieveObject);
 				if(loginID == retrieveObject.email || loginID == retrieveObject.phone){
 					loginStatus = true;
 	  				USERID = retrieveObject.id;
@@ -90,6 +94,8 @@ var LoginView = Backbone.View.extend({
 		this.cleanup();
 		$("#back").show();
 		$("#forward").show();
+		$("#home").show();
+		$("#footer").show();
 		//if (networkStatus != 'offline' && isDevice == true){
 		if (networkStatus != 'offline'){
 			appRouter.signup();
@@ -119,11 +125,11 @@ var LoginView = Backbone.View.extend({
 	render: function(){
 		console.log("LoginView render");
 		$("#header").show();
-		$("#home").show();
+		$("#home").hide();
 		//$("#content").html("");
 		/* footer is showing in original - shouldnt be just enable home button instead - wont do home button wrecks ios*/
 		//$('#forward').hide();
-		$("#footer").show();
+		$("#footer").hide();
 		$("#back").hide();
 		$("#forward").hide();
 		$(this.el).html(this.template());	
