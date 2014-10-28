@@ -136,17 +136,18 @@ var appRouter = new (Backbone.Router.extend({
   receipt: function(appid){
 	 console.log("receipt");
 	 var receipt = new Receipt({id: appid});
-	 //console.log(receipt);
 	 //receiptView = new ReceiptView({model: receipt});
 	// $("#content").html( new ReceiptView({model: response}).render().el );
 	 receipt.fetch({success: successMessage,error: errorMessage});
 	 function successMessage(response){
-		 //console.log(response);
+		 console.log("receipt success");
+		 console.log(response);
 		 $("#content").html( new ReceiptView({model: receipt}).render().el );
 		 $('#content').trigger('create');
 		 //$("#content").html( new ReceiptView({model: response}).render().el );
 	 }
 	 function errorMessage(response){
+		 console.log("receipt fail");
 		 console.log(response);
 	 }
   },

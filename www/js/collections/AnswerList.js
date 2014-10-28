@@ -3,5 +3,5 @@ var AnswerList = Backbone.Collection.extend({
             //alert("AnswerList Start");
         },
 	model: Answer,
-	url: 'http://data.sccwrp.org/shs/index.php/surveys'
+	url: 'http://data.sccwrp.org/shs2/index.php/surveys'
 });
