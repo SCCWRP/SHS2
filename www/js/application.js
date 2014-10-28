@@ -28,10 +28,10 @@ var appRouter = new (Backbone.Router.extend({
 	    if(deviceType == "iPhone"){
 			$('.ui-title').css('font-size','18px');
 			$('#multi-view .ui-btn-text').css('font-size','18px');
-			$('#multi-view').css('margin-left','10%');
+			$('#multi-view').css('margin-left','15%');
+			$('#multi-select').css('margin-left','15%');
 			$('#multi-select h3').css('font-size','18px');
 			$('#multi-select select').css('font-size','18px');
-			$('#multi-select').css('margin-left','10%');
 	    }
 	    if(deviceType == "Android"){
 		    var viewport = {
@@ -54,7 +54,7 @@ var appRouter = new (Backbone.Router.extend({
 		 console.log("gift");
 		 console.log(response.attributes.user_visits);
 		 if(response.attributes.user_visits){
-		 	var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys.<br>When you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift +"";
+		 	var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys. When you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift +"";
 			console.log(message);
 		 	$("#popupTip").trigger("create");
 		 	$("#popupTip").popup("open");
