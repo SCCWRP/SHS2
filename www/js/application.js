@@ -24,7 +24,7 @@ var appRouter = new (Backbone.Router.extend({
 	     $('#content').trigger('create');
 	     $('html,body').animate({ scrollTop: '0px'}, 0);
 	     appRouter.resizePage();
-	     //appRouter.positionFooter();
+	     appRouter.positionFooter();
 	    if(deviceType == "iPhone"){
 			$('.ui-title').css('font-size','18px');
 			$('#multi-view .ui-btn-text').css('font-size','18px');
@@ -32,12 +32,6 @@ var appRouter = new (Backbone.Router.extend({
 			$('#multi-select').css('margin-left','15%');
 			$('#multi-select h3').css('font-size','18px');
 			$('#multi-select select').css('font-size','18px');
-			$('#multi-select').focus(function(){
-				$('#footer').hide();
-			});
-			$('#multi-select').blur(function(){
-				$('#footer').show();
-			});
 	    }
 	    if(deviceType == "Android"){
 		    var viewport = {
@@ -49,7 +43,6 @@ var appRouter = new (Backbone.Router.extend({
 		    alert("viewport.width: "+viewport.width);
 		    alert("viewport.height: "+viewport.height);
 	    }
-	     //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
   },
   gift: function(giftid){
 	//console.log("gift");
@@ -130,7 +123,7 @@ var appRouter = new (Backbone.Router.extend({
         questionList.fetch({ success: function(response){ console.log("questionList fetch - success"); questionList.getQuestion(); } });
   },
   positionFooter: function(){
-	alert("positionFooter");
+	console.log("positionFooter");
 	$footer = $("#footer");
 	footerHeight = $footer.height();
 	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
@@ -342,7 +335,7 @@ var appRouter = new (Backbone.Router.extend({
 	//$("#landing").trigger("create");
 	// not sure whether this is the best place to load the questions collection
 	appRouter.question();
-        //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter);  - temporary
+        $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter);  - temporary
   }
 }));
 var app = {
