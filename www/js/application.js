@@ -103,18 +103,20 @@ var appRouter = new (Backbone.Router.extend({
 	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
 	if (deviceType != "iPhone") { 
 		$('#footer').css('visibility','visible');
-		$('#footer .ui-title').css('font-size','10px');
+		$('#footer').css('font-size','10px');
 	}
 	var drop = (deviceType == "iPhone") ? /*-59*/3:3;
 	//console.log("window scrolltop: "+ $(window).scrollTop());
 	//console.log("window height: "+ $(window).height());
-	footerTop = ($(window).scrollTop()+$(window).height()-footerHeight)-drop+"px";       
+	//footerTop = ($(window).scrollTop()+$(window).height()-footerHeight)-drop+"px";       
+	/*
 	$footer.css({
 		position: "fixed",
 		bottom: 0,
 		left:0,
 		right:0
 	});
+	*/
   },
   receipt: function(appid){
 	 console.log("receipt");
@@ -310,7 +312,14 @@ var appRouter = new (Backbone.Router.extend({
 	//$("#landing").trigger("create");
 	// not sure whether this is the best place to load the questions collection
 	appRouter.question();
-        $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter);  - temporary
+        $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter); 
+	// controls keyboard issue with form elements - ios select
+  	document.addEventListener("showkeyboard", function() {
+	      $("#footer").css('display','none');
+        }, false);
+	document.addEventListener("hidekeyboard", function() {
+	      $("#footer").css('display','inline');
+        }, false);
   }
 }));
 var app = {
