@@ -53,7 +53,7 @@ var AnswerListView = Backbone.View.extend({
 		$("#footer").hide();
 	},
 	showFooter: function(event){
-		//$("#footer").css('display','inline');
+		$("#footer").css('display','inline');
 		$("#footer").show();
 		appRouter.positionFooter();
 	},
