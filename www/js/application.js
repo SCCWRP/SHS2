@@ -29,7 +29,7 @@ var appRouter = new (Backbone.Router.extend({
 			$('.ui-title').css('font-size','18px');
 			$('#multi-view .ui-btn-text').css('font-size','18px');
 			$('#multi-view').css('margin-left','15%');
-			$('#multi-select').css('margin-left','15%');
+			$('#multi-select').css('margin-left','5%');
 			$('#multi-select h3').css('font-size','18px');
 			$('#multi-select select').css('font-size','18px');
 	    }
