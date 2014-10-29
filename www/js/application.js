@@ -282,7 +282,7 @@ var appRouter = new (Backbone.Router.extend({
 			answerList = new AnswerList();
 			//this.answerList = answerList;
 			answerList.create({qcount: 25, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
-	  		  wait: true,
+	  		  wait: false,
 	  		  success: function(model,response){
 				answer = answerList.get(response.id);
 				answerListView = new AnswerListView({model: answer});
