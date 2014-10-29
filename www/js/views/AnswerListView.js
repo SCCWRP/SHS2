@@ -54,9 +54,9 @@ var AnswerListView = Backbone.View.extend({
 	},
 	showFooter: function(event){
 		alert(event);
+		$('html,body').animate({ scrollTop: '0px' }, 700);
 		$("#footer").css('display','inline');
 		$("#footer").show();
-		$('html,body').animate({ scrollTop: '0px' }, 0);
 		appRouter.positionFooter();
 	},
 	nextQuestion:function(t, response, options){	
