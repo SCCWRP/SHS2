@@ -313,16 +313,6 @@ var appRouter = new (Backbone.Router.extend({
 	// not sure whether this is the best place to load the questions collection
 	appRouter.question();
         $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter); 
-	// controls keyboard issue with form elements - ios select
-  	document.addEventListener("showkeyboard", function() {
-	      //$("#footer").css('display','none');
-	      alert("hide footer");
-	      $("[data-role=footer]").hide();
-        }, false);
-	document.addEventListener("hidekeyboard", function() {
-	      //$("#footer").css('display','inline');
-	      $("[data-role=footer]").show();
-        }, false);
   }
 }));
 var app = {
@@ -388,6 +378,16 @@ var app = {
 	// check network status
  	networkStatus = navigator.onLine ? 'online' : 'offline';
 	FastClick.attach(document.body);
+	// controls keyboard issue with form elements - ios select
+  	document.addEventListener("showkeyboard", function() {
+	      //$("#footer").css('display','none');
+	      alert("hide footer");
+	      $("[data-role=footer]").hide();
+        }, false);
+	document.addEventListener("hidekeyboard", function() {
+	      //$("#footer").css('display','inline');
+	      $("[data-role=footer]").show();
+        }, false);
 	appRouter.start(function(){
 		alert("done");
 	});
