@@ -22,8 +22,6 @@ var AnswerListView = Backbone.View.extend({
 	events:{
 		"click .save":"saveAnswer",
 		"change select[name=aid]":"saveAnswer",
-		//"focus #multi-select":"hideFooter",
-		//"blur #multi-select":"showFooter",
     		"click .decline":"declineAnswer",
     		"click #decline":"declineAnswer",
     		"change input[type=radio]":"saveAnswer"
@@ -48,14 +46,6 @@ var AnswerListView = Backbone.View.extend({
 			appRouter.navigate("");
 		};
 	},
-	hideFooter: function(event){
-		alert("hideFooter");
-		$('#footer').hide();
-        },
-	showFooter: function(event){
-		alert("showFooter");
-		$('#footer').show();
-        },
 	nextQuestion:function(t, response, options){	
 		console.log("nextQuestion");
 		console.log(this.qHistory);
