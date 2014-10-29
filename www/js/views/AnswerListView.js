@@ -22,6 +22,7 @@ var AnswerListView = Backbone.View.extend({
 	events:{
 		"click .save":"saveAnswer",
 		"change select[name=aid]":"saveAnswer",
+		"focus select":"showFooter",
     		"click .decline":"declineAnswer",
     		"click #decline":"declineAnswer",
     		"change input[type=radio]":"saveAnswer"
@@ -45,6 +46,9 @@ var AnswerListView = Backbone.View.extend({
 		} else {
 			appRouter.navigate("");
 		};
+	},
+	showFooter: function(event){
+		alert("showFooter");
 	},
 	nextQuestion:function(t, response, options){	
 		console.log("nextQuestion");
