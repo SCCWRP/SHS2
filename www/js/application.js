@@ -40,9 +40,10 @@ var appRouter = new (Backbone.Router.extend({
 		    };
 
 		    //can access dimensions like this:
-		    alert("viewport.width: "+viewport.width);
-		    alert("viewport.height: "+viewport.height);
+		    //alert("viewport.width: "+viewport.width);
+		    //alert("viewport.height: "+viewport.height);
 	    }
+	    $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter);
   },
   gift: function(giftid){
 	//console.log("gift");
