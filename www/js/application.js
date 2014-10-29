@@ -23,16 +23,26 @@ var appRouter = new (Backbone.Router.extend({
 	     console.log("css");
 	     $('#content').trigger('create');
 	     $('html,body').animate({ scrollTop: '0px'}, 0);
+	     appRouter.resizePage();
+	     appRouter.positionFooter();
 	    if(deviceType == "iPhone"){
 			$('.ui-title').css('font-size','18px');
 			$('#multi-view .ui-btn-text').css('font-size','18px');
-			$('#multi-view').css('margin-left','5%');
+			$('#multi-view').css('margin-left','15%');
+			$('#multi-select').css('margin-left','15%');
 			$('#multi-select h3').css('font-size','18px');
 			$('#multi-select select').css('font-size','18px');
-			$('#multi-select').css('margin-left','5%');
 	    }
-	     appRouter.resizePage();
-	     appRouter.positionFooter();
+	    if(deviceType == "Android"){
+		    var viewport = {
+		        width  : $(window).width(),
+			height : $(window).height()
+		    };
+
+		    //can access dimensions like this:
+		    alert("viewport.width: "+viewport.width);
+		    alert("viewport.height: "+viewport.height);
+	    }
 	     //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
   },
   gift: function(giftid){
@@ -44,7 +54,7 @@ var appRouter = new (Backbone.Router.extend({
 		 console.log("gift");
 		 console.log(response.attributes.user_visits);
 		 if(response.attributes.user_visits){
-		 	var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys.<br>When you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift +"";
+		 	var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys. When you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift +"";
 			console.log(message);
 		 	$("#popupTip").trigger("create");
 		 	$("#popupTip").popup("open");
@@ -88,13 +98,13 @@ var appRouter = new (Backbone.Router.extend({
         questionList.fetch({ success: function(response){ console.log("questionList fetch - success"); questionList.getQuestion(); } });
   },
   positionFooter: function(){
-	//console.log("positionFooter");
+	console.log("positionFooter");
 	$footer = $("#footer");
 	footerHeight = $footer.height();
 	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
 	if (deviceType != "iPhone") { 
 		$('#footer').css('visibility','visible');
-		$('#footer ui-btn-text').css('font-size','18px');
+		$('#footer .ui-title').css('font-size','10px');
 	}
 	var drop = (deviceType == "iPhone") ? /*-59*/3:3;
 	//console.log("window scrolltop: "+ $(window).scrollTop());
@@ -115,10 +125,11 @@ var appRouter = new (Backbone.Router.extend({
 	 receipt.fetch({success: successMessage,error: errorMessage});
 	 function successMessage(response){
 		 console.log("receipt success");
-		 console.log(response);
+		 //console.log(response);
+		 console.log(receipt);
+		 //$("#content").html( new ReceiptView({model: response}).render().el );
 		 $("#content").html( new ReceiptView({model: receipt}).render().el );
 		 $('#content').trigger('create');
-		 //$("#content").html( new ReceiptView({model: response}).render().el );
 	 }
 	 function errorMessage(response){
 		 console.log("receipt fail");
@@ -300,7 +311,7 @@ var appRouter = new (Backbone.Router.extend({
 	//$("#landing").trigger("create");
 	// not sure whether this is the best place to load the questions collection
 	appRouter.question();
-        $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
+        $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter); 
   }
 }));
 var app = {

@@ -71,6 +71,8 @@ var LoginView = Backbone.View.extend({
 				alert("retrieveKey: "+ retrieveKey);
 				var retrieveObject = jQuery.parseJSON(retrieveKey);
 				alert("retrieveObject: "+ retrieveObject);
+				alert("retrieveObject.email: "+ retrieveObject.email);
+				alert("retrieveObject.phone: "+ retrieveObject.phone);
 				if(loginID == retrieveObject.email || loginID == retrieveObject.phone){
 					loginStatus = true;
 	  				USERID = retrieveObject.id;

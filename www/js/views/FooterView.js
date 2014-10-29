@@ -32,6 +32,7 @@ var FooterView = Backbone.View.extend({
 		$(this.el).html("");
 		$(this.el).html(this.template());	
 		$('#footer').trigger('create');
+		$('#footer').fixedtoolbar({ hideDuringFocus: "input, select" });
 		return this;
 	}
 });
