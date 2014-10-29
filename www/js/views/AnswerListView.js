@@ -49,11 +49,11 @@ var AnswerListView = Backbone.View.extend({
 		};
 	},
 	hideFooter: function(event){
-		$("#footer").css('display','none');
+		//$("#footer").css('display','none');
 		$("#footer").hide();
 	},
 	showFooter: function(event){
-		$("#footer").css('display','inline');
+		//$("#footer").css('display','inline');
 		$("#footer").show();
 	},
 	nextQuestion:function(t, response, options){	
