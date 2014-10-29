@@ -49,15 +49,13 @@ var AnswerListView = Backbone.View.extend({
 		};
 	},
 	hideFooter: function(event){
-		//$("#footer").css('display','none');
-		//$("#footer").hide();
 		$("#footer").css('display','none');
+		$("#footer").hide();
 	},
 	showFooter: function(event){
-		//$("#footer").css('display','inline');
-		//$("#footer").show();
-		//appRouter.positionFooter();
 		$("#footer").css('display','inline');
+		$("#footer").show();
+		$('html,body').animate({ scrollTop: '0px' }, 0);
 		appRouter.positionFooter();
 	},
 	nextQuestion:function(t, response, options){	
