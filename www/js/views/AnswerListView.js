@@ -50,11 +50,14 @@ var AnswerListView = Backbone.View.extend({
 	},
 	hideFooter: function(event){
 		//$("#footer").css('display','none');
-		$("#footer").hide();
+		//$("#footer").hide();
+		$("#footer").css('display','none');
 	},
 	showFooter: function(event){
+		//$("#footer").css('display','inline');
+		//$("#footer").show();
+		//appRouter.positionFooter();
 		$("#footer").css('display','inline');
-		$("#footer").show();
 		appRouter.positionFooter();
 	},
 	nextQuestion:function(t, response, options){	
