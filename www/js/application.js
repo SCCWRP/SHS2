@@ -378,6 +378,15 @@ var app = {
 	// check network status
  	networkStatus = navigator.onLine ? 'online' : 'offline';
 	FastClick.attach(document.body);
+		// controls keyboard issue with form elements - ios select
+  		document.addEventListener("showkeyboard", function() {
+	      		alert("hide footer");
+	      		//$("[data-role=footer]").hide();
+        	}, false);
+		document.addEventListener("hidekeyboard", function() {
+	      		alert("show footer");
+	      		//$("[data-role=footer]").show();
+        	}, false);
 	appRouter.start(function(){
 		alert("done");
 	});
@@ -390,15 +399,6 @@ var app = {
     		document.addEventListener("deviceready", function(){
 			app.onDeviceReady();
 		},true);
-		// controls keyboard issue with form elements - ios select
-  		document.addEventListener("showkeyboard", function() {
-	      		alert("hide footer");
-	      		$("[data-role=footer]").hide();
-        	}, false);
-		document.addEventListener("hidekeyboard", function() {
-	      		alert("show footer");
-	      		$("[data-role=footer]").show();
-        	}, false);
 	} else {
 		app.onDeviceReady();
 	}
