@@ -22,8 +22,8 @@ var AnswerListView = Backbone.View.extend({
 	events:{
 		"click .save":"saveAnswer",
 		"change select[name=aid]":"saveAnswer",
-		"click #multi-select":"hideFooter",
-		"blur #multi-select":"showFooter",
+		//"focus #multi-select":"hideFooter",
+		//"blur #multi-select":"showFooter",
     		"click .decline":"declineAnswer",
     		"click #decline":"declineAnswer",
     		"change input[type=radio]":"saveAnswer"
