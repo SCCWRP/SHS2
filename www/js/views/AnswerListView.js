@@ -48,7 +48,9 @@ var AnswerListView = Backbone.View.extend({
 		};
 	},
 	showFooter: function(event){
-		alert("showFooter");
+		//alert("showFooter");
+		$("#footer").css('display','none');
+		$("#footer").hide();
 	},
 	nextQuestion:function(t, response, options){	
 		console.log("nextQuestion");
