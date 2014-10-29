@@ -53,6 +53,7 @@ var AnswerListView = Backbone.View.extend({
 		$("#footer").hide();
 	},
 	showFooter: function(event){
+		alert(event);
 		$("#footer").css('display','inline');
 		$("#footer").show();
 		$('html,body').animate({ scrollTop: '0px' }, 0);
