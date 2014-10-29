@@ -151,10 +151,11 @@ var appRouter = new (Backbone.Router.extend({
 	 receipt.fetch({success: successMessage,error: errorMessage});
 	 function successMessage(response){
 		 console.log("receipt success");
-		 console.log(response);
+		 //console.log(response);
+		 console.log(receipt);
+		 //$("#content").html( new ReceiptView({model: response}).render().el );
 		 $("#content").html( new ReceiptView({model: receipt}).render().el );
 		 $('#content').trigger('create');
-		 //$("#content").html( new ReceiptView({model: response}).render().el );
 	 }
 	 function errorMessage(response){
 		 console.log("receipt fail");
