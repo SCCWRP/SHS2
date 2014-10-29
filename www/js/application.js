@@ -342,11 +342,12 @@ var appRouter = new (Backbone.Router.extend({
 	// controls keyboard issue with form elements - ios select
   	document.addEventListener("showkeyboard", function() {
 	      //$("#footer").css('display','none');
-	      $("#footer").hide();
+	      alert("hide footer");
+	      $("[data-role=footer]").hide();
         }, false);
 	document.addEventListener("hidekeyboard", function() {
 	      //$("#footer").css('display','inline');
-	      $("#footer").show();
+	      $("[data-role=footer]").show();
         }, false);
   }
 }));
