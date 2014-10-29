@@ -32,6 +32,12 @@ var appRouter = new (Backbone.Router.extend({
 			$('#multi-select').css('margin-left','15%');
 			$('#multi-select h3').css('font-size','18px');
 			$('#multi-select select').css('font-size','18px');
+			$('#multi-select').focus(function(){
+				$('#footer').hide();
+			});
+			$('#multi-select').blur(function(){
+				$('#footer').show();
+			});
 	    }
 	    if(deviceType == "Android"){
 		    var viewport = {
