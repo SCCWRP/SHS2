@@ -134,15 +134,18 @@
 			<li class="edit" name="edit" id="<%= id %>"><%= id %> - <%= timestamp %></li>
 	</script>
 	<script type="text/template" id="tpl-history-details">
-			//<li class="history" name="history" id="<%= id %>"><%= qtext %></li>
+		<h3> History View <h3>
 		<ul data-role="listview" data-inset="true">
 		<% _.each(elements,function(element,index,list) {  %>
 		<% if(!element) return;  %>
-			//<li data-role="list-divider">ID: <%= qindex %></li>
-			<li data-icon="edit"><a href="#" class="edit" name="edit" id="<%= index %>"><%= element %></a></li>
+		<li data-icon="edit" id = <%= element.id %> >
+				<p> Incomplete survey from <%= (new Date(element.timestamp)).toLocaleString() %> </p>
+				<div class=edit id= <%= element.id %> ><button id= <%= element.id %> >Continue Survey </button></div>
+				<div class=forget id= <%= element.id %> ><button id= <%= element.id %> class="history-forget">Forget Survey </button></div>
+			</li>
 		<% }); %>
 		</ul>
-		<a href="#" id="finish" data-role="button" class="finish">Looks Good</a>
+		<a href="#" id="finish" data-role="button" class="finish">Start a new survey</a>
 	</script>
 	<script type="text/template" id="tpl-receipt-details">
     	<div id="aid" class="form-center-col"><h3>Session Receipt - Click Answer to Edit</h3>

@@ -1,5 +1,5 @@
 var HistoryView = Backbone.View.extend({
-	//el: '#content',
+	el: '#content',
 	template:_.template($('#tpl-history-details').html()),
 	initialize: function(){ //this.model.on('change',this.test,this);
 		//$(this.el).unbind("click");
@@ -7,27 +7,28 @@ var HistoryView = Backbone.View.extend({
 		//this.fixData(response);
 	},
 	events:{
-		"click .history-edit":"editHistory",
-		"click .history-forget":"forgetHistory",
-		"click .history-skip":"skipHistory"
+		"click .edit":"editHistory",
+		"click .forget":"forgetHistory",
+		"click #finish":"skipHistory"
 	},
     	skipHistory: function(event){
 		console.log("skipHistory");
 		event.preventDefault();
+		$("#content").empty();
 		appRouter.weekly();
 	},
         editHistory: function(event){
 		console.log("HistoryView edit");
 		event.preventDefault();
+		$("#content").empty();
 		/* find id of question user wants to edit and set qcount to previous */
-		console.log(event.currentTarget);
 		var clickedID = event.currentTarget.id;
-		console.log(clickedID);
 		var leaveoff = new Receipt({id: clickedID});
 		leaveoff.fetch({success: recreateSurvey});
 		function recreateSurvey () {
 			var answerList = new AnswerList(new Answer());
 			answerListView = new AnswerListView({model: answerList.first()});
+			answerListView.endquestion = 70;
 			answerListView.model.set(leaveoff.attributes);
 			var qmodel = _.map(answerListView.model.attributes, function(v, k) {
 				if(v && k.indexOf('q') > -1) {
@@ -37,14 +38,19 @@ var HistoryView = Backbone.View.extend({
 				};	
 			});
 			var returnQ = Math.max.apply(null, qmodel); 
+			if(returnQ == 0) {
+				returnQ =+ 1;
+			};
 			answerListView.model.set('qcount', returnQ);
 			answerListView.nextQuestion(answerListView.model);	
 		};
 	},
 	forgetHistory: function(event){ //needs to set status field to 'forget'
+		console.log("forget");
 		var that = this;
 		console.log("ForgetHistory edit");
 		var clickedID = event.currentTarget.id;
+		console.log(clickedID);
 		var answer = new AnswerList(new Answer({id: clickedID}));
 		answer = answer.first();
 		answer.fetch({success: forget})
@@ -65,6 +71,7 @@ var HistoryView = Backbone.View.extend({
 			console.log("HistoryView render");
 			//console.log(response);
 			//console.log(this.model.toJSON());
+			/*
 		 	$(this.el).append("<ul id='aid' data-role='listview'>Under Construction/Read-Only<br><input type='button' value='Continue' class='history-skip'/ ><li>test</li>");
 			$.each(this.model.attributes, function(key, value){
 				console.log(value);
@@ -75,12 +82,11 @@ var HistoryView = Backbone.View.extend({
 			 	var qtext = "Session "+ returnTime.toLocaleString() + " was saved would you like to <input type='button' id='"+response.attributes[key].id+"' value='Edit' class='history-edit'/ > or <input type='button' id='"+response.attributes[key].id+"'value='Forget' class='history-forget'/ >?"; 
 	 	 		$(this.el).append("<li>"+qtext+"</li>");
 			});
-			/*
-		        //$(headerView.el).hide();
-			//$(this.el).html("");	
-			//$(footerView.el).hide();	
-			//$(this.el).html(this.template({ 'elements': this.model }));	
 			*/
+		        $(headerView.el).hide();
+			$(this.el).html("");	
+			$(footerView.el).hide();	
+			$(this.el).html(this.template({ 'elements': this.model.attributes.event }));		
 			return this;
 	}
 });

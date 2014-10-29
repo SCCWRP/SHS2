@@ -56,7 +56,6 @@ var ReceiptView = Backbone.View.extend({
  	},
 	render: function(){
 			console.log("ReceiptView render");
-			console.log(this.model.event.toJSON());
 		        $(headerView.el).hide();
 			//$(this.el).html("");	
 			$(footerView.el).hide();	

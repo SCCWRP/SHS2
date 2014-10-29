@@ -70,44 +70,18 @@ var appRouter = new (Backbone.Router.extend({
 	/* for some reason the code below in setMessage when applied to render historyView wont work - maybe history is special word -- need to put click event for each li into view */
 	history.fetch({success: setMessage,error: errorMessage});
 	 function setMessage(response){
-		 //exit;
-		 if(!history.attributes.event.hasOwnProperty('0')) {
+		 if(history.attributes.event.length ==  0) {
 			that.weekly()
 			return;	
 		 };
-		 /* backbonify later */
-		 //historyView = new HistoryView({model: history});
-		 $("#content").html( new HistoryView({model: history}).render(response).el );
+		 historyView = new HistoryView({model: history}); 
+		 historyView.render();
 		 $('#content').trigger('create');
-	 	 //historyView.render(response);
-		 /*
-		 console.log(response.attributes);
-		 $("#content").html("");
-		 $("#content").append("<ul id='aid' data-role='listview'>Under Construction/Read-Only<br><input type='button' value='Continue' class='history-skip'/ ></ul>");
-		 $.each(response.attributes, function(key, value){
-			 var unixTimestamp = response.attributes[key].timestamp;
-			 var returnTime = new Date(+unixTimestamp);
-			 //console.log(response.attributes[key].id+"-"+returnTime.toLocaleString());
-			 var qtext = "Session "+ returnTime.toLocaleString() + " was saved would you like to <input type='button' id='"+response.attributes[key].id+"' value='Edit' class='history-edit'/ > or <input type='button' id='"+response.attributes[key].id+"'value='Forget' class='history-forget'/ >?"; 
-	 	 	$("#content").append("<li>"+qtext+"</li>");
-		 	$("#content").append("</ul>");
-		 });
-		 //var dialogView = new DialogView();
-		 //dialogView.render();
-	 	 $("#content").append("</ul>");
-		 */
+
 	 }
 	 function errorMessage(response){
 		 console.log(response);
 	 }
-	 /*
-	var query = confirm("Save session?")
-	if(query){
-		alert("Saving");
-	} else {
-		alert("Don't Save");
-	}
-	*/
   },
   question: function(){
 	questionList = new QuestionList();
