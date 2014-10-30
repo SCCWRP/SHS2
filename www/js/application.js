@@ -213,7 +213,6 @@ var appRouter = new (Backbone.Router.extend({
 			console.log(response.statusText);
 		}
 	});
-	//userView = new UserView({model: user});
 	function startSignup(seedEmail,seedPhone){
 	  answerList = new AnswerList();
 	  var answerCreate = answerList.create({q6: seedPhone, q7: seedPhone, q8: seedEmail, q9: seedEmail, qcount: 1, timestamp: SESSIONID, survey_type: "enrollment"}, {
@@ -282,7 +281,7 @@ var appRouter = new (Backbone.Router.extend({
 			answerList = new AnswerList();
 			//this.answerList = answerList;
 			answerList.create({qcount: 25, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
-	  		  wait: false,
+	  		  wait: true,
 	  		  success: function(model,response){
 				answer = answerList.get(response.id);
 				answerListView = new AnswerListView({model: answer});
