@@ -43,7 +43,7 @@ var appRouter = new (Backbone.Router.extend({
 		    //alert("viewport.width: "+viewport.width);
 		    //alert("viewport.height: "+viewport.height);
 	    }
-	    $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter);
+	    //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter);
   },
   gift: function(giftid){
 	//console.log("gift");
