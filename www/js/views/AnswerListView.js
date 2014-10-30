@@ -327,7 +327,7 @@ var AnswerListView = Backbone.View.extend({
 			//this.model.save({qcount: currentQuestion},{ used when useing set and mulitiple save
 			//console.log(this.model.toJSON());
 			this.model.save(answerDetails, {
-				wait: true,
+				wait: false,
 				success: function(model,response){
 					console.log("success");
 					console.log(model);
