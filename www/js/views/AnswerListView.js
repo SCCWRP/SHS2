@@ -23,10 +23,12 @@ var AnswerListView = Backbone.View.extend({
 		"click .save":"saveAnswer",
 		"change select[name=aid]":"saveAnswer",
 		/* only necessary for mobile branch */
-		"click #multi-select":"hideFooter",
-		"change #multi-select":"showFooter",
-		"click #aid":"hideFooter",
-		"change #aid":"showFooter",
+		if(isDevice){
+			"click #multi-select":"hideFooter",
+			"change #multi-select":"showFooter",
+			"click #aid":"hideFooter",
+			"change #aid":"showFooter",
+		}
 		/* end mobile branch */
     		"click .decline":"declineAnswer",
     		"click #decline":"declineAnswer",
