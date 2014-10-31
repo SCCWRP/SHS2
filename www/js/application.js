@@ -43,7 +43,7 @@ var appRouter = new (Backbone.Router.extend({
 		    //alert("viewport.width: "+viewport.width);
 		    //alert("viewport.height: "+viewport.height);
 	    }
-	    //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter);
+	    $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter);
   },
   gift: function(giftid){
 	//console.log("gift");
@@ -302,6 +302,7 @@ var appRouter = new (Backbone.Router.extend({
   },
   start: function(){
 	console.log("start");
+	app.dialog("start","start title","Ok");
 	//appRouter.navigate('shs2/receipt/1031', {trigger: true});
 	//appRouter.checksum();
 	//introView.render();
@@ -314,6 +315,16 @@ var appRouter = new (Backbone.Router.extend({
   }
 }));
 var app = {
+  dialog: function(message,title,button){
+	function dialogCallback(){
+		alert("dialogCallback closed");
+	}
+	if(isDevice == true){
+		navigator.notification.alert(message, dialogCallback, title, button)	
+	} else {
+		alert(message);
+	}
+  },
   xhr_get: function(url,indata){
 	return $.ajax({
 		type: 'GET',
@@ -376,9 +387,7 @@ var app = {
 	// check network status
  	networkStatus = navigator.onLine ? 'online' : 'offline';
 	FastClick.attach(document.body);
-	appRouter.start(function(){
-		alert("done");
-	});
+	appRouter.start();
   },
   initialize: function(){
 	if(document.URL.indexOf("http://") === -1 && document.URL.indexOf("https://") === -1){
