@@ -302,7 +302,7 @@ var appRouter = new (Backbone.Router.extend({
   },
   start: function(){
 	console.log("start");
-	app.dialog("start","start title","Ok");
+	//app.dialog("start","start title","Ok");
 	//appRouter.navigate('shs2/receipt/1031', {trigger: true});
 	//appRouter.checksum();
 	//introView.render();
