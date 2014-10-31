@@ -292,7 +292,8 @@ var appRouter = new (Backbone.Router.extend({
 					console.log(response.responseText);
 					console.log(response.status);
 					console.log("failed");
-					app.dialog("Failed to Start Weekly","Application Reload","Ok");
+					//app.dialog("Failed to Start Weekly","Application Reload","Ok");
+					alert("Failed to Start Weekly");
 					location.reload();
 				}
 			  }

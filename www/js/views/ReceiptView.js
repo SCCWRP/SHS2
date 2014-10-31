@@ -34,10 +34,12 @@ var ReceiptView = Backbone.View.extend({
 		//appRouter.checksum();
 		var survey_type = this.model.get('survey_type');
 		if(survey_type == "enrollment"){
-			app.dialog("Thank You for Enrolling!","Enrollment Complete","Ok");
+			alert("Thank You for Enrolling!");
+			//app.dialog("Thank You for Enrolling!","Enrollment Complete","Ok");
 		}
 		if(survey_type == "followup"){
-			app.dialog("Come Back Next Week","Weekly Complete","Ok");
+			//app.dialog("Come Back Next Week","Weekly Complete","Ok");
+			alert("Come Back Next Week");
 		}
 		that.cleanup();
 		appRouter.navigate('/', {trigger: false});
