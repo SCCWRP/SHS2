@@ -24,7 +24,9 @@ var AnswerListView = Backbone.View.extend({
 		"change select[name=aid]":"saveAnswer",
 		/* only necessary for mobile branch */
 		"tap #multi-select":"hideFooter",
+		"tap .text-view":"hideFooter",
 		"change #multi-select":"showFooter",
+		"change .text-view":"showFooter",
 		//"click #aid":"hideFooter",
 		//"change #aid":"showFooter",
 		/* end mobile branch */
