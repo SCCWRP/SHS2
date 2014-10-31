@@ -298,8 +298,16 @@ var AnswerListView = Backbone.View.extend({
 			user.save({ status: "complete" });
 		};
 		if(currentQuestion ==  this.endquestion){
-		//if(currentQuestion == 75){
+			/* user is finished with survey enrollment/weekly - record is complete */
 			this.model.set({ status: "complete" });
+			/* notify user if this is an enrollment */
+			var survey_type = this.model.get('survey_type');
+			if(survey_type == "enrollment"){
+	                	var email = this.model.get('contact');
+	                	var id = this.model.get('user_id');
+				app.notify(email,id);
+			}
+			/* set timer so after save the app goes to receipt */
 			timer = 4;
 		};
 		// create answerDetails object

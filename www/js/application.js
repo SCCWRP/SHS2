@@ -292,9 +292,8 @@ var appRouter = new (Backbone.Router.extend({
 					console.log(response.responseText);
 					console.log(response.status);
 					console.log("failed");
-					alert("Failed to Start Weekly");
+					app.dialog("Failed to Start Weekly","Application Reload","Ok");
 					location.reload();
-					//loginView = new LoginView;
 				}
 			  }
 			});
@@ -317,7 +316,7 @@ var appRouter = new (Backbone.Router.extend({
 var app = {
   dialog: function(message,title,button){
 	function dialogCallback(){
-		alert("dialogCallback closed");
+		//alert("dialogCallback closed");
 	}
 	if(isDevice == true){
 		navigator.notification.alert(message, dialogCallback, title, button)	

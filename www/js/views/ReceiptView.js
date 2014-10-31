@@ -34,19 +34,14 @@ var ReceiptView = Backbone.View.extend({
 		//appRouter.checksum();
 		var survey_type = this.model.get('survey_type');
 		if(survey_type == "enrollment"){
-			var email = this.model.get('contact');
-			var id = this.model.get('user_id');
-			// email user welcome message
-			app.notify(email,id);
-			alert("Thank you for enrolling!");
+			app.dialog("Thank You for Enrolling!","Enrollment Complete","Ok");
 		}
 		if(survey_type == "followup"){
-			alert("Come back next week!");
+			app.dialog("Come Back Next Week","Weekly Complete","Ok");
 		}
 		that.cleanup();
 		appRouter.navigate('/', {trigger: false});
 		location.assign(HOME);
-		//location.load();
 	},
 	cleanup: function() {
 	     console.log("receipt cleanup");
@@ -61,7 +56,7 @@ var ReceiptView = Backbone.View.extend({
 			//$(this.el).html("");	
 			$(footerView.el).hide();	
 			//footerView.cleanup();
-			var receiptData = _.omit(this.model.attributes, 'id', 'user_id', 'q9', 'q7','survey_type')
+			var receiptData = _.omit(this.model.attributes, 'id', 'user_id','survey_type')
 			$(this.el).append(this.template({ 'elements': receiptData }));	
 			//$('#aid').trigger('create');
 			return this;
