@@ -32,7 +32,7 @@ var appRouter = new (Backbone.Router.extend({
 			$('#multi-select h3').css('font-size','18px');
 			$('#multi-select select').css('font-size','18px');
 	    }
-	    $(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter);
+	    //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter); - issues with iphone
   },
   gift: function(giftid){
 	//console.log("gift");
