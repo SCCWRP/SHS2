@@ -23,7 +23,6 @@ var IntroView = Backbone.View.extend({
 		headerView = new HeaderView;
 		$("#home").show();
 		footerView = new FooterView;
-		//loginView = new LoginView;
 		$("#popupInfo").html( new LoginView().render().el );
 		$("#popupInfo").trigger("create");
 		$("#popupInfo").popup("open");

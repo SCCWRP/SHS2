@@ -26,6 +26,6 @@ var RestartView = Backbone.View.extend({
 	render: function(){
 		$(this.el).html(this.template());	
 		return this;
-		this.trigger("render:after", "View rendererd");
+		//this.trigger("render:after", "View rendererd");
 	}
 });

@@ -22,10 +22,10 @@ var FooterView = Backbone.View.extend({
     	restart: function (e) { 
 	  e.preventDefault();
 	  $("#popupRestart").html( new RestartView().render().el );
-	  //$("#popupRestart").popup({ create: function(e,u){ alert("create"); }});
 	  $("#popupRestart").trigger("create");
 	  $("#popupRestart").popup("open");
-	  //$("#popupRestart").on({ "popupafteropen", function(event,ui){ alert(event); alert(ui); }});
+	  $("#popupRestart").popup('reposition', 'positionTo: window');
+	  appRouter.css();
 	},
 	render: function(){
 		console.log("footer");

@@ -2,7 +2,6 @@ var LoginView = Backbone.View.extend({
 	//el: '#popupInfo',
 	template:_.template($('#tpl-login-details').html()),
 	initialize: function(){
-		//this.render();
 	},
 	events:{
 		"click #loginBtn":"loginUser",
@@ -128,17 +127,11 @@ var LoginView = Backbone.View.extend({
 		console.log("LoginView render");
 		$("#header").show();
 		$("#home").hide();
-		//$("#content").html("");
 		/* footer is showing in original - shouldnt be just enable home button instead - wont do home button wrecks ios*/
-		//$('#forward').hide();
 		$("#footer").hide();
 		$("#back").hide();
 		$("#forward").hide();
 		$(this.el).html(this.template());	
-		//$(this.el).trigger("create");
-		//$(this.el).popup("open");
-		//$("#popupInfo").trigger("create");
-		//$("#popupInfo").popup("open");
 		return this;
 	}
 });
