@@ -23,7 +23,10 @@ var AnswerListView = Backbone.View.extend({
 		"click .save":"saveAnswer",
 		"change select[name=aid]":"saveAnswer",
 		/* only necessary for mobile branch */
-		//"tap #multi-select":"hideFooter",
+		"focus #multi-select": "hideFooter",
+		"blur #multi-select": "showFooter",
+		"focus .text-view": "hideFooter",
+		"blur .text-view": "showFooter",
 		//"tap .text-view":"hideFooter",
 		//"change #multi-select":"showFooter",
 		//"change .text-view":"showFooter",
@@ -53,14 +56,14 @@ var AnswerListView = Backbone.View.extend({
 		};
 	},
 	hideFooter: function(event){
-		$("#footer").css('display','none');
+		//$("#footer").css('display','none');
 		$("#footer").hide();
 	},
 	showFooter: function(event){
-		$('html,body').animate({ scrollTop: '0px' }, 700);
-		$("#footer").css('display','inline');
+		//$('html,body').animate({ scrollTop: '0px' }, 700);
+		//$("#footer").css('display','inline');
 		$("#footer").show();
-		appRouter.positionFooter();
+		//appRouter.positionFooter();
 	},
 	nextQuestion:function(t, response, options){	
 		console.log("nextQuestion");
