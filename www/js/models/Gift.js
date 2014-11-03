@@ -5,6 +5,6 @@ var Gift = Backbone.Model.extend({
 	   instead we will return the response.event object to our model which will replace those client attributes
 	*/
     	parse: function(response){
-		return response.event;
+		return response;
 	}
 });

@@ -1,5 +1,5 @@
 var HistoryView = Backbone.View.extend({
-	el: '#content',
+	//el: '#content',
 	template:_.template($('#tpl-history-details').html()),
 	initialize: function(){ //this.model.on('change',this.test,this);
 		//$(this.el).unbind("click");
@@ -24,7 +24,7 @@ var HistoryView = Backbone.View.extend({
 		/* find id of question user wants to edit and set qcount to previous */
 		var clickedID = event.currentTarget.id;
 		var leaveoff = new Receipt({id: clickedID});
-		leaveoff.fetch({success: recreateSurvey});
+		leaveoff.fetch({success: recreateSurvey,error: errorMessage});
 		function recreateSurvey () {
 			var answerList = new AnswerList(new Answer());
 			answerListView = new AnswerListView({model: answerList.first()});
@@ -44,6 +44,11 @@ var HistoryView = Backbone.View.extend({
 			answerListView.model.set('qcount', returnQ);
 			answerListView.nextQuestion(answerListView.model);	
 		};
+	 	function errorMessage(model,response){
+			console.log(response.responseText);
+			console.log(response.status);
+			console.log("edit history failed");
+	 	};
 	},
 	forgetHistory: function(event){ //needs to set status field to 'forget'
 		console.log("forget");
@@ -53,11 +58,16 @@ var HistoryView = Backbone.View.extend({
 		console.log(clickedID);
 		var answer = new AnswerList(new Answer({id: clickedID}));
 		answer = answer.first();
-		answer.fetch({success: forget})
+		answer.fetch({success: forget, error: errorMessage});
 		function forget () {
 			answer.save({'status': 'forget'});
 			$(event.currentTarget).parent().remove();
 		};
+	 	function errorMessage(model,response){
+			console.log(response.responseText);
+			console.log(response.status);
+			console.log("forget history failed");
+	 	};
 	},
 	fixData: function(response){
 		console.log("fixData");
@@ -69,8 +79,7 @@ var HistoryView = Backbone.View.extend({
 	},
 	render: function(response){
 			console.log("HistoryView render");
-			//console.log(response);
-			//console.log(this.model.toJSON());
+			console.log(this.model);
 			/*
 		 	$(this.el).append("<ul id='aid' data-role='listview'>Under Construction/Read-Only<br><input type='button' value='Continue' class='history-skip'/ ><li>test</li>");
 			$.each(this.model.attributes, function(key, value){
@@ -86,7 +95,7 @@ var HistoryView = Backbone.View.extend({
 		        $(headerView.el).hide();
 			$(this.el).html("");	
 			$(footerView.el).hide();	
-			$(this.el).html(this.template({ 'elements': this.model.attributes.event }));		
+			$(this.el).html(this.template({ 'elements': this.model.attributes }));		
 			return this;
 	}
 });

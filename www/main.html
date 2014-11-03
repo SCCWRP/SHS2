@@ -138,9 +138,9 @@
 		<h3> History View <h3>
 		<ul data-role="listview" data-inset="true">
 		<% _.each(elements,function(element,index,list) {  %>
-		<% if(!element) return;  %>
+		<% if(!element) return; if(!element.id) return; %>
 		<li data-icon="edit" id = <%= element.id %> >
-				<p> Incomplete survey from <%= (new Date(element.timestamp)).toLocaleString() %> </p>
+				<p> Incomplete survey from <%= element.timestamp %> </p>
 				<div class=edit id= <%= element.id %> ><button id= <%= element.id %> >Continue Survey </button></div>
 				<div class=forget id= <%= element.id %> ><button id= <%= element.id %> class="history-forget">Forget Survey </button></div>
 			</li>

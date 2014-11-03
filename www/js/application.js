@@ -69,12 +69,16 @@ var appRouter = new (Backbone.Router.extend({
 	/* for some reason the code below in setMessage when applied to render historyView wont work - maybe history is special word -- need to put click event for each li into view */
 	history.fetch({success: setMessage,error: errorMessage});
 	 function setMessage(response){
-		 if(history.attributes.event.length ==  0) {
-			that.weekly()
+		 /* not a great workaround - history has a default attribute of id - needs to be ignored */
+		 console.log(history.keys(history.Data).length);
+		 if(history.keys(history.Data).length <=  1) {
+			appRouter.gift(historyid);
+			appRouter.weekly();
 			return;	
 		 };
-		 historyView = new HistoryView({model: history}); 
-		 historyView.render();
+		 //historyView = new HistoryView({model: history}); 
+		 //historyView.render();
+		 $("#content").html( new HistoryView({model: history}).render().el );
 		 $('#content').trigger('create');
 
 	 }

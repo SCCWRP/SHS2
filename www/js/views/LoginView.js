@@ -32,24 +32,24 @@ var LoginView = Backbone.View.extend({
 			 //if(t==="timeout"){ alert("Server Inaccessible contact Paul Smith"); }
 		}, 
 		success: function(data) {
-			if(data.event == false){
+			if(data == false){
 				console.log(data);
 				alert("Failed to login...Try again");
 				that.cleanup();
 				location.reload();
-			//console.log(data.event.id);
-			//console.log(typeof(data.event.id));
+			//console.log(data.id);
+			//console.log(typeof(data.id));
 			} else {
 				//$("#popupInfo").popup("close");
 				$("#back").show();
 				$("#forward").show();
 				$("#footer").show();
 				//console.log("login");
-				//console.log(data.event.contact);
-				USERID = Number(data.event.id);
-				appRouter.history(USERID);
-				//appRouter.gift(USERID);
-				//appRouter.weekly();
+				//console.log(data.contact);
+				USERID = Number(data.id);
+				//appRouter.history(USERID);
+				appRouter.gift(USERID);
+				appRouter.weekly();
 			}
 		},
 		complete: function(data) {
