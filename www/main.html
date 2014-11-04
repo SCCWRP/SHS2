@@ -318,8 +318,11 @@
 		// -->
 		<fieldset class="ui-field-contain">
 		  <% var dates = q25.split(","); %>
+		  <% dates = dates.map(function(x) { return new Date(Date.parse(x));}); %>  
+		  <% days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; %>
+		  <% days[new Date().getDay()] = "Today"; %>
 		  <% for(j=0; j < dates.length; j++) { %>
-		  <h3 id="date"> <%= dates[j] %> </h3>
+		  <h3 id="date"> <%= days[dates[j].getDay()]  %> </h3>
 		  <select name= "<%= j %>" id="aid" class="multi-select">
 		  <% for(i=0; i < menu.length; i++) { %>
 		 	 <option value= "<%= menu[i] %>" > <%= menu[i] %> </option>
