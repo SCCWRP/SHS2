@@ -343,16 +343,16 @@ var AnswerListView = Backbone.View.extend({
 				  if(response.status == 500){
 					console.log("failed");
 					alert("Phone/Email address already exists in database! Please login instead.");
-					alert("update record in database");
+					console.log("update record in database");
 					console.log(response.responseText);
 					console.log(response.status);
 					that.cleanup();
 					console.log(model);
 					model.destroy({remote: false});
-					console.log(model);
-					//appRouter.navigate("shs2/www", {trigger: true});
-					$("#content").html( new IntroView().render().el );
-					$("#content").trigger("create");
+					appRouter.navigate('/', {trigger: false});	
+					location.assign(HOME);
+					//$("#content").html( new IntroView().render().el );
+					//$("#content").trigger("create");
 				  }
        				}
 			});
