@@ -140,7 +140,7 @@
 		<% _.each(elements,function(element,index,list) {  %>
 		<% if(!element) return; if(!element.id) return; %>
 		<li data-icon="edit" id = <%= element.id %> >
-				<% var ts = new Date(element.timestamp) %>
+				<% var ts = new Date(Number(element.timestamp)) %>
 				<% ts = ts.toLocaleDateString()  + " (" + ts.toLocaleTimeString() + ")" %>
 				<p> Incomplete survey from <%= ts %> </p>
 				<div class=edit id= <%= element.id %> ><button id= <%= element.id %> >Continue Survey </button></div>
