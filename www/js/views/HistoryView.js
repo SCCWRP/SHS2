@@ -30,7 +30,7 @@ var HistoryView = Backbone.View.extend({
 			answerListView = new AnswerListView({model: answerList.first()});
 			answerListView.endquestion = 70;
 			answerListView.model.set(leaveoff.attributes);
-			var qmodel = _.map(answerListView.model.attributes, function(v, k) {
+			/*var qmodel = _.map(answerListView.model.attributes, function(v, k) {
 				if(v && k.indexOf('q') > -1) {
 					return Number(k.replace('q', ''));
 				} else {
@@ -42,6 +42,7 @@ var HistoryView = Backbone.View.extend({
 				returnQ =+ 1;
 			};
 			answerListView.model.set('qcount', returnQ);
+			*/
 			answerListView.nextQuestion(answerListView.model);	
 		};
 	 	function errorMessage(model,response){
