@@ -52,7 +52,7 @@ var AnswerListView = Backbone.View.extend({
 		var that = this;
 		// get current question number
 		var nextQcount = t.get("qcount");
-		if(nextQcount > this.endquestion) { console.log("test end"); return; }
+		if(nextQcount > this.endquestion) return;
 		// changed - to above for receipt
 		//var nextQcount = response.qcount;
 		//console.log(response.qcount);
