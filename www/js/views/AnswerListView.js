@@ -62,7 +62,7 @@ var AnswerListView = Backbone.View.extend({
 		var that = this;
 		// get current question number
 		var nextQcount = t.get("qcount");
-		if(nextQcount > this.endquestion) return;
+	//	if(nextQcount > this.endquestion) return;
 		// changed - to above for receipt
 		//var nextQcount = response.qcount;
 		//console.log(response.qcount);
@@ -291,7 +291,7 @@ var AnswerListView = Backbone.View.extend({
 			user.save({ list: "weekly" });
 			user.save({ status: "complete" });
 		};
-		if(currentQuestion ==  this.endquestion){
+		if(currentQuestion >=  this.endquestion){
 			/* user is finished with survey enrollment/weekly - record is complete */
 			this.model.set({ status: "complete" });
 			/* notify user if this is an enrollment */
