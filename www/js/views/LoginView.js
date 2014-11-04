@@ -57,7 +57,8 @@ var LoginView = Backbone.View.extend({
 	        }
 		});
 	  } else {
-		alert("Login Locally");
+		alert("Local login not available offline");
+		return;
   	  	var getUserKey = window.localStorage.getItem("user");
 		alert(getUserKey);
 		if(getUserKey != null){
@@ -101,7 +102,7 @@ var LoginView = Backbone.View.extend({
 		if (networkStatus != 'offline'){
 			appRouter.signup();
 		} else {
-			alert("enrollUser not available offline");
+			alert("Enrollment not available offline");
 		}
 	},
 	showSummary: function(e){

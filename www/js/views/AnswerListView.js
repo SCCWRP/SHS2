@@ -46,16 +46,6 @@ var AnswerListView = Backbone.View.extend({
 			appRouter.navigate("");
 		};
 	},
-	hideFooter: function(event){
-		//$("#footer").css('display','none');
-		$("#footer").hide();
-	},
-	showFooter: function(event){
-		//$('html,body').animate({ scrollTop: '0px' }, 700);
-		//$("#footer").css('display','inline');
-		$("#footer").show();
-		//appRouter.positionFooter();
-	},
 	nextQuestion:function(t, response, options){	
 		console.log("nextQuestion");
 		console.log(this.qHistory);
@@ -82,11 +72,9 @@ var AnswerListView = Backbone.View.extend({
 			//that.render();
 			$("#content").append(that.render().el);
 			updateProgressBar(t);
-			//appRouter.resizePage2("content");
 			appRouter.css();
 			//$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
 		}
-
 		function updateProgressBar(t){
 			var modOne = 12;
 			var modTwo =16;
@@ -95,21 +83,19 @@ var AnswerListView = Backbone.View.extend({
 			var modFive = 5;
 			var modSix = 7;
 			var nextQcount = t.get("qcount");
-			//var totPercentDone = 35;
-			//console.log("Variable declared");
 			console.log("updateProgressBar");			
 			console.log("qcount");
 			console.log(nextQcount);
 			if (nextQcount < 12) {
 				$('#Modprogress-bar').val((nextQcount/modOne)*100);
-     			$('#Modprogress-bar').slider('refresh');
+     				$('#Modprogress-bar').slider('refresh');
 			}
 			if (nextQcount > 12 && nextQcount <25){				
 				$('#Modprogress-bar').val(((nextQcount-12)/modTwo)*100);
-     			$('#Modprogress-bar').slider('refresh');
+     				$('#Modprogress-bar').slider('refresh');
 			}
 			if (nextQcount > 25 && nextQcount < 34) {
-					$('#Modprogress-bar').val(((nextQcount-25)/modThree)*100);
+				$('#Modprogress-bar').val(((nextQcount-25)/modThree)*100);
      				$('#Modprogress-bar').slider('refresh');
 			}
 			if (nextQcount > 34 && nextQcount < 71){
@@ -132,9 +118,8 @@ var AnswerListView = Backbone.View.extend({
      		$('#Fullprogress-bar').slider('refresh');
 
 		}
-
-		function errorQuestion(){
-			alert("errorQuestion");
+		function errorQuestion(model,response){
+			console.log(response);
 		}
     	},
 	selectorString: {

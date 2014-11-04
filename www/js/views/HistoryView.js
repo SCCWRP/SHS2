@@ -14,17 +14,21 @@ var HistoryView = Backbone.View.extend({
     	skipHistory: function(event){
 		console.log("skipHistory");
 		event.preventDefault();
-		$("#content").empty();
+		//$("#content").empty();
+		$(this.el).empty();
 		appRouter.weekly();
 	},
         editHistory: function(event){
 		console.log("HistoryView edit");
 		event.preventDefault();
-		$("#content").empty();
+		//$("#content").empty();
+		$(this.el).empty();
 		/* find id of question user wants to edit and set qcount to previous */
-		var clickedID = event.currentTarget.id;
+		var clickedID = jQuery.trim(event.currentTarget.id);
+		console.log(clickedID);
 		var leaveoff = new Receipt({id: clickedID});
-		leaveoff.fetch({success: recreateSurvey,error: errorMessage});
+		console.log(leaveoff.url());
+		leaveoff.fetch({wait: true, success: recreateSurvey, error: errorMessage});
 		function recreateSurvey () {
 			var answerList = new AnswerList(new Answer());
 			answerListView = new AnswerListView({model: answerList.first()});
@@ -46,8 +50,8 @@ var HistoryView = Backbone.View.extend({
 			answerListView.nextQuestion(answerListView.model);	
 		};
 	 	function errorMessage(model,response){
-			console.log(response.responseText);
-			console.log(response.status);
+			console.log(model);
+			console.log(response);
 			console.log("edit history failed");
 	 	};
 	},

@@ -5,9 +5,6 @@ var Receipt = Backbone.Model.extend({
 	   instead we will return the response.event object to our model which will replace those client attributes
 	*/
     	parse: function(response){
-		console.log(response);
 		return response;
-		//return response.event; // - works on web server
-		//return response; //- works local
 	}
 });
