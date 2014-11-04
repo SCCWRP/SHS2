@@ -401,7 +401,8 @@
 			<% days = days.slice(0, today.getDay() + 1 ).reverse().concat(days.slice(today.getDay() + 1, 7).reverse()); %>
 			<% days[0] = "Today";	 %>
 			<% for(i=0; i < 7; i++) { %>
-			<input type="checkbox" class="custom" value= <%= today.getMonth() + "/" + (today.getDate() - i) + "/" + (today.getYear() + 1900)  %>  name = <%= days[i] %>  id= <%= days[i] %> />
+			<% newday = new Date(new Date().setDate(new Date().getDate()-i)); %> 
+			<input type="checkbox" class="custom" value= <%= (newday.getMonth()+1) + "/" + (newday.getDate()) + "/" + (newday.getYear() + 1900)  %>  name = <%= days[i] %>  id= <%= days[i] %> />
 			<label for= <%= days[i] %> >  <%= days[i] %> </label> 
 	 		<% }; %>
 			<% if(qcount == "25" && decline == "yes") { %>
