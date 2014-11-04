@@ -268,6 +268,8 @@ var AnswerListView = Backbone.View.extend({
 		};
 		// module3 did not surf
 		if(currentQuestion == 25 && currentAnswer == "Did not Enter"){
+			this.model.set({q26: null, q27: null, q28: null, q29: null,
+					q30: null, q31: null, q32: null});
 			nextQuestion +=  7;
 		};
 		// this should really go somewhere after sync happens maybe next question
