@@ -193,6 +193,21 @@
 	"check": "zipval"
   },
   {
+	"title": "Did you participate in our pilot surfer health study during the 2013-2014 winter season?",
+	"action": "none",
+      	"num": "q110",
+      	"type": "radio",
+	"menu": "Yes,No",
+        "other": "n",
+	"otype": "",
+  	"answer": "",
+	"decline": "no",
+	"declinedefault": "",
+	"errmessage": "",
+      	"status": "incomplete",
+      	"id": "13"
+  },
+  {
 	"title": "How many years have you surfed?",
 	"action": "none",
       	"num": "q21",
@@ -206,7 +221,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "13"
+      	"id": "14"
   },
   {
 	"title": "Thinking back over the past year, in which months did you surf in California?",
@@ -221,7 +236,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "14"
+      	"id": "15"
   },
   {
 	"title": "About how often do you surf during the wet season (November -  March)?",
@@ -236,7 +251,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "15",
+      	"id": "16",
 	"check": "0,numberWeek,gte1,numberLimit"
   },
   {
@@ -252,7 +267,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "16",
+      	"id": "17",
 	"check": "0,numberWeek,gte1,numberLimit"
   },
   {
@@ -269,7 +284,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "17"
+      	"id": "18"
   },
   {
 	"title": "Do you usually wear earplugs when you surf?",
@@ -284,7 +299,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "18"
+      	"id": "19"
   },
   {
 	"title": "If it rains, do you ever wait to go in the ocean?",
@@ -300,7 +315,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "19"
+      	"id": "20"
   },
   {
 	"title": "How long do you typically wait?",
@@ -315,7 +330,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "20",
+      	"id": "21",
 	"check": "0,numberWeek,gte1,numberLimit"
   },
   {
@@ -332,7 +347,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "21"
+      	"id": "22"
   },
   {
 	"title": "Do you regularly go into the ocean for activities other than surfing?",
@@ -347,7 +362,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "22"
+      	"id": "23"
   },
   {
 	"title": "Mark all that apply",
@@ -362,7 +377,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "23"
+      	"id": "24"
   },
   {
 	"title": "Do you have any of the following long-term health conditions. (Mark all that apply)",
@@ -377,8 +392,8 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "24",
-	"check": "noVal"
+      	"id": "25",
+	"check": "0,select"
   },
   {
 	"title": "Did you enter the ocean on any days in the past week?",
@@ -393,8 +408,8 @@
 	"declinedefault": "Did not Enter",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "25",
-	"check": "0,select"
+      	"id": "26",
+	"check": "select"
   },
   {
 	"title": "What beach did you go to?",
@@ -409,7 +424,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "26",
+      	"id": "27",
 	"check": "selectOne"
   },
   {
@@ -425,7 +440,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "27",
+      	"id": "28",
 	"check": "selectOne"
   },
   {
@@ -441,7 +456,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "28",
+      	"id": "29",
 	"check": "selectOne"
 	
   },
@@ -458,7 +473,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "29",
+      	"id": "30",
 	"check": "selectOne"
   },
   {
@@ -474,7 +489,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "30",
+      	"id": "31",
 	"check": "selectOne"
   },
   {
@@ -490,7 +505,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "31",
+      	"id": "32",
 	"check": "selectOne"
   },
   {
@@ -506,7 +521,8 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "32" 
+      	"id": "33",
+	"check":"noVal,oceanEnter"
   },
   {
 	"title": "Were there any days in the past week that you would have gone into the ocean but didnt because of wet weather or bad weather?",
@@ -521,8 +537,8 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "33",
-	"check":"noVal,oceanEnter"
+      	"id": "34",
+	"check":"oceanEnter"
   },
   {
 	"title": "Did you have a fever in the last 7 days?",
@@ -537,7 +553,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "34"
+      	"id": "35"
   },
   {
 	"title": "Which days?",
@@ -552,7 +568,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "35"
+      	"id": "36"
   },
   {
 	"title": "Did you have diarrhea (3 or more loose/watery stools in 24 hours) in the last 7 days?",
@@ -567,7 +583,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "36"
+      	"id": "37"
   },
   {
 	"title": "Which days?",
@@ -582,7 +598,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "37"
+      	"id": "38"
   },
   {
 	"title": "Did you have stomach cramps in the last 7 days?",
@@ -597,7 +613,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "38"
+      	"id": "39"
   },
   {
 	"title": "Which days?",
@@ -612,7 +628,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "39"
+      	"id": "40"
   },
   {
 	"title": "Did you have vomiting in the last 7 days?",
@@ -627,7 +643,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "40"
+      	"id": "41"
   },
   {
 	"title": "Which days?",
@@ -642,7 +658,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "41"
+      	"id": "42"
   },
   {
 	"title": "Did you have nausea in the last 7 days?",
@@ -657,13 +673,13 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "42"
+      	"id": "43"
   },
   {
 	"title": "Which days?",
 	"action": "none",
       	"num": "q45ag",
-      	"type": "sevenday",
+	"type": "sevenday",
       	"menu": "Yes,No",
         "other": "n",
 	"otype": "",
@@ -672,7 +688,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "43"
+      	"id": "44"
   },
   {
 	"title": "Did you have sinus pain or sinus infection in the last 7 days?",
@@ -687,7 +703,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "44"
+      	"id": "45"
   },
   {
 	"title": "Which days?",
@@ -702,7 +718,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "45"
+      	"id": "46"
   },
   {
 	"title": "Did you have earache, ear infection, or running nose in the last 7 days?",
@@ -717,7 +733,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "46"
+      	"id": "47"
   },
   {
 	"title": "Which days?",
@@ -732,7 +748,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "47"
+      	"id": "48"
   },
   {
 	"title": "Did you have an eye infection in the last 7 days?",
@@ -747,7 +763,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "48"
+      	"id": "49"
   },
   {
 	"title": "Which days?",
@@ -762,7 +778,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "49"
+      	"id": "50"
   },
   {
 	"title": "Did you have heart burn or acid reflux in the last 7 days?",
@@ -777,7 +793,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "50"
+      	"id": "51"
   },
   {
 	"title": "Which days?",
@@ -792,7 +808,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "51"
+      	"id": "52"
   },
   {
 	"title": "Did you have a minor injury unrelated to surfing (e.g. twisted ankle, twisted knee, scrape or cut) in the last 7 days?",
@@ -807,7 +823,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "52"
+      	"id": "53"
   },
   {
 	"title": "Which days?",
@@ -822,7 +838,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "53"
+      	"id": "54"
   },
   {
 	"title": "Did you have an infected cut in the last 7 days?",
@@ -837,7 +853,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "54"
+      	"id": "55"
   },
   {
 	"title": "Which days?",
@@ -852,7 +868,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "55"
+      	"id": "56"
   },
   {
 	"title": "Did you have a skin rash, itchy skin, or skin infection in the last 7 days?",
@@ -867,7 +883,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "56"
+      	"id": "57"
   },
   {
 	"title": "Which days?",
@@ -882,7 +898,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "57"
+      	"id": "58"
   },
   {
 	"title": "Did you have a cough?",
@@ -897,7 +913,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "58"
+      	"id": "59"
   },
   {
 	"title": "Which days?",
@@ -912,7 +928,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "59"
+      	"id": "60"
   },
   {
 	"title": "Did you have a sore throat?",
@@ -927,7 +943,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "60"
+      	"id": "61"
   },
   {
 	"title": "Which days?",
@@ -942,7 +958,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "61"
+      	"id": "62"
   },
   {
 	"title": "Did you have runny nose/congestion?",
@@ -957,7 +973,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "62"
+      	"id": "63"
   },
   {
 	"title": "Which days?",
@@ -972,7 +988,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "63"
+      	"id": "64"
   },
   {
 	"title": "Did anybody else who lives in your house come down with the same symptoms before or about the same time as you?",
@@ -987,7 +1003,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "64"
+      	"id": "65"
   },
   {
 	"title": "Since last sevenDaysAgoFunction, do you suspect that you or anybody in your home might have had food poisoning?",
@@ -1002,7 +1018,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "65"
+      	"id": "66"
   },
   {
 	"title": "Since last sevenDaysAgoFunction, did you miss work, school, or other daily activities because of any of the symptoms above? If so, how many days in the past week? (Record 0 if no days missed)",
@@ -1018,7 +1034,7 @@
 	"errmessage": "",
       	"status": "incomplete",
 	"check": "select",
-      	"id": "66"
+      	"id": "67"
   },
   {
 	"title": "Since last sevenDaysAgoFunction, did you seek medical care from a clinic or hospital for any of the symptoms above?",
@@ -1033,7 +1049,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "67"
+      	"id": "68"
   },
   {
 	"title": "Since last sevenDaysAgoFunction, did you take medication such as painkillers or antibiotics for any of the symptoms above?",
@@ -1048,7 +1064,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "68"
+      	"id": "69"
   },
   {
 	"title": "Since last sevenDaysAgoFunction, did you avoid entering the ocean because of your symptoms?",
@@ -1063,7 +1079,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "69"
+      	"id": "70"
   },
   {
 	"title": "Since last sevenDaysAgoFunction, did you avoid entering the ocean because of any illness not covered by the symptoms above?",
@@ -1078,7 +1094,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "70"
+      	"id": "71"
   },
   {
 	"title": "What is your gender?",
@@ -1094,7 +1110,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "71"
+      	"id": "72"
   },
   {
 	"title": "What year were you born?",
@@ -1110,7 +1126,7 @@
 	"declinedefault": "1900",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "72"
+      	"id": "73"
   },
   {
 	"title": "What is the highest level of education that you have completed?",
@@ -1126,7 +1142,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "73"
+      	"id": "74"
   },
   {
 	"title": "Are you currently employed?",
@@ -1141,7 +1157,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "74"
+      	"id": "75"
   },
   {
 	"title": "If you think back to your households income in 2013 which category represents the total combined income of all members of your household reported on last years tax return?",
@@ -1150,21 +1166,6 @@
       	"type": "select",
 	"check": "select",
       	"menu": "Select One,< $10k,$10-15k,$15-25k,$25-35k,$35-50k,$50-75k,$75-100k,$100-150k,> $150k,Would prefer no to say/Refused,Dont know/not sure",
-        "other": "n",
-	"otype": "",
-  	"answer": "",
-	"decline": "no",
-	"declinedefault": "",
-	"errmessage": "",
-      	"status": "incomplete",
-      	"id": "75"
-  },
-  {
-	"title": "Did you participate in last year's survey?",
-	"action": "none",
-      	"num": "q20",
-      	"type": "radio",
-	"menu": "Yes,No",
         "other": "n",
 	"otype": "",
   	"answer": "",
