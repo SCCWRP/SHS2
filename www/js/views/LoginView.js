@@ -15,7 +15,7 @@ var LoginView = Backbone.View.extend({
 		var loginID = $('#loginInput').val();
 	  //if (networkStatus != 'offline' && isDevice == true){
 	  if (networkStatus != 'offline'){
-        	var url = 'http://data.sccwrp.org/shs/index.php/user/' + loginID;
+        	var url = 'http://54.187.64.245/shs2/index.php/user/' + loginID;
 		message = $.ajax({
 		type: 'GET',
 		url: url,

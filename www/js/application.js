@@ -8,7 +8,7 @@ var appRouter = new (Backbone.Router.extend({
 	console.log("checksum");
   	//if (networkStatus != 'offline' && isDevice == true){
   	if (networkStatus != 'offline'){
-		var surveyKey = window.localStorage.getItem("http://data.sccwrp.org/shs/index.php/surveys");
+		var surveyKey = window.localStorage.getItem("http://54.187.64.245/shs2/index.php/surveys");
 		var splitKey = surveyKey.split(',');
 		var splitKeyCount = splitKey.length;
 		console.log(splitKeyCount);
@@ -230,7 +230,7 @@ var appRouter = new (Backbone.Router.extend({
   	//if (networkStatus != 'offline' && isDevice == true){
 	// this should probably get moved to LoginView
   	if (networkStatus != 'offline'){
-		var dirtyKey = window.localStorage.getItem("http://data.sccwrp.org/shs/index.php/surveys_dirty");
+		var dirtyKey = window.localStorage.getItem("http://54.187.64.245/shs2/index.php/surveys_dirty");
 		if (dirtyKey){
 			console.log("dirtyKey: "+dirtyKey);
 			//submitLocal(dirtyKey); -- need to fix submission through history
@@ -247,7 +247,7 @@ var appRouter = new (Backbone.Router.extend({
 		var splitKey = dirtyKey.split(',');
 		var splitKeyCount = splitKey.length;
 		for(var i=0; i<splitKeyCount; i++){
-			var surveyLocalKey = window.localStorage.getItem("http://data.sccwrp.org/shs/index.php/surveys"+ splitKey[i]);
+			var surveyLocalKey = window.localStorage.getItem("http://54.187.64.245/shs2/index.php/surveys"+ splitKey[i]);
 			//storeLocal(localKey,localReceipt);
 			var surveyLocalObject = jQuery.parseJSON(surveyLocalKey);
 			var saveList = new AnswerList();
@@ -338,7 +338,7 @@ var app = {
   notify: function(e,i){
 	console.log(e);
 	console.log(i);
-	var url = 'http://data.sccwrp.org/shs2/email.php';
+	var url = 'http://54.187.64.245/shs2/email.php';
 	//var p = "15625727718";
 	var message = $.ajax({
 		type: 'GET',

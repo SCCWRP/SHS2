@@ -1,5 +1,5 @@
 var Gift = Backbone.Model.extend({
-	urlRoot: "http://data.sccwrp.org/shs2/index.php/gift",
+	urlRoot: "http://54.187.64.245/shs2/index.php/gift",
     	/* critical - backbone by default will not replace client side attributes with server response
 		https://github.com/jashkenas/backbone/issues/1069
 	   instead we will return the response.event object to our model which will replace those client attributes
