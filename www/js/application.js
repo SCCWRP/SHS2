@@ -273,12 +273,12 @@ var appRouter = new (Backbone.Router.extend({
 			console.log("startWeekly");
 			answerList = new AnswerList();
 			//this.answerList = answerList;
-			answerList.create({qcount: 25, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
+			answerList.create({qcount: 26, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
 	  		  wait: true,
 	  		  success: function(model,response){
 				answer = answerList.get(response.id);
 				answerListView = new AnswerListView({model: answer});
-				answerListView.endquestion = 70;
+				answerListView.endquestion = 71;
 	  		  },
  			  error: function(model,response){
 				if(response.status == 500){
@@ -339,7 +339,6 @@ var app = {
 	console.log(e);
 	console.log(i);
 	var url = 'http://54.187.64.245/shs2/email.php';
-	//var p = "15625727718";
 	var message = $.ajax({
 		type: 'GET',
 		url: url,
