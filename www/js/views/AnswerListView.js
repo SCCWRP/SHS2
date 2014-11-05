@@ -284,7 +284,6 @@ var AnswerListView = Backbone.View.extend({
 		answerDetails["q"+currentQuestion] = currentAnswer;
 		this.model.set("q"+currentQuestion, currentAnswer);
 		answerDetails.qcount = nextQuestion;
-		if(this.qHistory.indexOf(currentQuestion) == -1)this.qHistory.push(currentQuestion);
 		// either set or save here
 		//this.model.set(answerDetails, {validate:true});
 		//if(timer != 0){ use this code if you want break up modules and then save
@@ -308,6 +307,7 @@ var AnswerListView = Backbone.View.extend({
 				success: function(model,response){
 					console.log("success");
 					console.log(model);
+					if(that.qHistory.indexOf(currentQuestion) == -1)that.qHistory.push(currentQuestion);
 					//appID = Number(this.model.get("id")); 
 					// if module1 - then notify user 
 					// ****** notify user - working code ********** //

@@ -8,11 +8,14 @@ var createDefaults =  function() {
 }
 var Answer = Backbone.Model.extend({
 	initialize: function(){
+		var that = this;
                 this.on("invalid",function(model,error){
+			that.set(that.rollback, {validate: false});
 		        alert(error);
 	        });
 	},
 	defaults: createDefaults(),
+    	rollback: {},
 	validate: function (attrs){
 		for(i=1; i<= MAXQUESTION; i++) {
 			var q = "q" + i;
@@ -23,7 +26,8 @@ var Answer = Backbone.Model.extend({
 			if(outcome.length > 0){
 				var oneerror = outcome[0];
 				return oneerror;
-			};
+			} 
 		};
+		this.rollback = attrs;
 	}
 });
