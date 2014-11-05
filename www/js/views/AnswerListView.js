@@ -83,9 +83,6 @@ var AnswerListView = Backbone.View.extend({
 			var modFive = 5;
 			var modSix = 7;
 			var nextQcount = t.get("qcount");
-			console.log("updateProgressBar");			
-			console.log("qcount");
-			console.log(nextQcount);
 			if (nextQcount < 12) {
 				$('#Modprogress-bar').val((nextQcount/modOne)*100);
      				$('#Modprogress-bar').slider('refresh');
@@ -94,29 +91,20 @@ var AnswerListView = Backbone.View.extend({
 				$('#Modprogress-bar').val(((nextQcount-12)/modTwo)*100);
      				$('#Modprogress-bar').slider('refresh');
 			}
-			if (nextQcount > 25 && nextQcount < 34) {
+			if (nextQcount > 25 && nextQcount < 34){
 				$('#Modprogress-bar').val(((nextQcount-25)/modThree)*100);
      				$('#Modprogress-bar').slider('refresh');
 			}
 			if (nextQcount > 34 && nextQcount < 71){
-					$('#Modprogress-bar').val(((nextQcount-34)/modFour)*100);
+				$('#Modprogress-bar').val(((nextQcount-34)/modFour)*100);
      				$('#Modprogress-bar').slider('refresh');
 			}	
 			if (nextQcount > 71 && nextQcount < MAXQUESTION){
-					$('#Modprogress-bar').val(((nextQcount-71/modFive)*100));
+				$('#Modprogress-bar').val(((nextQcount-71/modFive)*100));
      				$('#Modprogress-bar').slider('refresh');
 			}	
-			//if(nextQcount > 59){
-					//$('#Modprogress-bar').val(((nextQcount-59)/modSix)*100);
-     				//$('#Modprogress-bar').slider('refresh');
-			//}
-			
-
-     		//console.log("Doing Update to slider bar");			
 			$('#Fullprogress-bar').val((nextQcount/MAXQUESTION)*100); 			
-			//console.log("Refreshing slider bar");
-     		$('#Fullprogress-bar').slider('refresh');
-
+     			$('#Fullprogress-bar').slider('refresh');
 		}
 		function errorQuestion(model,response){
 			console.log(response);
