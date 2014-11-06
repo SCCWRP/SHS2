@@ -23,8 +23,11 @@ var LoginView = Backbone.View.extend({
 		dataType: 'json',
 		crossDomain: true,
 		timeout: 4000,
-		error: function(data){ 
-			if(data.status == "404"){
+		error: function(xhr, status, error ){ 
+			//console.log(xhr.status);
+			//console.log(status);
+			//console.log(error);
+			if(xhr.status == "404"){
 				alert("User not found...Try again or enroll");
 				that.cleanup();
 				location.reload();
@@ -32,6 +35,8 @@ var LoginView = Backbone.View.extend({
 			 //if(t==="timeout"){ alert("Server Inaccessible contact Paul Smith"); }
 		}, 
 		success: function(data) {
+			console.log("success");
+			console.log(data);
 			if(data == false){
 				console.log(data);
 				alert("Failed to login...Try again");

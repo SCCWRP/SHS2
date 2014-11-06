@@ -365,7 +365,7 @@ var app = {
 
   },
   onDeviceReady: function(){
- 	// jquery cors support for phonegap
+ 	// jquery cors support for phonegap - ie9
 	/*
 	$.support.cors = true;
 	$.mobile.allowCrossDomainPages = true;
