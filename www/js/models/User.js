@@ -1,5 +1,5 @@
 var User = Backbone.Model.extend({
-    	urlRoot: "http://54.187.64.245/shs2/index.php/user",
+    	urlRoot: "http://shs.sccwrp.org/shs2/index.php/user",
 	initialize: function(){
             //alert("Welcome to User Login");
         }
