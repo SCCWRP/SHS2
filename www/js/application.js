@@ -21,7 +21,7 @@ var appRouter = new (Backbone.Router.extend({
   },
   css: function(){
 	     console.log("css");
-	     $('#content').trigger('create');
+	     $('#one').trigger('pagecreate');
 	     $('html,body').animate({ scrollTop: '0px'}, 0);
 	     appRouter.resizePage();
 	    if(deviceType == "iPhone"){
