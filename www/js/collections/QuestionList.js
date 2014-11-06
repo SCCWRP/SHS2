@@ -40,7 +40,9 @@ var QuestionList = Backbone.Collection.extend({
 				thismod["check"] = "0";
 			};
 			var codes = thismod.check.split(",");
-			valLU["q" + (i+1)] = codes.map(function(c) {
+			// ie 9 wont support array.prototype.map function
+			//valLU["q" + (i+1)] = codes.map(function(c) {
+			valLU["q" + (i+1)] = jQuery.map(codes, function(c) {
 				return validationFuncs[c];
 			});	
 			if(thismod.errmessage != "") {

@@ -14,8 +14,18 @@ var IntroView = Backbone.View.extend({
 		contactView = new ContactView;
 	},
 	showFAQ: function(){
+		console.log("showFAQ");
 		headerView = new HeaderView;
-		faqView = new FAQView;
+		var faqList = new FAQList();
+		faqList.fetch({success: successMessage, error: errorMessage});
+		function successMessage(model,response){
+			$("#content").html( new FAQView({model: faqList}).render().el );
+			appRouter.css();
+		}
+		function errorMessage(model,response){
+		 	console.log("faq failed fetch");
+		 	console.log(response);
+		}
 	},
 	showLogin: function(){
 		//$("#landing").hide();

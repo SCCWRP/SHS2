@@ -378,7 +378,7 @@ var AnswerListView = Backbone.View.extend({
 						       	selectTarget.val(newoption);
 							selectTarget.trigger('change');
 							}
-						},
+						}
 				    	   }
 			 	 	})	
 				};

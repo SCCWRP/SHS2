@@ -21,7 +21,7 @@ var appRouter = new (Backbone.Router.extend({
   },
   css: function(){
 	     console.log("css");
-	     $('#content').trigger('create');
+	     $('#one').trigger('pagecreate');
 	     $('html,body').animate({ scrollTop: '0px'}, 0);
 	     appRouter.resizePage();
 	    if(deviceType == "iPhone"){
@@ -375,8 +375,7 @@ var app = {
 	$.mobile.linkBindingEnabled = false;
 	$.mobile.hashListeningEnabled = false;
 	$.mobile.pushStateEnabled = false;
-	//app.bindEvents();
-  	Backbone.history.start({pushState: true});
+  	Backbone.history.start({pushState: true, hashChange: false});
 	// check network status
  	networkStatus = navigator.onLine ? 'online' : 'offline';
 	FastClick.attach(document.body);
