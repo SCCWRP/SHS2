@@ -35,7 +35,7 @@ var appRouter = new (Backbone.Router.extend({
 	    //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter); - issues with iphone
   },
   gift: function(giftid){
-	//console.log("gift");
+	console.log("gift");
 	var gift = new Gift({id: giftid});
 	 /* gift will require its own view to create a temporary sticky popup on footer bar */
 	 gift.fetch({success: setMessage,error: errorMessage});

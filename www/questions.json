@@ -322,7 +322,7 @@
 	"action": "none",
       	"num": "q27a",
       	"type": "numberSelect",
-	"menu": "hours,days",
+	"menu": "days,hours",
         "other": "n",
 	"otype": "",
   	"answer": "",
