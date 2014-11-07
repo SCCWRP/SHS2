@@ -76,31 +76,31 @@ var AnswerListView = Backbone.View.extend({
 			//$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter)
 		}
 		function updateProgressBar(t){
-			var modOne = 12;
-			var modTwo =16;
-			var modThree = 11;
-			var modFour = 15;
-			var modFive = 5;
-			var modSix = 7;
+			var modOne = 13;
+			var modTwo =17;
+			var modThree = 12;
+			var modFour = 14;
+			var modFive = 6;
+			var modSix = 8;
 			var nextQcount = t.get("qcount");
-			if (nextQcount < 12) {
+			if (nextQcount < 13) {
 				$('#Modprogress-bar').val((nextQcount/modOne)*100);
      				$('#Modprogress-bar').slider('refresh');
 			}
-			if (nextQcount > 12 && nextQcount <25){				
-				$('#Modprogress-bar').val(((nextQcount-12)/modTwo)*100);
+			if (nextQcount > 13 && nextQcount <26){				
+				$('#Modprogress-bar').val(((nextQcount-13)/modTwo)*100);
      				$('#Modprogress-bar').slider('refresh');
 			}
-			if (nextQcount > 25 && nextQcount < 34){
-				$('#Modprogress-bar').val(((nextQcount-25)/modThree)*100);
+			if (nextQcount > 26 && nextQcount < 35){
+				$('#Modprogress-bar').val(((nextQcount-26)/modThree)*100);
      				$('#Modprogress-bar').slider('refresh');
 			}
-			if (nextQcount > 34 && nextQcount < 71){
-				$('#Modprogress-bar').val(((nextQcount-34)/modFour)*100);
+			if (nextQcount > 35 && nextQcount < 72){
+				$('#Modprogress-bar').val(((nextQcount-35)/modFour)*100);
      				$('#Modprogress-bar').slider('refresh');
 			}	
-			if (nextQcount > 71 && nextQcount < MAXQUESTION){
-				$('#Modprogress-bar').val(((nextQcount-71/modFive)*100));
+			if (nextQcount > 72 && nextQcount < MAXQUESTION){
+				$('#Modprogress-bar').val(((nextQcount-72/modFive)*100));
      				$('#Modprogress-bar').slider('refresh');
 			}	
 			$('#Fullprogress-bar').val((nextQcount/MAXQUESTION)*100); 			
@@ -247,22 +247,20 @@ var AnswerListView = Backbone.View.extend({
 			user.save({ "contact": setContact, "status": "complete" });
 		}
                 // logic for skipping certain questions
-		if([19, 22, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62].indexOf(currentQuestion) > -1  && currentAnswer == "No"){
+		if([20, 23, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63].indexOf(currentQuestion) > -1  && currentAnswer == "No"){
 			nextQuestion += 1;
 		};
-		if(currentQuestion == 62 && currentAnswer == "No" && _.all(_.map(this.model.pick('q34', 'q36', 'q38', 'q40', 'q42', 'q44', 'q46', 'q50', 'q52',
-						'q54', 'q56', 'q58', 'q60' ), function(x) {return x == 'No';}))) {
+		if(currentQuestion == 63 && currentAnswer == "No" && _.all(_.map(this.model.pick('q35', 'q37', 'q39', 'q41', 'q43', 'q45', 'q47', 'q51', 'q53', 'q55', 'q57', 'q59', 'q61' ), function(x) {return x == 'No';}))) {
 			nextQuestion += 6;	
 		};
 		// module3 did not surf
-		if(currentQuestion == 25 && currentAnswer == "Did not Enter"){
-			this.model.set({q26: null, q27: null, q28: null, q29: null,
-					q30: null, q31: null, q32: null});
+		if(currentQuestion == 26 && currentAnswer == "Did not Enter"){
+			this.model.set({q27: null, q28: null, q29: null, q30: null, q31: null, q32: null, q33: null});
 			nextQuestion +=  7;
 		};
 		// this should really go somewhere after sync happens maybe next question
 		// also status needs to be toggled to complete in database
-		if(currentQuestion == 12){
+		if(currentQuestion == 13){
 			user.save({ list: "weekly" });
 			user.save({ status: "complete" });
 		};

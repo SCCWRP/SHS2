@@ -159,7 +159,7 @@
 		<% if(elements.survey_type == "enrollment") { %>
 		<h4>History Survey</h4>
 		<ul data-role="listview" data-inset="true">
-		<% var modtwo = _.pick(elements, 'q13', 'q14', 'q15', 'q16', 'q17', 'q18', 'q19', 'q20', 'q21', 'q22', 'q23', 'q24'); %>
+		<% var modtwo = _.pick(elements, 'q14', 'q15', 'q16', 'q17', 'q18', 'q19', 'q20', 'q21', 'q22', 'q23', 'q24', 'q25'); %>
 		<% _.each(modtwo, function(element,index,list) {  var qindex = index.substr(1); %>
 		<% if(!element) return;  %>
 			<li data-role="list-divider">Question <%= qindex %></li>
@@ -169,9 +169,9 @@
 		<% }; %>
 
 		<h4>Ocean Exposure Survey</h4>
-		<button data-icon="edit" class="edit" id=25 name=31>Click here to redo this survey</button>
+		<button data-icon="edit" class="edit" id=26 name=32>Click here to redo this survey</button>
 		<ul data-role="listview" data-inset="true">
-		<% var modthree = _.pick(elements, 'q25', 'q26', 'q27', 'q28', 'q29', 'q30', 'q31', 'q32', 'q33'); %>
+		<% var modthree = _.pick(elements, 'q26', 'q27', 'q28', 'q29', 'q30', 'q31', 'q32', 'q33', 'q34'); %>
 		<% _.each(modthree, function(element,index,list) {  var qindex = index.substr(1); %>
 		<% if(!element) return;  %>
 			<% element = JSON.stringify(element).replace(/\\"/g, "").replace("\\", "").replace(/\"/g, "").replace("{","").replace("}", "");  %> 
@@ -185,9 +185,9 @@
 		</ul>
 
 		<h4>Symptoms Survey</h4>
-		<button data-icon="edit" class="edit" id=34 name=70 >Click here to redo this survey</button>
+		<button data-icon="edit" class="edit" id=35 name=71 >Click here to redo this survey</button>
 		<ul data-role="listview" data-inset="true">
-			<% var modfour = _.pick(elements, 'q34', 'q35', 'q36', 'q37', 'q38', 'q39', 'q40','q41', 'q42', 'q43', 'q44','q45', 'q46', 'q47', 'q48', 'q49', 'q50', 'q51', 'q52', 'q53', 'q54', 'q55', 'q56', 'q57', 'q58', 'q59', 'q60', 'q61', 'q62', 'q63', 'q64', 'q65', 'q66', 'q67', 'q68', 'q70'); %>
+			<% var modfour = _.pick(elements, 'q35', 'q36', 'q37', 'q38', 'q39', 'q40', 'q41','q42', 'q43', 'q44', 'q45','q46', 'q47', 'q48', 'q49', 'q50', 'q51', 'q52', 'q53', 'q54', 'q55', 'q56', 'q57', 'q58', 'q59', 'q60', 'q61', 'q62', 'q63', 'q64', 'q65', 'q66', 'q67', 'q68', 'q69', 'q70', 'q71'); %>
 		<% _.each(modfour, function(element,index,list) {  var qindex = index.substr(1); %>
 		<% if(!element) return;  %>
 			<li data-role="list-divider">Question <%= qindex %></li>
@@ -198,7 +198,7 @@
 		<% if(elements.survey_type == "enrollment") { %>
 		<h4>Demographics Survey</h4>
 		<ul data-role="listview" data-inset="true">
-		<% var modfive = _.pick(elements, 'q71', 'q72', 'q73', 'q74', 'q75', 'q76'); %>
+		<% var modfive = _.pick(elements, 'q72', 'q73', 'q74', 'q75', 'q76'); %>
 		<% _.each(modfive, function(element,index,list) {  var qindex = index.substr(1); %>
 		<% if(!element) return;  %>
 			<li data-role="list-divider">Question <%= qindex %></li>
@@ -320,7 +320,7 @@
         	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
 		// -->
 		<fieldset class="ui-field-contain">
-		  <% var dates = q25.split(","); %>
+		  <% var dates = q26.split(","); %>
 		  <% dates = dates.map(function(x) { return new Date(Date.parse(x));}); %>  
 		  <% days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; %>
 		  <% days[new Date().getDay()] = "Today"; %>
@@ -346,7 +346,7 @@
         	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
 		// -->
 		<fieldset class="ui-field-contain">
-		  <% var dates = q25.split(","); %>
+		  <% var dates = q26.split(","); %>
 		  <% var AmArray = _.range(48).map(function(x) {if(x<4) x=x+48; return Math.floor(x/4) + ":" + ["00", 15, 30, 45][x % 4] + " AM";}); %>
 		  <% var PmArray = _.range(48).map(function(x) {if(x<4) x=x+48; return Math.floor(x/4) + ":" + ["00", 15, 30, 45][x % 4] + " PM";}); %> 
 		  <% var TimeArray = AmArray.concat(PmArray); %>
@@ -411,7 +411,7 @@
 			<input type="checkbox" class="custom" value= <%= (newday.getMonth()+1) + "/" + (newday.getDate()) + "/" + (newday.getYear() + 1900)  %>  name = <%= days[i] %>  id= <%= days[i] %> />
 			<label for= <%= days[i] %> >  <%= days[i] %> </label> 
 	 		<% }; %>
-			<% if(qcount == "25" && decline == "yes") { %>
+			<% if(qcount == "26" && decline == "yes") { %>
 			<!-- <input type="button"  name="decline" id="decline" class="decline">Did not Enter</input> // -->
 				<input type="checkbox" class="decline" value="decline" name="decline" id="decline" />
 				<label for="decline" class="decline">Did not Enter</label> 

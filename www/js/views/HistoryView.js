@@ -32,7 +32,7 @@ var HistoryView = Backbone.View.extend({
 		function recreateSurvey () {
 			var answerList = new AnswerList(new Answer());
 			answerListView = new AnswerListView({model: answerList.first()});
-			answerListView.endquestion = 70;
+			answerListView.endquestion = 71;
 			answerListView.model.set(leaveoff.attributes);
 			/*var qmodel = _.map(answerListView.model.attributes, function(v, k) {
 				if(v && k.indexOf('q') > -1) {
