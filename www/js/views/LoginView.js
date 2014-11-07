@@ -44,11 +44,10 @@ var LoginView = Backbone.View.extend({
 			//console.log(typeof(data.id));
 			} else {
 				console.log("login success");
-				//$("#popupInfo").popup("close");
+				console.log(data.id);
 				$("#back").show();
 				$("#forward").show();
 				$("#footer").show();
-				//console.log("login");
 				//console.log(data.contact);
 				USERID = Number(data.id);
 				//appRouter.history(USERID);
