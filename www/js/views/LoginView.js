@@ -44,7 +44,7 @@ var LoginView = Backbone.View.extend({
 			//console.log(typeof(data.id));
 			} else {
 				console.log("login success");
-				console.log(data.id);
+				console.log(data);
 				$("#back").show();
 				$("#forward").show();
 				$("#footer").show();
