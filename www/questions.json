@@ -721,7 +721,7 @@
       	"id": "46"
   },
   {
-	"title": "Did you have earache, ear infection, or running nose in the last 7 days?",
+	"title": "Did you have earache, ear infection, or runny ears in the last 7 days?",
 	"action": "none",
       	"num": "q47",
       	"type": "radio",
@@ -781,7 +781,7 @@
       	"id": "50"
   },
   {
-	"title": "Did you have heart burn or acid reflux in the last 7 days?",
+	"title": "Did you have tooth pain or tooth sensitivity in the last 7 days?",
 	"action": "none",
       	"num": "q49",
       	"type": "radio",
@@ -811,7 +811,7 @@
       	"id": "52"
   },
   {
-	"title": "Did you have a minor injury unrelated to surfing (e.g. twisted ankle, twisted knee, scrape or cut) in the last 7 days?",
+	"title": "Did you have allergies (runny nose, sneezing, itchy eyes, hay fever) in the last 7 days?",
 	"action": "none",
       	"num": "q410",
       	"type": "radio",
@@ -901,7 +901,7 @@
       	"id": "58"
   },
   {
-	"title": "Did you have a cough?",
+	"title": "Did you have a cough in the last 7 days?",
 	"action": "none",
       	"num": "q413",
       	"type": "radio",
@@ -931,7 +931,7 @@
       	"id": "60"
   },
   {
-	"title": "Did you have a sore throat?",
+	"title": "Did you have a sore throat in the last 7 days?",
 	"action": "none",
       	"num": "q414",
       	"type": "radio",
@@ -961,7 +961,7 @@
       	"id": "62"
   },
   {
-	"title": "Did you have runny nose/congestion?",
+	"title": "Did you have runny nose/congestion in the last 7 days?",
 	"action": "none",
       	"num": "q415",
       	"type": "radio",
@@ -1165,7 +1165,7 @@
       	"num": "q55",
       	"type": "select",
 	"check": "select",
-      	"menu": "Select One,< $10k,$10-15k,$15-25k,$25-35k,$35-50k,$50-75k,$75-100k,$100-150k,> $150k,Would prefer no to say/Refused,Dont know/not sure",
+      	"menu": "Select One,< $10k,$10-15k,$15-25k,$25-35k,$35-50k,$50-75k,$75-100k,$100-150k,> $150k,Would prefer not to say/Refused,Dont know/not sure",
         "other": "n",
 	"otype": "",
   	"answer": "",
