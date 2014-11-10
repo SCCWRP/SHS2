@@ -75,7 +75,7 @@ width: 60%;
 }
 #multi-select h3{
   font-size: 25px;
-  color: rgba(255, 255, 255, 0.8);
+  color: black;
 }
 #multi-select select{
   font-size:1.5em;
@@ -131,7 +131,7 @@ a.ui-slider-handle.ui-btn.ui-shadow.ui-btn-corner-all.ui-btn-up-b{
 	display:none;
 }
 .boxed {
-	background-color:rgba(0,0,0,.7);
+background-color:white;
 }
 #popupBack{
 position:fixed;
@@ -328,4 +328,11 @@ background-color:black;
 }
 #popupRestart{
 background-color:black;
+}
+.ui-body-b form .ui-btn, .ui-body-b form .ui-mini.ui-checkbox-off, .ui-body-b form .ui-mini.ui-radio-off{
+background-color:white !important;
+border-color:#6dcaec #6dcaec !important;
+}
+.ui-btn-inner, .ui-btn-up-b .ui-btn-text .ui-link-inherit{
+color:black !important;
 }
