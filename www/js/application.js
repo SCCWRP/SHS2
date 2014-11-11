@@ -208,7 +208,7 @@ var appRouter = new (Backbone.Router.extend({
 	});
 	function startSignup(seedEmail,seedPhone){
 	  answerList = new AnswerList();
-	  var answerCreate = answerList.create({q6: seedPhone, q7: seedPhone, q8: seedEmail, q9: seedEmail, qcount: 1, timestamp: SESSIONID, survey_type: "enrollment"}, {
+	  var answerCreate = answerList.create({q6: seedPhone, q7: seedPhone, q8: seedEmail, q9: seedEmail, qcount: 1, timestamp: SESSIONID, survey_type: "enrollment", device_type: navigator.userAgent}, {
 	    success: function(response){
 		console.log("start - success");
 		var answer = answerList.get(response.id);
@@ -273,7 +273,7 @@ var appRouter = new (Backbone.Router.extend({
 			console.log("startWeekly");
 			answerList = new AnswerList();
 			//this.answerList = answerList;
-			answerList.create({qcount: 26, user_id: USERID, timestamp: SESSIONID, survey_type: "followup"}, {
+			answerList.create({qcount: 26, user_id: USERID, timestamp: SESSIONID, survey_type: "followup", device_type: navigator.userAgent}, {
 	  		  wait: true,
 	  		  success: function(model,response){
 				answer = answerList.get(response.id);

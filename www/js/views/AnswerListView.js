@@ -265,6 +265,7 @@ var AnswerListView = Backbone.View.extend({
 			user.save({ status: "complete" });
 		};
 		if(currentQuestion >=  this.endquestion){
+			console.log("endquestion: "+this.endquestion);
 			/* user is finished with survey enrollment/weekly - record is complete */
 			this.model.set({ status: "complete" });
 			/* notify user if this is an enrollment */
