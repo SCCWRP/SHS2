@@ -2,7 +2,7 @@ var AnswerListView = Backbone.View.extend({
 	//el: '#content',
 	template:_.template($('#tpl-answer-details').html()),
 	initialize: function(){
-		console.log("AnswerListView");
+		//console.log("AnswerListView");
 		// must unbind event before each question or will end up with wrong model
 		$(this.el).unbind("click");
 		//headerView = new HeaderView;
@@ -28,8 +28,8 @@ var AnswerListView = Backbone.View.extend({
 	},
 	change:function(event){
 		var that = this;
-		console.log("change");
-		console.log(event);
+		//console.log("change");
+		//console.log(event);
 		that.nextQuestion();
 	},
     	declineAnswer:function(event){
@@ -47,15 +47,15 @@ var AnswerListView = Backbone.View.extend({
 		};
 	},
 	nextQuestion:function(t, response, options){	
-		console.log("nextQuestion");
-		console.log(this.qHistory);
+		//console.log("nextQuestion");
+		//console.log(this.qHistory);
 		var that = this;
 		// get current question number
 		var nextQcount = t.get("qcount");
 	//	if(nextQcount > this.endquestion) return;
 		// changed - to above for receipt
 		//var nextQcount = response.qcount;
-		//console.log(response.qcount);
+		////console.log(response.qcount);
      		var questionList = new QuestionList();
 		questionList.fetch({success: getQuestion,error: errorQuestion});
 		function getQuestion(){
@@ -107,7 +107,7 @@ var AnswerListView = Backbone.View.extend({
      			$('#Fullprogress-bar').slider('refresh');
 		}
 		function errorQuestion(model,response){
-			console.log(response);
+			//console.log(response);
 		}
     	},
 	selectorString: {
@@ -153,11 +153,11 @@ var AnswerListView = Backbone.View.extend({
 		if(!currentAnswer || currentAnswer == []) {
 			currentAnswer = "";
 		};
-		console.log("currentAnswer: "+ currentAnswer);
+		//console.log("currentAnswer: "+ currentAnswer);
 	 	return currentAnswer;	
 		       },
 	saveAnswer:function(event, decline, other){
-		console.log("saveAnswer");
+		//console.log("saveAnswer");
 		var timer = 0;
 		var appID;
 		var that = this;
@@ -193,14 +193,14 @@ var AnswerListView = Backbone.View.extend({
 			user.save({ phone: currentAnswer }, {
 				wait: true,
 				success: function(response){
-					console.log(user.toJSON());
+					//console.log(user.toJSON());
 				},
 				error: function(model, response){
 				  if(response.status == 500){
-					console.log("failed");
+					//console.log("failed");
 					alert("Phone number already exists in database! Please login instead.");
-					console.log(response.responseText);
-					console.log(response.status);
+					//console.log(response.responseText);
+					//console.log(response.status);
 					loginView = new LoginView;
 				  }
 				}
@@ -214,7 +214,7 @@ var AnswerListView = Backbone.View.extend({
 			user.save({ email: currentAnswer }, {
 				wait: true,
 				success: function(response){
-					console.log(user.toJSON());
+					//console.log(user.toJSON());
 					//if device save to user key
 					userPhoneEmail = '{"email":"'+user.get('email')+'","phone":"'+user.get('phone')+'","id":"'+USERID+'"}';
 					var userKey = window.localStorage.getItem("user");
@@ -231,10 +231,10 @@ var AnswerListView = Backbone.View.extend({
 				},
 				error: function(response){
 				  if(response.status == 500){
-					console.log("failed");
+					//console.log("failed");
 					alert("Email address already exists in database! Please login instead.");
-					console.log(response.responseText);
-					console.log(response.status);
+					//console.log(response.responseText);
+					//console.log(response.status);
 					loginView = new LoginView;
 				  }
 				}
@@ -265,7 +265,7 @@ var AnswerListView = Backbone.View.extend({
 			user.save({ status: "complete" });
 		};
 		if(currentQuestion >=  this.endquestion){
-			console.log("endquestion: "+this.endquestion);
+			//console.log("endquestion: "+this.endquestion);
 			/* user is finished with survey enrollment/weekly - record is complete */
 			this.model.set({ status: "complete" });
 			/* notify user if this is an enrollment */
@@ -300,12 +300,12 @@ var AnswerListView = Backbone.View.extend({
 		} else {
 			// we are online 
 			//this.model.save({qcount: currentQuestion},{ used when useing set and mulitiple save
-			//console.log(this.model.toJSON());
+			////console.log(this.model.toJSON());
 			this.model.save(answerDetails, {
 				wait: false,
 				success: function(model,response){
-					console.log("success");
-					console.log(model);
+					//console.log("success");
+					//console.log(model);
 					if(that.qHistory.indexOf(currentQuestion) == -1)that.qHistory.push(currentQuestion);
 					//appID = Number(this.model.get("id")); 
 					// if module1 - then notify user 
@@ -315,7 +315,7 @@ var AnswerListView = Backbone.View.extend({
 					// ******************************************** // 
 					// last module - go to receipt
 					if(timer == 4){
-						console.log("timer == 4");
+						//console.log("timer == 4");
 						// clear stage and events
 						that.cleanup();
 						//appRouter.cleanup();
@@ -330,13 +330,13 @@ var AnswerListView = Backbone.View.extend({
 				},
 				error: function(model,response){
 				  if(response.status == 500){
-					console.log("failed");
+					//console.log("failed");
 					alert("Phone/Email address already exists in database! Please login instead.");
-					console.log("update record in database");
-					console.log(response.responseText);
-					console.log(response.status);
+					//console.log("update record in database");
+					//console.log(response.responseText);
+					//console.log(response.status);
 					that.cleanup();
-					console.log(model);
+					//console.log(model);
 					model.destroy({remote: false});
 					appRouter.navigate('/', {trigger: false});	
 					location.assign(HOME);
@@ -345,17 +345,17 @@ var AnswerListView = Backbone.View.extend({
 				  }
        				}
 			});
-			console.log(this.model);
+			//console.log(this.model);
 		}
 		}, /* end saveAnswer */
 	cleanup: function() {
-		console.log("AnswerListView cleanup");
+		//console.log("AnswerListView cleanup");
 	        this.undelegateEvents();
 		this.unbind();
 		this.remove();
 	},
 	render: function(){
-		console.log("AnswerListView render");
+		//console.log("AnswerListView render");
 		$(this.el).html("");
 		$(headerView.el).show();
 		$(footerView.el).show();

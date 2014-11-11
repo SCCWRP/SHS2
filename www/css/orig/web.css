@@ -264,11 +264,6 @@ input[type=checkbox]{
 #FAQdiv{
 display:none;
 }
-#landing{
-display:inline;
-visibility:visible;
-overflow:hidden;
-}
 #mainPage2{
 width:7em
 }
@@ -294,31 +289,12 @@ position:relative;
 top:100px;
 }
 #landList li{
-height:25%;
-}
-.liDown{
-position:relative;
+height:33%;
 }
 .boxed2{
 border-style:solid;
 border-width:1px;
 border-color:grey;
-}
-#landingSurvey{
-position:relative;
-top:20%;
-}
-#landingFAQ{
-position:relative;
-top:22%;
-}
-#landingSurf{
-position:relative;
-top:24%;
-}
-#landingContact{
-position:relative;
-top:26%;
 }
 #popupInfo-screen{
 background-color:white !important;

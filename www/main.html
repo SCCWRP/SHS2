@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge"/> 
   <head>
     <title>Surfer Health Survey</title>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
@@ -40,7 +41,8 @@
     <div id="popupInfo" data-role="popup" class="ui-content" data-position-to="" data-dismissible="false" data-history="false">Login</div>
     <div id="popupRestart" data-role="popup" class="ui-content" data-position-to="" data-dismissible="false" data-history="false">Restart</div>
     <div id="popupTip" data-role="popup" data-theme="a" class="ui-content" data-position-to="#footer">Tip</div>
-	<script src="js/orig/jquery-1.9.1.min.js"></script>
+    <!-- <script src="js/orig/jquery-1.9.1.min.js"></script>  // -->
+    <script src="js/vendor/jquery-1.11.0.min.js"></script> 
 	<!--[if lte IE 9]>
 	<script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.0/jquery.xdomainrequest.min.js'></script>
 	<![endif]-->
@@ -61,9 +63,9 @@
     	<script type="text/template" id="tpl-intro-details">
 	  <div id="landing" data-theme="b">
 	    <ul id="landList" data-role="listview">
-		<li class="boxed2">  <img style="width:5.3em; position:fixed; top:6%; left:.9em;" src="img/surveyIcon.png">  <a id="landingSurvey"><h1><center><span class="liDown"><br>Sign In/Enroll</span></center></h1></a></li>
-		<li class="boxed2">  <img style="width:5.3em; position:fixed; top:33%; left:.7em;" src="img/mailIcon.png">  <a id="landingContact"><h1><center><span class="liDown"><br>Contact Us</span></center></h1></a></li>
-		<li class="boxed2">  <img style="width:5.3em; position:fixed; top:58%; left:.7em;" src="img/faqIcon.png">  <a id="landingFAQ"><h1><center><span class="liDown"><br>FAQ</span></center></h1></a></li>
+		<li class="boxed2">  <img style="width:5.3em; position:absolute; top:50%; left:.9em;" src="img/surveyIcon.png">  <a id="landingSurvey"><h1><center><span><br>Sign In/Enroll</span></center></h1></a></li>
+		<li class="boxed2">  <img style="width:5.3em; position:absolute; top:50%; left:.7em;" src="img/mailIcon.png">  <a id="landingContact"><h1><center><span><br>Contact Us</span></center></h1></a></li>
+		<li class="boxed2">  <img style="width:5.3em; position:absolute; top:50%; left:.7em;" src="img/faqIcon.png">  <a id="landingFAQ"><h1><center><span><br>FAQ</span></center></h1></a></li>
 	    </ul>
 	  </div>
 	</script>

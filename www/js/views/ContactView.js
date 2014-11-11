@@ -5,7 +5,7 @@ var ContactView = Backbone.View.extend({
 		this.render();
 	},
 	render: function(){
-		console.log("contact");
+		//console.log("contact");
 		$("#landing").hide();
 		$(headerView.el).show();
 		$('#question').html("Contact Us");

@@ -38,19 +38,19 @@ var IntroView = Backbone.View.extend({
 	  }
 	},
 	cleanup: function() {
-		console.log("IntroView cleanup");
+		//console.log("IntroView cleanup");
 	        this.undelegateEvents();
 	        this.$el.removeData().unbind();
 	        Backbone.View.prototype.remove.call(this);
 	},
 	render: function(){
-		console.log("introview render");
+		//console.log("introview render");
 		/* clear the interface */
 		$("#header").hide();
 		//$("#landing").show();
 		$(this.el).html(this.template());	
 		$("#footer").hide();
-		//console.log(jQuery("html").html());
+		////console.log(jQuery("html").html());
 		// code below is for devices taking too long to render
 		// its ugly but it works
 		if(isDevice){
