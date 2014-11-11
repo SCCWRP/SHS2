@@ -304,27 +304,28 @@ border-style:solid;
 border-width:1px;
 border-color:grey;
 }
-#landingSurvey > h1:nth-child(1){
+#landingSurvey{
 position:relative;
 top:20%;
 }
-#landingFAQ > h1:nth-child(1){
+#landingFAQ{
 position:relative;
 top:22%;
 }
-#landingSurf > h1:nth-child(1){
+#landingSurf{
 position:relative;
 top:24%;
 }
-#landingContact > h1:nth-child(1){
+#landingContact{
 position:relative;
 top:26%;
 }
-#popupInfo{
-background-color:black;
+#popupInfo-screen{
+background-color:white !important;
 }
 #popupTip{
-background-color:black;
+background-color:white;
+color:black;
 }
 #popupRestart{
 background-color:black;

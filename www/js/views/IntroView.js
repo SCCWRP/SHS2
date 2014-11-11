@@ -49,7 +49,6 @@ var IntroView = Backbone.View.extend({
 		$("#header").hide();
 		//$("#landing").show();
 		$(this.el).html(this.template());	
-		//$(this.el).trigger('create');
 		$("#footer").hide();
 		//console.log(jQuery("html").html());
 		// code below is for devices taking too long to render

@@ -298,12 +298,10 @@ var appRouter = new (Backbone.Router.extend({
 	//app.dialog("start","start title","Ok");
 	//appRouter.navigate('shs2/receipt/1031', {trigger: true});
 	//appRouter.checksum();
-	//introView.render();
 	$("#content").html( new IntroView().render().el );
-	//$("#content").trigger("create");
-	//$("#landing").trigger("create");
 	// not sure whether this is the best place to load the questions collection
 	appRouter.question();
+	$("#landList").css("height", window.innerHeight);
         //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter);  - temporary
   }
 }));
