@@ -347,13 +347,16 @@
 		// -->
 		<fieldset class="ui-field-contain">
 		  <% var dates = q26.split(","); %>
+		  <% dates = dates.map(function(x) { return new Date(Date.parse(x));}); %>  
+		  <% days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; %>
+		  <% days[new Date().getDay()] = "Today"; %>
 		  <% var AmArray = _.range(48).map(function(x) {if(x<4) x=x+48; return Math.floor(x/4) + ":" + ["00", 15, 30, 45][x % 4] + " AM";}); %>
 		  <% var PmArray = _.range(48).map(function(x) {if(x<4) x=x+48; return Math.floor(x/4) + ":" + ["00", 15, 30, 45][x % 4] + " PM";}); %> 
 		  <% var TimeArray = AmArray.concat(PmArray); %>
 		  <% TimeArray = TimeArray.slice(20, TimeArray.length); %>
 		  <%= "<script" + "> TimeArray = [" + ("'" + TimeArray.join("','") + "'").split(",") + "];</script" + ">" %>
 		  <% for(j=0; j < dates.length; j++) { %>
-		  <h3 id="date"> <%= dates[j] %> </h3>
+		  <h3 id="date"> <%= days[dates[j].getDay()] %> </h3>
 		  <select name= <%=  "enter" + j  %> id="aid" class="enter">
 			  <option id="0" value="Select One">Select Enter</option>
 		  <% for(i=0; i < TimeArray.length; i++) { %>
