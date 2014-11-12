@@ -244,7 +244,8 @@ var AnswerListView = Backbone.View.extend({
 		}
 		if(currentQuestion == 11){
 			var setContact = this.model.get('contact');
-			user.save({ "contact": setContact, "status": "complete" });
+			var setList = this.model.get('q10');
+			user.save({ "contact": setContact, "list": setList, "status": "complete" });
 		}
                 // logic for skipping certain questions
 		if([20, 23, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63].indexOf(currentQuestion) > -1  && currentAnswer == "No"){
