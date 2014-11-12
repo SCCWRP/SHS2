@@ -121,7 +121,8 @@ var appRouter = new (Backbone.Router.extend({
 		 //console.log(response);
 		 //console.log(receipt);
 		 //$("#content").html( new ReceiptView({model: response}).render().el );
-		 $("#content").html( new ReceiptView({model: receipt}).render().el );
+		 receiptView = new ReceiptView({model: receipt}); 
+		 $("#content").html(receiptView.render().el );
 		 $('#content').trigger('create');
 	 }
 	 function errorMessage(response){
