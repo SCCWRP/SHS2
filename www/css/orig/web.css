@@ -289,9 +289,19 @@ position:relative;
 top:100px;
 }
 #landList li{
-height:33%;
+height:30%;
 }
-.boxed2{
+#landList li img{
+width:5.3em;
+padding-top:50px;
+}
+#landList li h1{
+text-align:center;
+}
+#landList .ui-link-inherit{
+padding-top:80px;
+}
+.landBox{
 border-style:solid;
 border-width:1px;
 border-color:grey;
