@@ -393,7 +393,7 @@
 	"errmessage": "",
       	"status": "incomplete",
       	"id": "25",
-	"check": "0,select"
+	"check": "noVal"
   },
   {
 	"title": "Did you enter the ocean on any days in the past week?",

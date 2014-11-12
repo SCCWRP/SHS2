@@ -17,10 +17,14 @@ var ReceiptView = Backbone.View.extend({
 		var clickedID = event.currentTarget.id;
 		//console.log(clickedID);
 		var fixedID = Number(clickedID.replace('q',''));
+		//console.log(fixedID);
 		that.cleanup();
+		// why are we navigating
 		appRouter.navigate('shs/edit/' + fixedID, {trigger: true});
 		//footerView = new FooterView;
 		//footerView.render();
+		//console.log("this model after cleanup: ");
+		//console.log(this.model);
 		answerListView = new AnswerListView({model: this.model});
 		answerListView.endquestion =  event.currentTarget.name; 
 		answerListView.model.set({ qcount: fixedID});
@@ -28,7 +32,7 @@ var ReceiptView = Backbone.View.extend({
 	},
 	finish: function(event){
 		event.preventDefault();
-		//console.log("finish");
+		////console.log("finish");
 		var that = this;
 		////console.log(this.model.toJSON());
 		//appRouter.checksum();
@@ -58,7 +62,7 @@ var ReceiptView = Backbone.View.extend({
 			//$(this.el).html("");	
 			$(footerView.el).hide();	
 			//footerView.cleanup();
-			var receiptData = _.omit(this.model.attributes, 'id', 'user_id','survey_type')
+			var receiptData = _.omit(this.model.attributes, 'id', 'user_id');
 			$(this.el).append(this.template({ 'elements': receiptData }));	
 			//$('#aid').trigger('create');
 			return this;
