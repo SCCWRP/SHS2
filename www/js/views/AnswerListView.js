@@ -48,6 +48,9 @@ var AnswerListView = Backbone.View.extend({
 	},
 	nextQuestion:function(t, response, options){	
 		console.log("nextQuestion");
+		console.log(this.model.attributes);
+		var val = this.model.validate(this.model.attributes);
+		if(val) return;
 		console.log(this.qHistory);
 		var that = this;
 		// get current question number
