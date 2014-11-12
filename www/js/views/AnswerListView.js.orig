@@ -47,11 +47,16 @@ var AnswerListView = Backbone.View.extend({
 		};
 	},
 	nextQuestion:function(t, response, options){	
-	//	console.log("nextQuestion");
-	//	console.log(this.model.attributes);
+<<<<<<< HEAD
+		console.log("nextQuestion");
+		console.log(this.model.attributes);
 		var val = this.model.validate(this.model.attributes);
 		if(val) return;
-	//	console.log(this.qHistory);
+		console.log(this.qHistory);
+=======
+		//console.log("nextQuestion");
+		//console.log(this.qHistory);
+>>>>>>> 7d4e52732037fd7e886c800240e6e581a1b359fc
 		var that = this;
 		// get current question number
 		var nextQcount = t.get("qcount");

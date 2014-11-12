@@ -13,9 +13,9 @@ var ReceiptView = Backbone.View.extend({
 		event.preventDefault();
 		var that = this;
 		/* find id of question user wants to edit and set qcount to previous */
-		console.log(event.currentTarget);
+		//console.log(event.currentTarget);
 		var clickedID = event.currentTarget.id;
-		console.log(clickedID);
+		//console.log(clickedID);
 		var fixedID = Number(clickedID.replace('q',''));
 		that.cleanup();
 		appRouter.navigate('shs/edit/' + fixedID, {trigger: true});
@@ -28,9 +28,9 @@ var ReceiptView = Backbone.View.extend({
 	},
 	finish: function(event){
 		event.preventDefault();
-		console.log("finish");
+		//console.log("finish");
 		var that = this;
-		//console.log(this.model.toJSON());
+		////console.log(this.model.toJSON());
 		//appRouter.checksum();
 		var survey_type = this.model.get('survey_type');
 		if(survey_type == "enrollment"){
@@ -46,14 +46,14 @@ var ReceiptView = Backbone.View.extend({
 		location.assign(HOME);
 	},
 	cleanup: function() {
-	     console.log("receipt cleanup");
+	     //console.log("receipt cleanup");
 	     this.undelegateEvents();
 	     this.$el.removeData().unbind();
 	     Backbone.View.prototype.remove.call(this);
  	},
 	render: function(){
-			console.log("ReceiptView render");
-			console.log(this.model.toJSON());
+			//console.log("ReceiptView render");
+			//console.log(this.model.toJSON());
 		        $(headerView.el).hide();
 			//$(this.el).html("");	
 			$(footerView.el).hide();	

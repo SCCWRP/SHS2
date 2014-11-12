@@ -264,11 +264,6 @@ input[type=checkbox]{
 #FAQdiv{
 display:none;
 }
-#landing{
-display:inline;
-visibility:visible;
-overflow:hidden;
-}
 #mainPage2{
 width:7em
 }
@@ -294,31 +289,22 @@ position:relative;
 top:100px;
 }
 #landList li{
-height:25%;
+height:30%;
 }
-.liDown{
-position:relative;
+#landList li img{
+width:5.3em;
+padding-top:50px;
 }
-.boxed2{
+#landList li h1{
+text-align:center;
+}
+#landList .ui-link-inherit{
+padding-top:80px;
+}
+.landBox{
 border-style:solid;
 border-width:1px;
 border-color:grey;
-}
-#landingSurvey{
-position:relative;
-top:20%;
-}
-#landingFAQ{
-position:relative;
-top:22%;
-}
-#landingSurf{
-position:relative;
-top:24%;
-}
-#landingContact{
-position:relative;
-top:26%;
 }
 #popupInfo-screen{
 background-color:white !important;

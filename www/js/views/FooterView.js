@@ -28,7 +28,7 @@ var FooterView = Backbone.View.extend({
 	  appRouter.css();
 	},
 	render: function(){
-		console.log("footer");
+		//console.log("footer");
 		$(this.el).html("");
 		$(this.el).html(this.template());	
 		$('#footer').trigger('create');

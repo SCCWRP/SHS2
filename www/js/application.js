@@ -5,22 +5,22 @@ var appRouter = new (Backbone.Router.extend({
     "": "start"
   },
   checksum: function(){
-	console.log("checksum");
+	//console.log("checksum");
   	//if (networkStatus != 'offline' && isDevice == true){
   	if (networkStatus != 'offline'){
 		var surveyKey = window.localStorage.getItem("http://shs.sccwrp.org/shs2/index.php/surveys");
 		var splitKey = surveyKey.split(',');
 		var splitKeyCount = splitKey.length;
-		console.log(splitKeyCount);
+		//console.log(splitKeyCount);
 		for(var i=0; i<splitKeyCount; i++){
-			console.log(splitKey[i]);
+			//console.log(splitKey[i]);
 			// check each value against server - to confirm they are "complete" in status field
 			// if not - send to staging table for manual decision making
 		}
 	}
   },
   css: function(){
-	     console.log("css");
+	     //console.log("css");
 	     $('#one').trigger('pagecreate');
 	     $('html,body').animate({ scrollTop: '0px'}, 0);
 	     appRouter.resizePage();
@@ -35,16 +35,16 @@ var appRouter = new (Backbone.Router.extend({
 	    //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter); - issues with iphone
   },
   gift: function(giftid){
-	console.log("gift");
+	//console.log("gift");
 	var gift = new Gift({id: giftid});
 	 /* gift will require its own view to create a temporary sticky popup on footer bar */
 	 gift.fetch({success: setMessage,error: errorMessage});
 	 function setMessage(response){
-		 console.log("gift");
-		 console.log(response.attributes.user_visits);
+		 //console.log("gift");
+		 //console.log(response.attributes.user_visits);
 		 if(response.attributes.user_visits){
 		 	var message = "You have completed "+ response.attributes.user_visits + " follow-up surveys. When you reach " + response.attributes.gift_visits + " you will receive a "+ response.attributes.gift +"";
-			console.log(message);
+			//console.log(message);
 		 	$("#popupTip").trigger("create");
 		 	$("#popupTip").popup("open");
 		 	$("#popupTip").html(message);
@@ -60,7 +60,7 @@ var appRouter = new (Backbone.Router.extend({
 		 //console.log(response);
 	 }
 	 function errorMessage(response){
-		 console.log(response);
+		 //console.log(response);
 	 }
   },	
   history: function(historyid){
@@ -70,7 +70,7 @@ var appRouter = new (Backbone.Router.extend({
 	history.fetch({success: setMessage,error: errorMessage});
 	 function setMessage(response){
 		 /* not a great workaround - history has a default attribute of id - needs to be ignored */
-		 console.log(history.keys(history.Data).length);
+		 //console.log(history.keys(history.Data).length);
 		 if(history.keys(history.Data).length <=  1) {
 			appRouter.gift(historyid);
 			appRouter.weekly();
@@ -83,15 +83,15 @@ var appRouter = new (Backbone.Router.extend({
 
 	 }
 	 function errorMessage(response){
-		 console.log(response);
+		 //console.log(response);
 	 }
   },
   question: function(){
 	questionList = new QuestionList();
-        questionList.fetch({ success: function(response){ console.log("questionList fetch - success"); questionList.getQuestion(); } });
+        questionList.fetch({ success: function(response){ /*console.log("questionList fetch - success");*/ questionList.getQuestion(); } });
   },
   positionFooter: function(){
-	console.log("positionFooter");
+	//console.log("positionFooter");
 	$footer = $("#footer");
 	footerHeight = $footer.height();
 	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
@@ -111,26 +111,26 @@ var appRouter = new (Backbone.Router.extend({
 	});
   },
   receipt: function(appid){
-	 console.log("receipt");
+	 //console.log("receipt");
 	 var receipt = new Receipt({id: appid});
 	 //receiptView = new ReceiptView({model: receipt});
 	// $("#content").html( new ReceiptView({model: response}).render().el );
 	 receipt.fetch({success: successMessage,error: errorMessage});
 	 function successMessage(response){
-		 console.log("receipt success");
+		 //console.log("receipt success");
 		 //console.log(response);
-		 console.log(receipt);
+		 //console.log(receipt);
 		 //$("#content").html( new ReceiptView({model: response}).render().el );
 		 $("#content").html( new ReceiptView({model: receipt}).render().el );
 		 $('#content').trigger('create');
 	 }
 	 function errorMessage(response){
-		 console.log("receipt fail");
-		 console.log(response);
+		 //console.log("receipt fail");
+		 //console.log(response);
 	 }
   },
   resizePage2: function(formName){
-	       console.log("resizePage2");
+	       //console.log("resizePage2");
 	       var multiBottom = $('#'+formName).offset().top+$('#'+formName).height();
 	       var viewBottom = $('#one').height()-$('#footer').height();
 	       	var minHeight = "" + (multiBottom + 400) + "px";
@@ -148,24 +148,24 @@ var appRouter = new (Backbone.Router.extend({
 	// total size of form element and amount of space from top
 	var formSize = Math.round($('#content').offset().top+$('#content').height());
 	//var formSize = Math.round($('.ui-field-contain').offset().top+$('.ui-field-contain').height());
-	console.log("formSize: "+ formSize);
+	//console.log("formSize: "+ formSize);
 	// size of page minus footer - changed from one to content for full study
 	var stageSize = Math.round($('#one').height()-$('#footer').height());
-	console.log("stageSize: "+ stageSize);
+	//console.log("stageSize: "+ stageSize);
 	// total size of form element with some padding
 	var minHeight = "" + (formSize + 400) + "px";
-	console.log("minHeight: "+ minHeight);
+	//console.log("minHeight: "+ minHeight);
 	// get consent if set
 	//var consentSize = Math.round($('#consent').height());
 	//console.log("consentSize: "+consentSize);
 	// current size of entire page
 	var oneHeight = (formSize > stageSize) ? minHeight:("" + Math.round($('#one').height()) + "px");
-	console.log("multi-select: "+ $('#multi-select').height());
+	//console.log("multi-select: "+ $('#multi-select').height());
 	if($('#consent').height() == 0){
-		console.log("consent");
-		console.log("consent: "+$('#consent').height());
+		//console.log("consent");
+		//console.log("consent: "+$('#consent').height());
 		$('#one').css('height',6000);
-		console.log("one: "+$('#one').height());
+		//console.log("one: "+$('#one').height());
 	} else {
 		$('#one').css('height',oneHeight);
 	}
@@ -177,15 +177,15 @@ var appRouter = new (Backbone.Router.extend({
 		var multiHeight = ($('#multi-view').height()+500+"px");
 		$('#one').css('height',multiHeight);
 	}
-	console.log("oneHeight: "+oneHeight);
+	//console.log("oneHeight: "+oneHeight);
   },
   signup: function(){
-	console.log("signup");
+	//console.log("signup");
 	// create initial record in database - set timestamp
 	questionList = new QuestionList();
 	questionList.fetch({
 	  success: function(response){
-		console.log("questionList fetch - success");
+		//console.log("questionList fetch - success");
 	  }
 	});
 	user = new User();
@@ -194,45 +194,45 @@ var appRouter = new (Backbone.Router.extend({
 	var userCreate = user.save({email: seedEmail, phone: seedPhone, visits: 0}, {
 	  	wait: true,
 	      	success: function(response){
-			console.log("user - success");
+			//console.log("user - success");
 	  		//console.log(response.toJSON());
 			USERID = response.id;
 			startSignup(seedEmail,seedPhone);
 		  },
 		error: function(model,response){
-	       		console.log("failed");
-			console.log(response.responseText);
-			console.log(response.status);
-			console.log(response.statusText);
+	       		//console.log("failed");
+			//console.log(response.responseText);
+			//console.log(response.status);
+			//console.log(response.statusText);
 		}
 	});
 	function startSignup(seedEmail,seedPhone){
 	  answerList = new AnswerList();
 	  var answerCreate = answerList.create({q6: seedPhone, q7: seedPhone, q8: seedEmail, q9: seedEmail, qcount: 1, timestamp: SESSIONID, survey_type: "enrollment", device_type: navigator.userAgent}, {
 	    success: function(response){
-		console.log("start - success");
+		//console.log("start - success");
 		var answer = answerList.get(response.id);
 		answerListView = new AnswerListView({model: answer });
 		answerListView.endquestion = MAXQUESTION;
 	    },
  	    error: function(model, response){
-		console.log("failed");
-		console.log(response.responseText);
-		console.log(response.status);
-		console.log(response.statusText);
+		//console.log("failed");
+		//console.log(response.responseText);
+		//console.log(response.status);
+		//console.log(response.statusText);
 	    }
 	  });
 	}
   },
   weekly: function(){
-	console.log("weekly");
+	//console.log("weekly");
 	// user has logged in successfully lets check to see if they have an stored sessions
   	//if (networkStatus != 'offline' && isDevice == true){
 	// this should probably get moved to LoginView
   	if (networkStatus != 'offline'){
 		var dirtyKey = window.localStorage.getItem("http://shs.sccwrp.org/shs2/index.php/surveys_dirty");
 		if (dirtyKey){
-			console.log("dirtyKey: "+dirtyKey);
+			//console.log("dirtyKey: "+dirtyKey);
 			//submitLocal(dirtyKey); -- need to fix submission through history
 			startWeekly();
 		} else {
@@ -255,22 +255,22 @@ var appRouter = new (Backbone.Router.extend({
 		  	  wait: true,
   		  	  success: function(model,response){
 				appID = Number(response.id);
-				console.log(appID);
-				console.log("Receipt: "+ saveList.toJSON());
+				//console.log(appID);
+				//console.log("Receipt: "+ saveList.toJSON());
 				// future - need to setup receipt for each local submission
 				//appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
   		  	  },
 		  	  error: function(response){
-				console.log("failed");
-				console.log(response.responseText);
-				console.log(response.status);
-				console.log(response.statusText);
+				//console.log("failed");
+				//console.log(response.responseText);
+				//console.log(response.status);
+				//console.log(response.statusText);
   		  	  }
 			});
 		} // end for
 	} // close submitLocal
 	function startWeekly(){
-			console.log("startWeekly");
+			//console.log("startWeekly");
 			answerList = new AnswerList();
 			//this.answerList = answerList;
 			answerList.create({qcount: 26, user_id: USERID, timestamp: SESSIONID, survey_type: "followup", device_type: navigator.userAgent}, {
@@ -282,9 +282,9 @@ var appRouter = new (Backbone.Router.extend({
 	  		  },
  			  error: function(model,response){
 				if(response.status == 500){
-					console.log(response.responseText);
-					console.log(response.status);
-					console.log("failed");
+					//console.log(response.responseText);
+					//console.log(response.status);
+					//console.log("failed");
 					//app.dialog("Failed to Start Weekly","Application Reload","Ok");
 					alert("Failed to Start Weekly");
 					location.reload();
@@ -294,14 +294,14 @@ var appRouter = new (Backbone.Router.extend({
 	}
   },
   start: function(){
-	console.log("start");
+	//console.log("start");
 	//app.dialog("start","start title","Ok");
 	//appRouter.navigate('shs2/receipt/1031', {trigger: true});
 	//appRouter.checksum();
 	$("#content").html( new IntroView().render().el );
 	// not sure whether this is the best place to load the questions collection
 	appRouter.question();
-	$("#landList").css("height", window.innerHeight);
+	$("#landList").css("height", window.outerHeight);
         //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter);  - temporary
   }
 }));
@@ -334,8 +334,8 @@ var app = {
 	});
   },
   notify: function(e,i){
-	console.log(e);
-	console.log(i);
+	//console.log(e);
+	//console.log(i);
 	var url = 'http://shs.sccwrp.org/shs2/email.php';
 	var message = $.ajax({
 		type: 'GET',
@@ -346,11 +346,11 @@ var app = {
 		crossDomain: true,
 		timeout: 4000,
 		error: function(data){ 
-			 console.log(data);
+			 //console.log(data);
 			 //if(t==="timeout"){ alert("Data not Submitted"); }
 		}, 
 		success: function(data) {
-			console.log(data);
+			//console.log(data);
 			//alert("status:"+data.status[0]);
 			//alert("number:"+data.number[0]);
 			//lookup_number = data.number[0];
@@ -373,7 +373,7 @@ var app = {
 	$.mobile.hashListeningEnabled = false;
 	$.mobile.pushStateEnabled = false;
 	//app.bindEvents();
-  	Backbone.history.start({pushState: true});
+	Backbone.history.start({pushState: true, hashChange: false});
 	// check network status
  	networkStatus = navigator.onLine ? 'online' : 'offline';
 	FastClick.attach(document.body);

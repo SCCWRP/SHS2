@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge"/> 
   <head>
     <title>Surfer Health Survey</title>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
@@ -40,7 +41,8 @@
     <div id="popupInfo" data-role="popup" class="ui-content" data-position-to="" data-dismissible="false" data-history="false">Login</div>
     <div id="popupRestart" data-role="popup" class="ui-content" data-position-to="" data-dismissible="false" data-history="false">Restart</div>
     <div id="popupTip" data-role="popup" data-theme="a" class="ui-content" data-position-to="#footer">Tip</div>
-	<script src="js/orig/jquery-1.9.1.min.js"></script>
+    <!-- <script src="js/orig/jquery-1.9.1.min.js"></script>  // -->
+    <script src="js/vendor/jquery-1.11.0.min.js"></script> 
 	<!--[if lte IE 9]>
 	<script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.0/jquery.xdomainrequest.min.js'></script>
 	<![endif]-->
@@ -50,7 +52,7 @@
 	<script src="js/vendor/backbone.dualstorage.js"></script>
 	<script src="js/vendor/json2.js"></script>
 	<script src="js/vendor/chance.min.js"></script>
-	<script type="text/javascript" src="http://dev.jtsage.com/cdn/simpledialog/latest/jquery.mobile.simpledialog2.min.js"></script>
+	<script type="text/javascript" src="js/vendor/jquery.mobile.simpledialog2.min.js"></script>
 	<script type="text/javascript" src="js/vendor/fastclick.js"></script>
 	<script type="text/template" id="tpl-contact-details">
 		<div><p>If you or your family has any questions about the research, before or during the study, you may contact us through the study's website (<a href="http://www.sccwrp.org/shs">http://www.sccwrp.org/shs</a>) or toll-free number 855-351-8198. If you have any questions about your rights as a research subject, you may talk to the University of California, Berkeley, Committee for the Protection of Human Subjects at (510) 642-7461, or by email at <a href="mailto:subjects@berkeley.edu">subjects@berkeley.edu</a>.</p><br>
@@ -60,10 +62,10 @@
 	</script>
     	<script type="text/template" id="tpl-intro-details">
 	  <div id="landing" data-theme="b">
-	    <ul id="landList" data-role="listview">
-		<li class="boxed2">  <img style="width:5.3em; position:fixed; top:6%; left:.9em;" src="img/surveyIcon.png">  <a id="landingSurvey"><h1><center><span class="liDown"><br>Sign In/Enroll</span></center></h1></a></li>
-		<li class="boxed2">  <img style="width:5.3em; position:fixed; top:33%; left:.7em;" src="img/mailIcon.png">  <a id="landingContact"><h1><center><span class="liDown"><br>Contact Us</span></center></h1></a></li>
-		<li class="boxed2">  <img style="width:5.3em; position:fixed; top:58%; left:.7em;" src="img/faqIcon.png">  <a id="landingFAQ"><h1><center><span class="liDown"><br>FAQ</span></center></h1></a></li>
+	    <ul id="landList" data-role="listview" data-inset="true">
+		<li id="landingSurvey" class="landBox"><a href="#"><img src="img/surveyIcon.png"><h1>Sign In/Enroll</h1></a></li>
+		<li id="landingContact" class="landBox"><a href="#"><img src="img/mailIcon.png"><h1>Contact Us</h1></a></li>
+		<li id="landingFAQ" class="landBox"><a href="#"><img src="img/faqIcon.png"><h1>FAQ</h1></a></li>
 	    </ul>
 	  </div>
 	</script>
@@ -235,7 +237,7 @@
 					    	<img width=65% src="img/Consent_1.jpg">
 					    	<img width=65% src="img/Consent_2.jpg">
 					    	<img width=65% src="img/Consent_3.jpg">
-
+					    	<img width=65% src="img/Consent_4.jpg">
 					    <% }; $('#consent').css('display','inline'); $('#consent').css('visibility','visible'); %>
 				    </div>
 				    <br>

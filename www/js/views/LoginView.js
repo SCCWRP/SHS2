@@ -24,9 +24,9 @@ var LoginView = Backbone.View.extend({
 		crossDomain: true,
 		timeout: 4000,
 		error: function(xhr, status, error){ 
-			console.log(xhr.status);
-			console.log(status);
-			console.log(error);
+			//console.log(xhr.status);
+			//console.log(status);
+			//console.log(error);
 			if(xhr.status == "404"){
 				alert("User not found...Try again or enroll");
 				that.cleanup();
@@ -36,17 +36,17 @@ var LoginView = Backbone.View.extend({
 		}, 
 		success: function(data) {
 			if(data == false){
-				console.log(data);
+				//console.log(data);
 				alert("Failed to login...Try again");
 				that.cleanup();
 				location.reload();
-			//console.log(data.id);
-			//console.log(typeof(data.id));
+			////console.log(data.id);
+			////console.log(typeof(data.id));
 			} else {
 				$("#back").show();
 				$("#forward").show();
 				$("#footer").show();
-				//console.log(data.contact);
+				////console.log(data.contact);
 				USERID = Number(data.id);
 				//appRouter.history(USERID);
 				appRouter.gift(USERID);
@@ -91,7 +91,7 @@ var LoginView = Backbone.View.extend({
 	  this.cleanup();
 	},
 	enrollUser: function(e){
-		console.log("enrollUser");
+		//console.log("enrollUser");
 		e.preventDefault();
 		//$("#popupInfo").popup("close");
 		this.cleanup();
@@ -110,7 +110,7 @@ var LoginView = Backbone.View.extend({
 		e.preventDefault();
 		$("#popupInfo").popup("close");
 		$("#popupInfo").trigger("destroy");
-		console.log("showSummary");
+		//console.log("showSummary");
 		$(this.el).html("<div id='intro'>Welcome to the Surfer Health Study enrollment website. The Surfer Health Study is a research project in San Diego County led by investigators at the Southern California Coastal Water Research Project (www.sccwrp.org), the School of Public Health at the University of California at Berkeley (www.sph.berkeley.edu), and the Surfrider Foundation (www.surfrider.org). The objective of the study is to determine whether surfers are at risk of illness from ocean exposure on the California coast. The study will collect information about surf activity and illness over the next 3 months by having surfers report information each week through a website or smartphone app. If you are interested in participating, then please answer the following eligibility questions. If you are eligible, then you can read more details about the study, the benefits of participating, and then you can decide whether you are willing to participate. If you decide to participate, you will need to complete an enrollment survey that will require 15-20 minutes.<br><input type='button' data-role='button' id='summaryBtn' value='Tap to Start' /></div>");	
 		$('#content').html($(this.el));
 		$(this.el).trigger('create');
@@ -120,13 +120,13 @@ var LoginView = Backbone.View.extend({
 		$('#one').css('height',newHeight);
 	},
 	cleanup: function() {
-		console.log("LoginView cleanup");
+		//console.log("LoginView cleanup");
 	        this.undelegateEvents();
 	        this.$el.removeData().unbind();
 	        Backbone.View.prototype.remove.call(this);
 	},
 	render: function(){
-		console.log("LoginView render");
+		//console.log("LoginView render");
 		$("#header").show();
 		$("#home").hide();
 		/* footer is showing in original - shouldnt be just enable home button instead - wont do home button wrecks ios*/
