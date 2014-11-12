@@ -13,6 +13,7 @@ var QuestionList = Backbone.Collection.extend({
 		var validationFuncs = {
 			"noVal": function () {},
 			"zipval":  function (q) {if(q && !zippattern.test(q)){ return "Invalid ZIP code";}},
+    			"calzip": function (q) {if(q && (parseInt(q) > 96162 || parseInt(q) < 90001 && parseInt(q) != 99999)) return "Only California Zip codes may be entered";},
   			"phoneval": function (q) {if(q && !phonepattern.test(q)){ return "Invalid phone number";}},
     			"emailval": function (q) {if(q && !emailpattern.test(q)) return "Invalid email";}, 
 			"0": function(q) {if(q == "") return "A response is required before continuing";},

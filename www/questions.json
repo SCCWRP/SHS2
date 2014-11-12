@@ -190,7 +190,7 @@
       	"status": "incomplete",
       	"id": "12",
 	"placeholder": "Enter your Zip",
-	"check": "zipval"
+	"check": "0,zipval,calzip"
   },
   {
 	"title": "Did you participate in our pilot surfer health study during the 2013-2014 winter season?",
