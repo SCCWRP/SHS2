@@ -261,7 +261,6 @@ var AnswerListView = Backbone.View.extend({
 		// this should really go somewhere after sync happens maybe next question
 		// also status needs to be toggled to complete in database
 		if(currentQuestion == 13){
-			user.save({ list: "weekly" });
 			user.save({ status: "complete" });
 		};
 		if(currentQuestion >=  this.endquestion){
