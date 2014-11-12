@@ -160,12 +160,13 @@
 		<a href="#" id="finish" data-role="button" data-icon="check" class="finish">Looks Good/Finish</a>
 		<% if(elements.survey_type == "enrollment") { %>
 		<h4>History Survey</h4>
+		<button data-icon="edit" class="edit" id=14 name=25>Click here to redo this survey</button>
 		<ul data-role="listview" data-inset="true">
 		<% var modtwo = _.pick(elements, 'q14', 'q15', 'q16', 'q17', 'q18', 'q19', 'q20', 'q21', 'q22', 'q23', 'q24', 'q25'); %>
 		<% _.each(modtwo, function(element,index,list) {  var qindex = index.substr(1); %>
 		<% if(!element) return;  %>
 			<li data-role="list-divider">Question <%= qindex %></li>
-			<li data-icon="edit"><a href="#" class="edit" name="<%= index %>"" id="<%= index %>"><%= element %></a></li>
+			<li><p><%= element %></p></li>
 		<% }); %>
 		</ul>
 		<% }; %>
@@ -193,18 +194,19 @@
 		<% _.each(modfour, function(element,index,list) {  var qindex = index.substr(1); %>
 		<% if(!element) return;  %>
 			<li data-role="list-divider">Question <%= qindex %></li>
-			<p> <%= element %> </p>
+			<li> <p> <%= element %> </p> </li>
 		<% }); %>
 		</ul>
 
 		<% if(elements.survey_type == "enrollment") { %>
 		<h4>Demographics Survey</h4>
+		<button data-icon="edit" class="edit" id=72 name=76>Click here to redo this survey</button>
 		<ul data-role="listview" data-inset="true">
 		<% var modfive = _.pick(elements, 'q72', 'q73', 'q74', 'q75', 'q76'); %>
 		<% _.each(modfive, function(element,index,list) {  var qindex = index.substr(1); %>
 		<% if(!element) return;  %>
 			<li data-role="list-divider">Question <%= qindex %></li>
-			<li data-icon="edit"><a href="#" class="edit" name="<%= index %>" id="<%= index %>"><%= element %></a></li>
+			<li> <p> <%= element %> </p> </li>
 		<% }); %>
 		</ul>
 		<% }; %>
