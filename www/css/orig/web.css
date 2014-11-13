@@ -288,23 +288,32 @@ display:none;
 position:relative;
 top:100px;
 }
-#landList li{
-height:30%;
+ #landList li{
+	 height:25%;
+ }
+ .liDown{
+	 position:relative;
+ }
+ .boxed2{
+	 border-style:solid;
+	 border-width:1px;
+	 border-color:grey;
+ }
+#landingSurvey > h1:nth-child(1){
+	position:relative;
+	top:20%;
 }
-#landList li img{
-width:5.3em;
-padding-top:50px;
+#landingFAQ > h1:nth-child(1){
+	position:relative;
+	top:22%;
 }
-#landList li h1{
-text-align:center;
+#landingSurf > h1:nth-child(1){
+	position:relative;
+	top:24%;
 }
-#landList .ui-link-inherit{
-padding-top:80px;
-}
-.landBox{
-border-style:solid;
-border-width:1px;
-border-color:grey;
+#landingContact > h1:nth-child(1){
+	position:relative;
+	top:26%;
 }
 #popupInfo-screen{
 background-color:white !important;

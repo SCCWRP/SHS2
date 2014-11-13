@@ -35,18 +35,18 @@ var LoginView = Backbone.View.extend({
 			 //if(t==="timeout"){ alert("Server Inaccessible contact Paul Smith"); }
 		}, 
 		success: function(data) {
+			//console.log(data);
+			//console.log(data.id);
+			//console.log(data.contact);
+			//console.log(data.last_login);
 			if(data == false){
-				//console.log(data);
 				alert("Failed to login...Try again");
 				that.cleanup();
 				location.reload();
-			////console.log(data.id);
-			////console.log(typeof(data.id));
 			} else {
 				$("#back").show();
 				$("#forward").show();
 				$("#footer").show();
-				////console.log(data.contact);
 				USERID = Number(data.id);
 				//appRouter.history(USERID);
 				appRouter.gift(USERID);

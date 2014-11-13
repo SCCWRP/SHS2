@@ -302,7 +302,7 @@ var appRouter = new (Backbone.Router.extend({
 	$("#content").html( new IntroView().render().el );
 	// not sure whether this is the best place to load the questions collection
 	appRouter.question();
-	$("#landList").css("height", window.outerHeight);
+	$("#landList").css("height", window.innerHeight);
         //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter);  - temporary
   }
 }));

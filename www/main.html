@@ -61,13 +61,14 @@
 		</div>
 	</script>
     	<script type="text/template" id="tpl-intro-details">
-	  <div id="landing" data-theme="b">
-	    <ul id="landList" data-role="listview" data-inset="true">
-		<li id="landingSurvey" class="landBox"><a href="#"><img src="img/surveyIcon.png"><h1>Sign In/Enroll</h1></a></li>
-		<li id="landingContact" class="landBox"><a href="#"><img src="img/mailIcon.png"><h1>Contact Us</h1></a></li>
-		<li id="landingFAQ" class="landBox"><a href="#"><img src="img/faqIcon.png"><h1>FAQ</h1></a></li>
-	    </ul>
-	  </div>
+	<div id="landing" data-theme="b">
+	  <ul id="landList" data-role="listview">
+		<li class="boxed2">  <img style="width:5.3em; position:fixed; top:6%; left:.9em" src="img/surveyIcon.png"> <a id='landingSurvey'><h1><center><span class="liDown"><br>Sign In/Enroll</span></center></h1></a></li>
+		<li class="boxed2">  <img style="width:5.3em; position:fixed; top:33%; left:.7em;" src="img/mapIcon.png">  <a id='landingSurf'><h1><center><span class="liDown"><br>Find a Surf Spot</span></center></h1></a></li>
+		<li class="boxed2">  <img style="width:5.3em; position:fixed; top:58%; left:.7em;" src="img/mailIcon.png"> <a id='landingContact'><h1><center><span class="liDown"><br>Contact Us</span></center></h1></a></li>
+		<li class="boxed2"> <img style="width:5.3em; position:fixed; top:84%; left:.7em;" src="img/faqIcon.png">  <a id='landingFAQ'><h1><center><span class="liDown"><br>FAQ</span></center></h1></a></li>
+	  </ul>
+	</div>
 	</script>
 	<script type="text/template" id="tpl-restart-details">
 	    <div data-role="header" data-theme="b" class="ui-corner-top"><h3>Restart App?</h3></div>
@@ -134,7 +135,7 @@
 		<h1 id="question" class="ui-title" role="heading" aria-level="1"><%= title %></h3></h1>
 	</script>
 	<script type="text/template" id="tpl-map-details">
-    		<div class="form-left-col"><h3>Map Content</h3></div>
+    		<div class="form-left-col"><h3>Map Coming Soon</h3></div>
 	</script>
 	<script type="text/template" id="tpl-dialog-details">
 			<li class="edit" name="edit" id="<%= id %>"><%= id %> - <%= timestamp %></li>
