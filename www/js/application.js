@@ -130,18 +130,6 @@ var appRouter = new (Backbone.Router.extend({
 		 //console.log(response);
 	 }
   },
-  resizePage2: function(formName){
-	       //console.log("resizePage2");
-	       var multiBottom = $('#'+formName).offset().top+$('#'+formName).height();
-	       var viewBottom = $('#one').height()-$('#footer').height();
-	       	var minHeight = "" + (multiBottom + 400) + "px";
-		var oneHeight = (multiBottom > viewBottom) ? minHeight:("" + $('body').height() + "px");
-		if(formName == 'text-btn'){
-			$('#one').css('height',1024);
-		} else {
-			$('#one').css('height',oneHeight);
-		}
-  },
   resizePage: function(){
 	/* in the beta version this functin was used with unique form element names
 	   in full study all (maybe) form elements derive from .ui-field-contain */

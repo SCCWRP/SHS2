@@ -332,3 +332,6 @@ border-color:#6dcaec #6dcaec !important;
 .ui-btn-inner, .ui-btn-up-b .ui-btn-text .ui-link-inherit{
 color:black !important;
 }
+.ui-footer.ui-fixed-hidden {
+position: fixed !important;
+}
