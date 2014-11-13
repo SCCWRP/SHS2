@@ -330,7 +330,7 @@
 		  <% days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; %>
 		  <% days[new Date().getDay()] = "Today"; %>
 		  <% for(j=0; j < dates.length; j++) { %>
-		  <h3 id="date"> <%= days[dates[j].getDay()]  %> </h3>
+		  <h3 id="date" name = <%= (dates[j].getMonth() + 1) + "/" + dates[j].getDate() + "/" + (1900 + dates[j].getYear()) %> > <%= days[dates[j].getDay()]  %> </h3>
 		  <select name= "<%= j %>" id="aid" class="multi-select">
 		  <% for(i=0; i < menu.length; i++) { %>
 		 	 <option value= "<%= menu[i] %>" > <%= menu[i] %> </option>
@@ -361,7 +361,7 @@
 		  <% TimeArray = TimeArray.slice(20, TimeArray.length); %>
 		  <%= "<script" + "> TimeArray = [" + ("'" + TimeArray.join("','") + "'").split(",") + "];</script" + ">" %>
 		  <% for(j=0; j < dates.length; j++) { %>
-		  <h3 id="date"> <%= days[dates[j].getDay()] %> </h3>
+		  <h3 id="date" name = <%= (dates[j].getMonth() + 1) + "/" + dates[j].getDate() + "/" + (1900 + dates[j].getYear()) %> > <%= days[dates[j].getDay()] %> </h3>
 		  <select name= <%=  "enter" + j  %> id="aid" class="enter">
 			  <option id="0" value="Select One">Select Enter</option>
 		  <% for(i=0; i < TimeArray.length; i++) { %>

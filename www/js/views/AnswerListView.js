@@ -12,10 +12,16 @@ var AnswerListView = Backbone.View.extend({
 		this.listenTo(footerView, 'back', this.goBack); 
 		this.listenTo(this.model, 'change:status', this.nextQuestion);
 		this.listenTo(this.model, 'change:type', function() {
-			if(["radio"].indexOf(this.model.get('type')) >=  0) {
+			if(["radio", "select"].indexOf(this.model.get('type')) >=  0) {
 				$('#forward').hide();
 			} else {
 				$('#forward').show();
+			};
+			// Points of no-return
+			if(this.model.get('qcount') == 12) {
+				$("#back").css("visibility", "hidden");
+			} else {
+				$("#back").css("visibility", "visible");
 			};
 		});
 		},
@@ -24,7 +30,13 @@ var AnswerListView = Backbone.View.extend({
 		"change select[name=aid]":"saveAnswer",
     		"click .decline":"declineAnswer",
     		"click #decline":"declineAnswer",
-    		"change input[type=radio]":"saveAnswer"
+    		"change input[type=radio]":"saveAnswer",
+		"keyup input[type=text]" : "processKeyup"
+	},
+	processKeyup: function(event) {
+		if(event.keyCode == 13){
+			this.saveAnswer(event);
+		}
 	},
 	change:function(event){
 		var that = this;
@@ -134,7 +146,7 @@ var AnswerListView = Backbone.View.extend({
 			currentAnswer = $("select").val() + " : " + currentAnswer.val();
 		} else if(formtype == "dateSelect") {
 			var locations = currentAnswer.map(function(x) {return $(this).val() });
-			var dates = $("[id=date]").map(function(x) {return this.textContent });
+			var dates = $("[id=date]").map(function(x) {return $(this).attr("name")});
 			var dateSelectAnswer = {};
 			for(i=0; i < dates.length; i++) {
 				dateSelectAnswer[dates[i]] = locations[i];
@@ -145,7 +157,7 @@ var AnswerListView = Backbone.View.extend({
 			var start = currentAnswer.filter(function(x,i) {return x % 2 == 0});
 			var end  = currentAnswer.filter(function(x,i) {return x % 2 != 0});
 			var intervals = _.zip(start, end).map(function(x) {return x.join("-");});
-			var dates = $("[id=date]").map(function(x) {return this.textContent });
+			var dates = $("[id=date]").map(function(x) {return $(this).attr("name")});
 			var dateSelectAnswer = {};
 			for(i=0; i < dates.length; i++) {
 				dateSelectAnswer[dates[i]] = intervals[i];
