@@ -12,10 +12,16 @@ var AnswerListView = Backbone.View.extend({
 		this.listenTo(footerView, 'back', this.goBack); 
 		this.listenTo(this.model, 'change:status', this.nextQuestion);
 		this.listenTo(this.model, 'change:type', function() {
-			if(["radio"].indexOf(this.model.get('type')) >=  0) {
+			if(["radio", "select"].indexOf(this.model.get('type')) >=  0) {
 				$('#forward').hide();
 			} else {
 				$('#forward').show();
+			};
+			// Points of no-return
+			if(this.model.get('qcount') == 12) {
+				$("#back").css("visibility", "hidden");
+			} else {
+				$("#back").css("visibility", "visible");
 			};
 		});
 		},
