@@ -140,7 +140,7 @@ var AnswerListView = Backbone.View.extend({
 			currentAnswer = $("select").val() + " : " + currentAnswer.val();
 		} else if(formtype == "dateSelect") {
 			var locations = currentAnswer.map(function(x) {return $(this).val() });
-			var dates = $("[id=date]").map(function(x) {return this.textContent });
+			var dates = $("[id=date]").map(function(x) {return $(this).attr("name")});
 			var dateSelectAnswer = {};
 			for(i=0; i < dates.length; i++) {
 				dateSelectAnswer[dates[i]] = locations[i];
@@ -151,7 +151,7 @@ var AnswerListView = Backbone.View.extend({
 			var start = currentAnswer.filter(function(x,i) {return x % 2 == 0});
 			var end  = currentAnswer.filter(function(x,i) {return x % 2 != 0});
 			var intervals = _.zip(start, end).map(function(x) {return x.join("-");});
-			var dates = $("[id=date]").map(function(x) {return this.textContent });
+			var dates = $("[id=date]").map(function(x) {return $(this).attr("name")});
 			var dateSelectAnswer = {};
 			for(i=0; i < dates.length; i++) {
 				dateSelectAnswer[dates[i]] = intervals[i];
