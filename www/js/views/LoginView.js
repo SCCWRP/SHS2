@@ -5,8 +5,14 @@ var LoginView = Backbone.View.extend({
 	},
 	events:{
 		"click #loginBtn":"loginUser",
+    		"keyup input[id=loginInput]":"processKeyup",
 		"click #enrollBtn":"showSummary",
 		"click #summaryBtn":"enrollUser"
+	},
+    	processKeyup: function(e) {
+		if(e.keyCode == 13) {
+			this.loginUser(e);
+		};
 	},
 	loginUser: function(e){
 		var that = this;

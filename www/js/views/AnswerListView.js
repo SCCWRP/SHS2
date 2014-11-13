@@ -30,7 +30,13 @@ var AnswerListView = Backbone.View.extend({
 		"change select[name=aid]":"saveAnswer",
     		"click .decline":"declineAnswer",
     		"click #decline":"declineAnswer",
-    		"change input[type=radio]":"saveAnswer"
+    		"change input[type=radio]":"saveAnswer",
+		"keyup input[type=text]" : "processKeyup"
+	},
+	processKeyup: function(event) {
+		if(event.keyCode == 13){
+			this.saveAnswer(event);
+		}
 	},
 	change:function(event){
 		var that = this;
