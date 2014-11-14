@@ -54,9 +54,9 @@ var LoginView = Backbone.View.extend({
 				$("#forward").show();
 				$("#footer").show();
 				USERID = Number(data.id);
-				//appRouter.history(USERID);
-				appRouter.gift(USERID);
-				appRouter.weekly();
+				appRouter.history(USERID);
+				//appRouter.gift(USERID);
+				//appRouter.weekly();
 			}
 		},
 		complete: function(data) {
