@@ -14,6 +14,16 @@ var LoginView = Backbone.View.extend({
 			this.loginUser(e);
 		};
 	},
+    	sendLocalSurveys: function () {
+		var keys = window.localStorage.getItem("http://shs.sccwrp.org/shs2/index.php/surveys_dirty");
+		if(keys){
+			keys.split(",").map(function(x) {
+				var model = window.localStorage.getItem("http://shs.sccwrp.org/shs2/index.php/surveys"+x);
+				var answer = new Answer();
+				answer.save(JSON.parse(x));
+			});
+		};
+	},
 	loginUser: function(e){
 		var that = this;
 		e.preventDefault();
@@ -21,6 +31,7 @@ var LoginView = Backbone.View.extend({
 		var loginID = $('#loginInput').val();
 	  //if (networkStatus != 'offline' && isDevice == true){
 	  if (networkStatus != 'offline'){
+		that.sendLocalSurveys();
         	var url = 'http://shs.sccwrp.org/shs2/index.php/user/' + loginID;
 		message = $.ajax({
 		type: 'GET',
