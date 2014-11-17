@@ -350,7 +350,7 @@
         	<label>Question ID:</label>
         	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
 		// -->
-		<fieldset class="ui-field-contain">
+		<fieldset id="multi-select-time" class="ui-field-contain">
 		  <% var dates = q26.split(","); %>
 		  <% dates = dates.map(function(x) { return new Date(Date.parse(x));}); %>  
 		  <% days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; %>
