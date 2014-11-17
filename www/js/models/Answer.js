@@ -11,7 +11,7 @@ var Answer = Backbone.Model.extend({
 		var that = this;
                 this.on("invalid",function(model,error){
 			that.set(that.rollback, {validate: false});
-		        alert(error);
+		        custom_alert(error);
 	        });
 	},
 	defaults: createDefaults(),

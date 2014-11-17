@@ -38,16 +38,18 @@ var ReceiptView = Backbone.View.extend({
 		//appRouter.checksum();
 		var survey_type = this.model.get('survey_type');
 		if(survey_type == "enrollment"){
-			alert("Thank You for Enrolling!");
+			custom_alert("Thank You for Enrolling!", "", done);
 			//app.dialog("Thank You for Enrolling!","Enrollment Complete","Ok");
 		}
 		if(survey_type == "followup"){
 			//app.dialog("Come Back Next Week","Weekly Complete","Ok");
-			alert("Come Back Next Week");
+			custom_alert("Come Back Next Week", "", done);
 		}
-		that.cleanup();
-		appRouter.navigate('/', {trigger: false});
-		location.assign(HOME);
+		function done () {
+			that.cleanup();
+			appRouter.navigate('/', {trigger: false});
+			location.assign(HOME);
+		}
 	},
 	cleanup: function() {
 	     //console.log("receipt cleanup");

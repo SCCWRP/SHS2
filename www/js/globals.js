@@ -23,25 +23,18 @@ $.ajax({
 var EventBus = _.extend({}, Backbone.Events);
 
 
-function custom_alert(output_msg, title_msg)
-{
+function custom_alert(output_msg, title_msg, callback) {
 	    if (!title_msg)
-		            title_msg = 'Alert';
+		    title_msg = '';
 
-	        if (!output_msg)
-			        output_msg = 'No Message to Display.';
-		   
-		var box = $("<div></div>")	
-		box.html(output_msg).dialog({
-			            title: title_msg,
-			    	    autoOpen: false,
-			            resizable: false,
-			            modal: true,
-			            buttons: {
-					    "Ok": function() {
-						$( this ).dialog( "close" );
-						}
-		            	    }
-		 });
-		box.dialog("open");
+	    if (!output_msg)
+		    output_msg = 'No Message to Display.';
+	    
+ 	   $("<div>").simpledialog2({
+       		mode: "blank",
+		headerText: title_msg,
+		headerClose: true,
+		blankContent: "<p>" + output_msg + "</p>",
+		callbackClose: callback 
+		});		   
 };
