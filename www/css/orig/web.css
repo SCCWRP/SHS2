@@ -82,6 +82,9 @@ width: 60%;
   position: absolute;
   margin-left: 0%;
 }
+#multi-select-time {
+  margin-left: -25%;
+}
 #multi-view{
   position: absolute;
   width: 500px;

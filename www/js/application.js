@@ -31,6 +31,7 @@ var appRouter = new (Backbone.Router.extend({
 			$('#multi-select').css('margin-left','5%');
 			$('#multi-select h3').css('font-size','18px');
 			$('#multi-select select').css('font-size','18px');
+			$('#multi-select-time').css('margin-left','-3%');
 	    }
 	    //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter); - issues with iphone
   },

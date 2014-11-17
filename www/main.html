@@ -38,9 +38,9 @@
 	<div id="content"></div>
 	<div data-role="footer" data-theme="b" id="footer"></div>
     <div> 
-    <div id="popupInfo" data-role="popup" class="ui-content" data-position-to="" data-dismissible="false" data-history="false">Login</div>
-    <div id="popupRestart" data-role="popup" class="ui-content" data-position-to="" data-dismissible="false" data-history="false">Restart</div>
-    <div id="popupTip" data-role="popup" data-theme="a" class="ui-content" data-position-to="#footer" data-tap-toggle="false">Tip</div>
+    <div id="popupInfo" data-role="popup" class="ui-content" data-position-to="" data-dismissible="false" data-history="false"></div>
+    <div id="popupRestart" data-role="popup" class="ui-content" data-position-to="" data-dismissible="false" data-history="false"></div>
+    <div id="popupTip" data-role="popup" data-theme="a" class="ui-content" data-position-to="#footer" data-tap-toggle="false"></div>
     <!-- <script src="js/orig/jquery-1.9.1.min.js"></script>  // -->
     <script src="js/vendor/jquery-1.11.0.min.js"></script> 
 	<!--[if lte IE 9]>
@@ -141,7 +141,7 @@
 			<li class="edit" name="edit" id="<%= id %>"><%= id %> - <%= timestamp %></li>
 	</script>
 	<script type="text/template" id="tpl-history-details">
-		<h3> History View <h3>
+		<h3> Incomplete Survey Below <h3>
 		<ul data-role="listview" data-inset="true">
 		<% _.each(elements,function(element,index,list) {  %>
 		<% if(!element) return; if(!element.id) return; %>
@@ -350,7 +350,7 @@
         	<label>Question ID:</label>
         	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
 		// -->
-		<fieldset class="ui-field-contain">
+		<fieldset id="multi-select-time" class="ui-field-contain">
 		  <% var dates = q26.split(","); %>
 		  <% dates = dates.map(function(x) { return new Date(Date.parse(x));}); %>  
 		  <% days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; %>
