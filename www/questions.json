@@ -76,7 +76,7 @@
       	"id": "5"
   },
   {
-	"title": "Please enter your primary phone number and email address where we can reach you (mobile phone preferred). This information remains completely confidential. We collect this information only so we can contact you if needed during the study. We will never share this information with anybody and will destroy this information at the end of the study. - Please enter your phone number",
+	"title": "We are going to ask for your primary phone number and email address where we can reach you (mobile phone preferred) - Please enter your phone number",
 	"action": "none",
       	"num": "q16a",
       	"type": "text",
