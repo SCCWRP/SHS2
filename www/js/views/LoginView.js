@@ -75,8 +75,8 @@ var LoginView = Backbone.View.extend({
 	        }
 		});
 	  } else {
-		alert("Local login not available offline");
-		return;
+		//alert("Local login not available offline");
+		//return;
   	  	var getUserKey = window.localStorage.getItem("user");
 		alert(getUserKey);
 		if(getUserKey != null){
