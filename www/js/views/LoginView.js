@@ -84,7 +84,6 @@ var LoginView = Backbone.View.extend({
 		//custom_alert("Local login not available offline");
 		//return;
   	  	var getUserKey = window.localStorage.getItem("user");
-		custom_alert(getUserKey);
 		if(getUserKey != null){
   	  		// loop through userKey looking to match login with key
 			// may be able to just use initial user key
@@ -92,11 +91,7 @@ var LoginView = Backbone.View.extend({
 			var splitKeyCount = splitKey.length;
 			for(var i=0; i<splitKeyCount; i++){
 				var retrieveKey = window.localStorage.getItem("user-"+ splitKey[i]);
-				custom_alert("retrieveKey: "+ retrieveKey);
 				var retrieveObject = jQuery.parseJSON(retrieveKey);
-				custom_alert("retrieveObject: "+ retrieveObject);
-				custom_alert("retrieveObject.email: "+ retrieveObject.email);
-				custom_alert("retrieveObject.phone: "+ retrieveObject.phone);
 				if(loginID == retrieveObject.email || loginID == retrieveObject.phone){
 					loginStatus = true;
 	  				USERID = retrieveObject.id;
