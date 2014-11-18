@@ -37,6 +37,7 @@
 	<div data-role="header" data-theme="b" id="header" class="ui-corner-top"></div> 
 	<div id="content"></div>
 	<div data-role="footer" data-theme="b" id="footer"></div>
+	<div id="map-canvas-test"></div>
     <div> 
     <div id="popupInfo" data-role="popup" class="ui-content" data-position-to="" data-dismissible="false" data-history="false"></div>
     <div id="popupRestart" data-role="popup" class="ui-content" data-position-to="" data-dismissible="false" data-history="false"></div>
@@ -54,6 +55,7 @@
 	<script src="js/vendor/chance.min.js"></script>
 	<script type="text/javascript" src="js/vendor/jquery.mobile.simpledialog2.min.js"></script>
 	<script type="text/javascript" src="js/vendor/fastclick.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 	<script type="text/template" id="tpl-contact-details">
 		<div><p>If you or your family has any questions about the research, before or during the study, you may contact us through the study's website (<a href="http://www.sccwrp.org/shs">http://www.sccwrp.org/shs</a>) or toll-free number 855-351-8198. If you have any questions about your rights as a research subject, you may talk to the University of California, Berkeley, Committee for the Protection of Human Subjects at (510) 642-7461, or by email at <a href="mailto:subjects@berkeley.edu">subjects@berkeley.edu</a>.</p><br>
     		<div><p>If you have any questions, comments, or concerns about this application feel free to email us at <br><br><a href="mailto:shs@sccwrp.org">shs@sccwrp.org</a></p>
@@ -135,7 +137,7 @@
 		<h1 id="question" class="ui-title" role="heading" aria-level="1"><%= title %></h3></h1>
 	</script>
 	<script type="text/template" id="tpl-map-details">
-    		<div class="form-left-col"><h3>Map Coming Soon</h3></div>
+		<div class="form-left-col"><h3>Map</h3><div id="map-canvas"></div><div id="info-box"></div></div>
 	</script>
 	<script type="text/template" id="tpl-dialog-details">
 			<li class="edit" name="edit" id="<%= id %>"><%= id %> - <%= timestamp %></li>
