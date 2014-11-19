@@ -98,6 +98,9 @@ var LoginView = Backbone.View.extend({
 				}
 			}
 			if(loginStatus == true){
+				$("#back").show();
+				$("#forward").show();
+				$("#footer").show();
 				appRouter.weekly();
 				this.cleanup();
 	
