@@ -99,15 +99,26 @@ var LoginView = Backbone.View.extend({
 			}
 			if(loginStatus == true){
 				appRouter.weekly();
+				this.cleanup();
+	
 			} else {
-				custom_alert("User account not found - You must signup online before you can run a weekly survey.");
+				custom_alert("User account not found - You must signup online before you can run a weekly survey.", 
+						"", function () { 
+							that.cleanup();
+							location.reload();
+					} );
+
 			}
 		} else {
-			custom_alert("You must signup online before you can run a weekly survey.");
+			custom_alert("You must signup online before you can run a weekly survey.", 
+					"",
+				function () { 
+					that.cleanup();
+					location.reload();
+				});
 		}
 	  }
-	  this.cleanup();
-	},
+},
 	enrollUser: function(e){
 		//console.log("enrollUser");
 		e.preventDefault();
