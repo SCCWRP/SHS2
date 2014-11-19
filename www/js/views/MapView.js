@@ -1,14 +1,10 @@
 var MapView = Backbone.View.extend({
-	//el: '#content',
+	el: '#content',
 	template:_.template($('#tpl-map-details').html()),
 	initialize: function(){
 		this.render();
 	},
 	render: function(){
-		var map = new google.maps.Map(document.getElementById("map-canvas"), { zoom: 12, center: {lat: 32.7663694, lng: -117.2592576} });
-		var report = [];
-		var ReportName = [];
-		var ReportCast = [];
 		$("#landing").hide();
 		$(headerView.el).show();
 		url = 'http://feeds.feedburner.com/surfline-rss-surf-report-south-san-diego?format=xml';
@@ -16,13 +12,19 @@ var MapView = Backbone.View.extend({
 			type: "GET",
 			url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=1000&callback=?&q=' + encodeURIComponent(url),
 			dataType: 'jsonp',
-			error: function(x,t,m){
-				if(t==="timeout"){
-					alert("received a timeout");
-				}
+			error: function(data){
+				alert("rss not accessible");
 			},
 			success: function(xml){
 			        values = xml.responseData.feed.entries;
+				if(values.length == 0){
+					$("#content").append("<br>RSS feed not working.");
+					return this;
+				}
+				var map = new google.maps.Map(document.getElementById("content"), { zoom: 12, center: {lat: 32.7663694, lng: -117.2592576} });
+				var report = [];
+				var ReportName = [];
+				var ReportCast = [];
 				for(var i=0;i<16;i++){
 					report = xml.responseData.feed.entries[i].title.split(':');
 					reportTitle = report.shift();
