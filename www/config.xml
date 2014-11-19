@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "org.sccwrp.shs"
-	versionCode = "3001"
+	versionCode = "3002"
         version   = "3.0.0">
 
     <name>SHS</name>
