@@ -321,8 +321,8 @@
 	"title": "How long do you typically wait?",
 	"action": "none",
       	"num": "q27a",
-      	"type": "numberSelect",
-	"menu": "days,hours",
+      	"type": "select",
+	"menu": "Less than 1 day,1 day,2 days,3 days,More than 3 days",
         "other": "n",
 	"otype": "",
   	"answer": "",
@@ -330,8 +330,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "21",
-	"check": "0,numberWeek,gte1,numberLimit"
+      	"id": "21"
   },
   {
 	"title": "During the winter season (November - March), which beach do you consider your home beach (where you surf most often)?",
