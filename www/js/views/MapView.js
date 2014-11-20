@@ -4,10 +4,9 @@ var MapView = Backbone.View.extend({
 	initialize: function(){
 		this.render();
 	},
-	render: function(){
-		$("#landing").hide();
-		$(headerView.el).show();
-		var map;
+    	map: function(){
+		var map = new google.maps.Map(document.getElementById("map-canvas"), { zoom: 12, center: {lat: 32.7663694, lng: -117.2592576} });
+		//google.maps.event.trigger(map, 'resize')
 		url = 'http://feeds.feedburner.com/surfline-rss-surf-report-south-san-diego?format=xml';
 		$.ajax({
 			type: "GET",
@@ -22,7 +21,6 @@ var MapView = Backbone.View.extend({
 					$("#content").append("<br>RSS feed not working.");
 					return this;
 				}
-				var map = new google.maps.Map(document.getElementById("content"), { zoom: 12, center: {lat: 32.7663694, lng: -117.2592576} });
 				var report = [];
 				var ReportName = [];
 				var ReportCast = [];
@@ -57,6 +55,11 @@ var MapView = Backbone.View.extend({
 				infowindow.open(map,marker);
 		    	});
 		}
+	},
+	render: function(){
+		$(this.el).html(this.template());
+		$(headerView.el).show();
+		this.map();
 		return this;
 	}
 });
