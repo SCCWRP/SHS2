@@ -45,11 +45,14 @@ var LoginView = Backbone.View.extend({
 			//console.log(status);
 			//console.log(error);
 			if(xhr.status == "404"){
-				alert("User not found...Try again or enroll");
-				that.cleanup();
-				location.reload();
+				custom_alert("User not found...Try again or enroll",
+					"Login Failed",
+					function () { 
+						that.cleanup();
+						location.reload();
+					});
 			}
-			 //if(t==="timeout"){ alert("Server Inaccessible contact Paul Smith"); }
+			 //if(t==="timeout"){ custom_alert("Server Inaccessible contact Paul Smith"); }
 		}, 
 		success: function(data) {
 			//console.log(data);
@@ -57,9 +60,12 @@ var LoginView = Backbone.View.extend({
 			//console.log(data.contact);
 			//console.log(data.last_login);
 			if(data == false){
-				alert("Failed to login...Try again");
-				that.cleanup();
-				location.reload();
+				custom_alert("Failed to login...Try again",
+					"Login Failed",
+					function () { 
+						that.cleanup();
+						location.reload();
+					});
 			} else {
 				$("#back").show();
 				$("#forward").show();
@@ -71,16 +77,16 @@ var LoginView = Backbone.View.extend({
 			}
 		},
 		complete: function(data) {
-			//alert("complete:"+data.key);
+			//custom_alert("complete:"+data.key);
 	        }
 		});
 	  } else {
-		alert("Local login not yet available offline");
-                that.cleanup();
-                location.reload();
-		return;
+		//custom_alert("Local login not available offline");
+                //that.cleanup();
+                //location.reload();
+		//return;
   	  	var getUserKey = window.localStorage.getItem("user");
-		alert(getUserKey);
+		custom_alert(getUserKey);
 		if(getUserKey != null){
   	  		// loop through userKey looking to match login with key
 			// may be able to just use initial user key
@@ -88,11 +94,11 @@ var LoginView = Backbone.View.extend({
 			var splitKeyCount = splitKey.length;
 			for(var i=0; i<splitKeyCount; i++){
 				var retrieveKey = window.localStorage.getItem("user-"+ splitKey[i]);
-				alert("retrieveKey: "+ retrieveKey);
+				custom_alert("retrieveKey: "+ retrieveKey);
 				var retrieveObject = jQuery.parseJSON(retrieveKey);
-				alert("retrieveObject: "+ retrieveObject);
-				alert("retrieveObject.email: "+ retrieveObject.email);
-				alert("retrieveObject.phone: "+ retrieveObject.phone);
+				custom_alert("retrieveObject: "+ retrieveObject);
+				custom_alert("retrieveObject.email: "+ retrieveObject.email);
+				custom_alert("retrieveObject.phone: "+ retrieveObject.phone);
 				if(loginID == retrieveObject.email || loginID == retrieveObject.phone){
 					loginStatus = true;
 	  				USERID = retrieveObject.id;
@@ -101,10 +107,10 @@ var LoginView = Backbone.View.extend({
 			if(loginStatus == true){
 				appRouter.weekly();
 			} else {
-				alert("User account not found - You must signup online before you can run a weekly survey.");
+				custom_alert("User account not found - You must signup online before you can run a weekly survey.");
 			}
 		} else {
-			alert("You must signup online before you can run a weekly survey.");
+			custom_alert("You must signup online before you can run a weekly survey.");
 		}
 	  }
 	  this.cleanup();
@@ -122,7 +128,7 @@ var LoginView = Backbone.View.extend({
 		if (networkStatus != 'offline'){
 			appRouter.signup();
 		} else {
-			alert("Enrollment not available offline");
+			custom_alert("Enrollment not available offline");
                         this.cleanup();
                         location.reload();
 		}

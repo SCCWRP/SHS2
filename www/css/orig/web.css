@@ -338,3 +338,17 @@ color:black !important;
 .ui-footer.ui-fixed-hidden {
 position: fixed !important;
 }
+#map-canvas {
+height: 100%;
+margin: 0px;
+padding: 0px
+}
+#info-box {
+background-color: white;
+border: 1px solid black;
+bottom: 30px;
+height: 20px;
+padding: 10px;
+position: absolute;
+left: 30px;
+}

@@ -276,8 +276,8 @@ var appRouter = new (Backbone.Router.extend({
 					//console.log(response.status);
 					//console.log("failed");
 					//app.dialog("Failed to Start Weekly","Application Reload","Ok");
-					alert("Failed to Start Weekly");
-					location.reload();
+					custom_alert("Failed to Start Weekly", "", location.reload());
+					;
 				}
 			  }
 			});
@@ -298,7 +298,7 @@ var appRouter = new (Backbone.Router.extend({
 var app = {
   dialog: function(message,title,button){
 	function dialogCallback(){
-		//alert("dialogCallback closed");
+		//custom_alert("dialogCallback closed");
 	}
 	if(isDevice == true){
 		navigator.notification.alert(message, dialogCallback, title, button)	
@@ -337,16 +337,16 @@ var app = {
 		timeout: 4000,
 		error: function(data){ 
 			 //console.log(data);
-			 //if(t==="timeout"){ alert("Data not Submitted"); }
+			 //if(t==="timeout"){ custom_alert("Data not Submitted"); }
 		}, 
 		success: function(data) {
 			//console.log(data);
-			//alert("status:"+data.status[0]);
-			//alert("number:"+data.number[0]);
+			//custom_alert("status:"+data.status[0]);
+			//custom_alert("number:"+data.number[0]);
 			//lookup_number = data.number[0];
 		},
 		complete: function(data) {
-			//alert("complete:"+data.key);
+			//custom_alert("complete:"+data.key);
 	        }
     	});
 

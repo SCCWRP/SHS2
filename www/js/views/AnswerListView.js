@@ -212,7 +212,7 @@ var AnswerListView = Backbone.View.extend({
 				error: function(model, response){
 				  if(response.status == 500){
 					//console.log("failed");
-					alert("Phone number already exists in database! Please login instead.");
+					custom_alert("Phone number already exists in database! Please login instead.");
 					//console.log(response.responseText);
 					//console.log(response.status);
 					loginView = new LoginView;
@@ -246,7 +246,7 @@ var AnswerListView = Backbone.View.extend({
 				error: function(response){
 				  if(response.status == 500){
 					//console.log("failed");
-					alert("Email address already exists in database! Please login instead.");
+					custom_alert("Email address already exists in database! Please login instead.");
 					//console.log(response.responseText);
 					//console.log(response.status);
 					loginView = new LoginView;
@@ -345,7 +345,7 @@ var AnswerListView = Backbone.View.extend({
 				error: function(model,response){
 				  if(response.status == 500){
 					//console.log("failed");
-					alert("Phone/Email address already exists in database! Please login instead.");
+					custom_alert("Phone/Email address already exists in database! Please login instead.");
 					//console.log("update record in database");
 					//console.log(response.responseText);
 					//console.log(response.status);
