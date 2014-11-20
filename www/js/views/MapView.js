@@ -7,6 +7,7 @@ var MapView = Backbone.View.extend({
 	render: function(){
 		$("#landing").hide();
 		$(headerView.el).show();
+		var map;
 		url = 'http://feeds.feedburner.com/surfline-rss-surf-report-south-san-diego?format=xml';
 		$.ajax({
 			type: "GET",
