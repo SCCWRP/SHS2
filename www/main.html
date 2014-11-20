@@ -3,7 +3,14 @@
   <head>
     <title>Surfer Health Survey</title>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-	<link rel="stylesheet" href="css/orig/web.css" type="text/css" />
+        <script type="text/javascript">
+	        var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
+	        if((deviceType == "iPhone")){
+			document.write("<link rel=\"stylesheet\" href=\"css/orig/iphone.css\" type=\"text\/css\" charset=\"utf-8\" \/>");
+		} else {
+			document.write("<link rel=\"stylesheet\" href=\"css/orig/web.css\" type=\"text\/css\" charset=\"utf-8\" \/>");
+		}
+	</script>
 	<link rel="stylesheet" href="css/orig/natived/font-awesome.min.css" />
 	<!--  jQueryMobileCSS - original without styling // -->
         <link rel="stylesheet" href="css/orig/natived/jquerymobile.css" />
@@ -458,9 +465,6 @@
 	<script src="js/collections/FAQList.js"></script>
 	<script src="js/application.js"></script>
     <script type="text/javascript">
-        var jqmCSS;
-        var deviceCSS;
-        var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
         if((deviceType == "iPad" || deviceType == "iPhone")){
             $('#Mod-bar').css('width','60%');
             $('#Full-bar').css('width','60%');
@@ -471,10 +475,7 @@
             $('#Full-bar').css('width','60%');
             $('#modLabel').css('width','110px');
             $('#fullLabel').css('width','110px');
-        } else {
-            jqmCSS = "css/orig/jquery.mobile.structure-1.3.1.min.css";
-            deviceCSS = "css/orig/SCCWRPMobile.min.css";
-        }
+        } 
   </script>
   </body>
 </html>
