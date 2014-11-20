@@ -99,17 +99,13 @@ var appRouter = new (Backbone.Router.extend({
 	if (deviceType != "iPhone") { 
 		$('#footer').css('visibility','visible');
 		$('#footer').css('font-size','10px');
+		$footer.css({ position: "fixed", bottom: 0, left:0, right:0 });
+	} else {
+		var drop = (deviceType == "iPhone") ? /*-59*/3:3;
+		//console.log("window scrolltop: "+ $(window).scrollTop());
+		//console.log("window height: "+ $(window).height());
+		footerTop = ($(window).scrollTop()+$(window).height()-footerHeight)-drop+"px";       
 	}
-	var drop = (deviceType == "iPhone") ? /*-59*/3:3;
-	//console.log("window scrolltop: "+ $(window).scrollTop());
-	//console.log("window height: "+ $(window).height());
-	//footerTop = ($(window).scrollTop()+$(window).height()-footerHeight)-drop+"px";       
-	$footer.css({
-		position: "fixed",
-		bottom: 0,
-		left:0,
-		right:0
-	});
   },
   receipt: function(appid){
 	 //console.log("receipt");
