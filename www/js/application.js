@@ -32,8 +32,12 @@ var appRouter = new (Backbone.Router.extend({
 			$('#multi-select h3').css('font-size','18px');
 			$('#multi-select select').css('font-size','18px');
 			$('#multi-select-time').css('margin-left','-3%');
+		        $(document).on('focus', 'input, textarea, select', function() {
+		      		      $(this).on("blur", function(){ window.scrollTo(0,0); });
+			});
+	    } else {
+	    	$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter); //- issues with iphone
 	    }
-	    //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter); - issues with iphone
   },
   gift: function(giftid){
 	//console.log("gift");
@@ -92,20 +96,14 @@ var appRouter = new (Backbone.Router.extend({
         questionList.fetch({ success: function(response){ /*console.log("questionList fetch - success");*/ questionList.getQuestion(); } });
   },
   positionFooter: function(){
-	//console.log("positionFooter");
 	$footer = $("#footer");
 	footerHeight = $footer.height();
 	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
 	if (deviceType != "iPhone") { 
 		$('#footer').css('visibility','visible');
 		$('#footer').css('font-size','10px');
-		$footer.css({ position: "fixed", bottom: 0, left:0, right:0 });
-	} else {
-		var drop = (deviceType == "iPhone") ? /*-59*/3:3;
-		//console.log("window scrolltop: "+ $(window).scrollTop());
-		//console.log("window height: "+ $(window).height());
-		footerTop = ($(window).scrollTop()+$(window).height()-footerHeight)-drop+"px";       
 	}
+	$footer.css({ position: "fixed", bottom: 0, left:0, right:0 });
   },
   receipt: function(appid){
 	 //console.log("receipt");
