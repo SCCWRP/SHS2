@@ -19,7 +19,8 @@ var LoginView = Backbone.View.extend({
 		if(keys){
 			keys.split(",").map(function(x) {
 				var model = window.localStorage.getItem("http://shs.sccwrp.org/shs2/index.php/surveys"+x);
-				var answer = new Answer();
+				var answer = new AnswerList(new Answer());
+				answer = answer.first();
 				answer.save(JSON.parse(x));
 			});
 		};
