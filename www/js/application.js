@@ -32,9 +32,7 @@ var appRouter = new (Backbone.Router.extend({
 			$('#multi-select h3').css('font-size','18px');
 			$('#multi-select select').css('font-size','18px');
 			$('#multi-select-time').css('margin-left','-3%');
-		        $(document).on('focus', 'input, textarea, select', function() {
-		      		      $(this).on("blur", function(){ window.scrollTo(0,0); });
-			});
+			$('#footer').css({ "top": footer.position().top, "bottom": "auto"});
 	    } else {
 	    	$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter); //- issues with iphone
 	    }
