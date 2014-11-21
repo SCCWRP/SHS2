@@ -171,6 +171,8 @@ var AnswerListView = Backbone.View.extend({
 	 	return currentAnswer;	
 		       },
 	saveAnswer:function(event, decline, other){
+		$("body").css("background-color", "gray");
+		$("body").css("opacity", "0.5");
 		var timer = 0;
 		var appID;
 		var that = this;
@@ -340,6 +342,8 @@ var AnswerListView = Backbone.View.extend({
        				}
 			});
 			//console.log(this.model);
+		$("body").css("background-color", "white");
+		$("body").css("opacity", "1");
 		}, /* end saveAnswer */
 	cleanup: function() {
 		//console.log("AnswerListView cleanup");
