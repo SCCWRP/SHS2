@@ -199,6 +199,9 @@ var AnswerListView = Backbone.View.extend({
 		//	 this.cleanup();
 		//	$("#content").html( new IntroView().render().el );
 		//}
+		if(currentQuestion == 1) {
+			this.model.set({"user_id": USERID});
+		};
 		if(currentQuestion == 6 || currentQuestion == 7) {
 			currentAnswer = currentAnswer.replace(/\W/g, '');
 		};
@@ -220,7 +223,7 @@ var AnswerListView = Backbone.View.extend({
 				}
 			});
 			// maybe a better place to set userid-uid
-			this.model.set({"user_id": USERID});
+			//this.model.set({"user_id": USERID}); - moved to question1
 			this.model.set("q7", currentAnswer);
 		}
 		if(currentQuestion == 8){
@@ -345,17 +348,14 @@ var AnswerListView = Backbone.View.extend({
 				error: function(model,response){
 				  if(response.status == 500){
 					//console.log("failed");
-					custom_alert("Phone/Email address already exists in database! Please login instead.");
-					//console.log("update record in database");
-					//console.log(response.responseText);
-					//console.log(response.status);
+					//custom_alert("Phone/Email address already exists in database! Please login instead.");
+					user.save({ status: "duplicate" });
+					alert("Phone/Email address already exists in database! Please login instead.");
 					that.cleanup();
 					//console.log(model);
-					model.destroy({remote: false});
+					//model.destroy({remote: false});
 					appRouter.navigate('/', {trigger: false});	
 					location.assign(HOME);
-					//$("#content").html( new IntroView().render().el );
-					//$("#content").trigger("create");
 				  }
        				}
 			});
