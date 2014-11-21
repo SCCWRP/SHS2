@@ -17,13 +17,14 @@ var LoginView = Backbone.View.extend({
     	sendLocalSurveys: function () {
 		var keys = window.localStorage.getItem("http://shs.sccwrp.org/shs2/index.php/surveys_dirty");
 		if(keys){
-			keys.split(",").map(function(x) {
+			var keyarray = keys.split(",");
+			for(i=0; i < keyarray.length; i++){
+				var x = keyarray[i];
 				var model = window.localStorage.getItem("http://shs.sccwrp.org/shs2/index.php/surveys"+x);
 				var answer = new AnswerList(new Answer());
 				answer = answer.first();
-				answer.save(JSON.parse(x));
-			});
-		window.localStorage.setItem("http://shs.sccwrp.org/shs2/index.php/surveys_dirty", "");	
+				answer.save(JSON.parse(model), {error: function () {console.log("dirty key error");}});
+			};
 		};
 	},
 	loginUser: function(e){
