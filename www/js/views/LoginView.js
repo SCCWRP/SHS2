@@ -23,6 +23,7 @@ var LoginView = Backbone.View.extend({
 				answer = answer.first();
 				answer.save(JSON.parse(x));
 			});
+		window.localStorage.setItem("http://shs.sccwrp.org/shs2/index.php/surveys_dirty", "");	
 		};
 	},
 	loginUser: function(e){
