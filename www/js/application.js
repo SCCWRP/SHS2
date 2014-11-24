@@ -154,7 +154,7 @@ var appRouter = new (Backbone.Router.extend({
 	if($('#consent').height() == 0){
 		//console.log("consent");
 		//console.log("consent: "+$('#consent').height());
-		$('#one').css('height',6000);
+		$('#one').css('height',6500);
 		//console.log("one: "+$('#one').height());
 	} else {
 		$('#one').css('height',oneHeight);
