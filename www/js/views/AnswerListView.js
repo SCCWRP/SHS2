@@ -215,16 +215,12 @@ var AnswerListView = Backbone.View.extend({
 				},
 				error: function(model, response){
 				  if(response.status == 500){
-					//console.log("failed");
-					custom_alert("Phone number already exists in database! Please login instead.");
-					//console.log(response.responseText);
-					//console.log(response.status);
-					loginView = new LoginView;
+					custom_alert("You are attempting to enroll with phone/email that is already been registered. If you have already completed enrollment please login instead. If you were unable to complete enrollment please wait 20 minutes and your incomplete enrollment will be removed from the system.", "", function() {loginView = new LoginView;});
 				  }
 				}
 			});
 			// maybe a better place to set userid-uid
-			//this.model.set({"user_id": USERID}); - moved to question1
+			//this.model.set({"user_id": USERID}); //- moved to question1
 			this.model.set("q7", currentAnswer);
 		}
 		if(currentQuestion == 8){
@@ -249,11 +245,7 @@ var AnswerListView = Backbone.View.extend({
 				},
 				error: function(response){
 				  if(response.status == 500){
-					//console.log("failed");
-					custom_alert("Email address already exists in database! Please login instead.");
-					//console.log(response.responseText);
-					//console.log(response.status);
-					loginView = new LoginView;
+					custom_alert("You are attempting to enroll with phone/email that is already been registered. If you have already completed enrollment please login instead. If you were unable to complete enrollment please wait 20 minutes and your incomplete enrollment will be removed from the system.", "", function() {loginView = new LoginView;});
 				  }
 				}
 			});
@@ -329,15 +321,13 @@ var AnswerListView = Backbone.View.extend({
 				},
 				error: function(model,response){
 				  if(response.status == 500){
-					//console.log("failed");
-					//custom_alert("Phone/Email address already exists in database! Please login instead.");
 					user.save({ status: "duplicate" });
-					alert("Phone/Email address already exists in database! Please login instead.");
-					that.cleanup();
-					//console.log(model);
+					custom_alert("You are attempting to enroll with phone/email that is already been registered. If you have already completed enrollment please login instead. If you were unable to complete enrollment please wait 20 minutes and your incomplete enrollment will be removed from the system.", "", function() {
+						that.cleanup();
+						appRouter.navigate('/', {trigger: false});	
+						location.assign(HOME);
+					});
 					//model.destroy({remote: false});
-					appRouter.navigate('/', {trigger: false});	
-					location.assign(HOME);
 				  }
        				}
 			});
