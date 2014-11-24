@@ -171,7 +171,8 @@ var AnswerListView = Backbone.View.extend({
 	 	return currentAnswer;	
 		       },
 	saveAnswer:function(event, decline, other){
-		//console.log("saveAnswer");
+		$("body").css("background-color", "gray");
+		$("body").css("opacity", "0.5");
 		var timer = 0;
 		var appID;
 		var that = this;
@@ -305,20 +306,7 @@ var AnswerListView = Backbone.View.extend({
 		//if(timer != 0){ use this code if you want break up modules and then save
 		// dump saved answers to json string 
 		var parsedJSON = JSON.stringify(this.model.toJSON());
-		// need a new column called status in db
-		// we are offline
-
-
-		//status change for module 4 so that follow-up questions can be edited
-
-		if (networkStatus != 'online'){
-			//this.model.set(answerDetails);
-			this.model.save(answerDetails);
-		} else {
-			// we are online 
-			//this.model.save({qcount: currentQuestion},{ used when useing set and mulitiple save
-			////console.log(this.model.toJSON());
-			this.model.save(answerDetails, {
+		this.model.save(answerDetails, {
 				wait: false,
 				success: function(model,response){
 					//console.log("success");
@@ -332,18 +320,12 @@ var AnswerListView = Backbone.View.extend({
 					// ******************************************** // 
 					// last module - go to receipt
 					if(timer == 4){
-						//console.log("timer == 4");
 						// clear stage and events
 						that.cleanup();
 						//appRouter.cleanup();
 						// return receipt from database
-						appRouter.navigate('shs/receipt/' + appID, {trigger: true});
+						networkStatus != "offline" ? appRouter.navigate('shs/receipt/' + appID, {trigger: true}) : (function () {appRouter.navigate('/', {trigger: true});location.assign(HOME);})();  
 					}
-					/*
-					} else {
-						that.getQuestion(that,nextQuestion);
-					}
-					*/
 				},
 				error: function(model,response){
 				  if(response.status == 500){
@@ -360,7 +342,8 @@ var AnswerListView = Backbone.View.extend({
        				}
 			});
 			//console.log(this.model);
-		}
+		$("body").css("background-color", "white");
+		$("body").css("opacity", "1");
 		}, /* end saveAnswer */
 	cleanup: function() {
 		//console.log("AnswerListView cleanup");
