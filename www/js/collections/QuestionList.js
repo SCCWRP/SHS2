@@ -32,7 +32,8 @@ var QuestionList = Backbone.Collection.extend({
 				var value = split[1];
 				if((period && value > 7) || value > 31) {
 			       		return "Submitted value is too large";
-			};};}
+			};};},
+			"selectInterval": function(q) {if(q && q.match("Select"))return "You must select an answer for all days";}
 		};
 		var createValidation = function (questions){
 		  for(i=0; i< MAXQUESTION; i++) {

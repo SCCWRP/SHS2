@@ -521,7 +521,7 @@
 	"errmessage": "",
       	"status": "incomplete",
       	"id": "33",
-	"check":"selectOne"
+	"check":"selectInterval"
   },
   {
 	"title": "Were there any days in the past week that you would have gone into the ocean but didnt because of wet weather or bad weather?",
