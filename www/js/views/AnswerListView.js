@@ -21,6 +21,12 @@ var AnswerListView = Backbone.View.extend({
 			} else {
 				$("#back").css("visibility", "visible");
 			};
+			// No saving until module 2 
+			if(this.model.get('qcount') <= 13) {
+				$("#restart").css("visibility", "hidden");
+			} else {
+				$("#restart").css("visibility", "visible");
+			};
 		});
 		},
 	events:{
