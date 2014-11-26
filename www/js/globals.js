@@ -30,11 +30,13 @@ function custom_alert(output_msg, title_msg, callback) {
 	    if (!output_msg)
 		    output_msg = 'No Message to Display.';
 	    
- 	   $("<div>").simpledialog2({
+ 	   $("<div id=popup>").simpledialog2({
        		mode: "blank",
 		headerText: title_msg,
 		headerClose: true,
-		blankContent: "<p>" + output_msg + "</p>",
+		blankContent: "<p>" + output_msg + "</p>" + 
+		   "<a rel='close' data-role='button' href='#'>Close</a>",
 		callbackClose: callback 
 		});		   
 };
+

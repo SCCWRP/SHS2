@@ -21,6 +21,12 @@ var AnswerListView = Backbone.View.extend({
 			} else {
 				$("#back").css("visibility", "visible");
 			};
+			// No saving until module 2 
+			if(this.model.get('qcount') <= 13) {
+				$("#restart").css("visibility", "hidden");
+			} else {
+				$("#restart").css("visibility", "visible");
+			};
 		});
 		},
 	events:{
@@ -171,7 +177,8 @@ var AnswerListView = Backbone.View.extend({
 	 	return currentAnswer;	
 		       },
 	saveAnswer:function(event, decline, other){
-		//console.log("saveAnswer");
+		$("body").css("background-color", "gray");
+		$("body").css("opacity", "0.5");
 		var timer = 0;
 		var appID;
 		var that = this;
@@ -214,16 +221,12 @@ var AnswerListView = Backbone.View.extend({
 				},
 				error: function(model, response){
 				  if(response.status == 500){
-					//console.log("failed");
-					custom_alert("Phone number already exists in database! Please login instead.");
-					//console.log(response.responseText);
-					//console.log(response.status);
-					loginView = new LoginView;
+					custom_alert("You are attempting to enroll with phone/email that is already been registered. If you have already completed enrollment please login instead. If you were unable to complete enrollment please wait 20 minutes and your incomplete enrollment will be removed from the system.", "", function() {loginView = new LoginView;});
 				  }
 				}
 			});
 			// maybe a better place to set userid-uid
-			//this.model.set({"user_id": USERID}); - moved to question1
+			//this.model.set({"user_id": USERID}); //- moved to question1
 			this.model.set("q7", currentAnswer);
 		}
 		if(currentQuestion == 8){
@@ -248,11 +251,7 @@ var AnswerListView = Backbone.View.extend({
 				},
 				error: function(response){
 				  if(response.status == 500){
-					//console.log("failed");
-					custom_alert("Email address already exists in database! Please login instead.");
-					//console.log(response.responseText);
-					//console.log(response.status);
-					loginView = new LoginView;
+					custom_alert("You are attempting to enroll with phone/email that is already been registered. If you have already completed enrollment please login instead. If you were unable to complete enrollment please wait 20 minutes and your incomplete enrollment will be removed from the system.", "", function() {loginView = new LoginView;});
 				  }
 				}
 			});
@@ -284,13 +283,17 @@ var AnswerListView = Backbone.View.extend({
 		if(currentQuestion >=  this.endquestion){
 			//console.log("endquestion: "+this.endquestion);
 			/* user is finished with survey enrollment/weekly - record is complete */
-			this.model.set({ status: "complete" });
-			/* notify user if this is an enrollment */
-			var survey_type = this.model.get('survey_type');
-			if(survey_type == "enrollment"){
-	                	var email = this.model.get('contact');
-	                	var id = this.model.get('user_id');
-				app.notify(email,id);
+			// code below should only happen once - edit mode will cause code to re-execute
+			var current_status = this.model.get('status');
+			if(current_status != "edit"){
+				this.model.set({ status: "complete" });
+				/* notify user if this is an enrollment */
+				var survey_type = this.model.get('survey_type');
+				if(survey_type == "enrollment"){
+	                		var email = this.model.get('contact');
+	                		var id = this.model.get('user_id');
+					app.notify(email,id);
+				}
 			}
 			/* set timer so after save the app goes to receipt */
 			timer = 4;
@@ -305,20 +308,7 @@ var AnswerListView = Backbone.View.extend({
 		//if(timer != 0){ use this code if you want break up modules and then save
 		// dump saved answers to json string 
 		var parsedJSON = JSON.stringify(this.model.toJSON());
-		// need a new column called status in db
-		// we are offline
-
-
-		//status change for module 4 so that follow-up questions can be edited
-
-		if (networkStatus != 'online'){
-			//this.model.set(answerDetails);
-			this.model.save(answerDetails);
-		} else {
-			// we are online 
-			//this.model.save({qcount: currentQuestion},{ used when useing set and mulitiple save
-			////console.log(this.model.toJSON());
-			this.model.save(answerDetails, {
+		this.model.save(answerDetails, {
 				wait: false,
 				success: function(model,response){
 					//console.log("success");
@@ -332,35 +322,28 @@ var AnswerListView = Backbone.View.extend({
 					// ******************************************** // 
 					// last module - go to receipt
 					if(timer == 4){
-						//console.log("timer == 4");
 						// clear stage and events
 						that.cleanup();
 						//appRouter.cleanup();
 						// return receipt from database
-						appRouter.navigate('shs/receipt/' + appID, {trigger: true});
+						networkStatus != "offline" ? appRouter.navigate('shs/receipt/' + appID, {trigger: true}) : (function () {appRouter.navigate('/', {trigger: true});location.assign(HOME);})();  
 					}
-					/*
-					} else {
-						that.getQuestion(that,nextQuestion);
-					}
-					*/
 				},
 				error: function(model,response){
 				  if(response.status == 500){
-					//console.log("failed");
-					//custom_alert("Phone/Email address already exists in database! Please login instead.");
 					user.save({ status: "duplicate" });
-					alert("Phone/Email address already exists in database! Please login instead.");
-					that.cleanup();
-					//console.log(model);
+					custom_alert("You are attempting to enroll with phone/email that is already been registered. If you have already completed enrollment please login instead. If you were unable to complete enrollment please wait 20 minutes and your incomplete enrollment will be removed from the system.", "", function() {
+						that.cleanup();
+						appRouter.navigate('/', {trigger: false});	
+						location.assign(HOME);
+					});
 					//model.destroy({remote: false});
-					appRouter.navigate('/', {trigger: false});	
-					location.assign(HOME);
 				  }
        				}
 			});
 			//console.log(this.model);
-		}
+		$("body").css("background-color", "white");
+		$("body").css("opacity", "1");
 		}, /* end saveAnswer */
 	cleanup: function() {
 		//console.log("AnswerListView cleanup");

@@ -17,11 +17,14 @@ var LoginView = Backbone.View.extend({
     	sendLocalSurveys: function () {
 		var keys = window.localStorage.getItem("http://shs.sccwrp.org/shs2/index.php/surveys_dirty");
 		if(keys){
-			keys.split(",").map(function(x) {
+			var keyarray = keys.split(",");
+			for(i=0; i < keyarray.length; i++){
+				var x = keyarray[i];
 				var model = window.localStorage.getItem("http://shs.sccwrp.org/shs2/index.php/surveys"+x);
-				var answer = new Answer();
-				answer.save(JSON.parse(x));
-			});
+				var answer = new AnswerList(new Answer());
+				answer = answer.first();
+				answer.save(JSON.parse(model), {error: function () {console.log("dirty key error");}});
+			};
 		};
 	},
 	loginUser: function(e){
@@ -86,7 +89,6 @@ var LoginView = Backbone.View.extend({
                 //location.reload();
 		//return;
   	  	var getUserKey = window.localStorage.getItem("user");
-		custom_alert(getUserKey);
 		if(getUserKey != null){
   	  		// loop through userKey looking to match login with key
 			// may be able to just use initial user key
@@ -94,27 +96,37 @@ var LoginView = Backbone.View.extend({
 			var splitKeyCount = splitKey.length;
 			for(var i=0; i<splitKeyCount; i++){
 				var retrieveKey = window.localStorage.getItem("user-"+ splitKey[i]);
-				custom_alert("retrieveKey: "+ retrieveKey);
 				var retrieveObject = jQuery.parseJSON(retrieveKey);
-				custom_alert("retrieveObject: "+ retrieveObject);
-				custom_alert("retrieveObject.email: "+ retrieveObject.email);
-				custom_alert("retrieveObject.phone: "+ retrieveObject.phone);
 				if(loginID == retrieveObject.email || loginID == retrieveObject.phone){
 					loginStatus = true;
 	  				USERID = retrieveObject.id;
 				}
 			}
 			if(loginStatus == true){
+				$("#back").show();
+				$("#forward").show();
+				$("#footer").show();
 				appRouter.weekly();
+				this.cleanup();
+	
 			} else {
-				custom_alert("User account not found - You must signup online before you can run a weekly survey.");
+				custom_alert("User account not found - You must signup online before you can run a weekly survey.", 
+						"", function () { 
+							that.cleanup();
+							location.reload();
+					} );
+
 			}
 		} else {
-			custom_alert("You must signup online before you can run a weekly survey.");
+			custom_alert("You must signup online before you can run a weekly survey.", 
+					"",
+				function () { 
+					that.cleanup();
+					location.reload();
+				});
 		}
 	  }
-	  this.cleanup();
-	},
+},
 	enrollUser: function(e){
 		//console.log("enrollUser");
 		e.preventDefault();
