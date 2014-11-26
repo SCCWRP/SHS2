@@ -283,13 +283,17 @@ var AnswerListView = Backbone.View.extend({
 		if(currentQuestion >=  this.endquestion){
 			//console.log("endquestion: "+this.endquestion);
 			/* user is finished with survey enrollment/weekly - record is complete */
-			this.model.set({ status: "complete" });
-			/* notify user if this is an enrollment */
-			var survey_type = this.model.get('survey_type');
-			if(survey_type == "enrollment"){
-	                	var email = this.model.get('contact');
-	                	var id = this.model.get('user_id');
-				app.notify(email,id);
+			// code below should only happen once - edit mode will cause code to re-execute
+			var current_status = this.model.get('status');
+			if(current_status != "edit"){
+				this.model.set({ status: "complete" });
+				/* notify user if this is an enrollment */
+				var survey_type = this.model.get('survey_type');
+				if(survey_type == "enrollment"){
+	                		var email = this.model.get('contact');
+	                		var id = this.model.get('user_id');
+					app.notify(email,id);
+				}
 			}
 			/* set timer so after save the app goes to receipt */
 			timer = 4;

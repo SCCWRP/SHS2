@@ -27,7 +27,7 @@ var ReceiptView = Backbone.View.extend({
 		//console.log(this.model);
 		answerListView = new AnswerListView({model: this.model});
 		answerListView.endquestion =  event.currentTarget.name; 
-		answerListView.model.set({ qcount: fixedID});
+		answerListView.model.set({ qcount: fixedID, status: "edit"});
 		answerListView.nextQuestion(this.model);
 	},
 	finish: function(event){
