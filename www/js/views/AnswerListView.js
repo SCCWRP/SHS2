@@ -355,6 +355,8 @@ var AnswerListView = Backbone.View.extend({
 		$(this.el).html(this.template(this.model.toJSON()));
 		$('select').on('change', function(s) {
 				var selectTarget = $(s.currentTarget);
+				$("body").css("background-color", "white");
+				$("body").css("opacity", "1");
 				if(selectTarget.val() == "Other") {
 					$('<div>').simpledialog2({
 					    mode: 'button',
