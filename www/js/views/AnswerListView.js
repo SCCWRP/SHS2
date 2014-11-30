@@ -357,6 +357,26 @@ var AnswerListView = Backbone.View.extend({
 		$(headerView.el).show();
 		$(footerView.el).show();
 		$(this.el).html(this.template(this.model.toJSON()));
+		$('input:checkbox[value="Other"]').on('change', function(s) {
+			$('<div>').simpledialog2({
+				mode: 'button',
+		   		headerText: '',
+		   		headerClose: true,
+				buttonPrompt: 'Type your response',
+				buttonInput: true,
+				buttons : {
+			  		'OK': {
+				    		click: function () { 
+							var name = $.mobile.sdLastInput;
+							var i = name;
+						   	$("#aid").controlgroup("container").append('<input type="checkbox" value="' + name + '" id="id' + i + '"> <label for="id' + i + '">' + name + '</label>');
+						   	$("#aid").trigger("create");
+						   	$("input:checkbox[value="+name+"]").prop('checked', true).checkboxradio('refresh');
+					   	}
+			  		},
+		   		}
+	  		})
+		});
 		$('select').on('change', function(s) {
 				var selectTarget = $(s.currentTarget);
 				if(selectTarget.val() == "Other") {
