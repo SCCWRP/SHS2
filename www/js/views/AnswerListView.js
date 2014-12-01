@@ -368,10 +368,10 @@ var AnswerListView = Backbone.View.extend({
 			  		'OK': {
 				    		click: function () { 
 							var name = $.mobile.sdLastInput;
-							var i = name;
+							var i = "'" + name + "'";
 						   	$("#aid").controlgroup("container").append('<input type="checkbox" value="' + name + '" id="id' + i + '"> <label for="id' + i + '">' + name + '</label>');
 						   	$("#aid").trigger("create");
-						   	$("input:checkbox[value="+name+"]").prop('checked', true).checkboxradio('refresh');
+						   	$("input:checkbox[value="+i+"]").prop('checked', true).checkboxradio('refresh');
 					   	}
 			  		},
 		   		}
