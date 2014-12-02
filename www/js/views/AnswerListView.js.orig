@@ -3,19 +3,40 @@ var AnswerListView = Backbone.View.extend({
 	template:_.template($('#tpl-answer-details').html()),
 	initialize: function(){
 		//console.log("AnswerListView");
+		//Start idle counter
+		var that = this;
+		$(document).ready(function () {
+			var interval = setInterval(function(){that.idleCounter(that);}, 60000);
+			$(document).mouseover(function(e) {
+				that.idleTime = 0;
+			});
+			$(document).keypress(function(e) {
+				that.idleTime = 0;
+			});
+		});
 		// must unbind event before each question or will end up with wrong model
 		$(this.el).unbind("click");
-		//headerView = new HeaderView;
-		//footerView = new FooterView;
 		this.listenTo(this.model, 'sync', this.nextQuestion);
 		this.listenTo(footerView, 'forward', this.saveAnswer); 
 		this.listenTo(footerView, 'back', this.goBack); 
 		this.listenTo(this.model, 'change:status', this.nextQuestion);
 		this.listenTo(this.model, 'change:type', function() {
-			if(["radio"].indexOf(this.model.get('type')) >=  0) {
+			if(["radio", "select"].indexOf(this.model.get('type')) >=  0) {
 				$('#forward').hide();
 			} else {
 				$('#forward').show();
+			};
+			// Points of no-return
+			if(this.model.get('qcount') == 12) {
+				$("#back").css("visibility", "hidden");
+			} else {
+				$("#back").css("visibility", "visible");
+			};
+			// No saving until module 2 
+			if(this.model.get('qcount') <= 13) {
+				$("#restart").css("visibility", "hidden");
+			} else {
+				$("#restart").css("visibility", "visible");
 			};
 		});
 		},
@@ -24,7 +45,21 @@ var AnswerListView = Backbone.View.extend({
 		"change select[name=aid]":"saveAnswer",
     		"click .decline":"declineAnswer",
     		"click #decline":"declineAnswer",
-    		"change input[type=radio]":"saveAnswer"
+    		"change input[type=radio]":"saveAnswer",
+		"keyup input[type=text]" : "processKeyup"
+	},
+	idleTime: 0,
+	idleCounter: function(x) {
+		x.idleTime = x.idleTime + 1;
+		if(x.idleTime > 19 && x.model.get("qcount") > 13) {
+			x.cleanup();
+			location.reload();
+		};
+	},
+	processKeyup: function(event) {
+		if(event.keyCode == 13){
+			this.saveAnswer(event);
+		}
 	},
 	change:function(event){
 		var that = this;
@@ -47,16 +82,12 @@ var AnswerListView = Backbone.View.extend({
 		};
 	},
 	nextQuestion:function(t, response, options){	
-<<<<<<< HEAD
-		console.log("nextQuestion");
-		console.log(this.model.attributes);
+		//console.log("nextQuestion");
+		//console.log(this.model);
+		//console.log(this.model.attributes);
 		var val = this.model.validate(this.model.attributes);
 		if(val) return;
-		console.log(this.qHistory);
-=======
-		//console.log("nextQuestion");
-		//console.log(this.qHistory);
->>>>>>> 7d4e52732037fd7e886c800240e6e581a1b359fc
+	//	console.log(this.qHistory);
 		var that = this;
 		// get current question number
 		var nextQcount = t.get("qcount");
@@ -138,7 +169,7 @@ var AnswerListView = Backbone.View.extend({
 			currentAnswer = $("select").val() + " : " + currentAnswer.val();
 		} else if(formtype == "dateSelect") {
 			var locations = currentAnswer.map(function(x) {return $(this).val() });
-			var dates = $("[id=date]").map(function(x) {return this.textContent });
+			var dates = $("[id=date]").map(function(x) {return $(this).attr("name")});
 			var dateSelectAnswer = {};
 			for(i=0; i < dates.length; i++) {
 				dateSelectAnswer[dates[i]] = locations[i];
@@ -149,7 +180,7 @@ var AnswerListView = Backbone.View.extend({
 			var start = currentAnswer.filter(function(x,i) {return x % 2 == 0});
 			var end  = currentAnswer.filter(function(x,i) {return x % 2 != 0});
 			var intervals = _.zip(start, end).map(function(x) {return x.join("-");});
-			var dates = $("[id=date]").map(function(x) {return this.textContent });
+			var dates = $("[id=date]").map(function(x) {return $(this).attr("name")});
 			var dateSelectAnswer = {};
 			for(i=0; i < dates.length; i++) {
 				dateSelectAnswer[dates[i]] = intervals[i];
@@ -165,7 +196,8 @@ var AnswerListView = Backbone.View.extend({
 	 	return currentAnswer;	
 		       },
 	saveAnswer:function(event, decline, other){
-		//console.log("saveAnswer");
+		$("body").css("background-color", "gray");
+		$("body").css("opacity", "0.5");
 		var timer = 0;
 		var appID;
 		var that = this;
@@ -193,6 +225,9 @@ var AnswerListView = Backbone.View.extend({
 		//	 this.cleanup();
 		//	$("#content").html( new IntroView().render().el );
 		//}
+		if(currentQuestion == 1) {
+			this.model.set({"user_id": USERID});
+		};
 		if(currentQuestion == 6 || currentQuestion == 7) {
 			currentAnswer = currentAnswer.replace(/\W/g, '');
 		};
@@ -205,16 +240,12 @@ var AnswerListView = Backbone.View.extend({
 				},
 				error: function(model, response){
 				  if(response.status == 500){
-					//console.log("failed");
-					alert("Phone number already exists in database! Please login instead.");
-					//console.log(response.responseText);
-					//console.log(response.status);
-					loginView = new LoginView;
+					custom_alert("You are attempting to enroll with phone/email that is already been registered. If you have already completed enrollment please login instead. If you were unable to complete enrollment please wait 20 minutes and your incomplete enrollment will be removed from the system.", "", function() {loginView = new LoginView;});
 				  }
 				}
 			});
 			// maybe a better place to set userid-uid
-			this.model.set({"user_id": USERID});
+			//this.model.set({"user_id": USERID}); //- moved to question1
 			this.model.set("q7", currentAnswer);
 		}
 		if(currentQuestion == 8){
@@ -239,11 +270,7 @@ var AnswerListView = Backbone.View.extend({
 				},
 				error: function(response){
 				  if(response.status == 500){
-					//console.log("failed");
-					alert("Email address already exists in database! Please login instead.");
-					//console.log(response.responseText);
-					//console.log(response.status);
-					loginView = new LoginView;
+					custom_alert("You are attempting to enroll with phone/email that is already been registered. If you have already completed enrollment please login instead. If you were unable to complete enrollment please wait 20 minutes and your incomplete enrollment will be removed from the system.", "", function() {loginView = new LoginView;});
 				  }
 				}
 			});
@@ -275,13 +302,17 @@ var AnswerListView = Backbone.View.extend({
 		if(currentQuestion >=  this.endquestion){
 			//console.log("endquestion: "+this.endquestion);
 			/* user is finished with survey enrollment/weekly - record is complete */
-			this.model.set({ status: "complete" });
-			/* notify user if this is an enrollment */
-			var survey_type = this.model.get('survey_type');
-			if(survey_type == "enrollment"){
-	                	var email = this.model.get('contact');
-	                	var id = this.model.get('user_id');
-				app.notify(email,id);
+			// code below should only happen once - edit mode will cause code to re-execute
+			var current_status = this.model.get('status');
+			if(current_status != "edit"){
+				this.model.set({ status: "complete" });
+				/* notify user if this is an enrollment */
+				var survey_type = this.model.get('survey_type');
+				if(survey_type == "enrollment"){
+	                		var email = this.model.get('contact');
+	                		var id = this.model.get('user_id');
+					app.notify(email,id);
+				}
 			}
 			/* set timer so after save the app goes to receipt */
 			timer = 4;
@@ -296,20 +327,7 @@ var AnswerListView = Backbone.View.extend({
 		//if(timer != 0){ use this code if you want break up modules and then save
 		// dump saved answers to json string 
 		var parsedJSON = JSON.stringify(this.model.toJSON());
-		// need a new column called status in db
-		// we are offline
-
-
-		//status change for module 4 so that follow-up questions can be edited
-
-		if (networkStatus != 'online'){
-			//this.model.set(answerDetails);
-			this.model.save(answerDetails);
-		} else {
-			// we are online 
-			//this.model.save({qcount: currentQuestion},{ used when useing set and mulitiple save
-			////console.log(this.model.toJSON());
-			this.model.save(answerDetails, {
+		this.model.save(answerDetails, {
 				wait: false,
 				success: function(model,response){
 					//console.log("success");
@@ -323,38 +341,28 @@ var AnswerListView = Backbone.View.extend({
 					// ******************************************** // 
 					// last module - go to receipt
 					if(timer == 4){
-						//console.log("timer == 4");
 						// clear stage and events
 						that.cleanup();
 						//appRouter.cleanup();
 						// return receipt from database
-						appRouter.navigate('shs/receipt/' + appID, {trigger: true});
+						networkStatus != "offline" ? appRouter.navigate('shs/receipt/' + appID, {trigger: true}) : (function () {appRouter.navigate('/', {trigger: true});location.assign(HOME);})();  
 					}
-					/*
-					} else {
-						that.getQuestion(that,nextQuestion);
-					}
-					*/
 				},
 				error: function(model,response){
 				  if(response.status == 500){
-					//console.log("failed");
-					alert("Phone/Email address already exists in database! Please login instead.");
-					//console.log("update record in database");
-					//console.log(response.responseText);
-					//console.log(response.status);
-					that.cleanup();
-					//console.log(model);
-					model.destroy({remote: false});
-					appRouter.navigate('/', {trigger: false});	
-					location.assign(HOME);
-					//$("#content").html( new IntroView().render().el );
-					//$("#content").trigger("create");
+					user.save({ status: "duplicate" });
+					custom_alert("You are attempting to enroll with phone/email that is already been registered. If you have already completed enrollment please login instead. If you were unable to complete enrollment please wait 20 minutes and your incomplete enrollment will be removed from the system.", "", function() {
+						that.cleanup();
+						appRouter.navigate('/', {trigger: false});	
+						location.assign(HOME);
+					});
+					//model.destroy({remote: false});
 				  }
        				}
 			});
 			//console.log(this.model);
-		}
+		$("body").css("background-color", "white");
+		$("body").css("opacity", "1");
 		}, /* end saveAnswer */
 	cleanup: function() {
 		//console.log("AnswerListView cleanup");
@@ -368,8 +376,57 @@ var AnswerListView = Backbone.View.extend({
 		$(headerView.el).show();
 		$(footerView.el).show();
 		$(this.el).html(this.template(this.model.toJSON()));
+<<<<<<< HEAD
+		$('input:checkbox[value="Other"]').on('change', function(s) {
+			$('<div>').simpledialog2({
+				mode: 'button',
+		   		headerText: '',
+		   		headerClose: true,
+				buttonPrompt: 'Type your response',
+				buttonInput: true,
+				buttons : {
+			  		'OK': {
+				    		click: function () { 
+							var name = $.mobile.sdLastInput;
+							var i = "'" + name + "'";
+						   	$("#aid").controlgroup("container").append('<input type="checkbox" value="' + name + '" id="id' + i + '"> <label for="id' + i + '">' + name + '</label>');
+						   	$("#aid").trigger("create");
+						   	$("input:checkbox[value="+i+"]").prop('checked', true).checkboxradio('refresh');
+					   	}
+			  		},
+		   		}
+	  		})
+		});
+=======
+		
+		$('input:checkbox[value="Other"]').on('change', function(s) {
+					$('<div>').simpledialog2({
+					    mode: 'button',
+				   	    headerText: '',
+				   	    headerClose: true,
+				    	    buttonPrompt: 'Type your response',
+				    	    buttonInput: true,
+				    	    buttons : {
+				          	'OK': {
+					          click: function () { 
+							var name = $.mobile.sdLastInput;
+							var i = name;
+							$("#aid").controlgroup("container").append('<input type="checkbox" value="' + name + '" id="id' + i + '"> <label for="id' + i + '">' + name + '</label>');
+							$("#aid").trigger("create");
+							$("input:checkbox[value="+name+"]").prop('checked', true).checkboxradio('refresh');
+							
+
+							}
+						},
+				    	   }
+			 	 	})	
+				});
+
+>>>>>>> d3a264425d9c8a85a4e2bc1475582535dd55da1f
 		$('select').on('change', function(s) {
 				var selectTarget = $(s.currentTarget);
+				$("body").css("background-color", "white");
+				$("body").css("opacity", "1");
 				if(selectTarget.val() == "Other") {
 					$('<div>').simpledialog2({
 					    mode: 'button',
