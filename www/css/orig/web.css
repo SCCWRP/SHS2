@@ -358,3 +358,18 @@ padding: 10px;
 position: absolute;
 left: 30px;
 }
+span.tip {
+	position: absolute;
+	bottom: 20px;
+	left: 0px;
+	display: block;
+	width: auto;
+	white-space: nowrap;
+	font-size: .9em;
+	border: 0px solid black; /* change as desired */
+	border-radius: 6px;
+	padding: 1px 5px;
+	background: #eee;
+	zoom: 1;
+	visibility: hidden;
+}

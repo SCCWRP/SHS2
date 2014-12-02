@@ -3,6 +3,17 @@ var AnswerListView = Backbone.View.extend({
 	template:_.template($('#tpl-answer-details').html()),
 	initialize: function(){
 		//console.log("AnswerListView");
+		//Start idle counter
+		var that = this;
+		$(document).ready(function () {
+			var interval = setInterval(function(){that.idleCounter(that);}, 60000);
+			$(document).mouseover(function(e) {
+				that.idleTime = 0;
+			});
+			$(document).keypress(function(e) {
+				that.idleTime = 0;
+			});
+		});
 		// must unbind event before each question or will end up with wrong model
 		$(this.el).unbind("click");
 		this.listenTo(this.model, 'sync', this.nextQuestion);
@@ -36,6 +47,14 @@ var AnswerListView = Backbone.View.extend({
     		"click #decline":"declineAnswer",
     		"change input[type=radio]":"saveAnswer",
 		"keyup input[type=text]" : "processKeyup"
+	},
+	idleTime: 0,
+	idleCounter: function(x) {
+		x.idleTime = x.idleTime + 1;
+		if(x.idleTime > 19 && x.model.get("qcount") > 13) {
+			x.cleanup();
+			location.reload();
+		};
 	},
 	processKeyup: function(event) {
 		if(event.keyCode == 13){

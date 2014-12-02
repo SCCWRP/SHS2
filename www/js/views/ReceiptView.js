@@ -7,7 +7,15 @@ var ReceiptView = Backbone.View.extend({
 	},
 	events:{
 		"click .finish":"finish",
-		"click .edit":"edit"
+		"click .edit":"edit",
+    		"mouseover li":"showToolTip",
+    		"mouseout li":"hideToolTip"
+	},
+    	showToolTip: function(event){
+			$(event.currentTarget).children(".tip").css("visibility", "visible")
+	},
+    	hideToolTip: function(event){
+			$(event.currentTarget).children(".tip").css("visibility", "hidden")
 	},
         edit: function(event){
 		event.preventDefault();
@@ -66,7 +74,6 @@ var ReceiptView = Backbone.View.extend({
 			//footerView.cleanup();
 			var receiptData = _.omit(this.model.attributes, 'id', 'user_id');
 			$(this.el).append(this.template({ 'elements': receiptData }));	
-			//$('#aid').trigger('create');
 			return this;
 	}
 });
