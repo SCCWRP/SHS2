@@ -19,6 +19,8 @@ var ReceiptView = Backbone.View.extend({
 		var fixedID = Number(clickedID.replace('q',''));
 		//console.log(fixedID);
 		that.cleanup();
+		// null out answer view otherwise the object stays in memory
+		answerListView = null;
 		// why are we navigating
 		appRouter.navigate('shs/edit/' + fixedID, {trigger: true});
 		//footerView = new FooterView;

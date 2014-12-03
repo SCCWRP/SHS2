@@ -408,7 +408,7 @@
 	"errmessage": "",
       	"status": "incomplete",
       	"id": "26",
-	"check": "select"
+	"check": "0"
   },
   {
 	"title": "What beach did you go to?",
