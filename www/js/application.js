@@ -149,7 +149,11 @@ var appRouter = new (Backbone.Router.extend({
 		$('#one').css('height',6100);
 		//console.log("one: "+$('#one').height());
 	} else {
-		$('#one').css('height',oneHeight);
+		if(($('#consent').height() > 0) && (screen.width <= 1024)){
+			$('#one').css('height',6500);
+		} else {
+			$('#one').css('height',oneHeight);
+		}
 	}
 	if($('#multi-select').height()){
 		var multiHeight = ($('#multi-select').height()+500+"px");

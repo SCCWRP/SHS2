@@ -337,6 +337,8 @@ var AnswerListView = Backbone.View.extend({
 						appRouter.navigate('/', {trigger: false});	
 						location.assign(HOME);
 					});
+					// send sccwrp error message
+					app.xhr_get('http://shs.sccwrp.org/shs2/mail-sccwrp.php',response.responseText).done(function(data) { /* console.log(data.answer); */ });
 					//model.destroy({remote: false});
 				  }
        				}
@@ -357,8 +359,30 @@ var AnswerListView = Backbone.View.extend({
 		$(headerView.el).show();
 		$(footerView.el).show();
 		$(this.el).html(this.template(this.model.toJSON()));
+		$('input:checkbox[value="Other"]').on('change', function(s) {
+			$('<div>').simpledialog2({
+				mode: 'button',
+		   		headerText: '',
+		   		headerClose: true,
+				buttonPrompt: 'Type your response',
+				buttonInput: true,
+				buttons : {
+			  		'OK': {
+				    		click: function () { 
+							var name = $.mobile.sdLastInput;
+							var i = "'" + name + "'";
+						   	$("#aid").controlgroup("container").append('<input type="checkbox" value="' + name + '" id="id' + i + '"> <label for="id' + i + '">' + name + '</label>');
+						   	$("#aid").trigger("create");
+						   	$("input:checkbox[value="+i+"]").prop('checked', true).checkboxradio('refresh');
+					   	}
+			  		},
+		   		}
+	  		})
+		});
 		$('select').on('change', function(s) {
 				var selectTarget = $(s.currentTarget);
+				$("body").css("background-color", "white");
+				$("body").css("opacity", "1");
 				if(selectTarget.val() == "Other") {
 					$('<div>').simpledialog2({
 					    mode: 'button',
