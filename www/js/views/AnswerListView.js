@@ -87,7 +87,6 @@ var AnswerListView = Backbone.View.extend({
 		//console.log(this.model.attributes);
 		var val = this.model.validate(this.model.attributes);
 		if(val) return;
-	//	console.log(this.qHistory);
 		var that = this;
 		// get current question number
 		var nextQcount = t.get("qcount");
@@ -356,6 +355,8 @@ var AnswerListView = Backbone.View.extend({
 						appRouter.navigate('/', {trigger: false});	
 						location.assign(HOME);
 					});
+					// send sccwrp error message
+					app.xhr_get('http://shs.sccwrp.org/shs2/mail-sccwrp.php',response.responseText).done(function(data) { /* console.log(data.answer); */ });
 					//model.destroy({remote: false});
 				  }
        				}
