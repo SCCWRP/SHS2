@@ -10,6 +10,8 @@ var ReceiptView = Backbone.View.extend({
 		"click .edit":"edit",
     		"mouseover li":"showToolTip",
     		"mouseout li":"hideToolTip"
+		"touchstart li":"showToolTip",
+    		"touchend li":"showToolTip"
 	},
     	showToolTip: function(event){
 			$(event.currentTarget).children(".tip").css("visibility", "visible")
