@@ -4,6 +4,8 @@ var AnswerListView = Backbone.View.extend({
 	initialize: function(){
 		//console.log("AnswerListView");
 		// must unbind event before each question or will end up with wrong model
+		// null out qhistory otherwise the object lingers
+		this.qHistory = [];
 		$(this.el).unbind("click");
 		this.listenTo(this.model, 'sync', this.nextQuestion);
 		this.listenTo(footerView, 'forward', this.saveAnswer); 
