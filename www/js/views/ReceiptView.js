@@ -7,7 +7,15 @@ var ReceiptView = Backbone.View.extend({
 	},
 	events:{
 		"click .finish":"finish",
-		"click .edit":"edit"
+		"click .edit":"edit",
+		"vmouseover li":"showToolTip",
+    		"vmouseout li":"hideToolTip"
+	},
+   	showToolTip: function(event){
+		$(event.currentTarget).children(".tip").css("visibility", "visible")
+	},
+	hideToolTip: function(event){
+		$(event.currentTarget).children(".tip").css("visibility", "hidden")
 	},
         edit: function(event){
 		event.preventDefault();

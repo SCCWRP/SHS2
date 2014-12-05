@@ -30,15 +30,11 @@ var FooterView = Backbone.View.extend({
 	},
 	toggle: function (s) {
 		if(s === "off"){
-			console.log("next off");
+			//console.log("next off");
 			$("#forward").prop("disabled", true);
-			$("#home").html("Saving...");
-			$("#home").show();
 		} else {
-			console.log("next on");
+			//console.log("next on");
 			$("#forward").prop("disabled", false);
-			$("#home").html("Home");
-			$("#home").hide();
 		}
 	},
 	render: function(){

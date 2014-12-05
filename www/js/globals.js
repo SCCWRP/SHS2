@@ -12,6 +12,12 @@ $.ajax({
 	async: false,
 	success: function(qjson){
 		//console.log("success");
+		//global object
+		questionObject = qjson;
+		questionObject = questionObject.map(function(x) {
+		x.title = x.title.replace("sevenDaysAgoFunction", "week");
+		return x;
+		});
 		var idlist = [];
 		for(i in qjson) {
 			idlist.push(Number(qjson[i].id));
