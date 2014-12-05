@@ -4,6 +4,8 @@ var AnswerListView = Backbone.View.extend({
 	initialize: function(){
 		//console.log("AnswerListView");
 		// must unbind event before each question or will end up with wrong model
+		// null out qhistory otherwise the object lingers
+		this.qHistory = [];
 		$(this.el).unbind("click");
 		this.listenTo(this.model, 'sync', this.nextQuestion);
 		this.listenTo(footerView, 'forward', this.saveAnswer); 
@@ -67,8 +69,10 @@ var AnswerListView = Backbone.View.extend({
 		//console.log(this.model);
 		//console.log(this.model.attributes);
 		var val = this.model.validate(this.model.attributes);
-		if(val) return;
-	//	console.log(this.qHistory);
+		if(val){
+			footerView.toggle("on");
+			return;
+		}
 		var that = this;
 		// get current question number
 		var nextQcount = t.get("qcount");
@@ -191,6 +195,7 @@ var AnswerListView = Backbone.View.extend({
 			var currentAnswer = "Did not Enter";	
 		};
 		if(currentAnswer == "Other") {
+			footerView.toggle("on");
 			return;
 		};
 		// current question
@@ -407,6 +412,7 @@ var AnswerListView = Backbone.View.extend({
 		//$("input[type='checkbox']").checkboxradio();
 		//$(this.el).trigger('create');
 		//console.log(Math.round($('#content').height()));
+		footerView.toggle("on");
 		return this;
 	}
 });

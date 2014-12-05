@@ -12,6 +12,7 @@ var Answer = Backbone.Model.extend({
                 this.on("invalid",function(model,error){
 			that.set(that.rollback, {validate: false});
 		        custom_alert(error);
+			footerView.toggle("on");
 	        });
 	},
 	defaults: createDefaults(),

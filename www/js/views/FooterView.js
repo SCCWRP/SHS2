@@ -17,6 +17,7 @@ var FooterView = Backbone.View.extend({
 	},
     	forward: function (e) { 
 	  	e.preventDefault();
+		this.toggle("off");
 		this.trigger("forward");
 	},
     	restart: function (e) { 
@@ -26,6 +27,15 @@ var FooterView = Backbone.View.extend({
 	  $("#popupRestart").popup("open");
 	  $("#popupRestart").popup('reposition', 'positionTo: window');
 	  appRouter.css();
+	},
+	toggle: function (s) {
+		if(s === "off"){
+			//console.log("next off");
+			$("#forward").prop("disabled", true);
+		} else {
+			//console.log("next on");
+			$("#forward").prop("disabled", false);
+		}
 	},
 	render: function(){
 		//console.log("footer");
