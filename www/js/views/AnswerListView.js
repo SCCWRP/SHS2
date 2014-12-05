@@ -336,12 +336,20 @@ var AnswerListView = Backbone.View.extend({
 				},
 				error: function(model,response){
 				  if(response.status == 500){
-					user.save({ status: "duplicate" });
-					custom_alert("You are attempting to enroll with phone/email that is already been registered. If you have already completed enrollment please login instead. If you were unable to complete enrollment please wait 20 minutes and your incomplete enrollment will be removed from the system.", "", function() {
-						that.cleanup();
-						appRouter.navigate('/', {trigger: false});	
-						location.assign(HOME);
-					});
+					if(response.responseText.indexOf("SQLSTATE[23000]") !== -1){
+						user.save({ status: "duplicate" });
+						custom_alert("You are attempting to enroll with phone/email that is already been registered. Please attempt to login instead. If you continue to fail login please wait one hour and your incomplete enrollment will be removed from the system.", "", function() {
+							that.cleanup();
+							appRouter.navigate('/', {trigger: false});	
+							location.assign(HOME);
+						});
+					} else {
+						custom_alert("The application has encountered an error saving the most recent question. Your record has been saved up to the last question. Please re-login to finish the survey. The SHS team has been notified of the error.", "", function() {
+							that.cleanup();
+							appRouter.navigate('/', {trigger: false});	
+							location.assign(HOME);
+						});
+					}
 					// send sccwrp error message
 					app.xhr_get('http://shs.sccwrp.org/shs2/mail-sccwrp.php',response.responseText).done(function(data) { /* console.log(data.answer); */ });
 					//model.destroy({remote: false});
