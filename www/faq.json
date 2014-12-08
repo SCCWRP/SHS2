@@ -52,8 +52,7 @@
   },
   {
 	"title": "Where can community <br>residents find out more <br>about the quality of their <br>recreational waters?",
-	"content": "For more information on the quality of recreational waters in San Diego County, go to the Heal the Bay website at http://www.healthebay.org/brc/ or the San Diego County beach and bay monitoring program: http://www.sdcounty.ca.gov/deh/water/beach_bay.html",
-	"content": "For more information on the quality of recreational waters in San Diego County, go to the Heal the Bay website at <a href='http://www.healthebay.org/brc/'>http://www.healthebay.org/brc/</a> or the San Diego County beach and bay monitoring program: <a href='http://www.sdcounty.ca.gov/deh/water/beach_bay.html'>http://www.sdcounty.ca.gov/deh/water/beach_bay.html</a>",
+	"content": "For more information on the quality of recreational waters in San Diego County, go to the Heal the Bay website at <a href='http://www.healthebay.org/brc/'>http://www.healthebay.org/brc/</a> or the San Diego County beach and bay monitoring program: <a href='http://www.sdbeachinfo.com'>http://www.sdbeachinfo.com</a>",
 	"id": "11"
   },
   {
