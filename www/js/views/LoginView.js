@@ -137,12 +137,15 @@ var LoginView = Backbone.View.extend({
 		$("#home").show();
 		$("#footer").show();
 		//if (networkStatus != 'offline' && isDevice == true){
-		if (networkStatus != 'offline'){
+		if (networkStatus != 'offline' || window.navigator.onLine == 'false'){
 			appRouter.signup();
 		} else {
-			custom_alert("Enrollment not available offline");
-                        this.cleanup();
-                        location.reload();
+			custom_alert("Enrollment not available offline",
+					"",
+				function () { 
+					this.cleanup();
+					location.reload();
+			});
 		}
 	},
 	showSummary: function(e){
