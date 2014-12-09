@@ -33,7 +33,7 @@ var LoginView = Backbone.View.extend({
 		$("#popupInfo").popup("close");
 		var loginID = $('#loginInput').val();
 	  //if (networkStatus != 'offline' && isDevice == true){
-	  if (networkStatus != 'offline'){
+	  if (networkStatus != 'offline' || window.navigator.onLine != 'false'){
 		that.sendLocalSurveys();
         	var url = 'http://shs.sccwrp.org/shs2/index.php/user/' + loginID;
 		message = $.ajax({
