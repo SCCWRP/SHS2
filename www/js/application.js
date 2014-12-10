@@ -370,12 +370,12 @@ var app = {
 	    success: function( response ) {
 	            //alert( response.status ); // server response
 		    if(response.status == "success"){
-			    //alert("We are online");
+			    alert("We are online");
 			    networkStatus = "online";
 		    }
 	    },
 	    error: function( response ) {
-			    //alert("We are offline");
+			    alert("We are offline");
 			    networkStatus = "offline";
 	    },
 	  });

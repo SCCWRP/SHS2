@@ -135,6 +135,7 @@ var LoginView = Backbone.View.extend({
 		$("#forward").show();
 		$("#home").show();
 		$("#footer").show();
+		alert(networkStatus);
 		if (networkStatus != 'offline'){ 
 			appRouter.signup();
 		} else {
