@@ -33,7 +33,7 @@ var LoginView = Backbone.View.extend({
 		$("#popupInfo").popup("close");
 		var loginID = $('#loginInput').val();
 	  //if (networkStatus != 'offline' && isDevice == true){
-	  if (networkStatus != 'offline' || window.navigator.onLine != 'false'){
+	  if (networkStatus != 'offline'){
 		that.sendLocalSurveys();
         	var url = 'http://shs.sccwrp.org/shs2/index.php/user/' + loginID;
 		message = $.ajax({
@@ -137,7 +137,8 @@ var LoginView = Backbone.View.extend({
 		$("#home").show();
 		$("#footer").show();
 		//if (networkStatus != 'offline' && isDevice == true){
-		if (networkStatus != 'offline' || window.navigator.onLine == 'false'){
+		alert(window.navigator.onLine);
+		if (networkStatus != 'offline' || window.navigator.onLine !== 'false'){ 
 			appRouter.signup();
 		} else {
 			custom_alert("Enrollment not available offline",
