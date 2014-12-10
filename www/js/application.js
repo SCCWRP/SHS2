@@ -368,11 +368,11 @@ var app = {
   initialize: function(){
 	if(document.URL.indexOf("http://") === -1 && document.URL.indexOf("https://") === -1){
 		isDevice = true;
-		alert(navigator.network.connection.type);
 	}
 	if( isDevice ){
     		document.addEventListener("deviceready", function(){
 			app.onDeviceReady();
+			alert(navigator.network.connection.type);
 		},true);
 	} else {
 		app.onDeviceReady();
