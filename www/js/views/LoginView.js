@@ -130,15 +130,12 @@ var LoginView = Backbone.View.extend({
 	enrollUser: function(e){
 		//console.log("enrollUser");
 		e.preventDefault();
-		//$("#popupInfo").popup("close");
 		this.cleanup();
 		$("#back").show();
 		$("#forward").show();
 		$("#home").show();
 		$("#footer").show();
-		//if (networkStatus != 'offline' && isDevice == true){
-		alert(window.navigator.onLine);
-		if (networkStatus != 'offline' || window.navigator.onLine !== 'false'){ 
+		if (networkStatus != 'offline'){ 
 			appRouter.signup();
 		} else {
 			custom_alert("Enrollment not available offline",
