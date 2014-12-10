@@ -361,7 +361,28 @@ var app = {
 	//app.bindEvents();
 	Backbone.history.start({pushState: true, hashChange: false});
 	// check network status
- 	networkStatus = navigator.onLine ? 'online' : 'offline';
+ 	//networkStatus = navigator.onLine ? 'online' : 'offline'; -- doesnt work with some device browsers
+	if(isDevice){
+	  $.ajax({
+	    url: "http://shs.sccwrp.org/ajax.php",
+	    jsonp: "callback",
+	    dataType: "jsonp",
+	    success: function( response ) {
+	            //alert( response.status ); // server response
+		    if(response.status == "success"){
+			    //alert("We are online");
+			    networkStatus = "online";
+		    }
+	    },
+	    error: function( response ) {
+			    //alert("We are offline");
+			    networkStatus = "offline";
+	    },
+	  });
+	} else {
+ 		networkStatus = "online";
+	}
+	/*
 	if(isDevice){
     		try{
 	            var networkState = navigator.connection && navigator.connection.type;
@@ -384,6 +405,7 @@ var app = {
 			});
 		}
 	}
+	*/
 	FastClick.attach(document.body);
 	appRouter.start();
   },
