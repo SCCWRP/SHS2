@@ -365,7 +365,7 @@ var app = {
 	if(isDevice){
 		alert(navigator.network.connection.type);
 	}
-	alert(navigator.network.connection.type);
+	alert(navigator.connection.type);
 	FastClick.attach(document.body);
 	appRouter.start();
   },
