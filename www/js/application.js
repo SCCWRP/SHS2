@@ -362,6 +362,10 @@ var app = {
 	Backbone.history.start({pushState: true, hashChange: false});
 	// check network status
  	networkStatus = navigator.onLine ? 'online' : 'offline';
+	if(isDevice){
+		alert(navigator.network.connection.type);
+	}
+	alert(navigator.network.connection.type);
 	FastClick.attach(document.body);
 	appRouter.start();
   },
@@ -372,7 +376,6 @@ var app = {
 	if( isDevice ){
     		document.addEventListener("deviceready", function(){
 			app.onDeviceReady();
-			alert(navigator.network.connection.type);
 		},true);
 	} else {
 		app.onDeviceReady();
