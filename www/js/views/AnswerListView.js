@@ -15,6 +15,8 @@ var AnswerListView = Backbone.View.extend({
 			});
 		});
 		// must unbind event before each question or will end up with wrong model
+		// null out qhistory otherwise the object lingers
+		this.qHistory = [];
 		$(this.el).unbind("click");
 		this.listenTo(this.model, 'sync', this.nextQuestion);
 		this.listenTo(footerView, 'forward', this.saveAnswer); 
@@ -86,7 +88,10 @@ var AnswerListView = Backbone.View.extend({
 		//console.log(this.model);
 		//console.log(this.model.attributes);
 		var val = this.model.validate(this.model.attributes);
-		if(val) return;
+		if(val){
+			footerView.toggle("on");
+			return;
+		}
 		var that = this;
 		// get current question number
 		var nextQcount = t.get("qcount");
@@ -209,6 +214,7 @@ var AnswerListView = Backbone.View.extend({
 			var currentAnswer = "Did not Enter";	
 		};
 		if(currentAnswer == "Other") {
+			footerView.toggle("on");
 			return;
 		};
 		// current question
@@ -349,12 +355,20 @@ var AnswerListView = Backbone.View.extend({
 				},
 				error: function(model,response){
 				  if(response.status == 500){
-					user.save({ status: "duplicate" });
-					custom_alert("You are attempting to enroll with phone/email that is already been registered. If you have already completed enrollment please login instead. If you were unable to complete enrollment please wait 20 minutes and your incomplete enrollment will be removed from the system.", "", function() {
-						that.cleanup();
-						appRouter.navigate('/', {trigger: false});	
-						location.assign(HOME);
-					});
+					if(response.responseText.indexOf("SQLSTATE[23000]") !== -1){
+						user.save({ status: "duplicate" });
+						custom_alert("You are attempting to enroll with phone/email that is already been registered. Please attempt to login instead. If you continue to fail login please wait one hour and your incomplete enrollment will be removed from the system.", "", function() {
+							that.cleanup();
+							appRouter.navigate('/', {trigger: false});	
+							location.assign(HOME);
+						});
+					} else {
+						custom_alert("The application has encountered an error saving the most recent question. Your record has been saved up to the last question. Please re-login to finish the survey. The SHS team has been notified of the error.", "", function() {
+							that.cleanup();
+							appRouter.navigate('/', {trigger: false});	
+							location.assign(HOME);
+						});
+					}
 					// send sccwrp error message
 					app.xhr_get('http://shs.sccwrp.org/shs2/mail-sccwrp.php',response.responseText).done(function(data) { /* console.log(data.answer); */ });
 					//model.destroy({remote: false});
@@ -425,6 +439,7 @@ var AnswerListView = Backbone.View.extend({
 		//$("input[type='checkbox']").checkboxradio();
 		//$(this.el).trigger('create');
 		//console.log(Math.round($('#content').height()));
+		footerView.toggle("on");
 		return this;
 	}
 });

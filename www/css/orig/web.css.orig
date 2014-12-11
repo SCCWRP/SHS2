@@ -359,6 +359,21 @@ position: absolute;
 left: 30px;
 }
 span.tip {
+<<<<<<< HEAD
+	position: absolute;
+	bottom: 20px;
+	left: 0px;
+	display: block;
+	width: auto;
+	white-space: nowrap;
+	font-size: .9em;
+	border: 0px solid black; /* change as desired */
+	border-radius: 6px;
+	padding: 1px 5px;
+	background: #eee;
+	zoom: 1;
+	visibility: hidden;
+=======
 position: absolute;
 bottom: 20px;
 left: 0px;
@@ -372,4 +387,5 @@ padding: 1px 5px;
 background: #eee;
 zoom: 1;
 visibility: hidden;
+>>>>>>> 01c0beb4df3bd43867f29acbcdd83d7e43cd1971
 }

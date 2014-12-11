@@ -168,6 +168,12 @@ var LoginView = Backbone.View.extend({
 		$("#footer").hide();
 		$("#back").hide();
 		$("#forward").hide();
+		$("#header").append("<div id='waiting'>Please Wait</div>");
+		$("#waiting").hide();
+		$(document).on({
+			    ajaxStart: function() { $("#waiting").show();    },
+			     ajaxStop: function() { $("#waiting").hide(); }    
+		});
 		$(this.el).html(this.template());	
 		return this;
 	}
