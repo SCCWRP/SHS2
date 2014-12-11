@@ -165,7 +165,7 @@
       	"num": "q18",
       	"type": "select",
 	"check": "select",
-      	"menu": "Select One,Surfrider Foundation website,Surfrider Foundation email announcement,Flier posted at the beach,Flier posted at my local surf shop,Talked with a study representative on the beach,Friends/word of mouth,Other",
+      	"menu": "Select One,Surfrider Foundation website,Surfrider Foundation email announcement,Flier posted at the beach,Flier posted at my local surf shop,Talked with a study representative on the beach,Friends/word of mouth,Surfline,Other",
         "other": "y",
 	"otype": "text",
   	"answer": "",

@@ -362,6 +362,7 @@ var app = {
 	$.mobile.allowCrossDomainPages = true;
 	*/
 	// disable jquery mobile routing
+	$.support.cors = true;
 	$.mobile.ajaxEnabled = false;
 	$.mobile.linkBindingEnabled = false;
 	$.mobile.hashListeningEnabled = false;
