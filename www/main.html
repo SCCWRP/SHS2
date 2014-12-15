@@ -187,7 +187,12 @@
 		<% _.each(modthree, function(element,index,list) {  var qindex = Number(index.substr(1))-1; %>
 		<% if(!element) return;  %>
 			<% element = JSON.stringify(element).replace(/\\"/g, "").replace("\\", "").replace(/\"/g, "").replace("{","").replace("}", "");  %> 
+<<<<<<< HEAD
+			<li data-role="list-divider"><span class="tip"><%= questionObject[qindex].title %></span>
+Question <%= qindex %></li>
+=======
 			<li data-role="list-divider"><span class="tip"><%= questionObject[qindex].title %></span>Question <%= qindex %></li>
+>>>>>>> 01c0beb4df3bd43867f29acbcdd83d7e43cd1971
 			<li>
 			<% _.each(element.split(","), function(e,i,l) { %>
 				<p> <%= e %> </p>
@@ -202,7 +207,11 @@
 			<% var modfour = _.pick(elements, 'q35', 'q36', 'q37', 'q38', 'q39', 'q40', 'q41','q42', 'q43', 'q44', 'q45','q46', 'q47', 'q48', 'q49', 'q50', 'q51', 'q52', 'q53', 'q54', 'q55', 'q56', 'q57', 'q58', 'q59', 'q60', 'q61', 'q62', 'q63', 'q64', 'q65', 'q66', 'q67', 'q68', 'q69', 'q70', 'q71'); %>
 		<% _.each(modfour, function(element,index,list) {  var qindex = Number(index.substr(1))-1; %>
 		<% if(!element) return;  %>
+<<<<<<< HEAD
+		<li data-role="list-divider"><span class="tip"><%= questionObject[qindex].title %></span>Question <%= qindex %></li>
+=======
 			<li data-role="list-divider"><span class="tip"><%= questionObject[qindex].title %></span>Question <%= qindex %></li>
+>>>>>>> 01c0beb4df3bd43867f29acbcdd83d7e43cd1971
 			<li> <p> <%= element %> </p> </li>
 		<% }); %>
 		</ul>
