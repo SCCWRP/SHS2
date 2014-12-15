@@ -47,6 +47,7 @@ var AnswerListView = Backbone.View.extend({
 		"change select[name=aid]":"saveAnswer",
     		"click .decline":"declineAnswer",
     		"click #decline":"declineAnswer",
+    		"click #showConsent":"showConsent",
     		"change input[type=radio]":"saveAnswer",
 		"keyup input[type=text]" : "processKeyup"
 	},
@@ -72,6 +73,10 @@ var AnswerListView = Backbone.View.extend({
     	declineAnswer:function(event){
 		formtype = this.model.get("type");
 		this.saveAnswer(event, true);
+	},
+    	showConsent:function(event){
+		$('#one').css('height',7000);	
+    		$('html,body').animate({ scrollTop: $("#multi-radio").offset().top}, 'slow');
 	},
 	qHistory: [],
 	goBack: function(event){
