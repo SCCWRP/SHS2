@@ -373,3 +373,17 @@ background: #eee;
 zoom: 1;
 visibility: hidden;
 }
+#waiting {
+position: absolute;
+bottom: 20px;
+right: 80px;
+display: block;
+width: auto;
+white-space: nowrap;
+font-size: 100%;
+border: 0px solid black; /* change as desired */
+border-radius: 6px;
+padding: 1px 5px;
+background: #eee;
+zoom: 1;
+}
