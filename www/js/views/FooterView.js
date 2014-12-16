@@ -18,6 +18,7 @@ var FooterView = Backbone.View.extend({
 	},
     	forward: function (e) { 
 	  	e.preventDefault();
+		alert(e);
 		this.toggle("off");
 		this.trigger("forward");
 	},
