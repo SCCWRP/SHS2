@@ -6,7 +6,7 @@ var FooterView = Backbone.View.extend({
 	},
     	events: {
 		"click #back": "back",
-		"vclick #forward": "forward",
+		"click #forward": "forward",
 		"click #restart": "restart",
 		"click #restartCancel": "cancel",
 		"click #restartRestart": "reload"
