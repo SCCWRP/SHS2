@@ -356,6 +356,7 @@ var AnswerListView = Backbone.View.extend({
 							custom_alert("Survey is Complete. Come Back Next Week", "", function() {
 								appRouter.navigate('/', {trigger: true});
 								location.assign(HOME);
+								return;
 							});
 						}
 						// return receipt from database
