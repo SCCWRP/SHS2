@@ -349,7 +349,21 @@ var AnswerListView = Backbone.View.extend({
 						// clear stage and events
 						that.cleanup();
 						// return receipt from database
-						networkStatus != "offline" ? appRouter.navigate('shs/receipt/' + appID, {trigger: true}) : (function () {appRouter.navigate('/', {trigger: true});location.assign(HOME);})();  
+						// check for ie9 or less - no receipt
+						var ie = (function(){ 
+							var undef, v = 3, div = document.createElement('div'), all = div.getElementsByTagName('i');				 
+							while ( div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->', all[0]);
+						       	return v > 4 ? v : undef;
+					       	}());
+						if(ie <= 9){
+							custom_alert("Survey is Complete. Come Back Next Week", "", function() { 
+								appRouter.navigate('/', {trigger: false});
+								location.assign(HOME);
+							});
+
+						} else {
+							networkStatus != "offline" ? appRouter.navigate('shs/receipt/' + appID, {trigger: true}) : (function () {appRouter.navigate('/', {trigger: true});location.assign(HOME);})();  
+						}
 					}
 				},
 				error: function(model,response){
