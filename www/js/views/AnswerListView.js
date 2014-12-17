@@ -3,6 +3,17 @@ var AnswerListView = Backbone.View.extend({
 	template:_.template($('#tpl-answer-details').html()),
 	initialize: function(){
 		//console.log("AnswerListView");
+		//Start idle counter
+		var that = this;
+		$(document).ready(function () {
+			var interval = setInterval(function(){that.idleCounter(that);}, 60000);
+			$(document).mouseover(function(e) {
+				that.idleTime = 0;
+			});
+			$(document).keypress(function(e) {
+				that.idleTime = 0;
+			});
+		});
 		// must unbind event before each question or will end up with wrong model
 		// null out qhistory otherwise the object lingers
 		this.qHistory = [];
@@ -38,6 +49,14 @@ var AnswerListView = Backbone.View.extend({
     		"click #decline":"declineAnswer",
     		"change input[type=radio]":"saveAnswer",
 		"keyup input[type=text]" : "processKeyup"
+	},
+	idleTime: 0,
+	idleCounter: function(x) {
+		x.idleTime = x.idleTime + 1;
+		if(x.idleTime > 19 && x.model.get("qcount") > 13) {
+			x.cleanup();
+			location.reload();
+		};
 	},
 	processKeyup: function(event) {
 		if(event.keyCode == 13){
@@ -329,9 +348,22 @@ var AnswerListView = Backbone.View.extend({
 					if(timer == 4){
 						// clear stage and events
 						that.cleanup();
-						//appRouter.cleanup();
 						// return receipt from database
-						networkStatus != "offline" ? appRouter.navigate('shs/receipt/' + appID, {trigger: true}) : (function () {appRouter.navigate('/', {trigger: true});location.assign(HOME);})();  
+						// check for ie9 or less - no receipt
+						var ie = (function(){ 
+							var undef, v = 3, div = document.createElement('div'), all = div.getElementsByTagName('i');				 
+							while ( div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->', all[0]);
+						       	return v > 4 ? v : undef;
+					       	}());
+						if(ie <= 9){
+							custom_alert("Survey is Complete. Come Back Next Week", "", function() { 
+								appRouter.navigate('/', {trigger: false});
+								location.assign(HOME);
+							});
+
+						} else {
+							networkStatus != "offline" ? appRouter.navigate('shs/receipt/' + appID, {trigger: true}) : (function () {appRouter.navigate('/', {trigger: true});location.assign(HOME);})();  
+						}
 					}
 				},
 				error: function(model,response){

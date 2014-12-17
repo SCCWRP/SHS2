@@ -76,7 +76,6 @@ var ReceiptView = Backbone.View.extend({
 			//footerView.cleanup();
 			var receiptData = _.omit(this.model.attributes, 'id', 'user_id');
 			$(this.el).append(this.template({ 'elements': receiptData }));	
-			//$('#aid').trigger('create');
 			return this;
 	}
 });

@@ -15,10 +15,16 @@ $.ajax({
 		//global object
 		questionObject = qjson;
 		questionObject = questionObject.map(function(x) {
+<<<<<<< HEAD
 			x.title = x.title.replace("sevenDaysAgoFunction", "week");
 			return x;
 		});
 
+=======
+		x.title = x.title.replace("sevenDaysAgoFunction", "week");
+		return x;
+		});
+>>>>>>> 01c0beb4df3bd43867f29acbcdd83d7e43cd1971
 		var idlist = [];
 		for(i in qjson) {
 			idlist.push(Number(qjson[i].id));
