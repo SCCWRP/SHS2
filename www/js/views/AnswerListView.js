@@ -356,11 +356,11 @@ var AnswerListView = Backbone.View.extend({
 							custom_alert("Survey is Complete. Come Back Next Week", "", function() {
 								appRouter.navigate('/', {trigger: true});
 								location.assign(HOME);
-								return;
 							});
+						} else {
+							// return receipt from database
+							networkStatus != "offline" ? appRouter.navigate('shs/receipt/' + appID, {trigger: true}) : (function () {appRouter.navigate('/', {trigger: true});location.assign(HOME);})();  
 						}
-						// return receipt from database
-						networkStatus != "offline" ? appRouter.navigate('shs/receipt/' + appID, {trigger: true}) : (function () {appRouter.navigate('/', {trigger: true});location.assign(HOME);})();  
 					}
 				},
 				error: function(model,response){
