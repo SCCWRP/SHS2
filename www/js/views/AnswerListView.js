@@ -349,6 +349,15 @@ var AnswerListView = Backbone.View.extend({
 						// clear stage and events
 						that.cleanup();
 						//appRouter.cleanup();
+						// check to see if browser is <ie9
+						var ie = /MSIE (\d+)/.exec(navigator.userAgent);
+						ie = ie? ie[1] : null;
+						if(Number(ie) <= 9){ 
+							custom_alert("Survey is Complete. Come Back Next Week", "", function() {
+								appRouter.navigate('/', {trigger: true});
+								location.assign(HOME);
+							});
+						}
 						// return receipt from database
 						networkStatus != "offline" ? appRouter.navigate('shs/receipt/' + appID, {trigger: true}) : (function () {appRouter.navigate('/', {trigger: true});location.assign(HOME);})();  
 					}
