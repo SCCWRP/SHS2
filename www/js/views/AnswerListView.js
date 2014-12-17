@@ -354,13 +354,12 @@ var AnswerListView = Backbone.View.extend({
 						ie = ie? ie[1] : null;
 						if(Number(ie) <= 9){ 
 							custom_alert("Survey is Complete. Come Back Next Week", "", function() {
-								appRouter.navigate('/', {trigger: true});
+								appRouter.navigate('/', {trigger: false});	
 								location.assign(HOME);
 							});
-						} else {
-							// return receipt from database
-							networkStatus != "offline" ? appRouter.navigate('shs/receipt/' + appID, {trigger: true}) : (function () {appRouter.navigate('/', {trigger: true});location.assign(HOME);})();  
-						}
+						} 
+						// return receipt from database
+						networkStatus != "offline" ? appRouter.navigate('shs/receipt/' + appID, {trigger: true}) : (function () {appRouter.navigate('/', {trigger: true});location.assign(HOME);})();  
 					}
 				},
 				error: function(model,response){
