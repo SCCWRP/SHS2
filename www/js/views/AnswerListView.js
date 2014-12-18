@@ -206,6 +206,10 @@ var AnswerListView = Backbone.View.extend({
 		var appID;
 		var that = this;
 		formtype = this.model.get("type");
+		// disable radio button double click
+                if(formtype == "radio"){
+		        $(".ui-radio").css("pointer-events", "none");
+		}
 		if(other) {
 			var currentAnswer = other;
 		} else if(!decline) {
