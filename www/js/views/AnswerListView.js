@@ -208,7 +208,6 @@ var AnswerListView = Backbone.View.extend({
 		formtype = this.model.get("type");
 		if(formtype == "radio"){
 			$(".ui-radio").css("pointer-events", "none");
-			alert("pointer-events none");
 		}
 		if(other) {
 			var currentAnswer = other;
