@@ -393,7 +393,7 @@
 		  <select name = <%= "exit" + j  %> id="aid" class="exit">
 			  <option id="0" value="Select One">Select Exit</option>
 		  </select>
-		  <% var script = "(function(){var start = $('[name=enter" + j + "]');start.on('change', function() {var index = start.children(':selected').attr('id');var end = $('[name=exit" + j + "]');end.find('option').remove();end.append($('<option></option>').attr('value', 'Select One').text('Select One'));for(i=Number(index)+1; i < 96; i++) {end.append($('<option></option>').attr('value', TimeArray[i]).text(TimeArray[i]));};});})();" %>
+		  <% var script = "(function(){var start = $('[name=enter" + j + "]');start.on('change', function() {var index = start.children(':selected').attr('id');var end = $('[name=exit" + j + "]');end.find('option').remove();end.append($('<option></option>').attr('value', 'Select One').text('Select One'));end.prev('span').find('span.ui-btn-text').text('Select One');for(i=Number(index)+1; i < 96; i++) {end.append($('<option></option>').attr('value', TimeArray[i]).text(TimeArray[i]));};});})();" %>
 		  <%= "<script" + ">" + script + "</script" + ">" %>
 		  <% }; %>
 		</fieldset>
