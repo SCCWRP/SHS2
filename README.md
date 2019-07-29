@@ -7,6 +7,6 @@ The mobile and web application were built using phonegap, backbone, and jquery m
 
 ## Contributors
 
-Cody Gruebele
-Mark Engel
-Paul Smith
+- Cody Gruebele
+- Mark Engel
+- Paul Smith
